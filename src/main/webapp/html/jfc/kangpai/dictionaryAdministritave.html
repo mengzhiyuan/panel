@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JFC后台管理系统</title>
+    <meta name="keywords" content="JFC样板库" />
+    <meta name="description" content="JFC样板库" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css"
+	rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!--<link rel="stylesheet" href="../../../css/JFC/kangpai/dictionary.css">-->
+    <!--<link rel="stylesheet" href="../../../css/JFC/kangpai/models.css">-->
+    <style>
+        .mask-add{
+            position: fixed;
+            left: 0;
+            text-align: center;
+            top: 0;
+            vertical-align: middle;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(50,50,50,0.3);
+        }
+        .forms{
+            margin: 30% 0 0 0;
+        }
+        .add_value{
+            width: 150px;
+            display: inline-block;
+        }
+        .btn-sm{
+            padding: 5px 23px;
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div id="tools" class="form-inline" role="form">
+        <div class="form-group">
+            <button class="btn btn-success" data-toggle="modal" data-target="#updateOrAdd" id="add">
+                <span class="glyphicon glyphicon-plus"></span>
+                添加
+            </button>
+        </div>
+    </div>
+    <div>
+        <h4>
+            行政职称
+        </h4>
+        <table id="list">
+
+        </table>
+    </div>
+</div>
+
+
+<script src="../../../js/jquery.js"></script>
+	<script src="../../../js/bootstrap.min.js"></script>
+	<script src="../../../js/bootstrap-select.min.js"></script>
+	<script
+		src="../../../js/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+	<script src="../../../js/bootstrap-table.min.js"></script>
+	<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../../js/bootstrap-table-editable.js"></script>
+	<script src="../../../js/laydate.js"></script>
+<script src="../../../js/jfc/kangpai/dictionaryAdministrative.js"></script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .fixed-table-box{
+            width: 1200px;
+            margin: 5px auto;
+        }
+        .fixed-table-box>.fixed-table_body-wraper{/*内容了表格主体内容有纵向滚动条*/
+            max-height: 260px;
+        }
+
+        .fixed-table_fixed>.fixed-table_body-wraper{/*为了让两侧固定列能够同步表格主体内容滚动*/
+            max-height: 240px;
+        }
+        .fixed-table-box .table-cell{
+            width: 80px;
+            padding: 0;
+        }
+        .fixed-table-box .w-60>.table-cell{
+            width: 60px;
+            padding: 0;
+        }
+
+        .w-150{
+            width: 150px;
+        }
+        .w-120{
+            width: 120px;
+        }
+        .w-300{
+            width: 300px;
+        }
+        .w-100{
+            width: 100px;
+        }
+        .w-80{
+            width: 80px;
+        }
+        .w-60{
+            width: 60px
+        }
+        .btns{
+            text-align: center;
+        }
+        .btns button{
+            padding: 10px 20px;
+        }
+        #remark_line{
+            display: inline-block;
+            width: 30%;
+            margin: 0 15px 0 0;
+        }
+        .normal{
+            background-color: rgb(220,245,235);
+        }
+        .holiday{
+            background-color: rgb(220,235,255);
+        }
+        .late{
+            background-color: rgb(255,220,230);
+        }
+        .overtime{
+            background-color: rgb(135,235,175);
+        }
+        .bug{
+            background-color: rgb(245,235,175);
+        }
+        .absence{
+            background-color: rgb(255,175,200);
+        }
+        .signed{
+            background-color: rgb(200,200,200);
+        }
+        .extra{
+            background-color: rgb(175,235,100);
+        }
+        .business{
+            background-color: rgb(235,255,200);
+        }
+        .trip{
+            background-color: rgb(200,255,175);
+        }
+        .annual-leave{
+            background-color: rgb(175,235,255);
+        }
+        .marital-leave{
+            background-color: rgb(255,150,235);
+        }
+        .private-affair{
+            background-color: rgb(155,175,255);
+        }
+        .sick-leave{
+            background-color: rgb(225,175,255);
+        }
+        .day-off{
+            background-color: rgb(255,225,125);
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                <a href="http://www.kolpanel.net/jfcpanel/html/jfc/main/center.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-OA</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div style="margin-top: 1%;height: 35px;">
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active">
+                                <select class="form-control" id="year">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <div role="tabpanel" class="tab-pane active">
+                            <select class="form-control" id="month">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <button class="btn btn-success btn-md search-tools" id="attendance_table_search">搜索</button>
+                        <button class="btn btn-warning btn-md export" id="attendance_export">导出</button>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="number" min="1" max="28" class="form-control" id="remark_line" value="5">
+                        <button class="btn btn-md btn-info" id="line_confirm">设置备注截止日期</button>
+                    </div>
+                    <!--<div class=" col-xs-4 text-right">-->
+                    <!--<a  class="btn btn-default create_button" type="button" id="zhli">+整理数据</a>-->
+                    <!---->
+                    <!--<a class="btn btn-default create_button" type="button"-->
+                    <!--data-toggle="modal" data-target="#myModal">+导入打卡</a>-->
+                    <!---->
+                    <!--</div>-->
+                </div>
+                <div class="fixed-table-box row-col-fixed">
+                    <!-- 表头 start -->
+                    <div class="fixed-table_header-wraper">
+                        <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                            <thead>
+                            <tr>
+                                <th data-fixed="true"><div class="w-80">姓名</div></th>
+                                <th class="w-80">
+                                    <div class="table-cell">
+                                        <button class="btn btn-xs normal">ZC</button>
+                                        正常打卡
+                                    </div>
+                                </th>
+                                <th class="w-80">
+                                    <div class="table-cell">
+                                        <button class="btn btn-xs holiday">JQ</button>
+                                        假期
+                                    </div>
+                                </th>
+                                <th class="w-80">
+                                    <div class="table-cell">
+                                        <button class="btn btn-xs late">C</button>
+                                        迟到
+                                    </div>
+                                </th>
+                                <th class="w-80">
+                                    <div class="table-cell">
+                                        <button class="btn btn-xs late">ZT</button>
+                                        早退
+                                    </div>
+                                </th>
+                                <th class="w-80">
+                                    <div class="table-cell">
+                                        <button class="btn btn-xs overtime">JB</button>
+                                        加班
+                                    </div>
+                                </th>
+                                <th colspan="2">
+                                    <button class="btn btn-xs bug" style="margin-left: 30px">WO</button>打卡一次
+                                </th>
+                                <th colspan="2">
+                                    <button class="btn btn-xs absence" style="margin-left: 30px">W</button>未打卡
+                                </th>
+                                <th colspan="12">
+                                    <button class="btn btn-xs signed">LG</button>来过公司
+                                    <button class="btn btn-xs extra">JJB</button>假期加班
+                                    <button class="btn btn-xs business">WC</button>外出
+                                    <button class="btn btn-xs trip">CC</button>出差
+                                    <button class="btn btn-xs annual-leave">N</button>年假
+                                    <button class="btn btn-xs marital-leave">H</button>婚假
+                                    <button class="btn btn-xs private-affair">S</button>事假
+                                    <button class="btn btn-xs sick-leave">B</button>病假
+                                    <button class="btn btn-xs day-off">D</button>调休
+                                </th>
+                            </tr>
+                            <tr>
+                                <th data-fixed="true"><div class="w-80">姓名</div></th>
+                                <th class="w-80"><div class="table-cell">1</div></th>
+                                <th class="w-80"><div class="table-cell">2</div></th>
+                                <th class="w-80"><div class="table-cell">3</div></th>
+                                <th class="w-80"><div class="table-cell">4</div></th>
+                                <th class="w-80"><div class="table-cell">5</div></th>
+                                <th class="w-80"><div class="table-cell">6</div></th>
+                                <th class="w-80"><div class="table-cell">7</div></th>
+                                <th class="w-80"><div class="table-cell">8</div></th>
+                                <th class="w-80"><div class="table-cell">9</div></th>
+                                <th class="w-80"><div class="table-cell">10</div></th>
+                                <th class="w-80"><div class="table-cell">11</div></th>
+                                <th class="w-80"><div class="table-cell">12</div></th>
+                                <th class="w-80"><div class="table-cell">13</div></th>
+                                <th class="w-80"><div class="table-cell">14</div></th>
+                                <th class="w-80"><div class="table-cell">15</div></th>
+                                <th class="w-80"><div class="table-cell">16</div></th>
+                                <th class="w-80"><div class="table-cell">17</div></th>
+                                <th class="w-80"><div class="table-cell">18</div></th>
+                                <th class="w-80"><div class="table-cell">19</div></th>
+                                <th class="w-80"><div class="table-cell">20</div></th>
+                                <th class="w-80"><div class="table-cell">21</div></th>
+                                <th class="w-80"><div class="table-cell">22</div></th>
+                                <th class="w-80"><div class="table-cell">23</div></th>
+                                <th class="w-80"><div class="table-cell">24</div></th>
+                                <th class="w-80"><div class="table-cell">25</div></th>
+                                <th class="w-80"><div class="table-cell">26</div></th>
+                                <th class="w-80"><div class="table-cell">27</div></th>
+                                <th class="w-80"><div class="table-cell">28</div></th>
+                                <th class="w-80"><div class="table-cell">29</div></th>
+                                <th class="w-80"><div class="table-cell">30</div></th>
+                                <th class="w-80"><div class="table-cell">31</div></th>
+                                <th class="w-80"><div class="table-cell">加班/时</div></th>
+                                <th class="w-80"><div class="table-cell">调休/时</div></th>
+                                <th class="w-80"><div class="table-cell">存假/时</div></th>
+                                <th class="w-80"><div class="table-cell">总存假/时</div></th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <!-- 表头 end -->
+                    <!-- 表格内容 start -->
+                    <div class="fixed-table_body-wraper">
+                        <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                            <tbody id="datas">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 表格内容 end -->
+
+                    <!-- 固定列 start -->
+                    <div class="fixed-table_fixed fixed-table_fixed-left">
+                        <div class="fixed-table_header-wraper">
+                            <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr>
+                                    <th class="w-80">
+                                        <div class="table-cell">标识</div>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th class="w-80">
+                                        <div class="table-cell">日期</div>
+                                    </th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="fixed-table_body-wraper">
+                            <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                                <tbody id="fixed_left">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="fixed-table_fixed fixed-table_fixed-right">
+                        <div class="fixed-table_header-wraper">
+                            <table class="fixed-table_header" cellspacing="0" cellpadding="0" border="0">
+                                <thead>
+                                <tr>
+                                    <th class="w-60"><div class="table-cell">加班</div></th>
+                                    <th class="w-60"><div class="table-cell">调休</div></th>
+                                    <th class="w-60"><div class="table-cell">迟到</div></th>
+                                    <th class="w-60"><div class="table-cell">存假</div></th>
+                                    <th class="w-60"><div class="table-cell">总存假</div></th>
+                                </tr>
+                                <tr>
+                                    <th class="w-60"><div class="table-cell">-</div></th>
+                                    <th class="w-60"><div class="table-cell">-</div></th>
+                                    <th class="w-60"><div class="table-cell">-</div></th>
+                                    <th class="w-60"><div class="table-cell">-</div></th>
+                                    <th class="w-60"><div class="table-cell">-</div></th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+
+                        <div class="fixed-table_body-wraper">
+                            <table class="fixed-table_body" cellspacing="0" cellpadding="0" border="0">
+                                <tbody id="fixed_right">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- 固定列 end -->
+                </div>
+
+
+
+
+
+                <!-- 模态框（Modal） -->
+                <!--<div class="modal fade" id="myModal" tabindex="-1" role="dialog"-->
+                <!--aria-labelledby="myModalLabel" aria-hidden="true">-->
+                <!--<div class="modal-dialog">-->
+                <!--<div class="modal-content">-->
+                <!--<div class="modal-header">-->
+                <!--<button type="button" class="close create_staff"-->
+                <!--data-dismiss="modal" aria-hidden="true">&times;</button>-->
+                <!--<h4 class="modal-title">选择打卡txt文件</h4>-->
+                <!--</div>-->
+                <!--<form method="post" enctype="multipart/form-data" id="excelImport">-->
+                <!--<div class="modal-body">-->
+                <!--<input type="file" name="file">-->
+                <!--</div>-->
+                <!--</form>-->
+                <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>-->
+                <!--<button type="button" class="btn btn-info" id="attendance">添加</button>-->
+                <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.modal-content &ndash;&gt;-->
+                <!--</div>-->
+                <!--&lt;!&ndash; /.modal &ndash;&gt;-->
+                <!--</div>-->
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/administrator/attendanceTable.js"></script>
+</body>
+</html>

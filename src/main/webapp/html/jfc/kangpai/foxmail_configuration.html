@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+</head>
+<body>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-6 column" style="border:5px solid #527DAA;border-radius:5px;height:350px">
+			<div class="row clearfix">
+				<div class="col-md-12 column" style="height:27px;background:#527DAA;color:#CFDEDA">
+						邮箱系统设置
+				</div>
+			</div>
+			<div class="row clearfix">
+				<div style="width:80%;margin-left:10%;height:240px;border:3px solid #CFCFCF;margin-top:10px;font-family:Microsoft YaHei">
+					<table style="margin-left:30px" id="tbody">
+						<tr style="height:35px;">
+							<td>邮箱类型:</td>
+							<td>POP3</td>
+						</tr>
+						<tr  style="height:45px">
+							<td>账号:</td>
+							<td><input id="foxAccountNumber" type="text" class="form-control col-xs-4 col-sm-4 col-md-2 col-lg-4"></td>
+						</tr>
+						<tr  style="height:45px">
+							<td>密码:</td>
+							<td><input id="foxPassword" type="password" class="form-control col-xs-4 col-sm-4 col-md-2 col-lg-4"></td>
+						</tr>
+						<tr  style="height:45px">
+							<td>收件服务器:</td>
+							<td><input id="foxPickUp" type="text" class="form-control col-xs-4 col-sm-4 col-md-2 col-lg-4" value="pop3.jfcmc.com"></td>
+							<td>SSL  端口 </td>
+							<td><input id="foxPickPort" type="text" class="form-control" style="width:50px" value="995"></td>
+						</tr>
+						<tr  style="height:45px">
+							<td>发件服务器:</td>
+							<td><input id="foxHairPiece" type="text" class="form-control col-xs-4 col-sm-4 col-md-4 col-lg-4" value="smtp.jfcmc.com"></td>
+							<td>SSL  端口 </td>
+							<td><input id="foxHairPort" type="text" class="form-control" style="width:50px" value="25"></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="row clearfix">
+					<div class="col-md-12 column text-right" style="margin-top:30px;height:35px;background:#E4EFF9;color:#CFDEDA">
+						<button style="margin-top:5px;color:#000063;background:#DAEBF9" id="submit">确定</button>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>
+</body>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/jfc/kangpai/foxmail_configuration.js"></script>
+</html>

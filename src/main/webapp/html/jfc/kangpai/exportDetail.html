@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KOLPanel样本库</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <style>
+        #root *{
+            font-size: 1.4rem;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <div id="tools">
+        <button v-if="status" class="btn btn-md btn-info" @click="exportExecute">导出</button>
+        <button v-else class="btn btn-md btn-success" @click="approve">通过</button>
+        <button v-if="!status" class="btn btn-md btn-danger" @click="decline">驳回</button>
+    </div>
+    <table id="result"></table>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/echarts/echarts.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/jfc/kangpai/exportDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .input {
+            border: none #FFFFFF;
+            border-bottom: #777777 solid 1px;
+            background: transparent;
+            width: 80%;
+            height: 100%;
+            min-width: 100px
+        }
+
+        .textarea {
+            border: none #FFFFFF;
+            border-bottom: #777777 solid 1px;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            overflow-y: hidden;
+        }
+
+        .span1 {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            margin-left: 10px
+        }
+        .row{
+            margin-right: 0;
+            margin-left: 0;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div class="row" style="margin-top: 1%">
+                    <div class="col-sm-8"></div>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="staff_list">
+                        </select>
+                    </div>
+                    <div class="col-sm-2">
+                        <a id="submit_all" class="btn btn-default create_button" type="button">+保存预算书</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="">
+                        <table class="table table-bordered table-hover" id="about_project">
+                            <tr>
+                                <td>项目编号</td>
+                                <td><input type="text" class="input proNumber"></td>
+                                <td>客户经理</td>
+                                <td><input type="text" class="input cusManger"></td>
+                            </tr>
+                            <tr>
+                                <td>项目名称</td>
+                                <td><input type="text" class="input proName"></td>
+                                <td>客户公司</td>
+                                <td><input type="text" class="input cusCompany"></td>
+                            </tr>
+                            <tr>
+                                <td>项目经理</td>
+                                <td><input type="text" class="input proManager"></td>
+                                <td>客户联系人</td>
+                                <td><input type="text" class="input cusLinName"></td>
+                            </tr>
+                            <tr>
+                                <td>项目周期</td>
+                                <td><input type="text" class="input remarks"></td>
+                                <td>客户联系方式</td>
+                                <td><input type="text" class="input cusLinPhone"></td>
+                            </tr>
+                            <tr>
+                                <td>项目类型</td>
+                                <td><input type="text" class="input type"></td>
+                                <td>客户类型</td>
+                                <td><input type="text" class="input cusLinType"></td>
+                            </tr>
+                            <tr>
+                                <td>运作类型</td>
+                                <td><input id="operating_type" class="input"></td>
+                                <td>研究行业</td>
+                                <td><input type="text" class="input cusIndustry"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="">
+                        <table class="table table-bordered table-hover" id="project_basic">
+                            <tr>
+                                <td colspan="3">项目基本信息</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="4">项目要求</td>
+                                <td>1、项目目的：</td>
+                                <td><input type="text" class="input objective"></td>
+                            </tr>
+                            <tr>
+                                <td>2、调查对象：</td>
+                                <td><input type="text" class="input respondents"></td>
+                            </tr>
+                            <tr>
+                                <td>3、执行要求：</td>
+                                <td><input type="text" class="input dataResult"></td>
+                            </tr>
+                            <tr>
+                                <td>4、其它要求：</td>
+                                <td><input type="text" class="input proOthers"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="">
+                        <table class="table table-bordered table-hover" id="project_allocate">
+                            <caption>配额基本信息</caption>
+                            <thead>
+                            <tr>
+                                <!--<th rowspan="4">样本配额</th>-->
+                                <th>配额类型</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th>配额类型</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><input type="text" index="1" col="type" class="input"></td>
+                                <td><input type="number" index="1" col="unit_price" class="input"></td>
+                                <td><input type="number" index="1" col="number" class="input"></td>
+                                <td><input type="text" index="2" col="type" class="input"></td>
+                                <td><input type="number" index="2" col="unit_price" class="input"></td>
+                                <td><input type="number" index="2" col="number" class="input"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" index="3" col="type" class="input"></td>
+                                <td><input type="number" index="3" col="unit_price" class="input"></td>
+                                <td><input type="number" index="3" col="number" class="input"></td>
+                                <td><input type="text" index="4" col="type" class="input"></td>
+                                <td><input type="number" index="4" col="unit_price" class="input"></td>
+                                <td><input type="number" index="4" col="number" class="input"></td>
+                            </tr>
+                            <tr>
+                                <td><input type="text" index="5" col="type" class="input"></td>
+                                <td><input type="number" index="5" col="unit_price" class="input"></td>
+                                <td><input type="number" index="5" col="number" class="input"></td>
+                                <td><input type="text" index="6" col="type" class="input"></td>
+                                <td><input type="number" index="6" col="unit_price" class="input"></td>
+                                <td><input type="number" index="6" col="number" class="input"></td>
+                            </tr>
+                            <tr id="insert_buttons">
+                                <th colspan="7">
+                                    <a class="btn btn-default addGoods" type="button">+行</a>
+                                    <a class="btn btn-default removeGoods" type="button">-行</a>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-bordered table-hover" id="project_cost">
+                            <tr>
+                                <td rowspan="4">项目费用</td>
+                                <td>BI：预算完成项目额</td>
+                                <td colspan="2"><input id="budgetedPerformance" type="number" class="input"></td>
+                                <td>BC：项目预算成本</td>
+                                <td colspan="2"><input id="info_budgetary_cost" type="number" class="input"></td>
+                            </tr>
+                            <tr>
+                                <td>FI：实际完成项目额</td>
+                                <td colspan="2"><input id="info_actual_money" type="number" class="input"></td>
+                                <td>FC：项目决算成本</td>
+                                <td colspan="2"><input type="number" id="final_cost" class="input"></td>
+                            </tr>
+                            <tr>
+                                <td>TC：项目税费（比例确定）</td>
+                                <td>6%</td>
+                                <td><input type="number" id="fax" class="input"></td>
+                                <td>PI：毛利润收入</td>
+                                <td colspan="2"><input type="number" id="gross_profit" class="input"></td>
+                            </tr>
+                            <tr>
+                                <td>SB:销售奖金（比例选择）</td>
+                                <td>
+                                    <select class="form-control" id="bonus_ratio">
+                                        <option value="">请选择</option>
+                                        <option value="0">0%</option>
+                                        <option value="0.03">3%</option>
+                                        <option value="0.05">5%</option>
+                                        <option value="0.06">6%</option>
+                                        <option value="0.08">8%</option>
+                                        <option value="0.10">10%</option>
+                                    </select>
+                                </td>
+                                <td><input type="number" class="input" id="sell_bonus"></td>
+                                <td>PB：项目奖金（核算）</td>
+                                <td colspan="2"><input type="number" id="project_bonus" class="input"></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!--施工中-start--------------------------------------------------------------------------------------------------------->
+                    <div id="about_budget">
+                        <div class="">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <td colspan="3">列 项</td>
+                                    <td>摘要</td>
+                                    <td>预算</td>
+                                    <td v-for="supplementary in sum.supplementaryBudget">
+                                        <div class="col-sm-8">
+                                            追加预算
+                                        </div>
+                                        <div class="col-sm-4" :supplementary_index="supplementary.index">
+                                            <span class="add_col glyphicon  glyphicon-plus" @click="addBudget(supplementary)"></span>
+                                            <span class="add_col glyphicon glyphicon-minus" @click="deleteBudget(supplementary)"></span>
+                                        </div>
+                                    </td>
+                                    <td>决算</td>
+                                    <td>结余</td>
+                                    <td colspan="2">备注</td>
+                                </tr>
+                                </thead>
+                                <tbody id="the_number">
+                                <tr v-for="item in budgets" v-if="item.category==='operatingCost'">
+                                    <td colspan="2">运营成本(单位：人天)</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <select class="selectpicker form-control" data-live-search="true" v-model="item.kind" @change="changeKind(item,$event)">
+                                                <option value="">请选择</option>
+                                                <option value="项目经理PM">项目经理PM</option>
+                                                <option value="执行督导">执行督导</option>
+                                                <option value="QC督导">QC督导</option>
+                                                <option value="长期兼职">长期兼职</option>
+                                                <option value="研究经理">研究经理</option>
+                                                <option value="研究员">研究员</option>
+                                                <option value="长期兼职">长期兼职</option>
+                                                <option value="其他">其他</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4" id="add_proNumber">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input" v-model="item.brief"></td>
+                                    <td><input type="number" class="input" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker  form-control" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><select class="selectpicker form-control" data-live-search="true" v-model="item.remark2" @change="changeRemark2(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="150">150元/天</option>
+                                        <option value="200">200元/天</option>
+                                        <option value="300">300元/天</option>
+                                        <option value="400">400元/天</option>
+                                        <option value="500">500元/天</option>
+                                        <option value="600">600元/天</option>
+                                        <option value="800">800元/天</option>
+                                        <option value="1000">1000元/天</option>
+                                        <option value="1500">1500元/天</option>
+                                        <option value="2000">2000元/天</option>
+                                        <option value="3000">3000元/天</option>
+                                    </select></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='travelExpenses'">
+                                    <td>现金成本</td>
+                                    <td>差旅</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <select class="selectpicker form-control" data-live-search="true" v-model="item.kind" @change="changeKind(item,$event)">
+                                                <option value="">请选择</option>
+                                                <option value="交通费">交通费</option>
+                                                <option value="住宿费">住宿费</option>
+                                                <option value="差旅补助">差旅补助</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='tableMoney'">
+                                    <td>现金成本</td>
+                                    <td>餐费</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <select class="selectpicker form-control" data-live-search="true" v-model="item.kind" @change="changeKind(item,$event)">
+                                                <option value="">请选择</option>
+                                                <option value="被访者餐费">被访者餐费</option>
+                                                <option value="客户餐费">客户餐费</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='supportCosts'">
+                                    <td>现金成本</td>
+                                    <td>辅助费用</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <select class="selectpicker form-control" data-live-search="true" v-model="item.kind" @change="changeKind(item,$event)">
+                                                <option value="">请选择</option>
+                                                <option value="邮寄">邮寄</option>
+                                                <option value="场地|设备租用">场地|设备租用</option>
+                                                <option value="果品饮料">果品饮料</option>
+                                                <option value="打字|笔录">打字|笔录</option>
+                                                <option value="问卷印刷">问卷印刷</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker  form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='cashGift'">
+                                    <td>现金成本</td>
+                                    <td>礼品礼金</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <input class="input" v-model="item.kind">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='serviceCharge'">
+                                    <td>现金成本</td>
+                                    <td>劳务</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <select class="selectpicker form-control" data-live-search="true" v-model="item.kind" @change="changeKind(item,$event)">
+                                                <option value="">请选择</option>
+                                                <option value="甄别">甄别</option>
+                                                <option value="邀约|召募|拦截"></option>
+                                                <option value="访问">访问</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker  form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='agentFee'">
+                                    <td>现金成本</td>
+                                    <td>代理</td>
+                                    <td>
+                                        <div class="col-sm-8">
+                                            <input class="input" v-model="item.kind">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(item)"></span>
+                                            <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(item)"></span>
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker  form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='qualityControl'">
+                                    <td>现金成本</td>
+                                    <td colspan="2">
+                                        <div class="col-sm-12">
+                                            质控成本
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker  form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr v-for="item in budgets" v-if="item.type==='unpredictableCosts'">
+                                    <td>现金成本</td>
+                                    <td colspan="2">
+                                        <div class="col-sm-12">
+                                            不可预知的费用
+                                        </div>
+                                    </td>
+                                    <td><input type="text" class="input abstract" v-model="item.brief"></td>
+                                    <td><input type="number" class="input budget" v-model="item.budget"></td>
+                                    <td v-for="number in item.supplementaryBudget">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="item.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="item.surplus"></td>
+                                    <td><select class="selectpicker  form-control remark1" data-live-search="true" v-model="item.remark1" @change="changeRemark1(item,$event)">
+                                        <option value="">请选择</option>
+                                        <option value="单独预付">单独预付</option>
+                                        <option value="单独后付">单独后付</option>
+                                        <option value="统一预付">统一预付</option>
+                                        <option value="统一后付">统一后付</option>
+                                    </select></td>
+                                    <td><input type="text" class="input remark2" v-model="item.remark2"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">总计</td>
+                                    <td class="disabled"></td>
+                                    <td>{{ sum.budget }}</td>
+                                    <td v-for="number in sum.supplementaryBudget">{{ number.supplementary }}</td>
+                                    <td>{{ sum.finalAccount }}</td>
+                                    <td>{{ sum.surplus }}</td>
+                                    <td colspan="2" class="disabled"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">样本量</td>
+                                    <td class="disabled"></td>
+                                    <td><input type="number" class="input budget" v-model="sample.budget"></td>
+                                    <td v-for="number in sample.supplementarySample">
+                                        <input type="number" class="input supplementary" v-model="number.supplementary">
+                                    </td>
+                                    <td><input type="number" class="input final_account" v-model="sample.finalAccount"></td>
+                                    <td><input type="number" class="input surplus" v-model="sample.surplus"></td>
+                                    <td colspan="2" class="disabled"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">平均单个样本</td>
+                                    <td class="disabled"></td>
+                                    <td>{{ average.budget }}</td>
+                                    <td v-for="number in average.supplementaryAverage">{{ number.supplementary }}</td>
+                                    <td>{{ average.finalAccount }}</td>
+                                    <td>{{ average.surplus }}</td>
+                                    <td colspan="2" class="disabled"></td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="">
+                            <table id="examine" class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>项目审批信息</th>
+                                    <th>申请人员</th>
+                                    <th>申请日期</th>
+                                    <th colspan="2">批准人员</th>
+                                    <th colspan="2">批准日期</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="budget">
+                                    <td>预算审批</td>
+                                    <td><input id="applicant_signature_budget" type="text" class="input applicant_input" placeholder="请输入申请人姓名"></td>
+                                    <td id="time_budget"></td>
+                                    <td>
+                                        <span id="manager_budget" class="signature_area"></span>
+                                        <button class="btn btn-sm btn-success manager_button">经理签名</button>
+                                    </td>
+                                    <td>
+                                        <span id="director_budget" class="signature_area"></span>
+                                        <button class="btn btn-sm btn-info director_button">总监签名</button>
+                                    </td>
+                                    <td id="budget_time_manager"></td>
+                                    <td id="budget_time_director"></td>
+                                </tr>
+                                <tr class="supplementary">
+                                    <td>追加预算</td>
+                                    <td><input type="text" class="input applicant_input applicant_signature_supplementary" placeholder="请输入申请人姓名"></td>
+                                    <td class="time_supplementary"></td>
+                                    <td>
+                                        <span class="signature_area manager_supplementary"></span>
+                                        <button class="btn btn-sm btn-success manager_button">经理签名</button>
+                                    </td>
+                                    <td>
+                                        <span class="signature_area director_supplementary"></span>
+                                        <button class="btn btn-sm btn-info director_button">总监签名</button>
+                                    </td>
+                                    <td class="time_manager"></td>
+                                    <td class="time_director"></td>
+                                </tr>
+                                <tr class="overspending">
+                                    <td>超支核算</td>
+                                    <td><input id="applicant_signature_overspending" type="text" class="input applicant_input" placeholder="请输入申请人姓名"></td>
+                                    <td id="time_overspending"></td>
+                                    <td>
+                                        <span id="manager_overspending" class="signature_area"></span>
+                                        <button class="btn btn-sm btn-success manager_button">经理签名</button>
+                                    </td>
+                                    <td>
+                                        <span id="director_overspending" class="signature_area"></span>
+                                        <button class="btn btn-sm btn-info director_button">总监签名</button>
+                                    </td>
+                                    <td id="overspending_time_manager"></td>
+                                    <td id="overspending_time_director"></td>
+                                </tr>
+                                <tr class="final_account">
+                                    <td>决算审批</td>
+                                    <td><input id="applicant_signature_final_account" type="text" class="input applicant_input" placeholder="请输入申请人姓名"></td>
+                                    <td id="time_final_account"></td>
+                                    <td>
+                                        <span id="manager_final_account" class="signature_area"></span>
+                                        <button class="btn btn-sm btn-success manager_button">经理签名</button>
+                                    </td>
+                                    <td>
+                                        <span id="director_final_account" class="signature_area"></span>
+                                        <button class="btn btn-sm btn-info director_button">总监签名</button>
+                                    </td>
+                                    <td id="final_account_time_manager"></td>
+                                    <td id="final_account_time_director"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="">
+                            <div class="col-sm-5" style="border:1px solid;">
+                                <div>
+                                    预算追加原因:
+                                </div>
+                                <div style="height: 80px;">
+                                    <div id="reason_before_supplementary"></div>
+                                    <textarea id="reason_now_supplementary" cols="30" rows="2"></textarea>
+                                </div>
+                                <div>
+                                    <div>部门经理确认：</div>
+                                    <div>
+                                        <span id="reason_supplementary_manager"></span>
+                                        <button class="btn btn-sm btn-success" id="sign_supplementary_manager">签名</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>部门总监确认：</div>
+                                    <div>
+                                        <span id="reason_supplementary_director"></span>
+                                        <button class="btn btn-sm btn-info" id="sign_supplementary_director">签名</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-5 col-sm-offset-2" style="border:1px solid;">
+                                <div>
+                                    超支原因:
+                                </div>
+                                <div style="height: 80px;">
+                                    <div id="reason_before_overspending"></div>
+                                    <textarea id="reason_now_overspending" cols="30" rows="2"></textarea>
+                                </div>
+                                <div>
+                                    <div>部门经理确认：</div>
+                                    <div>
+                                        <span id="reason_overspending_manager"></span>
+                                        <button class="btn btn-sm btn-success" id="sign_overspending_manager">签名</button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>部门总监确认：</div>
+                                    <div>
+                                        <span id="reason_overspending_director"></span>
+                                        <button class="btn btn-sm btn-info" id="sign_overspending_director">签名</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--施工中-end----------------------------------------------------------------------------------------------------------->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/project/budgetBook.js"></script>
+</body>
+</html>

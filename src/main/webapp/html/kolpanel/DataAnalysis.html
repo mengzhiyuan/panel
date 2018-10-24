@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/kolpanel/public.css">
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/page.js"></script>
+<script src="../../js/kolpanel/dataAnalysis.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="header">
+					<div class="logo col-lg-2 col-md-2 col-sm-1"></div>
+					<div
+						class="col-lg-6 col-md-6 col-sm-6 col-lg-offset-1 col-md-offset-1">
+						<ul class="navigator nav nav-justified">
+							<li><a href="/jfcpanel/html/kolpanel/creating.html">首页</a></li>
+			                <li><a href="/jfcpanel/html/kolpanel/types.html">设计问卷</a></li>
+			                <li><a href="/jfcpanel/html/kolpanel/myQuestionnaire.html">我的问卷</a></li>
+							<li><a href="javascript:void (0);">数据分析</a></li>
+						</ul>
+					</div>
+					<div class="signout account pull-right">
+						<div>
+							<span class="icon"> </span> <span class="name"> 登录/注册 </span>
+						</div>
+					</div>
+					<div class="signin account pull-right">
+						<div class="button">
+							<span class="icon"> </span> <span class="name"> 852852641
+							</span>
+						</div>
+						<div id="dropdown">
+							<div class="arrow"></div>
+							<ul>
+								<li><a href="javascript:void (0);">个人信息</a></li>
+								<li><a href="javascript:void (0);">功能设置</a></li>
+								<li><a href="javascript:void (0);">帮助</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row clearfix">
+				<div class="col-md-12 column text-center">
+					<form class="form-inline" action="#">
+						<div class="form-group">
+							<label class="form-label">当前问卷：</label> <select 
+								class="form-control" id="sevry">
+								<option value="">请选择</option>
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <label
+								class=" form-label" for="">当前题目：</label> <select
+								class="form-control" id="question">
+								<option value="">请选择</option>
+							</select>
+							
+						</div><br>
+						<div class="form-group" style="margin-top:30px">
+							   <label class="checkbox-inline">
+							      <input type="radio" name=""  
+							         value="option1" checked>饼状 
+							   </label>
+							   <label class="checkbox-inline">
+							      <input type="radio" name="sss" 
+							         value="option2">圆环
+							   </label>
+							    <label class="checkbox-inline">
+							      <input type="radio" name="sss"  
+							         value="option2">柱状
+							   </label>
+							    <label class="checkbox-inline">
+							      <input type="radio" name="sss"
+							         value="option2">折线
+							   </label>
+							    <label class="checkbox-inline">
+							      <input type="radio" name="sss"
+							         value="option2">条形
+							   </label>
+						</div>
+					</form>
+				</div>
+				<div class="row">
+					<div class="col-sm-8 col-md-offset-2" style="margin-top: 5%">
+						<table class="table table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>次数/总数</th>
+									<th>比率</th>
+									<th>百分比</th>
+								</tr>
+							</thead>
+							<tbody>
+							<tbody id="the_table">
+
+							</tbody>
+
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

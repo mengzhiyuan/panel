@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .form-control{
+            display: inline-block;
+            width: initial;
+        }
+        #root{
+            padding: 5px;
+        }
+        .middle{
+            text-align: center;
+            margin: 100px 0 0 0;
+        }
+        .content{
+            display: none;
+            width: 100%;
+            text-align: center;
+        }
+        .content.active{
+            display: inline-block;
+        }
+        .pull-left{
+            margin: 0 5px;
+        }
+        .input{
+            display: inline-block;
+            width: 32%;
+            margin: 10px 5px;
+        }
+        #labor_detail .th,#labor_detail .td{
+            border: 1px solid #cccccc;
+        }
+        #calculations{
+            display: inline-block;
+            min-width: 800px;
+            max-width: 900px;
+        }
+        #calculations table{
+            width: 100%;
+            font-size: 0;
+        }
+        #calculations th,#calculations td{
+            border: 1px solid #cccccc;
+            font-size: 14px;
+        }
+        #calculations .form-control{
+            display: inline-block;
+            width: 100%;
+            border: 0;
+            outline: 1px solid #cccccc;
+        }
+        #calculations #calculate_start,#calculations #calculate_end{
+            width: 40%;
+        }
+        #calculate{
+            height: 35px;
+            width: 100%;
+            background-color: #efefef;
+        }
+        /*.main>div{*/
+        /*display: inline-block;*/
+        /*width: 240px;*/
+        /*height: 300px;*/
+        /*outline: 1px solid #666666;*/
+        /*vertical-align: top;*/
+        /*overflow: scroll;*/
+        /*}*/
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                <a href="http://www.kolpanel.net/jfcpanel/html/jfc/main/center.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-OA</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" :class="{ active: tabs === 'running_account' }" @click="switchTab('running_account')">
+                        <a href="javascript: void(0);">往来账目</a>
+                    </li>
+                    <li role="presentation" :class="{ active: tabs === 'project_accounting' }" @click="switchTab('project_accounting')">
+                        <a href="javascript: void(0);">项目核算</a>
+                    </li>
+                    <li role="presentation" :class="{ active: tabs === 'profit_accounting' }" @click="switchTab('profit_accounting')">
+                        <a href="javascript: void(0);">收益核算</a>
+                    </li>
+                    <li role="presentation" :class="{ active: tabs === 'calculation' }" @click="switchTab('calculation')">
+                        <a href="javascript: void(0);">计算损益</a>
+                    </li>
+                </ul>
+                <div class="middle">
+                    <div class="content" :class="{ active: tabs === 'running_account' }">
+                        <div class="title">
+                        </div>
+                        <div class="main">
+                            <div id="buttons">
+                                <select id="key_name" class="form-control pull-left col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <option value="">请选择查询条件</option>
+                                    <option value="actId">ID</option>
+                                    <option value="actDate">记账日期</option>
+                                    <option value="actMan">记账人</option>
+                                    <option value="actMonth">年度月份</option>
+                                    <option value="actBranch">平台</option>
+                                    <option value="actType">收支类型</option>
+                                    <option value="actFeeType">费用类型</option>
+                                    <option value="actFeeDetail">费用明细</option>
+                                    <option value="actAmount">金额</option>
+                                    <option value="actRelatedProject">关联项目</option>
+                                    <option value="actRelatedDepartment">关联部门</option>
+                                    <option value="actRelatedStaff">关联人员</option>
+                                    <option value="actRelatedDate">关联日期</option>
+                                    <option value="actApplyAmount">申请金额</option>
+                                    <option value="actSumAmount">累计金额</option>
+                                    <option value="actSurplus">当前结余</option>
+                                    <option value="actRemark">备注</option>
+                                </select>
+                                <input id="key_value" type="text" placeholder="请输入条件值" class="form-control pull-left col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <button class="btn btn-md btn-success pull-left" id="search" @click="search">搜索</button>
+                                <button class="btn btn-md btn-default pull-left" id="insert" data-toggle="modal" data-target="#accounting_detail" @click="beforeInsert">新增条目</button>
+                            </div>
+                            <div id="toolbar">
+
+                            </div>
+                            <table id="running_account"></table>
+                            <!-- /.modal-content --><!-- 模态框（Modal） -->
+                            <div class="modal fade" id="accounting_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" style="width: 90%">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">添加设置</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <select type="text" class="input form-control" v-model="accountingItem.actMan">
+                                                    <option v-for="s in options.staffs" :value="s.id">{{ s.name }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <input id="actDate" type="text" placeholder="记账日期" class="input form-control" v-model="accountingItem.actDate">
+                                                <input type="text" placeholder="年度月份" class="input form-control" v-model="accountingItem.actMonth">
+                                                <select type="text" class="input form-control" v-model="accountingItem.actBranch">
+                                                    <option value="">请选择</option>
+                                                    <option value="北京">北京</option>
+                                                    <option value="长沙">长沙</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <select type="text" class="input form-control" v-model="accountingItem.actType">
+                                                    <option value="">请选择</option>
+                                                    <option value="收入">收入</option>
+                                                    <option value="支出">支出</option>
+                                                </select>
+                                                <select type="text" class="input form-control" v-model="accountingItem.actFeeType">
+                                                    <option value="">请选择</option>
+                                                    <option value="办公用品">办公用品</option>
+                                                    <option value="工商税务">工商税务</option>
+                                                    <option value="日常运营">日常运营</option>
+                                                    <option value="通信费用">通信费用</option>
+                                                    <option value="项目成本">项目成本</option>
+                                                    <!--<option value=""></option>-->
+                                                    <!--<option value=""></option>-->
+                                                    <!--<option value=""></option>-->
+                                                </select>
+                                                <input type="text" placeholder="费用明细" class="input form-control" v-model="accountingItem.actFeeDetail">
+                                            </div>
+                                            <div class="row">
+                                                <input type="text" placeholder="金额" class="input form-control" v-model="accountingItem.actAmount">
+                                                <input type="text" placeholder="关联项目" class="input form-control" v-model="accountingItem.actRelatedProject">
+                                                <select type="text" class="input form-control" v-model="accountingItem.actRelatedDepartment">
+                                                    <option v-for="d in options.departments" :value="d.id">{{ d.name }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="row">
+                                                <select type="text" class="input form-control" v-model="accountingItem.actRelatedStaff">
+                                                    <option v-for="s in options.staffs" :value="s.id">{{ s.name }}</option>
+                                                </select>
+                                                <input id="actRelatedDate" type="text" placeholder="关联日期" class="input form-control" v-model="accountingItem.actRelatedDate">
+                                                <input type="text" placeholder="申请金额" class="input form-control" v-model="accountingItem.actApplyAmount">
+                                            </div>
+                                            <div class="row">
+                                                <input type="text" placeholder="累计金额" class="input form-control" v-model="accountingItem.actSumAmount">
+                                                <input type="text" placeholder="当前余额" class="input form-control" v-model="accountingItem.actSurplus">
+                                                <input type="text" placeholder="备注" class="input form-control" v-model="accountingItem.actRemark">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-md btn-default" data-dismiss="modal">取消</button>
+                                            <button type="button" class="btn btn-md btn-success" data-dismiss="modal" @click="updateAccount">确认</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                    </div>
+                    <div class="content" :class="{ active: tabs === 'project_accounting' }">
+                        <div class="title"></div>
+                        <div class="main">
+                            <div id="buttons_project_accounting">
+                                <select id="key_name_project" class="form-control pull-left col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <option value="">请选择查询条件</option>
+                                    <option value="corId">ID</option>
+                                    <option value="corMonths">年月</option>
+                                    <option value="corProject">项目</option>
+                                    <option value="corProjectType">项目类型</option>
+                                    <option value="corDepartment">部门</option>
+                                    <option value="corSellManager">销售经理</option>
+                                    <option value="corProjectManager">项目经理</option>
+                                    <option value="corProjectPeriod">项目周期</option>
+                                    <option value="corProjectAmount">项目金额</option>
+                                    <option value="corTax">税费</option>
+                                    <option value="corClient">客户</option>
+                                    <option value="corRemark">备注</option>
+                                </select>
+                                <input id="key_value_project" type="text" placeholder="请输入条件值" class="form-control pull-left col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <button class="btn btn-md btn-success pull-left" id="search_project" @click="search_project">搜索</button>
+                                <!--<a class="btn btn-xs btn-info labor_btn" data-toggle="modal" data-target="#payment_detail" title="查看">查看</a>-->
+                            </div>
+                            <table id="project_accounting"></table>
+                        </div>
+                        <div class="modal fade" id="payment_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 90%">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">添加设置</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <input type="text" placeholder="付款金额" class="input form-control" v-model="paymentNow.payAmount">
+                                            <input type="text" placeholder="付款时间" class="input form-control" v-model="paymentNow.payTime" id="payTime">
+                                            <input type="text" placeholder="付款方式" class="input form-control" v-model="paymentNow.payMode">
+                                        </div>
+                                        <div class="row">
+                                            <input type="number" placeholder="付款账号" class="form-control input" v-model="paymentNow.payNumber">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-md btn-default" data-dismiss="modal">取消</button>
+                                        <button type="button" class="btn btn-md btn-success" data-dismiss="modal" @click="updatePayment">确认</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="labor_detail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" style="width: 90%">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">人天成本</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <table>
+                                                <thead>
+                                                <tr>
+                                                    <th>类别</th>
+                                                    <th>数额</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr v-for="l in laborNow">
+                                                    <td>{{ l.title }}</td>
+                                                    <td>{{ l.amount }}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-md btn-default" data-dismiss="modal">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <div class="content" :class="{ active: tabs === 'profit_accounting' }">
+                        <div class="title"></div>
+                        <div class="main">
+                            <div id="buttons_profit">
+                                <select id="key_name_profit" class="form-control pull-left col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                    <option value="">请选择查询条件</option>
+                                    <option value="actId">ID</option>
+                                    <option value="actDate">记录日期</option>
+                                    <option value="actMan">发生日期</option>
+                                    <option value="actMonth">年度月份</option>
+                                    <option value="actBranch">平台</option>
+                                    <option value="actType">收支类型</option>
+                                    <option value="actFeeType">项目经理</option>
+                                    <option value="actFeeDetail">销售经理</option>
+                                    <option value="actAmount">项目名称</option>
+                                    <option value="actRelatedProject">实收金额</option>
+                                    <option value="actRelatedDepartment">应收金额</option>
+                                    <option value="actRelatedStaff">创收金额</option>
+                                    <option value="actRelatedDate">支出费用类型</option>
+                                    <option value="actApplyAmount">项目明细</option>
+                                    <option value="actSumAmount">支出金额</option>
+                                    <option value="actSurplus">备注</option>
+                                </select>
+                                <input id="key_value_profit" type="text" placeholder="请输入条件值" class="form-control pull-left col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <button class="btn btn-md btn-success pull-left" @click="search_project">搜索</button>
+                            </div>
+                            <table id="profit_accounting"></table>
+                        </div>
+                    </div>
+                    <div class="content" :class="{ active: tabs === 'calculation' }">
+                        <div class="title"></div>
+                        <div class="main" id="calculations">
+                            <div class="left-side col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <table>
+                                    <tbody>
+                                    <tr>
+                                        <td>运营平台</td>
+                                        <td>
+                                            <select class="form-control" v-model="calculating.branch">
+                                                <option value="">请选择</option>
+                                                <option value="北京">北京</option>
+                                                <option value="长沙">长沙</option>
+                                                <option value="全部">全部</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>部门</td>
+                                        <td>
+                                            <select class="form-control" v-model="calculating.department">
+
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>周期-发生时间</td>
+                                        <td>
+                                            <input placeholder="开始时间" type="text" class="input form-control" id="calculate_start">
+                                            <input placeholder="结束时间" type="text" class="input form-control" id="calculate_end">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>收入类型</td>
+                                        <td>
+                                            <select class="form-control" v-model="calculating.type">
+                                                <option value="">请选择</option>
+                                                <option value="">实收金额</option>
+                                                <option value="">创收金额</option>
+                                                <option value="">应收金额</option>
+                                                <option value="">所有</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2">
+                                            <button id="calculate" @click="calculate">计算损益</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="right-side col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                <table>
+                                    <thead>
+                                    <tr>
+                                        <td colspan="4">公司损益表{{ calculate_result.year }}年{{ calculate_result.month }}月</td>
+                                    </tr>
+                                    <tr>
+                                        <td>编制单位: 捷峰咨询</td>
+                                        <td colspan="3">单位: 元</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>北京</td>
+                                        <td>长沙</td>
+                                        <td>公司</td>
+                                    </tr>
+                                    <!-- <tr>
+                                        <td>收入(实收金额)</td>
+                                        <td>{{ calculate_result.actualIncome.bj }}</td>
+                                        <td>{{ calculate_result.actualIncome.cs }}</td>
+                                        <td>{{ calculate_result.actualIncome.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>创收金额</td>
+                                        <td>{{ calculate_result.earn.bj }}</td>
+                                        <td>{{ calculate_result.earn.cs }}</td>
+                                        <td>{{ calculate_result.earn.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>实收金额</td>
+                                        <td>{{ calculate_result.paid.bj }}</td>
+                                        <td>{{ calculate_result.paid.cs }}</td>
+                                        <td>{{ calculate_result.paid.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>应收金额</td>
+                                        <td>{{ calculate_result.gap.bj }}</td>
+                                        <td>{{ calculate_result.gap.cs }}</td>
+                                        <td>{{ calculate_result.gap.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>支出</td>
+                                        <td>{{ calculate_result.expense.bj }}</td>
+                                        <td>{{ calculate_result.expense.cs }}</td>
+                                        <td>{{ calculate_result.expense.al }}</td>
+                                    </tr>
+                                    <tr v-for="exp in calculate_result.expense_list">
+                                        <td></td>
+                                        <td>{{ exp.bj }}</td>
+                                        <td>{{ exp.cs }}</td>
+                                        <td>{{ exp.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>利润总额(实收利润)</td>
+                                        <td>{{ calculate_result.profit_paid.bj }}</td>
+                                        <td>{{ calculate_result.profit_paid.cs }}</td>
+                                        <td>{{ calculate_result.profit_paid.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>营业利润(创收利润)</td>
+                                        <td>{{ calculate_result.profit_earn.bj }}</td>
+                                        <td>{{ calculate_result.profit_earn.cs }}</td>
+                                        <td>{{ calculate_result.profit_earn.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>营业利润(实收利润)</td>
+                                        <td>{{ calculate_result.earn_operate.bj }}</td>
+                                        <td>{{ calculate_result.earn_operate.cs }}</td>
+                                        <td>{{ calculate_result.earn_operate.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>其他收入(利息/投资等)</td>
+                                        <td>{{ calculate_result.other_income.bj }}</td>
+                                        <td>{{ calculate_result.other_income.cs }}</td>
+                                        <td>{{ calculate_result.other_income.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>所得税</td>
+                                        <td>{{ calculate_result.tax.bj }}</td>
+                                        <td>{{ calculate_result.tax.cs }}</td>
+                                        <td>{{ calculate_result.tax.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>净利润(实收)</td>
+                                        <td>{{ calculate_result.net_profit.bj }}</td>
+                                        <td>{{ calculate_result.net_profit.cs }}</td>
+                                        <td>{{ calculate_result.net_profit.al }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>制表日期: {{ calculate_result.date }}</td>
+                                        <td colspan="3">制表人: {{ calculate_result.author }}</td>
+                                    </tr>
+                                    </thead>
+                                </table> -->
+                            </div>
+                        </div>
+                        </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+        <script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/finance/financialAccounting.js"></script>
+</body>
+</html>

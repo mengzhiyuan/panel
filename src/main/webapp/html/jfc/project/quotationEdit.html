@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .form-control.col-sm-4{
+            display: inline-block;
+            /*width: initial;*/
+        }
+        .col-sm-4{
+            width: 33.33333333%;
+        }
+        #client-left, #client-right{
+            border: 1px solid #999999
+        }
+        tr{
+            height: 35px;
+        }
+        th, td{
+            border: 1px solid #999999
+        }
+        #leg th, #leg td{
+            border: 1px solid #999999
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div id="main">
+                    <a href="javascript: void(0);" style="position: absolute;left: 20px;top: 5px;" class="btn btn-sm btn-primary" @click="back">返回</a>
+                    <button href="javascript: void(0);" style="position: absolute;right: 20px;top: 5px;" class="btn btn-sm btn-success" @click="submit">保存</button>
+                    <div id="neck">
+                        <div id="client-left" class="col-sm-6" style="display: inline-block">
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <td><label for="client_company">客户公司</label></td>
+                                    <td>
+                                        <select v-model="client_company_id" id="client_company" class="selectpicker form-control" data-live-search="true" type="text">
+                                            <option value=""></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="client_type">客户类型</label></td>
+                                    <td>
+                                        <input class="form-control" disabled v-model="client_type" id="client_type" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="client_linkman">客户联系人</label></td>
+                                    <td><input class="form-control" disabled v-model="client_linkman" id="client_linkman" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="client_contact">客户联系方式</label></td>
+                                    <td><input class="form-control" disabled v-model="client_contact" id="client_contact" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="client_email">客户邮箱</label></td>
+                                    <td><input class="form-control" disabled v-model="client_email" id="client_email" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="receipt_time">接收需求时间</label></td>
+                                    <td><input class="form-control" v-model="receipt_time" @blur="updateTime" id="receipt_time" type="text"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="client-right" class="col-sm-6" style="display: inline-block">
+                            <table>
+                                <tr>
+                                    <td><label for="project_title">项目名称或主题</label></td>
+                                    <td><input class="form-control" v-model="project_title" id="project_title" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="project_industry">研究行业</label></td>
+                                    <td>
+                                        <input class="form-control" disabled v-model="project_industry" id="project_industry" type="text">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="account_manager_name">客户经理姓名</label></td>
+                                    <td>
+                                        <select class="form-control selectpicker" v-model="account_manager_id" id="account_manager_name" class="selectpicker form-control" type="text">
+                                            <option value=""></option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><label for="account_manager_contact">客户经理联系方式</label></td>
+                                    <td><input class="form-control" v-model="account_manager_contact" id="account_manager_contact" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="account_manager_email">客户经理邮箱</label></td>
+                                    <td><input class="form-control" v-model="account_manager_email" id="account_manager_email" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="send_quotation_time">发送报价时间</label></td>
+                                    <td><input class="form-control" v-model="send_quotation_time" @blur="updateTime" id="send_quotation_time" type="text"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="chest" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <!--<div id="buttons">-->
+                        <!--<button class="btn btn-default btn-sm" @click="addCol">添加列</button>-->
+                        <!--</div>-->
+                        <table class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <thead>
+                            <tr>
+                                <th>Project</th>
+                                <th>项目</th>
+                                <th :colspan="project_detail.length * 3">
+                                    {{ project_title }}
+                                </th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Currency</td>
+                                <td>币种</td>
+                                <td :colspan="project_detail.length * 3">
+                                    <select class="form-control" v-model="currency" name="currency">
+                                        <option value="">Please Seclect|从下拉式清单中选择：</option>
+                                        <option value="RMB人民币">RMB人民币</option>
+                                        <option value="USD美元">USD美元</option>
+                                        <option value="JPY日元">JPY日元</option>
+                                        <option value="EUR欧元">EUR欧元</option>
+                                        <option value="Other其他">Other其他</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"></td>
+                                <th v-for="detail in project_detail" colspan="3" style="text-align: center;">
+                                    <button class="btn btn-default btn-sm" @click="deleteCol(detail)">删除列</button>
+                                    <button class="btn btn-default btn-sm" @click="addCol(detail)">添加列</button>
+                                </th>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Area</td>
+                                <td>区域</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <input class="form-control" v-model="detail.area" type="text">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Method</td>
+                                <td>调查方式</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <select class="form-control" v-model="detail.method" name="method">
+                                        <option value="">Please Seclect|从下拉式清单中选择：</option>
+                                        <option value="Mix Quali&Quanti|综合定性&定量">Mix Quali&Quanti|综合定性&定量</option>
+                                        <option value="Mix Quali|综合定性">Mix Quali|综合定性</option>
+                                        <option value="定性=IDI|TDI">定性=IDI|TDI</option>
+                                        <option value="定性=FGDs">定性=FGDs</option>
+                                        <option value="定性=观察|日记">定性=观察|日记</option>
+                                        <option value="Mix Quanti|综合定量">Mix Quanti|综合定量</option>
+                                        <option value="定量=Tel|CATI">定量=Tel|CATI</option>
+                                        <option value="定量=Online">定量=Online</option>
+                                        <option value="定量=FTF|DTD入户">定量=FTF|DTD入户</option>
+                                        <option value="定量=FTF|陌生拦访调查">定量=FTF|陌生拦访调查</option>
+                                        <option value="定量=FTF|CLT定点拦截">定量=FTF|CLT定点拦截</option>
+                                        <option value="定量=FTF|预约面访">定量=FTF|预约面访</option>
+                                        <option value="MSP|神秘顾客">MSP|神秘顾客</option>
+                                        <option value="Other|其它">Other|其它</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Qnr-Type</td>
+                                <td>问卷形式</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <select class="form-control" v-model="detail.qnr_type" name="qnr_type">
+                                        <option value="">Please Seclect|从下拉式清单中选择：</option>
+                                        <option value="Paper & Pencil">Paper & Pencil</option>
+                                        <option value="CAPI">CAPI</option>
+                                        <option value="CAWI|Online">CAWI|Online</option>
+                                        <option value="CATI">CATI</option>
+                                        <option value="Other|其它">Other|其它</option>
+                                    </select>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>During</td>
+                                <td>问卷长度</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <input class="form-control" v-model="detail.during" type="number">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Audience/Respondent</td>
+                                <td>调查对象</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <input class="form-control" v-model="detail.audience_or_respondent" type="text">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">Sample</td>
+                                <td rowspan="2">样本配额</td>
+                                <td :colspan="project_detail.length * 3">
+                                    <input class="form-control" v-model="sample_total" type="number">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <!--<td></td>-->
+                                <!--<td></td>-->
+                                <td v-for="detail in project_list.brief" colspan="3">
+                                    <input class="form-control" v-model="detail.sample" type="text">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Other Requirement</td>
+                                <td>其他</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <input class="form-control" v-model="detail.other_requirement" type="text">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Deliverables</td>
+                                <td>项目成果</td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <input class="form-control" v-model="detail.deliverables" type="text">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <th>Item</th>
+                                <th>科目</th>
+                                <th v-for="detail in project_detail" colspan="3">option{{ detail.key }}</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td v-for="detail in project_detail" colspan="3">
+                                    <span class="col-sm-4">Unit|单价</span>
+                                    <span class="col-sm-4">Number|数量</span>
+                                    <span class="col-sm-4">Total|总计</span>
+                                </td>
+                                <td>Remark|备注</td>
+                            </tr>
+                            <tr v-for="item in project_list.quotation_list" :key="item.key">
+                                <!--<td>{{ item.key }}</td>-->
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.cn_name }}</td>
+                                <td v-for="option in item.allocate" colspan="3">
+                                    <input class="form-control col-sm-4" :disabled="!option.hasOwnProperty('unit')" min="0" v-model="option.unit" @change="option.total=(option.unit * Math.floor(option.number)).toFixed(2)" type="number">
+                                    <input class="form-control col-sm-4" :disabled="!option.hasOwnProperty('number')" min="0" v-model="option.number" @change="option.total=(option.unit * Math.floor(option.number)).toFixed(2)" type="number">
+                                    <input class="form-control col-sm-4" disabled v-model="option.total" type="number">
+                                </td>
+                                <td>
+                                    <input class="form-control col-sm-12" type="text" v-model="item.remark">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>project_manage_fee</td>
+                                <td>项目管理费</td>
+                                <td v-for="detail in project_list.brief" colspan="3">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number" v-model="detail.project_manage_fee">
+                                <td>
+                                    <select class="form-control" v-model="project_list.manage_fee_rate">
+                                        <option value="0">请选择</option>
+                                        <option value="0.15">15%</option>
+                                        <option value="0.20">20%</option>
+                                        <option value="0.30">30%</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>tax_fee</td>
+                                <td>税费</td>
+                                <td v-for="detail in project_list.brief" colspan="3">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number" v-model="detail.tax_fee">
+                                </td>
+                                <td>6%</td>
+                            </tr>
+                            <tr>
+                                <td>total_cost</td>
+                                <td>总价</td>
+                                <td v-for="detail in project_list.brief" colspan="3">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number" v-model="detail.total_cost">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>sample_number</td>
+                                <td>样本数量 </td>
+                                <td v-for="detail in project_list.brief" colspan="3">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" type="number" v-model="detail.sample_number">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>unit_cost</td>
+                                <td>单价</td>
+                                <td v-for="detail in project_list.brief" colspan="3">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number">
+                                    <input class="form-control col-sm-4" disabled type="number" v-model="detail.unit_cost">
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--<div id="abdomen">-->
+                    <!--<table>-->
+                    <!--<thead>-->
+                    <!---->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!---->
+                    <!--</tbody>-->
+                    <!--</table>-->
+                    <!--</div>-->
+                    <div id="leg">
+                        <h3>Model-项目进度周期预估	</h3>
+                        <div class="col-sm-12">
+                            <table class="col-sm-12">
+                                <tbody>
+                                <tr>
+                                    <th class="col-sm-2">Timeline(week)</th>
+                                    <th class="col-sm-2">预计周期(周)</th>
+                                    <th class="col-sm-4">N=Unit|N=每城市</th>
+                                    <th class="col-sm-4">N=Total|N=合计</th>
+                                </tr>
+                                <tr v-for="time in timeline">
+                                    <td class="col-sm-2">
+                                        <span>{{ time.duration }}</span>
+                                        <button class="btn btn-default btn-xs" @click="deleteTime(time)">-</button>
+                                        <button class="btn btn-default btn-xs" @click="addTime(time)">+</button>
+                                    </td>
+                                    <td class="col-sm-2">{{ time.expected }}</td>
+                                    <td class="col-sm-4"><input class="form-control" type="text" v-model="time.perCity"></td>
+                                    <td class="col-sm-4"><input class="form-control" type="text" v-model="time.total"></td>
+                                </tr>
+                                <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!--<input placeholder="点选日期" type="text" id="time">-->
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/project/quotationEdit.js"></script>
+<script>
+    laydate.render({
+        elem: '#receipt_time',
+        type: 'datetime'
+    });
+    laydate.render({
+        elem: '#send_quotation_time',
+        type: 'datetime'
+    })
+</script>
+</body>
+</html>

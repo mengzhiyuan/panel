@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <link rel="stylesheet" href="../../css/bootstrap.min.css">
+ <link rel="stylesheet" href="../../css/kolpanel/public.css">
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/page.js"></script>
+<script src="../../js/kolpanel/myQuestionnaire.js"></script>
+<style type="text/css">
+.row {
+	margin-top: 4px;
+	margin-bottom: 4px;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div id="header">
+					<div class="logo col-lg-2 col-md-2 col-sm-1"></div>
+					<div
+						class="col-lg-6 col-md-6 col-sm-6 col-lg-offset-1 col-md-offset-1">
+						<ul class="navigator nav nav-justified">
+							<li><a href="/jfcpanel/html/kolpanel/creating.html">首页</a></li>
+			                <li><a href="/jfcpanel/html/kolpanel/types.html">设计问卷</a></li>
+			                <li><a href="/jfcpanel/html/kolpanel/myQuestionnaire.html">我的问卷</a></li>
+						    <li><a href="javascript:void (0);">数据分析</a></li>
+						</ul>
+					</div>
+					<div class="signout account pull-right">
+						<div>
+							<span class="icon"> </span> <span class="name"> 登录/注册 </span>
+						</div>
+					</div>
+					<div class="signin account pull-right">
+						<div class="button">
+							<span class="icon"> </span> <span class="name"> 852852641
+							</span>
+						</div>
+						<div id="dropdown">
+							<div class="arrow"></div>
+							<ul>
+								<li><a href="javascript:void (0);">个人信息</a></li>
+								<li><a href="javascript:void (0);">功能设置</a></li>
+								<li><a href="javascript:void (0);">帮助</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row" style="margin-top:4%">
+			<div class="col-sm-8">
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="home">
+						<div class="input-group col-sm-4">
+							<input type="text" class="form-control"> <span
+								class="input-group-btn keyword">
+								<button class="btn btn-default" type="button">搜索</button>
+							</span>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class=" col-xs-4 text-right">
+				<a href="/jfcpanel/html/kolpanel/design.html" class="btn btn-default" type="button">+创建问卷</a>
+				</div>
+		</div>
+		<p>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>名称</th>
+							<th>问卷类型</th>
+							<th>时间</th>
+							<th>进度</th>
+							<th>问卷状态</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					
+					<tbody id="the_table">
+				
+					</tbody>
+				</table>
+				<div class="col-sm-12">
+					<nav aria-label="Page navigation" class="page">
+						<ul id="page" style="text-align: center;" class="pagination">
+							<li><span>首页</span></li>
+							<li><span class="disabled">上一页</span></li>
+							<li class="active"><span class="current">1</span></li>
+							<li><a href="javascript:;" class="tcdNumber">2</a></li>
+							<li><a href="javascript:;" class="tcdNumber">3</a></li>
+							<li><a href="javascript:;" class="tcdNumber">4</a></li>
+							<li><span>...</span></li>
+							<li><a href="javascript:;" class="tcdNumber">621</a></li>
+							<li><a href="javascript:;" class="nextPage">下一页</a></li>
+							<li><span>尾页</span></li>
+							<li>
+								<div class="col-xs-2">
+									<input type="text" class="form-control">
+
+								</div>
+								<div class="col-xs-2">
+									<button id="fat-btn" class="btn btn-primary"
+										data-loading-text="Loading..." type="button">跳转</button>
+								</div>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<!--    <input type="button" value="导出数据" id="download"/>  -->
+	<script>
+		$(function() {
+			$("#fat-btn").click(function() {
+				$(this).button('loading').delay(1000).queue(function() {
+					// $(this).button('reset');
+					// $(this).dequeue(); 
+				});
+			});
+			$("[data-toggle='tooltip']").tooltip();
+
+		});
+	</script>
+</body>
+</html>

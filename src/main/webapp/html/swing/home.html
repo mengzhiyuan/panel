@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>首页</title>
+<!-- Bootstrap -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+<link rel="stylesheet" href="../../css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../../css/swing/design.css">
+<link rel="stylesheet" href="../../css/swing/home.css">
+</head>
+<body>
+	<header id="header" class="header">
+		<div class="col-md-10 column">
+			<a class="home-button" href="./home.html"><i
+				class="glyphicon glyphicon-home"></i></a>
+			<nav>
+				<a id="names"></a>
+			</nav>
+		</div>
+		<div class="col-md-2 column" style="background-color: #00b0f0">
+			<div class="dropdown">
+				<a href="./application.html"
+					style="color: #FFF; font-size: 30px; top: 10px; margin-left: 40px"
+					class="glyphicon glyphicon-th"></a> <a id="dLabel" role="button"
+					data-toggle="dropdown" data-target="#" href="javascript:;"
+					style="color: #FFF; line-height: 50px; font-size: 14px; margin-left: 50px">
+					账户 <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu multi-level" role="menu"
+					aria-labelledby="dropdownMenu">
+					<li><a tabindex="-1" href="./personal_information.html">个人信息</a>
+					<li><a tabindex="-1" href="./resources.html">我的资源</a>
+					<li><a tabindex="-1" href="./contact_person.html">联系人</a>
+					<li><a tabindex="-1" href="javascript:;">我的消息</a>
+					<li><a tabindex="-1" href="javascript:;">帮助中心</a>
+					<li><a tabindex="-1" href="./swing.html">退出</a>
+				</ul>
+			</div>
+		</div>
+	</header>
+		
+	<div class="container" style="margin-top: 100px">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<div class="row clearfix">
+					<div class="col-md-4 column">
+						<div class="row clearfix" style="font-size:16px;">
+							<div class="col-md-1 column grid" style="line-height:30px">
+								<i class="glyphicon glyphicon-th"></i>
+							</div>
+							<div class="col-md-1 column list" style="line-height:30px">
+								<i class="glyphicon glyphicon-th-list"></i> 
+							</div>
+							<div class="col-md-2 column list" style="line-height:30px">
+							</div>
+							<div class="col-md-6 column">
+								<select class="form-control filed_order">
+									<option>字段排序</option>
+									<option value="wj_number">问卷编号</option>
+									<option value="wj_name">问卷标题</option>
+									<option value="create_time">创建时间</option>
+									<option value="wj_status">问卷状态</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 column">
+						<div class="row clearfix">
+							<div class="col-md-4 column" style="line-height:30px;text-algin:center">整理</div>
+							<div class="col-md-4 column" style="line-height:30px"><a href="/jfcpanel/html/swing/index.html">创建问卷</a></div>
+						</div>
+
+					</div>
+					<div class="col-md-4 column">
+						<div class="row clearfix">
+							<div class="col-md-5 column" style="line-height:30px"><input type="text" placeholder="请输入关键字" id="keyWord"></div>
+							<div class="col-md-4 column" style="line-height:30px"><button id="search">搜索</button></div>
+						</div>
+					</div>
+					
+					<!-- <div class="ad-warp">
+						<div class="ad-shadow"></div>
+					<span style="font-size:16px">导语提示：</span><br><br>
+
+
+Swing Survey采用领先的技术设计，融入专业调查的全部流程和质量管理体系，是一个功能强大、直观、简单的优秀调查平台。<a style="color:red" href="#">《服务协议》</a>。<br>
+Swing Survey——让您永久尊享免费服务的调查平台！请您遵守中华人民共和国有关第三方平台的相关法律法规，
+体验使用Swing Survey调查平台更多专业功能，欢迎您尽快<a style="color:red" href="./perfect_user_information.html">《完善用户信息》</a>。
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="listBox lbBox" style="display: block; width: 1188px; margin: 20px auto;display:none">
+		<table width="100%" cellpadding="0" cellspacing="0">
+			<tbody id="tbody">
+				<tr style="background-color: #f9f9f9;font-size: 16px;height: 51px;"> 
+					<td>编号</td>
+					<td>标题</td>
+					<td>修改时间</td>
+					<td>状态</td>
+					<td>完成量</td>
+					<td>设计</td>
+					<td>收集</td>
+					<td>数据</td>
+					<td>操作</td>
+				</tr>
+			<!-- 	<tr style="height: 51px;border-bottom: 1px solid #ebebeb;font-size: 13px;color: #767676;"> 
+					<td>1</td>
+					<td>
+						<a>问卷标题</a><span>[ID:789897]</span>
+						<p>2018/07/31</p>
+					</td>
+					<td>2018/07/33</td>
+					<td>
+						 <select class="form-control" style="width:50%;margin-left:30%">
+					      <option>未发布</option>
+					      <option>发布中</option>
+					      <option>已结束</option>
+					    </select>
+					</td>
+					<td>1000</td>
+					<td><span class="glyphicon glyphicon-edit" data-toggle="tooltip" data-placement="top" title="设计"></span></td>
+					<td><span class="glyphicon glyphicon-text-height" data-toggle="tooltip" data-placement="top" title="收集"></span></td>
+					<td><span class="glyphicon glyphicon-barcode" data-toggle="tooltip" data-placement="top" title="数据"></span></td>
+					<td>
+						  <span class="glyphicon glyphicon-eye-open" data-toggle="tooltip" data-placement="top" title="预览"></span>
+						  <span class="glyphicon glyphicon-road" data-toggle="tooltip" data-placement="top" title="复制"></span> 
+						  <span class="glyphicon glyphicon-trash" data-toggle="tooltip" data-placement="top" title="删除"></span> 
+						  <span class="glyphicon glyphicon-folder-open" data-toggle="tooltip" data-placement="top" title="文件夹"></span> 
+						  <span style="font-size:18px" class="dropdown">
+						  	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+								... <span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a href="#">提醒</a></li>
+								<li><a href="#">分享</a></li>
+								<li><a href="#">模板</a></li>
+								<li><a href="#">清空数据</a></li>
+								<li><a href="#">导出问卷</a></li>
+								<li><a href="#">打印问卷</a></li>
+								<li><a href="#">重命名</a></li>
+							</ul>
+						  </span>  
+					</td>
+				</tr> -->
+			</tbody>
+		</table>
+	</div>
+	<div class="list_nr">
+		<div class="listBox hzBox"
+			style="width: 1188px; margin: 0px auto; display: block;">
+			<ul class="clearfix ul_list" id="listHz"
+				style="width: 1212px; margin-left: -20px;">
+				<li class="create_new"><a href="./index.html"> <img
+						src="../../images/swing/new_project_ico.png"><br> <span>新
+							建</span>
+				</a></li>
+				<!-- <li style="margin-left: 20px;position:relative;"><span class="bt">问卷标题</span> <span
+					class="nr">10天前</span> <span class="nr">图标+提示</span>
+					<div class="state">
+						<span class="closed_icon"><i></i>未发布</span> <em><span>0</span>
+							份数据</em>
+					</div>
+					<div class="operate_bar" style="border:1px solid red;">
+						<a class="jf_ico"> <i class="glyphicon glyphicon-edit btn-lg"></i>
+							<span>编辑</span>
+						</a> <a class="jf_ico"> <i
+							class="glyphicon glyphicon-text-height btn-lg"></i> <span>发布</span>
+						</a> <a class="jf_ico"> <i
+							class="glyphicon glyphicon-barcode btn-lg"></i> <span>数据</span>
+						</a> 
+						<div class="btn-group dropup" style="margin-top:20px;">
+							<button class="btn btn dropdown-toggle" data-toggle="dropdown" title="更多"><i class="glyphicon glyphicon-circle-arrow-up"></i></button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">功能</a></li>
+								<li><a href="#">另一个功能</a></li>
+								<li><a href="#">其他</a></li>
+								<li class="divider"></li>
+								<li><a href="#">分离的链接</a></li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li style="margin-left: 20px;"><span class="bt">问卷标题</span> <span
+					class="nr">10天前</span> <span class="nr">图标+提示</span>
+					<div class="state">
+						<span class="closed_icon"><i></i>未发布</span> <em><span>0</span>
+							份数据</em>
+					</div>
+					<div class="operate_bar dropup">
+						<a class="jf_ico"> <i class="glyphicon glyphicon-edit btn-lg"></i>
+							<span>编辑</span>
+						</a> <a class="jf_ico"> <i
+							class="glyphicon glyphicon-text-height btn-lg"></i> <span>发布</span>
+						</a> <a class="jf_ico"> <i
+							class="glyphicon glyphicon-barcode btn-lg"></i> <span>数据</span>
+						</a> 
+						<a class="jf_ico more dropdown-toggle" data-toggle="dropdown"
+							data-target="#"> ... </a>
+						<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">预览</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">复制</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">删除</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">提醒</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">分享</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">清空数据</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">导出问卷</a></li>
+							<li role="presentation"><a role="menuitem" tabindex="-1"
+								href="#">打印问卷</a></li>
+						</ul>
+					</div></li> -->
+				
+			</ul>
+		</div>
+	</div>
+
+
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap-table.min.js"></script>
+	<script src="../../js/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../js/laydate.js"></script>
+	<script src="../../js/swing/home.js"></script>
+	<script type="text/javascript">
+		$(".grid").click(function(){
+			$(".lbBox").hide();
+			$(".list_nr").show();
+		});
+		$(".list").click(function(){
+			$(".lbBox").show();
+			$(".list_nr").hide();
+			
+		});
+	</script>
+</body>
+</html>

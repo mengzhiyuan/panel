@@ -1,0 +1,585 @@
+/*样式库-start*/
+/*position mode-start*/
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.fixed {
+  position: fixed;
+}
+/*color-start*/
+.blue {
+  color: #1b6d85;
+}
+.white {
+  color: #ffffff;
+}
+.black {
+  color: #000000;
+}
+.underline {
+  text-decoration: underline;
+}
+/*display-start*/
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.hidden {
+  display: none;
+}
+/*align-start*/
+.t-left {
+  text-align: left;
+}
+.t-center {
+  text-align: center;
+}
+.t-right {
+  text-align: right;
+}
+.f-left {
+  float: left;
+}
+.f-right {
+  float: right;
+}
+.f-clear {
+  clear: both;
+}
+.v-top {
+  vertical-align: top;
+}
+.v-middle {
+  vertical-align: middle;
+}
+.v-bottom {
+  vertical-align: bottom;
+}
+/*font-start*/
+.sans-serif {
+  font-family: BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+}
+.serif {
+  font-family: FangSong,SimSun,serif;
+}
+.no-list {
+  list-style: none;
+}
+/*length-start*/
+/*position number-start*/
+/*样式库-end*/
+/*公用样式-start*/
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.glyphicon:before {
+  position: relative;
+  /*像素长度*/
+  top: 0px;
+  /*像素长度*/
+  left: 1px;
+}
+/*公用样式-end*/
+.header {
+  /************************************顶边栏*/
+  position: fixed;
+  /*像素长度*/
+  top: 0px;
+  /*像素长度*/
+  left: 0px;
+  z-index: 100;
+  /*百度比宽度*/
+  /*百度比长度*/
+  width: 100%;
+  /*像素高度*/
+  /*像素长度*/
+  height: 50px;
+  background-color: #ffffff;
+  text-align: center;
+  border-bottom:solid 1px #00b0f0;
+}
+.header .home-button {
+  /*顶边栏-HOME按钮*/
+  position: absolute;
+  /*像素长度*/
+  top: 0px;
+  /*像素长度*/
+  left: 0px;
+  display: inline-block;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 80px;
+  /*像素高度*/
+  /*像素长度*/
+  height: 50px;
+  color: #ffffff;
+  background-color: #00b0f0;
+}
+.header .home-button i {
+  /*顶边栏-HOME按钮-图标*/
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 32px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 50px;
+}
+.header nav {
+  /*顶边栏-3步导航*/
+  position: relative;
+  /*像素长度*/
+  left: 85px;
+  display: inline-block;
+  vertical-align: top;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 50px;
+  color: #ffffff;
+}
+.header nav a {
+  color: #000000;
+  text-decoration: none;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 16px;
+  font-family: BlinkMacSystemFont, Helvetica Neue, PingFang SC, Microsoft YaHei, Source Han Sans SC, Noto Sans CJK SC, WenQuanYi Micro Hei, sans-serif;
+  font-weight: 400;
+}
+.header nav a i {
+  /*像素长度*/
+  top: 4px;
+  color: #000000;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 16px;
+}
+.header nav a.active {
+  border-bottom: 1px solid #ffffff;
+}
+.header .survey-name {
+  float: right;
+  /*像素长度*/
+  margin-right: 170px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 50px;
+  color: #000000;
+  font-weight: 300;
+}
+.header .survey-name b {
+  text-align: right;
+  display: inline-block;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 70px;
+  font-weight: 400;
+}
+.header .survey-name i {
+  text-align: left;
+  display: inline-block;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 100px;
+}
+.header .survey-name i .present {
+  /*像素宽度*/
+  /*像素长度*/
+  width: 100px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.header .survey-name i .edit {
+  /*像素宽度*/
+  /*像素长度*/
+  width: 100px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 24px;
+  background-color: transparent;
+  border-top: 1px solid transparent;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid #ffffff;
+  border-left: 1px solid transparent;
+}
+.header .account {
+  position: absolute;
+  /*像素长度*/
+  top: 0px;
+  /*像素长度*/
+  right: 0px;
+  display: inline-block;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 150px;
+  /*像素高度*/
+  /*像素长度*/
+  height: 50px;
+  background-color: #00b0f0;
+  color: #ffffff;
+}
+.header .account span {
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 50px;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 16px;
+}
+.header .account ul {
+  list-style: none;
+  /*像素长度*/
+  margin-bottom: 0px;
+}
+.toolbar {
+  /************************************功能栏*/
+  position: fixed;
+  /*像素长度*/
+  top: 50px;
+  /*像素长度*/
+  left: 0px;
+  z-index: 100;
+  /*百度比宽度*/
+  /*百度比长度*/
+  width: 100%;
+  /*像素高度*/
+  /*像素长度*/
+  height: 50px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #000000;
+  box-sizing: content-box;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 16px;
+  text-align: left;
+}
+.toolbar:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+.toolbar ul {
+  display: inline-block;
+  list-style: none;
+  /*像素长度*/
+  margin-bottom: 0px;
+}
+.toolbar ul li {
+  float: left;
+  border-right: 1px solid #666666;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 30px;
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  padding-top: 5px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  margin-top: 5px;
+  margin-right: 0px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  cursor: pointer;
+}
+.toolbar ul li:last-child {
+  border-right: 1px solid transparent;
+}
+.toolbar .switch {
+  /*像素长度*/
+  margin-left: 30px;
+}
+.toolbar .tool {
+  float: right;
+  /*像素长度*/
+  margin-right: 210px;
+}
+.toolbar .trigger {
+  position: absolute;
+  /*像素长度*/
+  top: 0px;
+  /*像素长度*/
+  right: 24px;
+  display: inline-block;
+  vertical-align: top;
+  /*像素高度*/
+  /*像素长度*/
+  height: 50px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 50px;
+}
+.toolbar .trigger button {
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  padding-top: 4px;
+  padding-right: 15px;
+  padding-bottom: 4px;
+  padding-left: 15px;
+  background-color: #3399ee;
+  border-color: transparent;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 18px;
+}
+.toolbar .trigger button:hover {
+  background-color: #0066cc;
+}
+.toolbar .trigger button:active {
+  background-color: #5599ff;
+}
+.workspace {
+  /************************************工作区*/
+  position: relative;
+  /*像素长度*/
+  top: 110px;
+  display: block;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 0px;
+}
+.workspace .sidebar {
+  /************************************左边栏*/
+  position: fixed;
+  /*像素长度*/
+  left: 10px;
+  display: inline-block;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 210px;
+  /*像素高度*/
+  /*像素长度*/
+  height: 480px;
+  background-color: #dddddd;
+  border: 1px solid #999999;
+}
+.workspace .sidebar div.bar {
+  position: relative;
+  display: inline-block;
+  /*百度比宽度*/
+  /*百度比长度*/
+  width: 100%;
+  /*百度比高度*/
+  /*百度比长度*/
+  height: 100%;
+}
+.workspace .sidebar #item_type {
+  overflow: hidden;
+}
+.workspace .sidebar #item_type .brick {
+  position: absolute;
+  display: inline-block;
+  /*百度比宽度*/
+  /*百度比长度*/
+  width: 100%;
+  /*百度比高度*/
+  /*百度比长度*/
+  height: 100%;
+  background-color: #ffffff;
+}
+.workspace .sidebar #item_type .brick .type_name {
+  /*百度比宽度*/
+  /*百度比长度*/
+  width: 100%;
+  /*像素高度*/
+  /*像素长度*/
+  height: 30px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 29px;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 14px;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  background-color: #0069bf;
+  border-bottom: 1px solid #000000;
+  cursor: default;
+}
+.workspace .sidebar #item_type .brick .type_name:hover {
+  font-weight: 500;
+}
+.workspace .sidebar #item_type .brick .types {
+  /*百度比高度*/
+  /*百度比长度*/
+  height: 100%;
+  /*像素长度*/
+  padding-top: 15px;
+  background-color: #ffffff;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 12px;
+}
+.workspace .sidebar #item_type .brick .types ul {
+  list-style: none;
+}
+.workspace .sidebar #item_type .brick .types ul li {
+  /*像素高度*/
+  /*像素长度*/
+  height: 30px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 28px;
+  /*像素长度*/
+  padding-left: 80px;
+  border-bottom: 1px solid #aaaaaa;
+  cursor: default;
+}
+.workspace .sidebar #item_type .brick .types ul li:hover {
+  font-weight: 500;
+  background-color: #dddddd;
+}
+.workspace .sidebar #item_type .brick .types ul li:first-child {
+  border-top: 1px solid #aaaaaa;
+}
+.workspace .sidebar #item_type #common_type {
+  /*像素长度*/
+  top: 0px;
+  /*像素长度*/
+  margin-top: 0px;
+  /*像素长度*/
+  padding-bottom: 60px;
+  z-index: 10;
+}
+.workspace .sidebar #item_type #advanced_type {
+  /*像素长度*/
+  top: 390px;
+  /*像素长度*/
+  margin-top: 30px;
+  /*像素长度*/
+  padding-bottom: 30px;
+  z-index: 20;
+}
+.workspace .sidebar #item_type #quick_type {
+  /*像素长度*/
+  top: 390px;
+  /*像素长度*/
+  margin-top: 60px;
+  /*像素长度*/
+  padding-bottom: 0px;
+  z-index: 30;
+}
+.workspace .sidebar #item_type #quick_type .types {
+  /*像素长度*/
+  padding-left: 8px;
+}
+.workspace .sidebar #item_type #quick_type ul > li {
+  float: left;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 90px;
+  /*像素长度*/
+  padding-left: 10px;
+  /*像素长度*/
+  padding-right: 10px;
+  border: 1px solid #aaaaaa;
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  margin-top: 2px;
+  margin-right: 3px;
+  margin-bottom: 2px;
+  margin-left: 3px;
+}
+.workspace .edit-space {
+  /************************************编辑区*/
+  position: relative;
+  /*像素长度*/
+  top: -10px;
+  display: inline-block;
+  /*像素长度*/
+  margin-left: 245px;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 680px;
+  /*像素高度*/
+  /*像素长度*/
+  height: 480px;
+  background-color: #aaaaaa;
+}
+.workspace .edit-space .edit-container {
+  position: absolute;
+  /*百度比宽度*/
+  /*百度比长度*/
+  width: 100%;
+}
+.workspace .edit-space .edit-container .tags {
+  position: fixed;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 680px;
+  /*像素高度*/
+  /*像素长度*/
+  height: 50px;
+  /*像素长度*/
+  padding-top: 10px;
+  background-color: #ffffff;
+}
+.workspace .edit-space .edit-container .tags .stable {
+  position: absolute;
+  /*像素长度*/
+  top: 10px;
+  /*像素长度*/
+  left: 0px;
+  cursor: pointer;
+}
+.workspace .edit-space .edit-container .tags .stable .previous-page {
+  position: relative;
+  /*像素长度*/
+  top: 0px;
+  vertical-align: top;
+  /*像素宽度*/
+  /*像素长度*/
+  width: 18px;
+  border: 1px solid #aaaaaa;
+  box-sizing: content-box;
+  /*像素字体大小*/
+  /*像素长度*/
+  font-size: 12px;
+  /*像素行高*/
+  /*像素长度*/
+  line-height: 38px;
+}
+.workspace .edit-space .edit-container .tags .mobile {
+  /*像素长度*/
+  margin-left: 18px;
+  display: inline-block;
+}
+.workspace .edit-space .edit-container .tags .mobile .switch {
+  display: inline-block;
+  max-width: 360px;
+  overflow: hidden;
+}
+.workspace .edit-space .edit-container .tags .mobile .switch b {
+  position: relative;
+  /*像素长度*/
+  top: 0px;
+  vertical-align: top;
+  display: inline-block;
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  /*像素长度*/
+  padding-top: 0px;
+  padding-right: 15px;
+  padding-bottom: 0px;
+  padding-left: 15px;
+  bord…

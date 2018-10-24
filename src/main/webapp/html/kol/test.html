@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/kol/operationalCenter.css">
+    <link rel="stylesheet" href="../../css/kol/membership.css">
+    <style>
+        #precise-search{
+            display: block;
+            border: 1px solid #000000;
+            margin-bottom: 1rem;
+        }
+        .more-conditions:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        #query:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .value{
+            position: relative;
+        }
+        .value ul.options{
+            position: absolute;
+            top: 22px;
+            left: 0;
+            height: 150px;
+            width: 240px;
+            background-color: #ffffff;
+            border: 1px solid #000000;
+            overflow: scroll;
+        }
+        .value ul.options li{
+            font-size: 1rem;
+            cursor: pointer;
+            list-style: none;
+            text-align: center;
+        }
+        .input-wrap label, .input-wrap input, .input-wrap select, .input-wrap option{
+            height: 3.4rem;
+            line-height: 3.4rem;
+            font-size: 1rem;
+        }
+        .input-wrap label{
+            width: 35%;
+        }
+        .input-wrap input, .input-wrap select{
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                     <a href="../../main_kangpai" class="site_title"> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                         <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+              <!--   <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div> -->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+<div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+                       <li><a href="#">帮助</a></li>
+                       <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root" @click="removeOption_query">
+            <div class="right_col" role="main">
+                <table id="table" align="center">
+                    <tbody id="newbody"></tbody>
+                </table>
+                <div>
+                    jquery中文网，为大家介绍js代码动态操作表格的方法。
+                    <table width="800px" border="1px" align="center">
+                        <tr>
+                            <td align="center"></td>
+                            <td align="center"><input type="button" id="delRow"
+                                                      name="delRow" onClick="removeRow();" value="删除行" /></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><input type="button" id="delCell"
+                                                      　name="delCell" onClick="removeCell();" value="删除列" /></td>
+                            <td align="center"><input type="button" 　id="addCell"
+                                                      name="addCell" onClick=" addCell();" value="添加列" /></td>
+                        </tr>
+                        <tr>
+                            <td align="center" colspan="2"><input type="button"
+                                                                  id="addRows" 　name="addRows" onClick="addRow_withInsert();"
+                                                                  value="添加行" /></td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <table width="800px" border="1px" align="center">
+                        <tr>
+                            <td>从第<input type="text" id="beginRow" name="beginRow" value="" />行到<input
+                                    type="text" name="endRow" id="endRow" value="" />行
+                            </td>
+                            <td rowspan="2" id="test"><input type="button" name="hebing"
+                                                             id="hebing" value="合并" onClick="rebulid();" /></td>
+                        </tr>
+                        <tr>
+                            <td>从第<input type="text" name="beginCol" id="beginCol" value="" />列到<input
+                                    type="text" name="endCol" id="endCol" value="" />列
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/kol/menu.js"></script>
+<script src="../../js/kol/custom.min.js"></script>
+<script>
+    function init() {
+        _table = document.getElementById("table");
+        _table.border = "1px";
+        _table.width = "800px";
+        for (var i = 1; i < 6; i++) {
+            var row = document.createElement("tr");
+            row.id = i;
+            for (var j = 1; j < 6; j++) {
+                var cell = document.createElement("td");
+                cell.id = i + "/" + j;
+                cell.appendChild(document.createTextNode("第" + cell.id
+                        + "列"));
+                row.appendChild(cell);
+            }
+            document.getElementById("newbody").appendChild(row);
+        }
+    }
+    function rebulid() {
+        var beginRow = document.getElementById("beginRow").value;/*开始行*/
+        var endRow = document.getElementById("endRow").value;/*结束行*/
+        var beginCol = document.getElementById("beginCol").value;/*开始列*/
+        var endCol = document.getElementById("endCol").value;/*结束列*/
+        var tempCol = beginRow + "/" + beginCol;/*定位要改变属性的列*/
+        alert(tempCol);
+        var td = document.getElementById(tempCol);
+        for (var x = beginRow; x <= endRow; x++) {
+            for (var i = beginCol; i <= endCol; i++) {
+                if (x == beginRow) {
+                    document.getElementById("table").rows[x]
+                            .deleteCell(i + 1);
+                } else {
+                    document.getElementById("table").rows[x].deleteCell(i);
+                }
+            }
+        }
+        td.rowSpan = (endRow - beginRow) + 1;
+    }
+    /*添加行，使用appendChild方法*/
+    function addRow() {
+        var length = document.getElementById("table").rows.length;
+        /*document.getElementById("newbody").insertRow(length);
+         document.getElementById(length+1).setAttribute("id",length+2);*/
+        var tr = document.createElement("tr");
+        tr.id = length + 1;
+        var td = document.createElement("td");
+        for (i = 1; i < 4; i++) {
+            td.id = tr.id + "/" + i;
+            td.appendChild(document.createTextNode("第" + td.id + "列"));
+            tr.appendChild(td);
+        }
+        document.getElementById("newbody").appendChild(tr);
+    }
+    function addRow_withInsert() {
+        var row = document.getElementById("table").insertRow(
+                document.getElementById("table").rows.length);
+        var rowCount = document.getElementById("table").rows.length;
+        var countCell = document.getElementById("table").rows.item(0).cells.length;
+        for (var i = 0; i < countCell; i++) {
+            var cell = row.insertCell(i);
+            cell.innerHTML = "新" + (rowCount) + "/" + (i + 1) + "列";
+            cell.id = (rowCount) + "/" + (i + 1);
+        }
+    }
+    /*删除行，采用deleteRow(row Index)*/
+    function removeRow() {
+        document
+                .getElementById("newbody")
+                .deleteRow(
+                        document.getElementById(document
+                                .getElementById("table").rows.length).rowIndex);
+    }
+    /*添加列，采用insertCell(列位置)方法*/
+    function addCell() {
+        /*document.getElementById("table").rows.item(0).cells.length
+         用来获得表格的列数
+         */
+        for (var i = 0; i < document.getElementById("table").rows.length; i++) {
+            var cell = document.getElementById("table").rows[i]
+                    .insertCell(2);
+            cell.innerHTML = "第" + (i + 1) + "/" + 3 + "列";
+        }
+    }
+    /*删除列，采用deleteCell(列位置)的方法*/
+    function removeCell() {
+        for (var i = 0; i < document.getElementById("table").rows.length; i++) {
+            document.getElementById("table").rows[i].deleteCell(0);
+        }
+    }
+    $(function(){init()})
+</script>
+</body>
+</html>

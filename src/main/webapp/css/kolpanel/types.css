@@ -1,0 +1,437 @@
+#types{
+    position: relative;
+    top: 5%;
+    display: inline-block;
+    width: 1200px;
+    overflow: hidden;
+    height: 480px;
+    font-size: 0;
+    text-align: center;
+
+
+    /*background-color: rgba(200,230,255,0.5);*/
+}
+/*切换按钮样式*/
+#tags{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 30px;
+}
+#tags>span{
+    display: inline-block;
+    width: 300px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1.5rem;
+    cursor: default;
+    vertical-align: bottom;
+
+
+    /*background-color: rgba(200,230,255,0.5);*/
+}
+/*按钮部分渐变样式*/
+#blank{
+    box-shadow: 0.5px 0 0 0 #5bc0ff;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    background: linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    /*cursor: pointer;*/
+}
+#tags .leftside{
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+    background: -o-linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+    background: linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+}
+#imports{
+    box-shadow: 0.5px 0 0 0 #5bc0ff;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.6),rgba(91,192,255,0.3));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.6),rgba(91,192,255,0.3));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.6),rgba(91,192,255,0.3));
+    background: linear-gradient(left,rgba(91,192,255,0.6),rgba(91,192,255,0.3));
+    /*cursor: pointer;*/
+}
+#filled{
+    box-shadow: -0.5px 0 0 0 #5bc0ff;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.2),rgba(91,192,255,0.1));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.2),rgba(91,192,255,0.1));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.2),rgba(91,192,255,0.1));
+    background: linear-gradient(left,rgba(91,192,255,0.2),rgba(91,192,255,0.1));
+    /*cursor: pointer;*/
+}
+#tags .rightside{
+    position: relative;
+    display: inline-block;
+    width: 150px;
+    height: 35px;
+    line-height: 35px;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+    background: linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+}
+.carve{
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background: -webkit-linear-gradient(left,#ffffff,#5bc0ff,#ffffff);
+    background: -o-linear-gradient(left,#ffffff,#5bc0ff,#ffffff);
+    background: -moz-linear-gradient(left,#ffffff,#5bc0ff,#ffffff);
+    background: linear-gradient(left,#ffffff,#5bc0ff,#ffffff)
+}
+/*主体部分样式*/
+#types .type-box{
+    position: relative;
+    top: 30%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+#types .type{
+    float: left;
+    width: 270px;
+    height: 270px;
+    margin: 15px;
+    box-shadow: 0 0 1px 1px #5bc0ff;
+
+
+    /*background-color: #ffccaa;*/
+}
+/*按钮切换显示|隐藏样式*/
+#types #wrapper{
+    position: relative;
+    top: 25%;
+    display: inline-block;
+    width: 1200px;
+    height: 300px;
+}
+#types #wrapper:before{
+    display: block;
+    clear: both;
+    content: '';
+}
+#types .blanks{
+    /*display: none;*/
+    width: 300px;
+    text-align: center;
+    vertical-align: middle;
+}
+#types .blanks .type{
+    display: inline-block;
+    float: none;
+}
+#types .filled{
+    /*display: none;*/
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    vertical-align: middle;
+}
+#types .filled .type{
+    display: inline-block;
+    width: 130px;
+    height: 130px;
+    margin: 5px;
+    float: none;
+}
+#types .active{
+    /*display: block;*/
+}
+
+/*悬浮动画样式*/
+#types .type:hover,#types .type:focus{
+    width: 280px;
+    height: 280px;
+    margin: 10px;
+    box-shadow: 0 0 10px 1px #5bc0ff;
+}
+#types .filled .type:hover,#types .filled .type:focus{
+    width: 132px;
+    height: 132px;
+    margin: 4px;
+    box-shadow: 0 0 3px 1px #5bc0ff;
+}
+#types .type .icon{
+    position: relative;
+    top: 30px;
+    width: 90px;
+    height: 90px;
+    background-position: center;
+    -webkit-background-size: 80%;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    margin-left:auto;
+    margin-right:auto;
+}
+#types .filled .type .icon{
+    top: 10px;
+    width: 50px;
+    height: 50px;
+}
+/*四个类型的图像,标题,按钮样式*/
+#types .initial .icon{
+        background-image: url("../../images/kolpanel/blanks-blue.png");
+}
+#types .import .icon{
+    background-image: url("../../images/kolpanel/import-blue.png");
+}
+#types .research .icon{
+    background-image: url("../../images/kolpanel/research-blue.png");
+}
+#types .serve .icon{
+    background-image: url("../../images/kolpanel/serve-blue.png");
+}
+#types .staff .icon{
+    background-image: url("../../images/kolpanel/staff-blue.png");
+}
+#types .form .icon{
+    background-image: url("../../images/kolpanel/form-blue.png");
+}
+#types .type .title{
+    position: relative;
+    top: 55px;
+    font-size: 2rem;
+}
+#types .filled .type .title{
+    top: 20px;
+    font-size: 1.3rem;
+}
+#types .type .button{
+    position: relative;
+    top: 80px;
+    /*display: none;*/
+}
+#types .filled .type .button{
+    top: 25px;
+}
+#types .type:hover .button,#types .type:focus .button{
+    display: block;
+}
+
+/*弹出框样式*/
+#frame_import, #frame_template{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: rgba(60,130,180,0.2);
+    z-index: 1000;
+}
+#frame_import .modals{
+    position: relative;
+    left: 0;
+    top: 5%;
+    display: inline-block;
+    width: 1000px;
+    height: 600px;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px rgb(50,75,150);
+}
+#frame_template .modals{
+    position: relative;
+    left: 0;
+    top: 5%;
+    display: inline-block;
+    width: 750px;
+    height: 600px;
+    background-color: #ffffff;
+    box-shadow: 0 0 0 1px rgb(50,75,150);
+}
+#frame_import .modals .topbar, #frame_template .modals .topbar{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    color: #666666;
+    font-size: 2rem;
+    font-family: Microsoft YaHei,STHeiti,Arial,SansSerif;
+    font-weight: 300;
+    padding: 11px;
+    cursor: default;
+}
+#frame_import .modals .topbar .close_button, #frame_template .modals .topbar .close_button{
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-image: url("../img/close.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+#frame_template .modals .topbar .pull-left{
+    position: relative;
+    top: 30px;
+    left: 3%;
+}
+#frame_import .main{
+    width: 100%;
+    height: 85%;
+}
+#frame_import .main .textbox{
+    display: inline-block;
+    width: 45%;
+    height: 90%;
+    margin: 2% 4%;
+    border: 1px solid #5b90cc;
+    text-align: left;
+    vertical-align: top;
+    overflow: scroll;
+}
+#frame_import .main .preview{
+    display: inline-block;
+    width: 35%;
+    height: 90%;
+    margin: 2% 4%;
+    border: 1px solid #5b90cc;
+    text-align: left;
+    vertical-align: top;
+    overflow: scroll;
+ }
+#frame_import .main .textbox:hover,#frame_import .main .textbox:focus{
+    box-shadow:  0 0 5px 1px #5bc0ff;
+}
+#frame_import .main .preview{
+    padding-top: 25px;
+    background-color: rgba(91,192,255,0.05);
+}
+#frame_import .main .preview .label{
+    position: relative;
+    top: -25px;
+    display: block;
+    width: 100%;
+    height: 25px;
+    line-height: 25px;
+    font-size: 12px;
+    font-weight: 200;
+    background-color: rgba(91,192,255,0.9);
+    border-radius: 0;
+}
+#frame_import .main .button{
+    height: 6%;
+    text-align: left;
+}
+#frame_import .main .button button{
+    position: relative;
+    left: 44%;
+}
+/*#frame_import .main .preview{*/
+    /*width: 40%;*/
+    /*height: 90%;*/
+    /*margin: 2% 5%;*/
+/*}*/
+#frame_template .templates{
+    width: 100%;
+    height: 90%;
+    font-size: 0;
+    /*padding: 5px;*/
+    margin: 0 5% 0 0;
+    text-align: left;
+}
+#frame_template .templates .wrap{
+    position: relative;
+    display: inline-block;
+    height: 98%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    vertical-align: top;
+    overflow: scroll;
+}
+#frame_template .templates>.public{
+    width: 55%;
+    background-color: rgba(36,56,99,0.1);
+    /*box-shadow: 0 0 0 1px rgb(36,56,99);*/
+}
+#frame_template .templates .public .label{
+    display: block;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1.2rem;
+    color: #333333;
+    /*background-color: rgba(36,56,99,0.1);*/
+    border-radius: 0;
+}
+#frame_template .templates .public .template{
+    display: inline-block;
+    width: 175px;
+    height: 100px;
+    margin: 5px;
+    background-color: #ffffff;
+    vertical-align: top;
+    cursor: pointer;
+}
+#frame_template .templates .public .template .title{
+    width: 100%;
+    height: 50%;
+    padding: 7px 20px 2px 15px;
+}
+#frame_template .templates .public .template .title span{
+    font-weight: 500;
+    color: #333333;
+    font-size: 1.2rem;
+}
+#frame_template .templates .public .template .describe{
+    width: 100%;
+    height: 50%;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #666666;
+    padding: 7px 20px 2px 15px;
+}
+#frame_template .templates .public .template.public{
+    display: inline-block;
+    width: 85px;
+    height: 85px;
+    margin: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+#frame_template .templates .public .template.public span{
+    position: relative;
+    top: 30px;
+    display: inline-block;
+
+}
+#frame_template .templates .personal{
+    width: 40%;
+    background-color: rgba(200,200,200,0.1);
+    overflow: visible;
+    /*box-shadow: 0 0 0 1px rgb(99,56,36)*/
+}
+#frame_template .templates .personal .search{
+    position: absolute;
+    top: -31px;
+    display: block;
+    width: 100%;
+    height: 28px;
+    padding: 2px 30px 2px 2px;
+    box-shadow: 0 0 0 1px rgb(36,56,99);
+    text-align: left;
+}
+#frame_template .templates .personal .search div{
+    display: inline-block;
+    width: 98%;
+    height: 24px;
+    font-size: 1.7rem;
+    overflow: hidden;
+}
+#frame_template .templates .personal .search span{
+    position: absolute;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+    background-image: url("../img/search-gray.png");
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}

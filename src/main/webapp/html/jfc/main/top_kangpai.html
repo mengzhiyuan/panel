@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>KOLPanel后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="../../../css/JFC/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../../js/jquery.js"></script>
+<script type="text/javascript" src="../../../js/jfc/main/top.js"></script>
+
+<script type="text/javascript">
+	$(function() {
+		//顶部导航切换
+		$('#nav').on('click', 'li>a', function(event) {
+			$(".nav li a.selected").removeClass("selected");
+			$(this).addClass("selected");
+		})
+	})
+</script>
+
+
+</head>
+
+<body
+	style="background: url(./../../../images/JFC/title/topbg.gif) repeat-x;">
+
+	<div class="topleft" id="topleft">
+		<a href="http://www.kolpanel.net" target="_parent"><img
+			src="../../../images/logos/LOGOS.png" title="JFC系统" /></a>
+	</div>
+	<ul class="nav" id="nav">
+	</ul>
+
+	<div class="topright" id="topright">
+		<span class="topLogin" id="topLogins"></span>
+		<ul>
+			<li><a href="#">关于</a></li>
+			<li><a href="#" id="out">退出</a></li>
+		</ul>
+
+		<div class="user" id="usr">
+			<a>设置</a><span>| </span><a>头像</a><span>|</span> <a>信息数</a><b>5</b>
+		</div>
+	</div>
+</body>
+</html>

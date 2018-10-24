@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOLPanel样本库</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../../../css/bootstrap-table.min.css">-->
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <link rel="stylesheet" href="../../../css/JFC/dataDetail.css">
+</head>
+<body>
+<div id="root" @click="shrinkOptions">
+    <div class="form-head">
+        <span class="title">添加信息</span>
+        <span class="alter" data-toggle="modal" data-target="#insert">批量添加</span>
+    </div>
+    <div class="form-body">
+        <table>
+            <tbody>
+            <tr>
+                <td><label for="province">省份</label></td>
+                <td colspan="2">
+                    <select id="province" class="province" v-model="data_chunk.hosProvince">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+                <td><label for="city">城市</label></td>
+                <td colspan="2">
+                    <select id="city" class="city" v-model="data_chunk.hosCity">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+                <td><label for="district">区县</label></td>
+                <td colspan="2">
+                    <select id="district" class="district" v-model="data_chunk.hosDistrict">
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+                <td class="highlight"><label for="name">姓名</label></td>
+                <td class="highlight" colspan="2">
+                    <input id="name" type="text" v-model="data_chunk.docName">
+                </td>
+                <td><label for="data_attribute">数据属性</label></td>
+                <td colspan="2">
+                    <select id="data_attribute" type="text" v-model="data_chunk.attrId">
+                        <option value="">请选择</option>
+                        <option v-for="at in attrId_options" :value="at.attriId">{{ at.attriName }}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td class="highlight"><label for="administrative_type">职称类别</label></td>
+                <td class="highlight" colspan="2">
+                    <select id="administrative_type" v-model="data_chunk.catId">
+                        <option value="">请选择</option>
+                        <option v-for="ca in catId_options" :value="ca.catId">{{ ca.catName }}</option>
+                    </select>
+                </td>
+                <td class="highlight"><label for="administrative_level">职称级别</label></td>
+                <td colspan="2" class="ul-wrap highlight">
+                    <input type="text" id="administrative_level" v-model="data_chunk.levId" @click="stretchOptions($event,'title_level')">
+                    <ul class="options" v-show="stretching === 'title_level'">
+                        <li v-for="tl in title_level_list" v-show="tl.indexOf(data_chunk.levId) > -1" :data="tl" @click="assign('levId', tl)">{{ tl }}</li>
+                    </ul>
+                </td>
+                <td class="highlight"><label for="administration">行政职称</label></td>
+                <td class="highlight" colspan="2">
+                    <select id="administration" v-model="data_chunk.admiId">
+                        <option value="">请选择</option>
+                        <option v-for="ad in admiId_options" :value="ad.admiId">{{ ad.admiName }}</option>
+                    </select>
+                </td>
+                <td><label for="department">所在科室</label></td>
+                <td colspan="2" class="ul-wrap">
+                    <input type="text" id="department" v-model="data_chunk.belongId" @click="stretchOptions($event,'department')">
+                    <ul class="options" v-show="stretching === 'department'">
+                        <li v-for="dp in department_list" v-show="dp.indexOf(data_chunk.belongId) > -1" :data="dp" @click="assign('belongId', dp)">{{ dp }}</li>
+                    </ul>
+                </td>
+                <td><label for="department_type">科室类别</label></td>
+                <td colspan="2">
+                    <select id="department_type" v-model="data_chunk.categId">
+                        <option value="">请选择</option>
+                        <option v-for="cate in categId_options" :value="cate.categId">{{ cate.categName }}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="department_character">科室性质</label></td>
+                <td colspan="2">
+                    <select id="department_character" v-model="data_chunk.natId">
+                        <option value="">请选择</option>
+                        <option v-for="na in natId_options" :value="na.natId">{{ na.natName }}</option>
+                    </select>
+                </td>
+                <td><label for="professional_field">专业领域</label></td>
+                <td colspan="2" class="ul-wrap">
+                    <input type="text" id="professional_field" v-model="data_chunk.specId" @click="stretchOptions($event,'professional_field')">
+                    <ul class="options" v-show="stretching === 'professional_field'">
+                        <li v-for="pf in professional_list" v-show="pf.indexOf(data_chunk.specId) > -1" :data="pf" @click="assign('specId', pf)">{{ pf }}</li>
+                    </ul>
+                </td>
+                <td colspan="9"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="hospital_name">单位名称</label></td>
+                <td colspan="2">
+                    <input type="text" id="hospital_name" v-model="data_chunk.hosName">
+                </td>
+                <td class="highlight"><label for="hospital_level">单位级别</label></td>
+                <td class="highlight" colspan="2">
+                    <select id="hospital_level" v-model="data_chunk.hosLelId">
+                        <option value="">请选择</option>
+                        <option value="1">一级</option>
+                        <option value="2">二级</option>
+                        <option value="3">三级</option>
+                        <option value="4">其他</option>
+                    </select>
+                </td>
+                <td class="highlight"><label for="hospital_grade">单位等级</label></td>
+                <td class="highlight" colspan="2">
+                    <select id="hospital_grade" v-model="data_chunk.hosgraId">
+                        <option value="">请选择</option>
+                        <option value="1">甲等</option>
+                        <option value="2">乙等</option>
+                        <option value="3">丙等</option>
+                        <option value="4">其他</option>
+                    </select>
+                </td>
+                <td class="highlight"><label for="hospital_type">单位类型</label></td>
+                <td class="highlight" colspan="2">
+                    <select id="hospital_type" v-model="data_chunk.typeId">
+                        <option value="">请选择</option>
+                        <option value="1">综合</option>
+                        <option value="2">专科</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </td>
+                <td><label for="profit_property">盈利性质</label></td>
+                <td colspan="2">
+                    <select id="profit_property" v-model="data_chunk.profitId">
+                        <option value="">请选择</option>
+                        <option value="1">盈利</option>
+                        <option value="2">非盈利</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="hospital_character">单位属性</label></td>
+                <td colspan="2">
+                    <select id="hospital_character" v-model="data_chunk.propertyId">
+                        <option value="">请选择</option>
+                        <option value="1">公立</option>
+                        <option value="2">私立</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </td>
+                <td colspan="12"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="cellphone">手机</label></td>
+                <td colspan="2">
+                    <input id="cellphone" type="text" v-model="data_chunk.docPhone1">
+                </td>
+                <td><label for="telephone1">联系1</label></td>
+                <td colspan="2">
+                    <input id="telephone1" type="text" v-model="data_chunk.docPhone2">
+                </td>
+                <td><label for="telephone2">联系2</label></td>
+                <td colspan="2">
+                    <input id="telephone2" type="text" v-model="data_chunk.docPhone3">
+                </td>
+                <td><label for="telephone3">联系3</label></td>
+                <td colspan="2">
+                    <input id="telephone3" type="text" v-model="data_chunk.docPhone4">
+                </td>
+                <td><label for="email">邮箱</label></td>
+                <td colspan="2">
+                    <input id="email" type="text" v-model="data_chunk.docEmail">
+                </td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="sex">性别</label></td>
+                <td colspan="2">
+                    <select id="sex" v-model="data_chunk.docSex">
+                        <option value="">请选择</option>
+                        <option value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                </td>
+                <td><label for="age">年龄</label></td>
+                <td colspan="2">
+                    <input id="age" type="text" v-model="data_chunk.docOld">
+                </td>
+                <td><label for="length_as_medic">从业时间</label></td>
+                <td colspan="2">
+                    <input id="length_as_medic" type="text" v-model="data_chunk.docEmploymentTime">
+                </td>
+                <td><label for="post_age">岗位年龄</label></td>
+                <td colspan="2">
+                    <input id="post_age" type="text" v-model="data_chunk.docPostageTime">
+                </td>
+                <td><label for="education">学历</label></td>
+                <td colspan="2">
+                    <select id="education" v-model="data_chunk.docEducation">
+                        <option value="">请选择</option>
+                        <option value="博士">博士</option>
+                        <option value="硕士">硕士</option>
+                        <option value="本科">本科</option>
+                        <option value="专科">专科</option>
+                        <option value="职高/高中">职高/高中</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="identification">身份证</label></td>
+                <td colspan="2">
+                    <input id="identification" type="text" v-model="data_chunk.docIdentity">
+                </td>
+                <td><label for="certificate">资质证</label></td>
+                <td colspan="2">
+                    <input id="certificate" type="text" v-model="data_chunk.docPronumber">
+                </td>
+                <td colspan="9"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="kol">KOL属性</label></td>
+                <td colspan="2">
+                    <select id="kol" v-model="data_chunk.kolId">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td><label for="payer">Payer属性</label></td>
+                <td colspan="2">
+                    <select id="payer" v-model="data_chunk.payerId">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td><label for="purchase">采购属性</label></td>
+                <td colspan="2">
+                    <select id="purchase" v-model="data_chunk.purchId">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td><label for="honor">荣誉属性</label></td>
+                <td colspan="2">
+                    <select id="honor" v-model="data_chunk.membId">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="pay_methods">支付类型</label></td>
+                <td colspan="2">
+                    <select id="pay_methods" v-model="data_chunk.pay_methods" disabled>
+                        <option value="">请选择</option>
+                    </select>
+                </td>
+                <td><label for="account">支付账号</label></td>
+                <td colspan="2">
+                    <input id="account" type="text" v-model="data_chunk.account" disabled>
+                </td>
+                <td><label for="username">账号名称</label></td>
+                <td colspan="2">
+                    <input id="username" type="text" v-model="data_chunk.username" disabled>
+                </td>
+                <td colspan="6"></td>
+            </tr>
+            <tr>
+                <td><label for="payment1">支付1</label></td>
+                <td colspan="2">
+                    <input id="payment1" type="text" v-model="data_chunk.payment1" disabled>
+                </td>
+                <td><label for="payment2">支付2</label></td>
+                <td colspan="2">
+                    <input id="payment2" type="text" v-model="data_chunk.payment2" disabled>
+                </td>
+                <td><label for="payment3">支付3</label></td>
+                <td colspan="2">
+                    <input id="payment3" type="text" v-model="data_chunk.payment3" disabled>
+                </td>
+                <td><label for="payment4">支付4</label></td>
+                <td colspan="2">
+                    <input id="payment4" type="text" v-model="data_chunk.payment4" disabled>
+                </td>
+                <td><label for="payment5">支付5</label></td>
+                <td colspan="2">
+                    <input id="payment5" type="text" v-model="data_chunk.payment5" disabled>
+                </td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="examine">审核信息</label></td>
+                <td colspan="2">
+                    <input id="examine" type="text" v-model="data_chunk.examine" disabled>
+                </td>
+                <td><label for="communication">沟通信息</label></td>
+                <td colspan="2">
+                    <input id="communication" type="text" v-model="data_chunk.communication" disabled>
+                </td>
+                <td><label for="bonus">积分信息</label></td>
+                <td colspan="2">
+                    <input id="bonus" type="text" v-model="data_chunk.bonus" disabled>
+                </td>
+                <td><label for="project">项目信息</label></td>
+                <td colspan="2">
+                    <input id="project" type="text" v-model="data_chunk.project" disabled>
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="importance">数据重要性</label></td>
+                <td colspan="2">
+                    <select id="importance" v-model="data_chunk.importId">
+                        <option value="">请选择</option>
+                        <option value="1">重要</option>
+                        <option value="2">普通</option>
+                        <option value="3">可清楚</option>
+                    </select>
+                </td>
+                <td><label for="cooperation">数据配合度</label></td>
+                <td colspan="2">
+                    <select id="cooperation" v-model="data_chunk.coorId">
+                        <option value="">请选择</option>
+                        <option value="1">高</option>
+                        <option value="2">普通</option>
+                        <option value="3">低</option>
+                    </select>
+                </td>
+                <td><label for="activation">数据活跃度</label></td>
+                <td colspan="2">
+                    <select id="activation" v-model="data_chunk.liveId">
+                        <option value="">请选择</option>
+                        <option v-for="li in liveId_options" :value="li.liveId">{{ li.liveName }}</option>
+                    </select>
+                </td>
+                <td colspan="6"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+            <tbody>
+            <tr>
+                <td><label for="create_date">数据创建日期</label></td>
+                <td colspan="2">
+                    <input id="create_date" type="text" v-model="data_chunk.docCreateTime" disabled>
+                </td>
+                <td><label for="update_date">数据更新日期</label></td>
+                <td colspan="2">
+                    <input id="update_date" type="text" v-model="data_chunk.docUpdateTime" disabled>
+                </td>
+                <td><label for="others">其他</label></td>
+                <td colspan="2">
+                    <input id="others" type="text" v-model="data_chunk.others">
+                </td>
+                <td><label for="remark">备注</label></td>
+                <td colspan="2">
+                    <input id="remark" type="text" v-model="data_chunk.docRemark">
+                </td>
+                <td colspan="3"></td>
+            </tr>
+            <tr class="separator"></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-cope">
+        <button class="btn btn-lg btn-success" @click="appendData">保存</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="insert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">批量添加</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="email_title">
+                        <label for="email_title">请选择Excel文件</label>
+                        <form method="post" enctype="multipart/form-data" id="excelImport">
+                            <div class="modal-body">
+                                <input type="file" name="file"
+                                       accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/application/vnd.ms-excel"
+                                       id="email_title">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" @click="insert">添加</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<!--<script src="../../../js/echarts/echarts.js"></script>-->
+<script src="../../../js/bootstrap.min.js"></script>
+<!--<script src="../../../js/bootstrap-table.min.js"></script>-->
+<!--<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>-->
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/jfc/kangpai/dataHospital.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+</body>
+</html>

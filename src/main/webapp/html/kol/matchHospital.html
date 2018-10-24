@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/kol/match.css">
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../../main_kangpai" class="site_title"> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!-- <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div> -->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            	<li><a href="../../html/kol/page.html">账号设置</a></li>
+		                       <li><a href="#">帮助</a></li>
+		                       <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green"></span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root" @click="removeOption">
+            <div class="right_col" role="main">
+                <div class="filtering">
+                    <div id="existed" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <p class="title">现有字段列表</p>
+                        <div id="alters">
+                            <ol class="breadcrumb">
+                                <li class="switch" @click="switchLabel($event, 'member')">
+                                    <a>会员信息</a>
+                                </li>
+                                <li class="switch active" @click="switchLabel($event, 'organization')">
+                                    <a>单位信息</a>
+                                </li>
+                            </ol>
+                            <div id="alters-container">
+                                <div class="check-all">
+                                    <label for="check_all">
+                                        全选
+                                        <input type="checkbox" id="check_all" @change="chooseAll">
+                                    </label>
+                                </div>
+                                <ul id="alter_list">
+                                    <li v-for="alt in alters" v-show="status.active_label===alt.type && checked.indexOf(alt) === -1" :class="{ active: status.active === alt }" @click="displayTemp(alt)" @dblclick="checkSingle(alt)">
+                                        <label :for="alt.id">
+                                            {{ alt.name.length < 10 ? alt.name : alt.name.slice(0,7) + '...' }}
+                                            <input :id="alt.id" type="checkbox" :checked="status.choosing.indexOf(alt) > -1" @change="changeChoose(alt)">
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="choose_existed" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <span class="glyphicon glyphicon-chevron-right chose-button" id="choose_button" @click="checkMulti"></span>
+                    </div>
+                    <div id="conditions" class="filter col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                        <p class="title tip">*上传文件以第一行为字段名，每列数据必须有对映的字段名</p>
+                        <table>
+                            <thead>
+                            <tr class="breadcrumb" style="height:33px;border-bottom :1px solid #949494">
+                                <th style="width: 20%">逻辑</th>
+                                <th style="width: 15%">字段</th>
+                                <th style="width: 25%">逻辑</th>
+                                <th style="width: 35%">信息类别</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="con in conditions" :id="'row_' + conditions.indexOf(con)">
+                                <td>
+                                    <select class="form-control" v-model="con.relation" :disabled="con.relation === 'none'">
+                                        <option value="yu">且</option>
+                                        <option value="huo">或</option>
+                                    </select>
+                                </td>
+                                <td class="clickible" @dblclick="removeChecked(con)">{{ con.field_name }}</td>
+                                <td>
+                                    <select class="form-control" v-model="con.operator">
+                                        <option value="等于">等于</option>
+                                        <option value="不等于">不等于</option>
+                                        <option value="开头是">开头是</option>
+                                        <option value="结尾是">结尾是</option>
+                                        <option value="包含">包含</option>
+                                        <option value="不包含">不包含</option>
+                                    </select>
+                                </td>
+                                <td class="clickible" @dblclick="removePicked(con)">{{ con.value }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="choose_caching" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <span class="glyphicon glyphicon-chevron-left back-button" id="pick_button" @click="pickMulti"></span>
+                    </div>
+                    <div id="caching" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <p class="title">匹配字段列表</p>
+                        <div id="caches-container">
+                            <div class="check-all">
+                                <label for="pick_all">
+                                    全选
+                                    <input type="checkbox" id="pick_all" @change="pickAll">
+                                </label>
+                            </div>
+                            <ul id="cache_list">
+                                <li v-for="cache in caches" :key="cache.count" v-show="picked.indexOf(cache) === -1" class="cache" :data="cache.title" @click="displayTemp(cache)" @dblclick="pickSingle(cache)">
+                                    <label :for="'cache_' + cache.count">
+                                        {{ cache.title.length < 10 ? cache.title : cache.title.slice(0,7) + '...' }}
+                                        <input :id="'cache_' + cache.count" type="checkbox" :checked="status.picking.indexOf(cache) > -1" @change="changePick(cache)">
+                                    </label>
+                                </li>
+                            </ul>
+                            <div class="input-wrap">
+                                <input id="select_file" type="file">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="btn btn-md btn-success" @click="submit">确认</button>
+                    <button class="btn btn-md btn-danger" @click="reset">重置</button>
+                    <button class="btn btn-md btn-default" @click="reset">取消</button>
+                    <button class="btn btn-md btn-info" @click="toSetExport">导出</button>
+                    <button id="export_real" data-toggle="modal" data-target="#export_setting"></button>
+                </div>
+                <div id="tools">
+                    <span class="numbers"></span>
+                </div>
+                <table id="result"></table>
+                <!-- Modal -->
+                <div class="modal fade" id="sending_email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="email_title">
+                                    <label for="email_title">邮件标题</label>
+                                    <input id="email_title" type="text" v-model="email_title">
+                                </div>
+                                <script id="email_container" name="content" type="text/plain"></script>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" @click="sendEmail">发送邮件</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="export_setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">详细信息</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="common col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="type">一般字段</div>
+                                    <ul>
+                                        <li v-for="field in fields" v-if="field.type==='common'">
+                                            <label :for="field.id">
+                                                {{ field.name }}
+                                                <input :id="field.id" type="checkbox" :checked="common_checked.indexOf(field.id) > -1" @change="changeCommonField(field.id, $event.target)">
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="confidential col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                    <div class="type">须审核字段</div>
+                                    <ul>
+                                        <li v-for="field in fields" v-if="field.type==='confidential'">
+                                            <label :for="field.id">
+                                                {{ field.name }}
+                                                <input :id="field.id" type="checkbox" :checked="confidential_checked.indexOf(field.id) > -1" @change="changeConfidentialField(field.id, $event.target)">
+                                            </label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" @click="exportApply">提交</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+
+<script src="../../js/echarts/echarts.js"></script>
+<script src="../../js/bootstrap-table.min.js"></script>
+<script src="../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../js/laydate.js"></script>
+<script src="../../ueditor/ueditor.config.js"></script>
+<script src="../../ueditor/ueditor.all.min.js"></script>
+<script src="../../js/kol/menu.js"></script>
+<script src="../../js/kol/custom.min.js"></script>
+<script src="../../js/kol/matchHospital.js"></script>
+<script src="../../js/lists.js"></script>
+<script src="../../js/ChainReact.js"></script>
+<script src="../../js/xlsx.full.min.js"></script>
+</body>
+</html>

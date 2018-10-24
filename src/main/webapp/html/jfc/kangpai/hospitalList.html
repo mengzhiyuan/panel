@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>JFC后台管理系统</title>
+    <meta name="keywords" content="JFC样板库" />
+    <meta name="description" content="JFC样板库" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../css/bootstrapDatepickr-1.0.0.css" rel="stylesheet" />
+</head>
+<body>
+
+
+	<div id="tools" class="form-inline" role="form">
+		<div class="form-group">
+            <input type="text" class="form-control" id="keyword" style="display: inline-block; width: initial; height: initial; padding: 10px 12px;">
+            <button class="btn btn-primary" type="button" id="search">
+                <span class="glyphicon glyphicon-search"></span>
+                搜索
+            </button>
+			<button class="btn btn-success" data-toggle="modal" data-target="#updateOrAdd" id="add">
+                <span class="glyphicon glyphicon-plus"></span>
+                添加
+            </button>
+			<button class="btn btn-warning" data-toggle="modal" data-target="#uploadModal" id="import">
+                <span class="glyphicon glyphicon-list-alt"></span>
+                导入Excel
+            </button>
+		</div>
+	</div>
+
+
+	<!-- <button class="btn btn-danger" id="delete">删除</button> -->
+	<!-- 进度条 -->
+	<div class="demo" style="display: none;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-offset-3 col-md-6">
+
+					<div class="progress">
+						<div class="progress-bar" style="background: #005394;">
+							<span id="spa">0%</span>
+						</div>
+					</div>
+					<h3 class="progressbar-title"></h3>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div>
+        <div class="table-responsive">
+            <table id="table-1" style="margin-top:30px" class="table table-striped table-bordered table-hover">
+                <!--<thead>-->
+                <!--<tr>-->
+                <!--<th style="width: 5%" class="center"><label> <input-->
+                <!--type="checkbox" id="selectAll" class="ace" /></label></th>-->
+                <!--<th style="width: 15%">医院名称</th>-->
+                <!--<th style="width: 5%">所在省份</th>-->
+                <!--<th style="width: 5%">所在城市</th>-->
+                <!--<th style="width: 5%">所在区县</th>-->
+                <!--<th style="width: 5%">医院级别</th>-->
+                <!--<th style="width: 5%">医院等级</th>-->
+                <!--<th style="width: 5%">医院类型</th>-->
+                <!--<th style="width: 5%">盈利性质</th>-->
+                <!--<th style="width: 5%">医院属性</th>-->
+                <!--<th style="width: 5%">操作</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody id="the_table">-->
+
+                <!--</tbody>-->
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="updateOrAdd" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">修改医院信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <label for="hosName">医院名称</label> <input type="text" id="hosName">
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <label for="province">所在省份</label> <select name="hosProvince"
+                                                                   id="province">
+                        <option value="">请选择</option>
+
+                    </select> <label for="city">所在城市</label> <select name="hosCity" id="city">
+                        <option value="">请选择</option>
+
+                    </select> <label for="district">所在区县</label> <select name="hosDistrict"
+                                                                         id="district">
+                        <option value="">请选择</option>
+
+                    </select>
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <label for="hoslelId">医院级别</label> <select id="hoslelId">
+                        <option value="">请选择</option>
+                        <option value="一级">一级</option>
+                        <option value="二级">二级</option>
+                        <option value="三级">三级</option>
+                        <option value="未评级">未评级</option>
+                    </select> <label for="hosgraId">医院等级</label> <select id="hosgraId">
+                        <option value="">请选择</option>
+                        <option value="甲等">甲等</option>
+                        <option value="乙等">乙等</option>
+                        <option value="丙等">丙等</option>
+                        <option value="未知">未知</option>
+                    </select> <label for="hosTel">医院电话</label> <input type="number"
+                                                                      id="hosTel">
+
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <label for="hosLegalPerson">医院法人</label> <input type="text"
+                                                                        id="hosLegalPerson"> <label for="hosRegisteredCapital">注册资金</label>
+                        <input type="number" id="hosRegisteredCapital">万
+                    </div>
+                    <br>
+                    <div class="row">
+                        <label for="hosWebsite">医院网址</label> <input type="text"
+                                                                    id="hosWebsite"> <label for="hosEstablishmentTime">成立时间</label>
+                        <input type="date" id="hosEstablishmentTime">
+                    </div>
+                    <br>
+
+                    <div class="row">
+                        <label for="typeId">医院类型</label> <select id="typeId">
+                        <option value="">请选择</option>
+                        <option value="1">综合</option>
+                        <option value="2">专科</option>
+                        <option value="3">未知/其他</option>
+                    </select> <label for="profitId">盈利性质</label> <select id="profitId">
+                        <option value="">请选择</option>
+                        <option value="1">盈利</option>
+                        <option value="2">非盈利</option>
+                        <option value="3">未知/其他</option>
+                    </select> <label for="propertyId">医院属性</label> <select id="propertyId">
+                        <option value="">请选择</option>
+                        <option value="1">公立</option>
+                        <option value="2">私立</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" id="save">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel">
+        <!-- 导入 -->
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="title">导入Excel</h4>
+                </div>
+                <form method="post" enctype="multipart/form-data" action=""
+                      id="excelImport">
+                    <div class="modal-body">
+                        <input type="file" name="file"
+                               accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/application/vnd.ms-excel"
+                               id="upload">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">取消</button>
+                        <input type="submit" value="保存" class="btn btn-primary"
+                               id="excel_save">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+	<script src="../../../js/jquery.js"></script>
+	<script src="../../../js/bootstrap.min.js"></script>
+    <script src="../../../js/bootstrap-table.min.js"></script>
+    <script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="../../../js/laydate.js"></script>
+	<script src="../../../js/jfc/kangpai/lists.js"></script>
+	<script src="../../../js/jfc/kangpai/ChainReact.js"></script>
+	<script src="../../../js/jfc/kangpai/fillOptions.js"></script>
+	<script src="../../../js/jfc/kangpai/jquery.form.js"></script>
+    <script src="../../../js/jfc/kangpai/page.js"></script>
+	<script src="../../../js/bootstrapDatepickr-1.0.0.min.js"></script>
+	<script src="../../../js/jfc/kangpai/hospitalList.js"></script>
+</body>
+</html>

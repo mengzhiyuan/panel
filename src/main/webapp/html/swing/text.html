@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>swing登录   </title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<link href="../../css/kol/login.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../js/jquery.js"></script>
+<body>
+<script type="text/javascript">
+/* var to_send = {};
+to_send.questions = {
+		  "0": {
+	            "id": 0,//题目id
+				"sub_id":"",
+	            "index": 1,//题目编号（1，2，3，4，5）
+	            "page": 1,//所在页面
+	            "break": 1,//所在节数
+	            "number": "S1",//题目序号（S1，S2，S3，S4，）
+	            "name": "第一题",//题目名称
+	            "remark": "",//题目备注
+	            "type": "choice",//题目类型
+	            "options": [//选项
+	                {
+	                    "option_id": 0,//选项id
+	                    "option_index": 1,//选项序号
+	                    "option_code": "",//选项编码
+	                    "option_content": "第一项",//选项文本
+	                    "checked": false,//默认选中
+	                    "mutex": false,//互斥
+	                    "blank": false,//其他
+	                },
+	                {
+	                    "option_id": 2,
+	                    "option_index": 2,
+	                    "option_code": "",
+	                    "option_content": "第二项",
+	                    "checked": false,
+	                    "mutex": false,
+	                    "blank": false,
+	                    "option_addition": ""
+	                }
+	            ],
+	            "recommend_stretched": false,
+	            "config": {//控制项
+	                "exist": true,//是否显示（false为已删除）
+	                "page_now": 1,//当前页码
+	                "random_option": "fixed",//选项随机
+	                "layout": {//布局
+	                    "orientation": "portrait",//排列方向（'portrait','horizon','select'）
+	                    "cols_number": 1,//列数
+	                    "width_percent": "100%"//计算出来的每一项的宽度百分比
+	                },
+	                "recommend": {//选项引用其他题目答案
+	                    "bool": false,
+	                    "recommended": ""//被引用的题目id
+	                }
+	            }
+	        }
+}
+
+$.ajax({
+	url : "http://10.0.0.12:8080/jfcpanel/survey/insert",
+	type : "post",
+	dataType : "json",
+	async : true,
+	contentType : "application/JSON;charset=utf-8",
+	data : JSON.stringify(to_send),
+	success : function(data) {
+	},
+	error : function(d1, d2, d3) {
+		console.log(d1);
+		console.log(d2);
+		console.log(d3);
+	}
+}) */
+/* var to_send = {};
+to_send.survey_id='36',
+to_send.collection=[{
+	g_set_name : 'quota_restriction',
+	g_set_value:[{//复杂配额
+		    item: {},//题目对象，可以忽视
+		    item_id: '77',//题目sub_id
+		    item_name:'diyiti',
+		    selected: '2',//选中选项的option_id
+		    selected_content:'第一题内容',
+		    min: 10,//最少
+		    max: 12,//最多
+		    sub_question:'8',
+		    sub_question_content:'否'
+		},
+		{//复杂配额
+		    item: {},//题目对象，可以忽视
+		    item_id: '78',//题目sub_id
+		    item_name:'第二题',
+		    selected: '2',//选中选项的option_id
+		    selected_content:'内容AA啊 AA',
+		    min: 3,//最少
+		    max: 13,//最多
+		    sub_question:'9',
+		    sub_question_content:'第二题内容个'
+		}]	
+}]
+
+
+$.ajax({
+	url : "http://10.0.0.12:8080/jfcpanel/survey/collection_setting",
+	type : "post",
+	dataType : "json",
+	async : true,
+	contentType : "application/JSON;charset=utf-8",
+	data : JSON.stringify(to_send),
+	success : function(data) {
+	},
+	error : function(d1, d2, d3) {
+		console.log(d1);
+		console.log(d2);
+		console.log(d3);
+	}
+})
+ */
+/*  var to_send = {}
+ to_send.survey_id=56;
+ to_send.page = 1;
+ to_send.respondent = 61;
+ $.ajax({
+		url : "http://10.0.0.12:8080/jfcpanel/survey/page_answer",
+		type : "post",
+		dataType : "json",
+		async : true,
+		contentType : "application/JSON;charset=utf-8",
+		data : JSON.stringify(to_send),
+		success : function(data) {
+			alert(data);
+		},
+		error : function(d1, d2, d3) {
+			console.log(d1);
+			console.log(d2);
+			console.log(d3);
+		}
+	}) */
+
+	var to_send = {}
+	 to_send.survey_id=73;
+ 	/*  to_send.limit = 20;
+ 	 to_send.offset = 0; */
+	 $.ajax({
+			url : "http://10.0.0.12:8080/jfcpanel/dataManagement/download_answer",
+			type : "post",
+			dataType : "json",
+			async : true,
+			contentType : "application/JSON;charset=utf-8",
+			data : JSON.stringify(to_send),
+			success : function(data) {
+				alert(data);
+			},
+			error : function(d1, d2, d3) {
+				console.log(d1);
+				console.log(d2);
+				console.log(d3);
+			}
+		})
+ </script>
+</body>
+</html>

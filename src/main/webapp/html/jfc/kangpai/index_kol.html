@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOLPanel样本库</title>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <link rel="stylesheet" href="../../../css/JFC/index_kol.css">
+    <style>
+    	#my-follow:after{
+    		content: '';
+    		display: block;
+    		clear: both
+    	}
+    </style>
+</head>
+<body>
+<div id="root" @click="removeOption">
+    <div id="my-follow">
+        <ul>
+            <li><a href="./exportExamine.html">导出审核</a></li>
+            <li><a href="./updateExamine.html">修改/删除审核</a></li>
+        </ul>
+    </div>
+    <div class="display">
+        <div id="statistics" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <p class="title">统计信息</p>
+            <div class="content">
+                <div class="statistics-verbal">
+                    <p>会员数量: <b>{{ statistics.member_number }}</b>个</p>
+                    <p>单位数量: <b>{{ statistics.organization_number }}</b>个</p>
+                    <p>项目数量: <b>{{ statistics.project_number }}</b>个</p>
+                </div>
+                <div class="statistics-graph"></div>
+                <div class="more">
+                    <button id="more" class="btn btn-sm btn-warning" @click="triggerFilter">更多信息</button>
+                </div>
+            </div>
+        </div>
+        <div id="announcement" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+            <p class="title">通知公告</p>
+            <div class="content">
+                <table>
+                    <thead>
+                    <tr>
+                        <th style="width: 10%;">ID</th>
+                        <th style="width: 20%;">时间</th>
+                        <th style="width: 25%;">主题</th>
+                        <th style="width: 10%;">来源</th>
+                        <th style="width: 15%;">备注</th>
+                        <th style="width: 20%;">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="ann in announcements.matrix[announcements.page_number - 1].list">
+                        <td>{{ ann.id }}</td>
+                        <td>{{ ann.time }}</td>
+                        <td>{{ ann.title.length <= 10 ? ann.title : ann.title.slice(0,7) + '...' }}</td>
+                        <td>{{ ann.source }}</td>
+                        <td>{{ ann.remark.length <= 10 ? ann.remark : ann.remark.slice(0,7) + '...' }}</td>
+                        <th>
+                            <a :href="ann.link">查看详情</a>
+                            <a @click="getAttachment(ann)">附件</a>
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li :class="{ disabled: announcements.page_number === 1 }" @click="previousPage">
+                            <a aria-label="Previous"><span aria-hidden="true">上一页</span></a>
+                        </li>
+                        <li v-for="p in announcements.matrix" :class="{ active: announcements.page_number === p.index }" @click="indicatePage(p.index)">
+                            <a>{{ p.index }} <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li :class="{ disabled: announcements.page_number === announcements.number_pages }" @click="nextPage">
+                            <a aria-label="Next"><span aria-hidden="true">上一页</span></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div id="display-detail" v-if="status.filtering">
+            <div id="filter">
+                <div class="chose col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div id="alters">
+                        <ol class="breadcrumb">
+                            <li class="switch active" @click="switchLabel($event, 'member')">
+                                <a>会员信息</a>
+                            </li>
+                            <li class="switch" @click="switchLabel($event, 'organization')">
+                                <a>单位信息</a>
+                            </li>
+                        </ol>
+                        <div id="alters-container">
+                            <div class="check-all">
+                                <label for="check_all"><a>全选</a></label>
+                                <input type="checkbox" id="check_all" @change="checkAll">
+                            </div>
+                            <ul>
+                                <li v-for="alt in alters" v-show="status.active_label===alt.type && chosen.indexOf(alt) === -1" :class="{ active: status.active === alt }" @click="activeCheck(alt)" @dblclick="choseSingle(alt)">
+                                    <a>{{ alt.name.length < 10 ? alt.name : alt.name.slice(0,7) + '...' }}</a>
+                                    <input type="checkbox" :checked="status.checked.indexOf(alt) > -1" @change="changeCheck(alt)">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="chose">
+                        <span class="glyphicon glyphicon-chevron-right chose-button" @click="choseMulti"></span>
+                        <span class="glyphicon glyphicon-chevron-left back-button disabled" @click="backMulti"></span>
+                    </div>
+                    <div id="chosen">
+                        <div class="check-all">
+                            <label for="pick_all"><a>全选</a></label>
+                            <input type="checkbox" id="pick_all" @change="pickAll">
+                        </div>
+                        <ul>
+                            <li v-for="ch in chosen" :class="{ active: status.backing === ch }" @click="activePick(ch)" @dblclick="backSingle(ch)" @mouseenter="displayTemp(ch)">
+                                <a>{{ ch.name.length < 10 ? ch.name : ch.name.slice(0,7) + '...' }}</a>
+                                <input type="checkbox" :checked="status.picked.indexOf(ch) > -1" @change="changePick(ch)">
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="temps">
+                        <ul>
+                            <li v-for="tp in temps">{{ tp }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div id="conditions" class="filter col-xs-10 col-sm-5 col-md-5 col-lg-5">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th style="width: 30%" colspan="3">逻辑</th>
+                            <th style="width: 20%">字段</th>
+                            <th style="width: 15%">逻辑</th>
+                            <th style="width: 25%">信息类别</th>
+                        </tr>
+                        </thead>
+                        <tbody v-for="conditions in packedConditions.list" :class="{ packed: conditions.packed }">
+                        <tr v-for="con in conditions.conditions" :id="'row_' + conditions.conditions.indexOf(con)">
+                            <td style="width: 10%" class="button-divide" v-if="con.relation === 'none'" :rowspan="conditions.conditions.length">
+                                <button class="glyphicon glyphicon-saved btn btn-success" :disabled="conditions.packed" @click="divide(conditions)"></button>
+                            </td>
+                            <td class="buttons" style="width: 10%">
+                                <button class="glyphicon glyphicon-minus btn btn-warning" :disabled="con.relation === 'none'" @click="minus(conditions,con)"></button>
+                                <button class="glyphicon glyphicon-plus btn btn-info" @click="plus(conditions,con)"></button>
+                            </td>
+                            <td style="width: 15%">
+                                <select class="form-control" v-model="con.relation" :disabled="con.relation === 'none'">
+                                    <option value="yu">且</option>
+                                    <option value="huo">或</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" :value="con.field" @change="changeFieldName($event,con)">
+                                    <option value="">请选择字段名称</option>
+                                    <option v-for="ch in chosen" :value="ch.id">{{ ch.name }}</option>
+                                </select>
+                            </td>
+                            <td>
+                                <select class="form-control" v-model="con.operator">
+                                    <option value="等于">等于</option>
+                                    <option value="不等于">不等于</option>
+                                    <option value="开头是">开头是</option>
+                                    <option value="结尾是">结尾是</option>
+                                    <option value="包含">包含</option>
+                                    <option value="不包含">不包含</option>
+                                </select>
+                            </td>
+                            <td class="value">
+                                <input class="form-control" type="text" placeholder="信息类别" v-model="con.value" @click="displayOption($event,con)">
+                                <ul class="options" v-if="spreading === con" :class="{ reverse: reverse('row_' + conditions.conditions.indexOf(con)) }">
+                                    <li v-show="opt.indexOf(con.value) > -1" v-for="opt in options" :data="opt" @click="assignment(con,opt)">{{ opt }}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="forms col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                    <span class="title">结果样式</span>
+                    <span class="form table" title="表格" form="table" @click="selectForm('table')" :class="{ active: form.indexOf('table') > -1 }"></span>
+                    <span class="form bars" title="条形图" form="bars" @click="selectForm('bars')" :class="{ active: form.indexOf('bars') > -1 }"></span>
+                    <span class="form charts" title="柱状图" form="charts" @click="selectForm('charts')" :class="{ active: form.indexOf('charts') > -1 }"></span>
+                    <span class="form pie" title="饼状图" form="pie" @click="selectForm('pie')" :class="{ active: form.indexOf('pie') > -1 }"></span>
+                    <span class="form doughnut" title="环形图" form="doughnut" @click="selectForm('doughnut')" :class="{ active: form.indexOf('doughnut') > -1 }"></span>
+                    <span class="form lines" title="折线图" form="lines" @click="selectForm('lines')" :class="{ active: form.indexOf('lines') > -1 }"></span>
+                </div>
+            </div>
+        </div>
+        <div id="submitting" v-if="status.filtering">
+            <div class="buttons col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <button class="btn btn-md btn-success" @click="submitFilter">确定</button>
+                <button class="btn btn-md btn-danger" @click="resetFilter">重置</button>
+                <button class="btn btn-md btn-warning" @click="cancelFilter">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/echarts/echarts.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/jfc/kangpai/index_kol.js"></script>
+</body>
+</html>

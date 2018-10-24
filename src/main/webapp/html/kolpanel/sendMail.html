@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>北京捷峰市场联合调查有限公司</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/kolpanel/button.css">
+<link rel="stylesheet" href="../../css/kolpanel/public.css">
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+
+<script type="text/javascript" charset="utf-8"
+	src="../../ueditor/ueditor.config.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../../ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
+
+</head>
+<body>
+	<div id="header">
+		<div class="logo col-lg-2 col-md-2 col-sm-1"></div>
+		<div
+			class="col-lg-6 col-md-6 col-sm-6 col-lg-offset-1 col-md-offset-1">
+			<ul class="navigator nav nav-justified">
+				<li><a href="/jfcpanel/html/kolpanel/creating.html">首页</a></li>
+                <li><a href="/jfcpanel/html/kolpanel/types.html">设计问卷</a></li>
+                <li><a href="/jfcpanel/html/kolpanel/myQuestionnaire.html">我的问卷</a></li>
+				<li><a href="javascript:void (0);">数据分析</a></li>
+			</ul>
+		</div>
+		<div class="signout account pull-right">
+			<div>
+				<span class="icon"> </span> <span class="name"> 登录/注册 </span>
+			</div>
+		</div>
+		<div class="signin account pull-right">
+			<div class="button">
+				<span class="icon"> </span> <span class="name"> 852852641 </span>
+			</div>
+			<div id="dropdown">
+				<div class="arrow"></div>
+				<ul>
+					<li><a href="javascript:void (0);">个人信息</a></li>
+					<li><a href="javascript:void (0);">功能设置</a></li>
+					<li><a href="javascript:void (0);">帮助</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row clearfix">
+			<form role="form" class="form-inline">
+				<div class="form-group col-xs-8" style="margin-top:5%">
+					<label for="name" class="">收件人</label> <input type="text"
+						class="form-control"  id="name" placeholder="请输入邮箱">
+				</div>
+				<div class="form-group col-xs-8" style="margin-top:2%">
+				    <label for="name" class="">主题&nbsp;&nbsp;&nbsp;</label> <input type="text"
+						class="form-control"  id="title" placeholder="请输入主题">
+				</div>
+				<div class="form-group col-xs-8" style="margin-top:2%">
+					<textarea id="newsEditor" name="content" style="height: 20%;"> </textarea>
+					
+				</div>
+				<div class="form-group col-xs-8" style="margin-top:3%">
+					<button type="button" class="button button-primary button-rounded button-small" id="submit">
+					发送</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+	<div align="center" style="width: 80%"></div>
+	
+	<script type="text/javascript">
+	 $("#newsEditor").val("链接："+sessionStorage.getItem('link'));
+	 var curWwwPath=window.document.location.href;
+	 var pathName=window.document.location.pathname;
+	 var pos=curWwwPath.indexOf(pathName);
+	 var localhostPath=curWwwPath.substring(0,pos);
+	 var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+	 var realPath=localhostPath+projectName;
+		UE.getEditor('newsEditor', {
+			toolbars : [ [ 'fullscreen', 'source', 'undo',
+					'redo', 'bold', 'italic', 'underline',
+					'fontborder', 'backcolor', 'fontsize',
+					'fontfamily', 'justifyleft',
+					'justifyright', 'justifycenter',
+					'justifyjustify', 'strikethrough',
+					'superscript', 'subscript', 'removeformat',
+					'formatmatch', 'autotypeset', 'blockquote',
+					'pasteplain', '|', 'forecolor',
+					'backcolor', 'insertorderedlist',
+					'insertunorderedlist', 'selectall',
+					'cleardoc', 'link', 'unlink', 'emotion',
+					'help' ] ]
+		});
+		 $("#submit").click(function(){
+		        var data = UE.getEditor('newsEditor').getContent();
+		        var da = {
+		        	content: data,
+		        	name:$("#name").val(),
+		        	title:$("#title").val()
+		        }
+		        $.ajax({
+		            cache: true,
+		            type: "post",
+		            dataType: "json",
+		            contentType: "application/JSON;charset=utf-8",
+		            url: ""+realPath+"/questionnaire/sendEmail",
+		　　　　　　  data:JSON.stringify(da),
+		            async: true,
+		            error: function(request) {
+		                alert("Connection error");
+		            },
+		            success: function(datas){
+		                if(datas[0].result=="success"){
+		                	$("#name").val("");
+				        	$("#title").val("");
+				        	alert("发送成功");
+		                }
+		            }
+		        });
+		    });
+	</script>
+</body>
+</html>

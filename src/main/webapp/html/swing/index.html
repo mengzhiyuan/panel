@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+	<title>首问调研平台</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet/less" href="../../css/swing/design.less">
+	<script src="../../js/swing/common/less.js"></script>
+</head>
+<body>
+
+<div id="root" v-clock>
+	<header id="header" class="header">
+		<a class="home-button" href="" @click="goHome"><i class="glyphicon glyphicon-home"></i></a>
+		<nav>
+			<a href="javascript:void(0)" @click="goDesign">设计问卷<i class="glyphicon glyphicon-menu-right"></i></a>
+			<a href="javascript:void(0)" @click="goCollect">收集问卷<i class="glyphicon glyphicon-menu-right"></i></a>
+			<a href="javascript:void(0)" @click="goStatistics">数据管理</a>
+		</nav>
+		<span class="survey-name">
+			<b>{{ survey_number }}.</b>
+			<i>
+				<input class="edit" v-if="inputting" type="text" @keyup="presentSurveyName" v-model="survey_name">
+				<span class="present" v-else @click="editSurveyName">{{ survey_name }}</span>
+			</i>
+		</span>
+		<a class="account" href="">
+		<span>
+			<b>USER001</b>
+		</span>
+			<ul>
+				<li></li>
+			</ul>
+		</a>
+	</header>
+	<div id="toolbar" class="toolbar">
+		<ul class="switch">
+			<li @click="switchLeftSide('item-types')">编辑问卷</li>
+			<li @click="switchLeftSide('outline')">问卷大纲</li>
+			<li @click="editLogic($event,'toolbar')">逻辑设置</li>
+			<li @click="switchLeftSide('style')">外观设置</li>
+		</ul>
+		<ul class="tool">
+			<li>文本编辑</li>
+			<li @click="previewQuestionnaire">预览</li>
+			<li @click="printQuestionnaire">打印</li>
+			<li>导入</li>
+		</ul>
+		<span class="trigger">
+			<button class="btn btn-primary" v-if="publish_status" @click="togglePublish">暂停</button>
+			<button class="btn btn-primary" v-else @click="togglePublish">发布</button>
+		</span>
+	</div>
+	<div id="workspace" class="workspace" :class="'theme-' + style.checked_theme_name">
+		<div id="sidebar" class="sidebar">
+			<div id="item_type" class="bar" v-show="status.left_side === 'item-types'">
+				<div class="brick" id="common_type">
+					<div class="type_name" @click="switchItemType($event, 1)">常规题型</div>
+					<div class="types">
+						<ul>
+							<li @click="appendItem($event, 'common', 'choice')">单选题</li>
+							<li @click="appendItem($event, 'common', 'check')">多选题</li>
+							<li @click="appendItem($event, 'common', 'blank')">填空题</li>
+							<li @click="appendItem($event, 'common', 'matrix')">矩阵题</li>
+							<li @click="appendItem($event, 'common', 'score')">评分题</li>
+							<li @click="appendItem($event, 'common', 'sort')">排序题</li>
+							<li @click="appendItem($event, 'common', 'pictures')">图片选择题</li>
+							<li @click="appendItem($event, 'common', 'description')">描述说明题</li>
+							<li @click="appendItem($event, 'common', 'paging')">分页</li>
+							<li @click="appendItem($event, 'common', 'break')">分节</li>
+						</ul>
+					</div>
+				</div>
+				<div class="brick" id="advanced_type">
+					<div class="type_name" @click="switchItemType($event, 2)">高级题型</div>
+					<div class="types">
+						<ul>
+							<li @click="appendItem($event, 'advanced', 'upload')">上传文档</li>
+							<li @click="appendItem($event, 'advanced', 'geolocation')">地理位置</li>
+							<!--<li @click="appendItem($event, 'advanced', 'picture')">图文题</li>-->
+							<li @click="appendItem($event, 'advanced', 'vote')">投票题</li>
+							<li @click="appendItem($event, 'advanced', 'nps')">NPS题</li>
+							<li @click="appendItem($event, 'advanced', 'proportion')">比重题</li>
+							<li @click="appendItem($event, 'advanced', 'random')">情景随机题</li>
+							<li @click="appendItem($event, 'advanced', 'order')">订单题</li>
+							<li @click="appendItem($event, 'advanced', 'linkage')">联动题</li>
+						</ul>
+					</div>
+				</div>
+				<div class="brick" id="quick_type">
+					<div class="type_name" @click="switchItemType($event, 3)">快速题型</div>
+					<div class="types">
+						<ul>
+							<li @click="appendItem($event, 'quick', 'name')">姓名</li>
+							<li @click="appendItem($event, 'quick', 'sex')">性别</li>
+							<li @click="appendItem($event, 'quick', 'age')">年龄</li>
+							<li @click="appendItem($event, 'quick', 'company')">单位</li>
+							<li @click="appendItem($event, 'quick', 'department')">部门</li>
+							<li @click="appendItem($event, 'quick', 'ID_card')">身份证</li>
+							<li @click="appendItem($event, 'quick', 'pcc')">省市县</li>
+							<li @click="appendItem($event, 'quick', 'address')">地址</li>
+							<li @click="appendItem($event, 'quick', 'email')">邮件</li>
+							<li @click="appendItem($event, 'quick', 'telephone')">电话</li>
+							<li @click="appendItem($event, 'quick', 'cellphone')">手机</li>
+							<li @click="appendItem($event, 'quick', 'education')">学历</li>
+							<li @click="appendItem($event, 'quick', 'industry')">行业</li>
+							<li @click="appendItem($event, 'quick', 'grade')">职级</li>
+							<li @click="appendItem($event, 'quick', 'experiment')">工作经验</li>
+							<li @click="appendItem($event, 'quick', 'working_year')">在职年限</li>
+							<li @click="appendItem($event, 'quick', 'commonly')">常用</li>
+							<li @click="appendItem($event, 'quick', 'industry_evasion')">行业规避</li>
+							<li @click="appendItem($event, 'quick', 'time')">时间</li>
+							<li @click="appendItem($event, 'quick', 'date')">日期</li>
+							<li @click="appendItem($event, 'quick', 'other')">其他</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="outline" class="bar" v-show="status.left_side === 'outline'">
+				<div id="question_array" class="question-array">
+					<div class="question" v-for="item in questions" :key="item.id" v-if="item.id !== undefined" :ol_id="'item-' + item.id" @mousedown="activeShiftOutline($event,item)">
+						<i class="number" v-show="!item.numbering" @click="switchNumbering($event,item)">{{ item.number }}</i>
+						<input type="text" class="numbering" @blur="switchNumbering($event,item)" v-model="item.number" v-show="item.numbering">
+						<span class="name">{{ item.name }}</span>
+					</div>
+				</div>
+			</div>
+			<div id="style" class="bar" v-show="status.left_side==='style'">
+				<div class="brick" id="theme">
+					<div class="brick-name" @click="switchStyleBar($event, 1)">选择主题</div>
+					<div class="themes">
+						<div class="theme-block" v-for="theme in style.theme_array" @click="pickTheme(theme)">
+							<span class="border" :class="{ checked: theme.checked }">
+								<b class="preview" :class="'theme-' + theme.id"></b>
+								<i class="check glyphicon glyphicon-ok"></i>
+							</span>
+							<span class="theme-name"></span>
+						</div>
+					</div>
+				</div>
+				<div class="brick" id="customize">
+					<div class="brick-name" @click="switchStyleBar($event, 2)">自定义</div>
+					<div class="">
+						<button class="pick-color btn btn-sm btn-default">选择主题颜色</button>
+					</div>
+					<div class="pick-background">
+						上传背景图片：
+						<input type="file" id="style_picture" accept="image/*">
+						<span class="info">未设置</span>
+						<img id="style_preview" src="" alt="preview" style="width: 200px;height: 200px">
+					</div>
+				</div>
+				<div class="brick" id="more-setting">
+					<div class="brick-name" @click="switchStyleBar($event, 3)">更多设置</div>
+					<div class="">
+						<div class="setting">
+							<p>上传LOGO</p>
+							<input id="logo-upload" type="file" accept="image/*">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="edit-space" class="edit-space">
+			<div class="edit-container">
+				<div class="tags">
+				<span class="stable">
+					<i class="previous-page glyphicon glyphicon-chevron-left">
+						<span class=""></span>
+					</i>
+				</span>
+					<span class="mobile">
+					<span class="switch">
+						<b class="tag" v-for="page in status.page_array" :class="{ 'page-now': status.page === page }" @click="switchPage(page)">
+							P{{ page }}
+							<i class="delete-page glyphicon glyphicon-remove" @click="deletePage(page)"></i>
+						</b>
+					</span>
+					<i class="insert-page glyphicon glyphicon-plus" @click="appendPage"></i>
+					<i class="end-page" @click="showEnd">End</i>
+					<i class="next-page glyphicon glyphicon-chevron-right">
+						<span class=""></span>
+					</i>
+				</span>
+				</div>
+				<div class="questionnaire">
+					<div class="header">
+						<span class="logo">
+						
+						</span>
+					</div>
+					<div class="titles">
+						<p class="title-container container rtf-container">
+							<span class="title rtf-target textarea" contenteditable="true" @blur="changeContent($event.target, 'survey_name')">{{ survey_name }}</span>
+							<span class="rtf">
+							<i class="glyphicon glyphicon-picture" title="图片"></i>
+							<i class="glyphicon glyphicon-font" title="高级" @click="rtfEdit"></i>
+						</span>
+						</p>
+						<p class="sub-title-container container rtf-container">
+							<span class="sub-title rtf-target textarea" contenteditable="true" @blur="changeContent($event.target, 'survey_remark')"></span>
+							<span class="rtf">
+							<i class="glyphicon glyphicon-picture" title="图片"></i>
+							<i class="glyphicon glyphicon-font" title="高级" @click="rtfEdit"></i>
+						</span>
+						</p>
+						<p class="line"></p>
+					</div>
+					<div id="items" class="items">
+					
+					</div>
+				</div>
+				<div class="end-page" v-if="status.page === 'end'"></div>
+			</div>
+		</div>
+		<div id="option-bar" class="option-bar">
+			<div class="item-bank-trigger" @click="triggerCiting">
+				<i class="gear glyphicon glyphicon-star" :class="{ 'active': status.citing && !status.initial, 'quiet': !status.citing && !status.initial }"></i>
+				<span>收藏</span>
+			</div>
+			<div class="wrap">
+				<div class="item-bank" :class="{ 'active': status.citing && !status.initial, 'quiet': !status.citing && !status.initial }">
+					<h5>引用题库</h5>
+					<ul class="item-list">
+						<li class="item" v-for="item in item_bank">
+							<i class="type"></i>
+							<span class="name" title="引用" @click="citeItem(item)">{{ item.name }}</span>
+							<b class="delete glyphicon glyphicon-remove" title="删除" @click="deleteItem(item)"></b>
+						</li>
+					</ul>
+				</div>
+				<div class="options">
+					<div class="brick">
+						<h5 class="type">题目设置</h5>
+						<div class="content">
+							<div class="config">
+								<span class="text">必答</span>
+								<i class="order">
+									<input type="checkbox" :checked="status.editing.config.required" @change="changeConfigRequired">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">题型</span>
+								<i class="order">
+									<select v-model="status.editing.type" @change="changeItemType">
+										<option value="choice">单选题</option>
+										<option value="check">多选题</option>
+										<option value="blank">填空题</option>
+										<option value="matrix">矩阵题</option>
+										<option value="score">评分题</option>
+										<option value="sort">排序题</option>
+										<option value="picture">图片选择题</option>
+										<option value="description">描述说明题</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='blank' || status.editing.config.type==='matrix'">
+								<span class="text">类型</span>
+								<i class="order">
+									<select v-model="status.editing.config.the_class">
+										<option value="single" v-if="status.editing.config.type === 'blank'">单项填空</option>
+										<option value="multi" v-if="status.editing.config.type === 'blank'">多项填空</option>
+										<option value="matrix_choice" v-if="status.editing.config.type === 'matrix'">矩阵单选</option>
+										<option value="matrix_check" v-if="status.editing.config.type === 'matrix'">矩阵多选</option>
+										<option value="matrix_blank" v-if="status.editing.config.type === 'matrix'">矩阵填空</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='choice' || status.editing.config.type==='check'">
+								<span class="text">布局</span>
+								<i class="order">
+									<select v-model="status.editing.config.layout.orientation">
+										<option value="horizon">横向</option>
+										<option value="portrait">竖向</option>
+										<option value="select" v-if="status.editing.type==='choice'">下拉</option>
+									</select>
+								</i>
+								<i class="order" v-if="status.editing.config.layout.orientation==='horizon'">
+									<select v-model="status.editing.config.layout.cols_number">
+										<option v-for="index in status.editing.option_indexes" :value="index">{{ index }}列</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='geolocation'">
+								<span class="text">定位方式</span>
+								<i class="order">
+									<select v-model="status.editing.config.mode">
+										<option value="default">默认定位</option>
+										<option value="manual">手动定位</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='score'">
+								<span class="text">样式</span>
+								<i class="order">
+									<select v-model="status.editing.config.style">
+										<option value="number">数字</option>
+										<option value="thumb">点赞</option>
+										<option value="heart">红心</option>
+										<option value="star">星形</option>
+										<option value="brick">方块</option>
+									</select>
+								</i>
+								<i class="order">
+									<b v-if="status.editing.config.type==='score' && status.editing.config.style==='number'">
+										<input id="model" type="radio"><label for="model">1</label>
+									</b>
+									<b v-if="status.editing.config.type==='score' && status.editing.config.style==='thumb'">
+									
+									</b>
+									<b v-if="status.editing.config.type==='score' && status.editing.config.style==='heart'">
+									
+									</b>
+									<b v-if="status.editing.config.type==='score' && status.editing.config.style==='start'">
+									
+									</b>
+									<b v-if="status.editing.config.type==='score' && status.editing.config.style==='brick'">
+									
+									</b>
+								</i>
+								<i class="order" v-if="status.editing.config.layout.orientation==='horizon'">
+									<select v-model="status.editing.config.layout.cols_number">
+										<option v-for="index in status.editing.option_indexes" :value="index">{{ index }}列</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='blank'">
+								<span class="text">回答限制</span>
+								<i class="order">
+									<select v-model="status.editing.config.restrict">
+										<option value="none">不限</option>
+										<option value="text">文本</option>
+										<option value="number">数值</option>
+										<option value="date">日期</option>
+										<option value="time">时间</option>
+										<option value="email">邮箱</option>
+										<option value="cellphone">手机号</option>
+									</select>
+								</i>
+								<i class="order">
+									<select v-if="status.editing.config.restrict === 'number'" v-model="status.editing.config.number">
+										<option value="none">不限</option>
+										<option value="integer">整数</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='blank'">
+								<span class="text">字数限制</span>
+								<i class="order">
+									<input type="number" v-model="status.editing.config.min_word">
+								</i>
+								<i class="order">
+									<input type="number" v-model="status.editing.config.max_word">
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='score'">
+								<span class="text">分数区间</span>
+								<i class="order">
+									<select v-model="status.editing.config.min_score">
+										<option value="">请选择</option>
+										<option v-for="score in status.editing.option_scores" v-if="score <= status.editing.config.max_score" :value="score">{{ score }}分</option>
+									</select>
+									<span class="order">到</span>
+									<select v-model="status.editing.config.max_score">
+										<option value="">请选择</option>
+										<option v-for="score in status.editing.option_scores" v-if="score >= status.editing.config.min_score" :value="score">{{ score }}分</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='check'">
+								<span class="text">回答限制</span>
+								<i class="order">
+									<select v-model="status.editing.config.min_option">
+										<option value="">请选择</option>
+										<option v-for="index in status.editing.option_indexes" v-if="index <= status.editing.config.max_option" :value="index">{{ index }}项</option>
+									</select>
+									<span class="order">到</span>
+									<select v-model="status.editing.config.max_option">
+										<option value="">请选择</option>
+										<option v-for="index in status.editing.option_indexes" v-if="index >= status.editing.config.min_option" :value="index">{{ index }}项</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='blank' && status.editing.config.the_class==='single'">
+								<span class="text">后置文本</span>
+								<i class="order">
+									<input type="text" v-model="status.editing.config.post">
+								</i>
+							</div>
+							<!--<div class="config" v-if="status.editing.config.type==='matrix'">-->
+							<!--<span class="text">子问题引用其他题目答案</span>-->
+							<!--<i class="order">-->
+							<!--<input type="chekbox" :value="status.editing.config.matrix_recommend" @change="changeMatrixRecommend($event.target)">-->
+							<!--</i>-->
+							<!--</div>-->
+							<!--<div class="config" v-if="status.editing.config.matrix_recommend">-->
+							<!--<span class="text">引用题目编号</span>-->
+							<!--<i class="order">-->
+							<!--<select type="chekbox" v-model="status.editing.config.recommend_question" >-->
+							<!--<option v-for="question in questions" v-if="question.type === 'check' || question.type === 'sort'" value="question.id">{{ question.number }}</option>-->
+							<!--</select>-->
+							<!--</i>-->
+							<!--</div>-->
+							<div class="config" v-if="status.editing.config.type==='score'">
+								<span class="text">评价类型</span>
+								<i class="order">
+									<select v-model="status.editing.config.credit">
+										<option value="satisfaction">满意度</option>
+										<option value="identify">认同度</option>
+										<option value="importance">重要度</option>
+										<option value="willing">愿意度</option>
+										<option value="conform">符合度</option>
+										<option value="customize">自定义</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='sort'">
+								<span class="text">排序方式</span>
+								<i class="order">
+									<select v-model="status.editing.config.sorting_method">
+										<option value="inputting">手动输入</option>
+										<option value="drag">拖动</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.credit === 'customize'">
+								<i class="order">
+									<span class="order">最左侧提示语</span>
+									<input type="text" class="order" v-model="status.editing.config.left_label">
+									<br/>
+									<span class="order">最左侧提示语</span>
+									<input type="text" class="order" v-model="status.editing.config.right_label">
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='proportion'">
+								<span class="text">总比重</span>
+								<i class="order">
+									<input type="number" class="order" v-model="status.editing.config.total">
+								</i>
+							</div>
+						</div>
+					</div>
+					<div class="brick">
+						<h5 class="type">选项设置</h5>
+						<div class="content">
+							<div class="config" v-if="status.editing.config.type==='choice' || status.editing.config.type==='check'">
+								<span class="text">选项随机</span>
+								<i class="order">
+									<select v-model="status.editing.config.random_option">
+										<option value="fixed">固定显示</option>
+										<option value="random">随机显示</option>
+										<option value="fix_one">固定最后一项</option>
+										<option value="fix_two">固定最后二项</option>
+										<option value="fix_three">固定最后三项</option>
+									</select>
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='matrix'">
+								<span class="text">子问题随机显示</span>
+								<i class="order">
+									<input type="checkbox" :value="status.editing.config.random_branch" @change="changeRandomBranch($event.target)">
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='matrix'">
+								<span class="text">选项随机排列</span>
+								<i class="order">
+									<input type="checkbox" :value="status.editing.config.random_option_matrix" @change="changeRandomOptionMatrix($event.target)">
+								</i>
+							</div>
+							<div class="config" v-if="status.editing.config.type==='matrix'">
+								<span class="text">转置</span>
+								<i class="order">
+									<input type="checkbox" :value="status.editing.config.transpose" @change="changeTranspose($event.target)">
+								</i>
+							</div>
+						</div>
+					</div>
+					<div class="brick">
+						<h5 class="type logic-trigger" @click="editLogic($event,'setting_bar')">逻辑设置</h5>
+						<div class="content">
+						
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../../js/swing/common/jquery.js"></script>
+<script src="../../js/swing/common/bootstrap.min.js"></script>
+<script src="../../js/swing/common/vue.js"></script>
+<script src="../../js/swing/common/wangEditor.js"></script>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.9&key=45e883962deaebb8a4c3a6b5f6e221f4&plugin=AMap.Geocoder"></script>
+<!--<script src="./js/common/functions.js"></script>-->
+<!--<script src="./js/common/header.js"></script>-->
+<!--<script src="./js/design/design.js"></script>-->
+<script src="../../js/lists.js"></script>
+<script src="../../js/swing/common/paigusu.min.js"></script>
+<script src="../../js/swing/production/design.js"></script>
+</body>
+</html>

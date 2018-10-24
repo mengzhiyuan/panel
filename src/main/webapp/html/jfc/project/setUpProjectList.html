@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .my-container {
+            float: left;
+            display: inline-block;
+            margin-right: 30px;
+        }
+
+        .myLabel-content, .myText-content, .myBtn-content {
+            float: left;
+            display: inline-block;
+            margin-left: 0;
+        }
+
+        .myLabel-content, .myText-content input[type='text'], .myBtn-content .btn
+        {
+            height: 40px;
+            font-size: 12px;
+        }
+
+        .myBtn-content .btn {
+            margin-bottom: 0;
+        }
+        .bs-bars.pull-left{
+            display: inline-block;
+            width: 75%
+        }
+        .search-tools,.add-tools{
+            display:inline-block;
+            width: 15%;
+            border-radius: 4px!important;
+            margin: 0 5px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div class="toolbar">
+                    <div id="toolbar" class="btn-group" style="width: 100%;">
+                        <input id="project_title" type="text" placeholder="项目主题" class="form-control search-tools" aria-label="...">
+                        <input id="project_client" type="text" placeholder="客户公司" class="form-control search-tools" aria-label="...">
+                        <input id="project_manager" type="text" placeholder="客户经理" class="form-control search-tools" aria-label="...">
+                        <select id="project_during" class="form-control search-tools">
+                            <option value="week">周度</option>
+                            <option value="month">月度</option>
+                            <option value="season">季度</option>
+                            <option value="year">年度</option>
+                            <option value="all" selected="selected">不限</option>
+                        </select>
+                        <button class="btn btn-success btn-group-sm search-tools" id="project_search">搜索</button>
+                        <!--<button class="btn btn-default btn-group-sm add-tools" id="project_add">新增立项</button>-->
+                        <!--</div>-->
+                    </div>
+                    <!--<div class="my-container">-->
+                    <!--<div class="myText-content">-->
+                    <!--<input id="keyword" type="text" class="form-control"-->
+                    <!--placeholder="输入乘车码">-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="myBtn-content">-->
+                    <!--<button id="search" type="button" class="btn btn-primary">搜索</button>-->
+                    <!--<button id="reset" type="button" class="btn btn-default">重置</button>-->
+                    <!--</div>-->
+                </div>
+                <table id="tb_departments"></table>
+
+                <div class="modal fade" id="appoint" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-hidden="true">&times;</button>
+                                <h4 class="modal-title" id="myModalLabel">指定批复编号/重新报价人</h4>
+                            </div>
+                            <div class="modal-body">
+                                <select id="staff_list" class="form-control"></select>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal" id="confirm1" disabled="disabled">重新报价</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" id="confirm">批复编号</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/project/setUpProjectList.js"></script>
+</body>
+</html>

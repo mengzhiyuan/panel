@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOLPanel样本库</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <link rel="stylesheet" href="../../../css/JFC/membership.css">
+</head>
+<body>
+<div id="root" @click="removeOption">
+    <div id="fuzzy-search" :class="{ stock: form_now !== 'fuzzy' }">
+        <p class="title" :class="{ tag: form_now !== 'fuzzy' }" @click="activateForm('fuzzy')">
+            <a>模糊查询</a>
+        </p>
+        <div>
+            <input type="text" class="form-control" placeholder="请输入查询条件" v-model="fuzzy.keyword">
+            <button class="btn btn-md btn-info form-control" @click="fuzzyQuery">查询</button>
+            <select class="form-control middle-input" v-model="fuzzy.field">
+                <option value="">请选择相关字段</option>
+                <option value="basic">基本信息</option>
+                <option value="career">职业</option>
+                <option value="unit">单位</option>
+                <option value="contact">联系</option>
+                <option value="oneself">个人</option>
+                <option value="attribu">属性</option>
+                <option value="payment">支付</option>
+                <option value="review">审核</option>
+                <option value="communicate">沟通</option>
+                <option value="integral">积分</option>
+                <option value="project">项目</option>
+                <option value="data">数据信息</option>
+            </select>
+        </div>
+    </div>
+    <div id="stock">
+        <div class="tags">
+            <span class="tag quick" :class="{ active: form_now === 'quick' }" @click="activateForm('quick')">
+                <a>快速查询</a>
+            </span>
+            <span class="tag precise" :class="{ active: form_now === 'precise' }" @click="activateForm('precise')">
+                <a>精确查询</a>
+            </span>
+        </div>
+        <div id="quick-search" :class="{ active: form_now === 'quick' }">
+            <div class="spread-icon" :class="{ spreading: spreading === 'quick' }" :title="spreading === 'quick' ? '折叠' : '展开'" @click="triggerSpreading('quick')"></div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="province">省份</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control province" id="province" v-model="quick.data_chunk.hosProvince">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="city">城市</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control city" id="city" v-model="quick.data_chunk.hosCity">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="attribute">数据属性</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="attribute" v-model="quick.data_chunk.attriName">
+                        <option value="">请选择</option>
+                        <option>医院</option>
+                        <option>药店</option>
+                        <option>诊所</option>
+                        <option>政府</option>
+                        <option>社会组织</option>
+                        <option>实验室（独立）</option>
+                        <option>商业公司</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 input-wrap">
+                    <button class="btn btn-md btn-info" @click="quickQuery">查询</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap two-in-one">
+                    <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                        <label class="col-xs-7 col-sm-7 col-md-7 col-lg-7" for="level">单位级别和等级</label>
+                        <select class="col-xs-4 col-sm-4 col-md-4 col-lg-4 form-control" id="level" v-model="quick.data_chunk.hoslelId">
+                            <option value="">请选择</option>
+                            <option>三级</option>
+                            <option>二级</option>
+                            <option>一级</option>
+                            <option>未评级</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <!--<label class="col-xs-6 col-sm-6 col-md-6 col-lg-6" for="grade">单位等级</label>-->
+                        <select class="col-xs-12 col-sm-12 col-md-12 col-lg-12 form-control" id="grade" v-model="quick.data_chunk.hosgraId">
+                            <option value="">请选择</option>
+                            <option>特等</option>
+                            <option>甲等</option>
+                            <option>乙等</option>
+                            <option>丙等</option>
+                            <option>未知</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="type">单位类型</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="type" v-model="quick.data_chunk.typeId">
+                        <option value="">请选择</option>
+                        <option value="1">综合</option>
+                        <option value="2">专科</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="property">单位属性</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="property" v-model="quick.data_chunk.propertyId">
+                        <option value="">请选择</option>
+                        <option value="1">公立</option>
+                        <option value="2">民营</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+            </div>
+            <div class="more-conditions" :class="{ spreading: spreading === 'quick' }">
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="title_category">职称类别</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="title_category" v-model="quick.data_chunk.catName">
+                            <option value="">请选择</option>
+                            <option>医师</option>
+                            <option>药师</option>
+                            <option>技师</option>
+                            <option>护师</option>
+                            <option>行政管理</option>
+                            <option>采购管理</option>
+                            <option>从事管理</option>
+                            <option>医政人员</option>
+                            <option>销售人员</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="title_level">职称级别</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="title_level" v-model="quick.data_chunk.levId" @click="stretchOption($event,'levId')">
+                        <ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6 options" v-if="quick.options_display === 'levId'">
+                            <li v-show="opt.indexOf(quick.data_chunk.levId) > -1" v-for="opt in quick.options_levId" :data="opt" @click="assignmentQuick('levId',opt)">{{ opt }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="administrative_title">行政职称</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="administrative_title" v-model="quick.data_chunk.admiName">
+                            <option value="">请选择</option>
+                            <option>无行政职称</option>
+                            <option>科室副主任</option>
+                            <option>科室主任</option>
+                            <option>副院长</option>
+                            <option>院长</option>
+                            <option>护士长</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="department_character">科室性质</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="department_character" v-model="quick.data_chunk.natName">
+                            <option value="">请选择</option>
+                            <option>临床科室</option>
+                            <option>医技科室</option>
+                            <option>药剂科室</option>
+                            <option>行政后勤</option>
+                            <option>财务科</option>
+                            <option>其他</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="department_category">科室类别</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="department_category" v-model="quick.data_chunk.categName">
+                            <option value="">请选择</option>
+                            <option>普通内科</option>
+                            <option>呼吸科</option>
+                            <option>心血管内科</option>
+                            <option>内分泌科</option>
+                            <option>消化内科</option>
+                            <option>血液科</option>
+                            <option>肾脏内科</option>
+                            <option>神经内科</option>
+                            <option>过敏与免疫科</option>
+                            <option>过敏与免疫科</option>
+                            <option>老年科/干部科</option>
+                            <option>风湿科</option>
+                            <option>血透室（血液透析中心）</option>
+                            <option>介入科</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="department">所在科室</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="department" v-model="quick.data_chunk.belongId" @click="stretchOption($event,'belongId')">
+                        <ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6 options" v-if="quick.options_display === 'belongId'">
+                            <li v-show="opt.indexOf(quick.data_chunk.belongId) > -1" v-for="opt in quick.options_belongId" :data="opt" @click="assignmentQuick('belongId',opt)">{{ opt }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="kol_character">KOL属性</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="kol_character" v-model="quick.data_chunk.kolId">
+                            <option value="">请选择</option>
+                            <option>是</option>
+                            <option>否</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="professional_field">专业领域</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="professional_field" v-model="quick.data_chunk.specId" @click="stretchOption($event,'specId')">
+                        <ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6 options" v-if="quick.options_display === 'specId'">
+                            <li v-show="opt.indexOf(quick.data_chunk.specId) > -1" v-for="opt in quick.options_specId" :data="opt" @click="assignmentQuick('specId',opt)">{{ opt }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="payer_character">Payer属性</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="payer_character" v-model="quick.data_chunk.payerId">
+                            <option value="">请选择</option>
+                            <option>是</option>
+                            <option>否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="age">年龄</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="age" v-model="quick.data_chunk.docOld">
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="sex">性别</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="sex" v-model="quick.data_chunk.docSex">
+                            <option value="">请选择</option>
+                            <option value="1">男</option>
+                            <option value="0">女</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="purchasing">采购属性</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="purchasing" v-model="quick.data_chunk.purchId">
+                            <option value="">请选择</option>
+                            <option>是</option>
+                            <option>否</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="length_as_medic">从业时间</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="length_as_medic" v-model="quick.data_chunk.docEmploymentTime">
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="post_age">岗位年龄</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="post_age" v-model="quick.data_chunk.docPostageTime">
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="honors">荣誉属性</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="honors" v-model="quick.data_chunk.membId" @click="stretchOption($event,'membId')">
+                        <ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6 options" v-if="quick.options_display === 'membId'">
+                            <li v-show="opt.indexOf(quick.data_chunk.membId) > -1" v-for="opt in quick.options_membId" :data="opt" @click="assignmentQuick('membId',opt)">{{ opt }}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="participate">参与项目</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="participate" v-model="quick.data_chunk.participate" @click="stretchOption($event,'participate')">
+                        <ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6 options" v-if="quick.options_display === 'participate'">
+                            <li v-show="opt.indexOf(quick.data_chunk.participate) > -1" v-for="opt in quick.options_participate" :data="opt" @click="assignmentQuick('participate',opt)">{{ opt }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="member_email">会员邮件</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="member_email" v-model="quick.data_chunk.docEmail">
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="other_property">其他属性1</label>
+                        <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="other_property" v-model="quick.data_chunk.other_property">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="cooperation">数据配合度</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="cooperation" v-model="quick.data_chunk.coorId">
+                            <option value="">请选择</option>
+                            <option value="1">重要</option>
+                            <option value="2">普通</option>
+                            <option value="3">可清除</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="activation">数据活跃度</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="activation" v-model="quick.data_chunk.LiveId">
+                            <option value="">请选择</option>
+                            <option>高</option>
+                            <option>普通</option>
+                            <option>低</option>
+                        </select>
+                    </div>
+                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                        <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="importance">数据重要性</label>
+                        <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="importance" v-model="quick.data_chunk.ImportId">
+                            <option value="">请选择</option>
+                            <option>未激活</option>
+                            <option>无效会员</option>
+                            <option>休眠会员</option>
+                            <option>边缘会员</option>
+                            <option>活跃会员</option>
+                            <option>忠诚会员</option>
+                            <option>6月活跃</option>
+                            <option>3月活跃</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="precise-search" :class="{ active: form_now === 'precise' }">
+            <div class="spread-icon" :class="{ spreading: spreading === 'precise' }" :title="spreading === 'precise' ? '折叠' : '展开'" @click="triggerSpreading('precise')"></div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="member_index">编号ID</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="member_index" v-model="precise.member_index">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="nickname">单位名称</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="nickname" v-model="precise.nickname">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="member_name">姓名</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="member_name" v-model="precise.member_name">
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 input-wrap">
+                    <button class="btn btn-md btn-info" @click="preciseQuery">查询</button>
+                </div>
+            </div>
+            <div class="more-conditions" :class="{ spreading: spreading === 'precise' }">
+                <div id="exact">
+                    <div class="chose col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div id="alters">
+                            <div id="alters-container">
+                                <div class="check-all">
+                                    <label for="check_all"><a>全选</a></label>
+                                    <input type="checkbox" id="check_all" @change="checkAll">
+                                </div>
+                                <ul>
+                                    <li v-for="alt in precise.alters" v-show="precise.chosen.indexOf(alt) === -1" :class="{ active: precise.status.active === alt }" @click="activeCheck(alt)" @dblclick="choseSingle(alt)">
+                                        <a>{{ alt.name.length < 10 ? alt.name : alt.name.slice(0,7) + '...' }}</a>
+                                        <input type="checkbox" :checked="precise.status.checked.indexOf(alt) > -1" @change="changeCheck(alt)">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chose">
+                            <span class="glyphicon glyphicon-chevron-right chose-button" @click="choseMulti"></span>
+                            <span class="glyphicon glyphicon-chevron-left back-button disabled" @click="backMulti"></span>
+                        </div>
+                        <div id="chosen">
+                            <div class="check-all">
+                                <label for="pick_all"><a>全选</a></label>
+                                <input type="checkbox" id="pick_all" @change="pickAll">
+                            </div>
+                            <ul>
+                                <li v-for="ch in precise.chosen" :class="{ active: precise.status.backing === ch }" @click="activePick(ch)" @dblclick="backSingle(ch)">
+                                    <a>{{ ch.name.length < 10 ? ch.name : ch.name.slice(0,7) + '...' }}</a>
+                                    <input type="checkbox" :checked="precise.status.picked.indexOf(ch) > -1" @change="changePick(ch)">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="conditions" class="filter col-xs-10 col-sm-5 col-md-5 col-lg-5">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th style="width: 30%">逻辑</th>
+                                <th style="width: 20%">字段</th>
+                                <th style="width: 15%">逻辑</th>
+                                <th style="width: 25%">信息类别</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="con in precise.conditions" :id="'row_' + precise.conditions.indexOf(con)">
+                                <!--<td style="width: 10%" class="button-divide" v-if="con.relation === 'none'" :rowspan="conditions.length">-->
+                                    <!--<button class="glyphicon glyphicon-saved btn btn-success" :disabled="conditions.packed" @click="divide(conditions)"></button>-->
+                                <!--</td>-->
+                                <td class="buttons" style="width: 10%">
+                                    <button class="glyphicon glyphicon-minus btn btn-warning" :disabled="con.relation === 'none'" @click="minus(con)"></button>
+                                    <button class="glyphicon glyphicon-plus btn btn-info" @click="plus(con)"></button>
+                                </td>
+                                <!--<td style="width: 15%">-->
+                                    <!--<select class="form-control" v-model="con.relation" :disabled="con.relation === 'none'">-->
+                                    <!--<option value="yu">且</option>-->
+                                    <!--<option value="huo">或</option>-->
+                                <!--</select>-->
+                                <!--</td>-->
+                                <td>
+                                    <select class="form-control" :value="con.field" @change="changeFieldName($event,con)">
+                                        <option value="">请选择字段名称</option>
+                                        <option v-for="ch in precise.chosen" :value="ch.id">{{ ch.name }}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" v-model="con.operator">
+                                        <option value="等于">等于</option>
+                                        <option value="不等于">不等于</option>
+                                        <option value="开头是">开头是</option>
+                                        <option value="结尾是">结尾是</option>
+                                        <option value="包含">包含</option>
+                                        <option value="不包含">不包含</option>
+                                    </select>
+                                </td>
+                                <td class="value">
+                                    <input class="form-control" type="text" placeholder="信息类别" v-model="con.value" @click="displayOption($event,con)">
+                                    <ul class="options" v-if="precise.option_display === con" :class="{ reverse: reverse('row_' + precise.conditions.indexOf(con)) }">
+                                        <li v-show="opt.indexOf(con.value) > -1" v-for="opt in precise.options" :data="opt" @click="assignment(con,opt)">{{ opt }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="result-display">
+        <div id="tools">
+            <button id="export" class="btn btn-md btn-info" @click="toSetExport">导出数据</button>
+            <button id="export_real" data-toggle="modal" data-target="#export_setting"></button>
+        </div>
+        <table id="result"></table>
+    </div>
+    <!-- <div class="row">
+        <button class="btn btn-error btn-lg" data-toggle="modal" data-target="#sending_email">展开</button>
+    </div> -->
+    <!-- Modal -->
+    <div class="modal fade" id="sending_email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="email_title">
+                        <label for="email_title">邮件标题</label>
+                        <input id="email_title" type="text" v-model="email_title">
+                    </div>
+                    <script id="email_container" name="content" type="text/plain"></script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" @click="sendEmail">发送邮件</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="export_setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="common col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="type">一般字段</div>
+                        <ul>
+                            <li v-for="field in fields" v-if="field.type==='common'">
+                                <label :for="field.id">
+                                    {{ field.name }}
+                                    <input :id="field.id" type="checkbox" :checked="common_checked.indexOf(field.id) > -1" @change="changeCommonField(field.id, $event.target)">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="confidential col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="type">须审核字段</div>
+                        <ul>
+                            <li v-for="field in fields" v-if="field.type==='confidential'">
+                                <label :for="field.id">
+                                    {{ field.name }}
+                                    <input :id="field.id" type="checkbox" :checked="confidential_checked.indexOf(field.id) > -1" @change="changeConfidentialField(field.id, $event.target)">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" @click="exportApply">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/echarts/echarts.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/kangpai/membership.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+</body>
+</html>

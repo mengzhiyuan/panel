@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>捷峰调研平台</title>
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="../css/public.css">-->
+<link rel="stylesheet" href="../../css/kolpanel/design.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <!--header-start-->
+        <div id="header">
+            <div class="logo col-lg-2 col-md-2 col-sm-1"></div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-lg-offset-1 col-md-offset-1">
+                <ul class="navigator nav nav-justified">
+                    <li><a href="/jfcpanel/html/kolpanel/creating.html">首页</a></li>
+                    <li><a href="/jfcpanel/html/kolpanel/types.html">设计问卷</a></li>
+                    <li><a href="/jfcpanel/html/kolpanel/myQuestionnaire.html">我的问卷</a></li>
+                    <li><a href="javascript:void (0);">数据分析</a></li>
+                </ul>
+            </div>
+            <div class="signout account pull-right">
+                <div class="button">
+                    <span class="icon"> </span> <span class="name"> 登录/注册 </span>
+                </div>
+            </div>
+            <div class="signin account pull-right">
+                <div class="button">
+                    <span class="icon"> </span> <span class="name"></span>
+                </div>
+                <div id="dropdown">
+                    <div class="arrow"></div>
+                    <ul>
+                        <li><a href="javascript:void (0);">个人信息</a></li>
+                        <li><a href="javascript:void (0);">功能设置</a></li>
+                        <li><a href="javascript:void (0);">帮助</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--头部导航-end-->
+        <div id="main">
+            <!--进度按钮-start-->
+            <div class="tags">
+                <ul>
+                    <li class="active design">创建问卷</li>
+                    <li class="set">问卷收集</li>
+                    <li class="analyze">数据管理</li>
+                </ul>
+                <button id="submit" class="btn btn-info btn-sm pull-right">保存</button>
+            </div>
+            <!--进度按钮-end-->
+            <div id="content">
+                <!--左侧工具栏-start-->
+                <div id="left">
+                    <div class="side design active">
+                    <div class="tag first basic active">
+                        <span>基础题型</span>
+                        <span id="menu" title="目录"></span>
+                    </div>
+                    <div class="tag second advanced">
+                        <span>高级题型</span>
+                    </div>
+                    <div class="tag third quickly">
+                        <span>快速题型</span>
+                    </div>
+                    <div class="tag forth logic">
+                        <span>设置逻辑</span>
+                    </div>
+                    <div class="tag fifth style">
+                        <span>挑选样式</span>
+                    </div>
+
+                    <div class="bar first basic active">
+                        <ul class="basic type">
+                            <li class="qs" id="choice">
+                                <div href="javascript:void (0);">
+                                    <span class="list_item">
+                                        <a href="javascript:void (0);">单选</a>
+                                        <span class="square">
+                                            <a href="javascript:void (0);" class="button sub_label" char="choice col">竖向排列</a>
+                                            <a href="javascript:void (0);" class="sub_label">
+                                                横向排列
+                                                <span class="arrow"></span>
+                                                <span id="choice_rows" class="menu_frame">
+                                                    <span class="button menu" char="choice row 2">二列</span>
+                                                    <span class="button menu" char="choice row 3">三列</span>
+                                                    <span class="button menu" char="choice row 4">四列</span>
+                                                    <span class="button menu" char="choice row 0">自定义</span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="qs" id="checks">
+                                <div href="javascript:void (0);">
+                                    <span class="list_item">
+                                        <a href="javascript:void (0);">多选</a>
+                                        <span class="square">
+                                            <a href="javascript:void (0);" class="button sub_label" char="checks col">竖向排列</a>
+                                            <a href="javascript:void (0);" class="sub_label">横向排列
+                                                <span class="arrow"></span>
+                                                <span id="checks_rows" class="menu_frame">
+                                                    <span class="button menu" char="checks row 2">二列</span>
+                                                    <span class="button menu" char="checks row 3">三列</span>
+                                                    <span class="button menu" char="checks row 4">四列</span>
+                                                    <span class="button menu" char="checks row 0">自定义</span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="qs" id="blank">
+                                <div href="javascript:void (0);">
+                                    <span class="list_item">
+                                        <a href="javascript:void (0);">填空</a>
+                                        <span class="square">
+                                            <a href="javascript:void (0);" class="button sub_label" char="blank single">单项</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="blank multi">多项</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="blank textarea">多行</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="blank time">时期</a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="qs" id="matrix">
+                                <div href="javascript:void (0);">
+                                    <span class="list_item">
+                                        <a href="javascript:void (0);">矩阵</a>
+                                        <span class="square">
+                                            <a href="javascript:void (0);" class="sub_label" char="row">横向排列
+                                                <span class="arrow"></span>
+                                                <span id="matrix_row" class="menu_frame">
+                                                    <span class="count"><span class="cols mul">0</span><span>*</span><span class="rows mul">0</span></span>
+                                                    <span class="frame_background">
+                                                        <span class="cell top left" col="1" row="1"></span><span class="cell top" col="2" row="1"></span><span class="cell top" col="3" row="1"></span><span class="cell top" col="4" row="1"></span><span class="cell top" col="5" row="1"></span><span class="cell top" col="6" row="1"></span><span class="cell top right" col="7" row="1"></span>
+                                                        <span class="cell left" col="1" row="2"></span><span class="cell" col="2" row="2"></span><span class="cell" col="3" row="2"></span><span class="cell" col="4" row="2"></span><span class="cell" col="5" row="2"></span><span class="cell" col="6" row="2"></span><span class="cell right" col="7" row="2"></span>
+                                                        <span class="cell left" col="1" row="3"></span><span class="cell" col="2" row="3"></span><span class="cell" col="3" row="3"></span><span class="cell" col="4" row="3"></span><span class="cell" col="5" row="3"></span><span class="cell" col="6" row="3"></span><span class="cell right" col="7" row="3"></span>
+                                                        <span class="cell left" col="1" row="4"></span><span class="cell" col="2" row="4"></span><span class="cell" col="3" row="4"></span><span class="cell" col="4" row="4"></span><span class="cell" col="5" row="4"></span><span class="cell" col="6" row="4"></span><span class="cell right" col="7" row="4"></span>
+                                                        <span class="cell left" col="1" row="5"></span><span class="cell" col="2" row="5"></span><span class="cell" col="3" row="5"></span><span class="cell" col="4" row="5"></span><span class="cell" col="5" row="5"></span><span class="cell" col="6" row="5"></span><span class="cell right" col="7" row="5"></span>
+                                                        <span class="cell left" col="1" row="6"></span><span class="cell" col="2" row="6"></span><span class="cell" col="3" row="6"></span><span class="cell" col="4" row="6"></span><span class="cell" col="5" row="6"></span><span class="cell" col="6" row="6"></span><span class="cell right" col="7" row="6"></span>
+                                                        <span class="cell bottom left" col="1" row="7"></span><span class="cell bottom" col="2" row="7"></span><span class="cell bottom" col="3" row="7"></span><span class="cell bottom" col="4" row="7"></span><span class="cell bottom" col="5" row="7"></span><span class="cell bottom" col="6" row="7"></span><span class="cell bottom right" col="7" row="7"></span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                            <a href="javascript:void (0);" class="sub_label" char="col">竖向排列
+                                                <span class="arrow"></span>
+                                                <span id="matrix_col" class="menu_frame">
+                                                    <span class="count"><span class="cols mul">0</span><span>*</span><span class="rows mul">0</span></span>
+                                                    <span class="frame_background">
+                                                        <span class="cell top left" col="1" row="1"></span><span class="cell top" col="2" row="1"></span><span class="cell top" col="3" row="1"></span><span class="cell top" col="4" row="1"></span><span class="cell top" col="5" row="1"></span><span class="cell top" col="6" row="1"></span><span class="cell top right" col="7" row="1"></span>
+                                                        <span class="cell left" col="1" row="2"></span><span class="cell" col="2" row="2"></span><span class="cell" col="3" row="2"></span><span class="cell" col="4" row="2"></span><span class="cell" col="5" row="2"></span><span class="cell" col="6" row="2"></span><span class="cell right" col="7" row="2"></span>
+                                                        <span class="cell left" col="1" row="3"></span><span class="cell" col="2" row="3"></span><span class="cell" col="3" row="3"></span><span class="cell" col="4" row="3"></span><span class="cell" col="5" row="3"></span><span class="cell" col="6" row="3"></span><span class="cell right" col="7" row="3"></span>
+                                                        <span class="cell left" col="1" row="4"></span><span class="cell" col="2" row="4"></span><span class="cell" col="3" row="4"></span><span class="cell" col="4" row="4"></span><span class="cell" col="5" row="4"></span><span class="cell" col="6" row="4"></span><span class="cell right" col="7" row="4"></span>
+                                                        <span class="cell left" col="1" row="5"></span><span class="cell" col="2" row="5"></span><span class="cell" col="3" row="5"></span><span class="cell" col="4" row="5"></span><span class="cell" col="5" row="5"></span><span class="cell" col="6" row="5"></span><span class="cell right" col="7" row="5"></span>
+                                                        <span class="cell left" col="1" row="6"></span><span class="cell" col="2" row="6"></span><span class="cell" col="3" row="6"></span><span class="cell" col="4" row="6"></span><span class="cell" col="5" row="6"></span><span class="cell" col="6" row="6"></span><span class="cell right" col="7" row="6"></span>
+                                                        <span class="cell bottom left" col="1" row="7"></span><span class="cell bottom" col="2" row="7"></span><span class="cell bottom" col="3" row="7"></span><span class="cell bottom" col="4" row="7"></span><span class="cell bottom" col="5" row="7"></span><span class="cell bottom" col="6" row="7"></span><span class="cell bottom right" col="7" row="7"></span>
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="qs" id="score">
+                                <div href="javascript:void (0);">
+                                    <span class="list_item">
+                                        <a href="javascript:void (0);">评分</a>
+                                        <span class="square">
+                                            <a href="javascript:void (0);" class="button sub_label" char="score col 5">5分制</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="score col 7">7分制</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="score col 9">9分制</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="score col 10">10分制</a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="qs" id="sort">
+                                <div href="javascript:void (0);">
+                                    <span class="list_item">
+                                        <a href="javascript:void (0);">排序</a>
+                                        <span class="square">
+                                            <a href="javascript:void (0);" class="button sub_label" char="sort click">点击</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="sort drag">拖拽</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="sort score">打分</a>
+                                            <a href="javascript:void (0);" class="button sub_label" char="sort input">输入</a>
+                                        </span>
+                                    </span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bar second advanced">
+                        <ul>
+                            <li class="advanced"><a href="javascript: void (0);" class="upload">文件上传题</a></li>
+                            <li class="advanced"><a href="javascript: void (0);" class="gps">地理定位题</a></li>
+                            <li class="advanced"><a href="javascript: void (0);" class="sms">手机验证题</a></li>
+                            <li class="advanced"><a href="javascript: void (0);" class="order-form">商品题型</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="bar third quickly">
+                        <ul>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="name" id="name">-->
+                                <!--<label for="name">-->
+                                    <!--<span class="icon"></span>-->
+                                    <a href="javascript: void (0);" class="name">姓名题</a>
+                                <!--</label>-->
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="sex" id="sex">-->
+                                <!--<label for="sex">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>性别</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="sex">性别题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="age" id="age">-->
+                                <!--<label for="age">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>年龄</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="age">年龄题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="telephone" id="tel">-->
+                                <!--<label for="tel">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>电话</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="telephone">联系电话题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="email" id="email">-->
+                                <!--<label for="email">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>电子邮箱</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="email">电子邮箱题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="company" id="company">-->
+                                <!--<label for="company">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>工作单位</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="company">工作单位题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="job" id="job">-->
+                                <!--<label for="job">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>工作岗位</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="job">工作职位题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="industry" id="industry">-->
+                                <!--<label for="industry">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>所在行业</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="industry">所在行业题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="address" id="address">-->
+                                <!--<label for="address">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>通讯地址</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="address">通讯地址</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="highschool" id="highschool">-->
+                                <!--<label for="highschool">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>毕业院校</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="highschool">毕业院校题</a>
+                            </li>
+                            <li class="msg">
+                                <!--<input type="checkbox" name="messages" value="education" id="education">-->
+                                <!--<label for="education">-->
+                                    <!--<span class="icon"></span>-->
+                                    <!--<span>最高学历</span>-->
+                                <!--</label>-->
+                                <a href="javascript: void (0);" class="education">最高学历题</a>
+                            </li>
+                            <li class="msg">
+                                <a href="javascript: void (0);" class="department">所在科室题</a>
+                            </li>
+                            <li class="msg">
+                                <a href="javascript: void (0);" class="titlelevel">职称级别题</a>
+                            </li>
+                        </ul>
+                        <!--<div class="insert_button">-->
+                            <!--<button class="btn btn-sm" id="insert_button">插入</button>-->
+                        <!--</div>-->
+                    </div>
+
+                    <div class="bar forth logic">
+
+                    </div>
+
+                    <div class="bar fifth style">
+                        <div id="colors">
+                            <div class="color" id="color1">
+                                <input name="color" type="radio" id="pick1" value="#ffffff" checked>
+                                <label for="pick1" class="picked">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color2">
+                                <input name="color" type="radio" id="pick2" value="#5bc0ff">
+                                <label for="pick2">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color3">
+                                <input name="color" type="radio" id="pick3" value="#6A5ACD">
+                                <label for="pick3">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color4">
+                                <input name="color" type="radio" id="pick4" value="#00C957">
+                                <label for="pick4">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color5">
+                                <input name="color" type="radio" id="pick5" value="#ffff00">
+                                <label for="pick5">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color6">
+                                <input name="color" type="radio" id="pick6" value="#ffe384">
+                                <label for="pick6">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color7">
+                                <input name="color" type="radio" id="pick7" value="#FF6100">
+                                <label for="pick7">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color8">
+                                <input name="color" type="radio" id="pick8" value="#802A2A">
+                                <label for="pick8">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                            <div class="color" id="color9">
+                                <input name="color" type="radio" id="pick9" value="#000000">
+                                <label for="pick9">
+                                    <span class="edge"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="side set">
+
+                    <div id="settings">
+                        <div class="tag first collect-control active">
+                            <span>发布控制</span>
+                        </div>
+                        <div class="tag second allocate-control">
+                            <span>配额控制</span>
+                        </div>
+                        <div class="tag third progress-control">
+                            <span>进度控制</span>
+                        </div>
+                        <div class="tag forth quality-control">
+                            <span>质量控制</span>
+                        </div>
+                        <div class="tag fifth finally">
+
+                        </div>
+                        <div class="bar first collect-control active">
+                            <div id="collect_control" class="setting">
+                                <span>计划收集问卷</span>
+                                <span>最少</span>
+                                <input type="number" v-model="total_bottom" @change="updateTotalBottom">
+                                <span>份</span>
+                                <span>,</span>
+                                <span>最多</span>
+                                <input type="number" v-model="total_top" @change="updateTotalTop">
+                                <span>份</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="time_question.restrict">
+                                <span>限制每道题的最短回答时间</span>
+                                <input type="number" v-model="time_question.time">
+                                <span>秒</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="time_survey.restrict">
+                                <span>限制整个问卷的最长回答时间</span>
+                                <input type="number" v-model="time_survey.time">
+                                <span>分钟</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="clientOnly">
+                                <span>只允许登录用户回答</span>
+                            </div>
+                            <div class="setting" v-show="clientOnly">
+                                <input type="checkbox" v-model="disposableForClient">
+                                <span>每个登录用户只能回答一次</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="disposableForIp">
+                                <span>每个ip只能提交一次</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="disposableForDevice">
+                                <span>每个设备只能提交一次</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="passwordNeeded">
+                                <span>需要密码才能查看问卷</span>
+                            </div>
+                            <div class="setting">
+                                <input type="checkbox" v-model="verificationCodeNeeded">
+                                <span>提交需要输入验证码</span>
+                            </div>
+                            <div class="setting">
+
+                            </div>
+                        </div>
+                        <div class="bar second allocate-control">
+
+                        </div>
+                        <div class="bar third progress-control">
+                            <div>请选择想查看进度的问卷: </div>
+                            <select class="select_survey_by_name">
+                                <option value="">请选择</option>
+                            </select>
+                            <div>
+                                <button class="acquire btn btn-default btn-sm">查看进度</button>
+                            </div>
+                        </div>
+                        <div class="bar forth quality-control">
+                            <div>请选择想控制质量的问卷: </div>
+                            <select class="select_survey_by_name">
+                                <option value="">请选择</option>
+                            </select>
+                            <div>
+                                <button class="acquire btn btn-default btn-sm">查看</button>
+                            </div>
+                        </div>
+                        <div class="bar fifth finally">
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side analyze">
+                    <!--<div class="head">
+                        请添加筛选条件
+                    </div>
+                    <!--<label for="select_survey">-->
+                    <!--请选择要分析的问卷:-->
+                    <!--</label>-->
+                    <!--<select name="select_survey" id="select_survey">-->
+                    <!--<option value="">请选择</option>-->
+                    <!--</select>-->
+                    <button class="btn btn-default btn-sm" id="select_item">
+                        点击选择题目
+                    </button>
+                    <!--<select name="select_item" id="select_item">-->
+                    <!--<option value="">请选择</option>-->
+                    <!--</select>-->
+                    <!--<label for="select_form">-->
+                    <!--请选择展现方式:-->
+                    <!--</label>-->
+                    <!--<select name="select_form" id="select_form">-->
+                    <!--<option value="" selected>请选择</option>-->
+                    <!--<option class="table" value="table">表格</option>-->
+                    <!--<option class="bar" value="bar">柱状图</option>-->
+                    <!--<option class="line" value="line">拆线图</option>-->
+                    <!--<option class="pie" value="pie">饼图</option>-->
+                    <!--</select>-->
+                    <!--<div>-->
+                    <!--<button id="build" class="btn btn-sm btn-default">生成分析</button>-->
+                    <!--</div>-->-->
+                </div>
+
+            </div>
+            <!--左侧工具栏-end-->
+
+            <div id="room">
+                <div id="wrap">
+                    <!--装饰花边-start-->
+                    <div id="edge"></div>
+                    <!--装饰花边-end-->
+                    <div id="titles">
+                        <div id="title">
+                            <span placeholder="请输入您的问卷标题" contenteditable="true"></span>
+                        </div>
+                        <!--自定义LOGO-start-->
+                        <span>
+
+                        </span>
+                        <!--自定义LOGO-end-->
+                        <div id="subtitle">
+                            <span placeholder="请输入问卷副标题/描述" contenteditable="true"></span>
+                        </div>
+                    </div>
+                    <div id="survey_container">
+
+                    </div>
+
+                    <div id="set_ui">
+                        <div class="allocate set">
+                            <div class="title">配额设置</div>
+                            <div id="tables" class="table">
+                                <div id="allocate_basic">
+                                    <table id="sum">
+                                        <thead>
+                                        <tr>
+                                            <th class="summary">样本量下限(份)</th>
+                                            <th class="allocate">样本量上限(份)</th>
+                                            <th class="collected">已收集(份)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ summary_bottom }}</td>
+                                            <td>{{ summary_top }}</td>
+                                            <td>{{ collected }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="allocation" v-for="allocating in allocatings" :index="allocating.index">
+                                        <thead>
+                                        <tr>
+                                            <th class="allocate-question">
+                                                <select :value="allocating.question_id" @change="selectQuestion">
+                                                    <option value="">请选择配额题目</option>
+                                                    <option v-for="question in question_list" :value="question.itemKey">
+                                                        {{ question.title }}
+                                                    </option>
+                                                    <option value="deletethis">删除此配额表格</option>
+                                                </select>
+                                            </th>
+                                            <th class="summary_bottom">配额量下限(共{{ allocating.summary_bottom }}份)</th>
+                                            <th class="summary_top">配额量上限(共{{ allocating.summary_top }}份)</th>
+                                            <th class="percent_bottom">配额量下限比例(共{{ allocating.percent_bottom }}%)</th>
+                                            <th class="percent_top">配额量上限比例(共{{ allocating.percent_top }}%)</th>
+                                            <th class="collected">已完成(份)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="opt in allocating.allocate_option" :op_index="opt.op_index">
+                                            <td>
+                                                <select :value="opt.value" @change="selectOption">
+                                                    <option value="">请选择配额选项</option>
+                                                    <option v-for="option in allocating.options" :value="option.value ? option.value : ''">
+                                                        {{ option.value }}
+                                                    </option>
+                                                    <option value="deletethis">删除此项配额</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" :value="opt.allocation_bottom" @change="editAllocationBottom">
+                                            </td>
+                                            <td>
+                                                <input type="number" :value="opt.allocation_top" @change="editAllocationTop">
+                                            </td>
+                                            <td>{{ opt.percent_bottom }}</td>
+                                            <td>{{ opt.percent_top }}</td>
+                                            <td>{{ opt.collected }}</td>
+                                        </tr>
+                                        <tr class="insert-allocation" @click="insertAllocation">
+                                            <td colspan="6">添加配额选项</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div id="insert_table" class="btn btn-default" @click="insertTable">添加配额设置</div>
+                                </div>
+                                <table id="allocate_cross">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 25%">交叉条件</th>
+                                        <th style="width: 12.5%">配额下限(份)</th>
+                                        <th style="width: 12.5%">配额上限(份)</th>
+                                        <th style="width: 12.5%">比例下限(%)</th>
+                                        <th style="width: 12.5%">比例上限(%)</th>
+                                        <th style="width: 12.5%">平均值(%)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="allocating in allocatings" :index="allocating.index">
+                                        <td class="conditions">
+                                            <span class="express writable" contenteditable="true" @input="editExpression" @keypress="keysFuncs">{{ allocating.conditionString }}</span>
+                                            <div class="questions-in-expression">
+                                                <div class="question-in-expression" v-for="question in question_list">
+                                                    <a href="javascript:void(0);" :item_id="question.itemId" :title="question.title" @click="pickQuestion">
+                                                        {{ (question.ordericon || question.index) + '. ' + question.title.slice(0,5) }}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="options-in-expression">
+                                                <div class="option-in-expression" v-for="option in allocating.options" :key="option.optionId">
+                                                    <a href="javascript:void(0);" :option_id="option.optionId" :title="option.value" @click="pickAnswer">
+                                                        {{ option.value.slice(0,5) }}
+                                                    </a>
+                                                </div>
+                                                <div class="option-in-expression">
+                                                    <a href="javascript:void(0);" contenteditable="true" class="blank writable" @keypress="pickAnswer"></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td><input class="bottom" type="number" :value="allocating.allocate_bottom" @input="editEdge"></td>
+                                        <td><input class="top" type="number" :value="allocating.allocate_top" @input="editEdge"></td>
+                                        <td>{{ allocating.percent_bottom }}</td>
+                                        <td>{{ allocating.percent_bottom }}</td>
+                                        <td>{{ allocating.percent_average }}</td>
+                                    </tr>
+                                    <tr class="insert-condition">
+                                        <td colspan="6" @click="insertCondition"></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="progress set">
+                            <div class="title">进度控制</div>
+                            <div id="progress" class="table">
+                                <div id="progress_basic">
+                                    <table class="sum">
+                                        <thead>
+                                        <tr>
+                                            <th class="summary-bottom" style="width: 22%">样本量下限(份)</th>
+                                            <th class="summary-top" style="width: 22%">样本量上限(份)</th>
+                                            <th class="collected" style="width: 22%">已收集(份)</th>
+                                            <th class="correct" style="width: 17%">其中有效数(份)</th>
+                                            <th class="failed" style="width: 17%">其中无效数(份)</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ summary_bottom }}</td>
+                                            <td>{{ summary_top }}</td>
+                                            <td>{{ collected }}</td>
+                                            <td>{{ qualified }}</td>
+                                            <td>{{ unqualified }}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="allocation" v-for="allocating in allocatings" :index="allocating.index">
+                                        <thead>
+                                        <tr>
+                                            <th class="allocate-question" style="width: 44%">
+                                                    配额题目: {{ allocating.question_title }}
+                                            </th>
+                                            <th class="summary_bottom" style="width: 22%">配额量下限(共{{ allocating.summary_bottom }}份)</th>
+                                            <th class="summary_top" style="width: 17%">配额量上限(共{{ allocating.summary_top }}份)</th>
+                                            <!-- <th class="collected">已完成(份)</th> -->
+                                            <th class="correct" style="width: 17%">已完成有效数(份)</th>
+                                            <!-- <th class="failed">其中无效数(份)</th> -->
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="opt in allocating.allocate_option" :op_index="opt.op_index">
+                                            <td>
+                                                    配额选项: {{ opt.value }}
+                                            </td>
+                                            <td>
+                                                {{ opt.allocation_bottom }}
+                                            </td>
+                                            <td>
+                                                {{ opt.allocation_top }}
+                                            </td>
+                                            <td>{{ opt.collected }}</td>
+                                            <!-- <td>{{ opt.correct }}</td> -->
+                                            <!-- <td>{{ opt.failed }}</td> -->
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <table id="progress_cross">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 14%">交叉条件</th>
+                                        <th style="width: 15%">配额下限(份)</th>
+                                        <th style="width: 15%">配额上限(份)</th>
+                                        <th style="width: 22%">已收集(份)</th>
+                                        <th style="width: 17%">其中有效数(份)</th>
+                                        <th style="width: 17%">其中无效数(份)</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="allocating in allocatings" :index="allocating.index">
+                                        <td class="conditions">
+                                            <span class="express writable">{{ allocating.conditionString }}</span>
+                                        </td>
+                                        <td>{{ allocating.allocate_bottom }}</td>
+                                        <td>{{ allocating.allocate_top }}</td>
+                                        <td>{{ allocating.collected }}</td>
+                                        <td>{{ allocating.correct }}</td>
+                                        <td>{{ allocating.failed }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="quality set">
+                            <div id="container" >
+                                <div style="position: absolute;z-index: 3;">
+                                    <div id="toplefttbl" class="FormTable">
+                                        <!--<tr>-->
+                                            <div class="td">操作</div>
+                                        <!--</tr>-->
+                                    </div>
+                                </div>
+                                <div id="topdv">
+                                    <div class="table-mask">
+                                        <div id="toptable" class="FormTable">
+                                            <!--<tr>-->
+                                            <span v-for="question in question_list">
+                                                <span class="td" :type="question.type" :title="question.title" v-if="question['type']=='blank'&&question['form']=='single'">
+                                                    {{ (question.ordericon || question.index) + '. ' + (question.title.length < 10 ? question.title : (question.title.slice(0,7) + '...')) }}
+                                                </span>
+                                                <span v-if="question['type']=='blank'&&question['form']=='multi'">
+                                                    <span class="td" :type="question.type" :title="sbt.title" v-for="sbt in question.sub_questions" :key="sbt.index">
+                                                        {{ (question.ordericon || question.index) + '. ' + sbt.index + (sbt.title.length < 10 ? sbt.title : (sbt.title.slice(0,7) + '...')) }}
+                                                    </span>
+                                                </span>
+                                                <span v-if="question['type']=='choice'">
+                                                    <span class="td" :type="question.type" :title="question.title">
+                                                        {{ (question.ordericon || question.index) + '. ' + (question.title.length < 10 ? question.title : (question.title.slice(0,7) + '...')) }}
+                                                    </span>
+                                                    <!--<span class="td" :type="question.type" :title="question.title" v-for="opt in question.option" v-if="question['type']=='choice'&&opt.fillable=='true'">-->
+                                                        <!--{{ (question.ordericon || question.index) + '. ' + (question.title.length < 10 ? question.title : (question.title.slice(0,7) + '...')) + '-' + opt.index }}-->
+                                                    <!--</span>-->
+                                                </span>
+                                                <span v-if="question['type']=='checks'">
+                                                    <span class="td" :type="question.type" :title="question.title" v-for="opt in question.option" :key="opt.index">
+                                                        {{ (question.ordericon || question.index) + '. ' + opt.index + (opt.value.length < 10 ? opt.value : (opt.value.slice(0,7) + '...')) }}
+                                                    </span>
+                                                    <!--<span class="td" :type="question.type" :title="question.title" v-for="opt in question.option" :key="opt.index">-->
+                                                        <!--{{ (question.ordericon || question.index) + '. ' + opt.index + (opt.value.length < 10 ? opt.value : (opt.value.slice(0,7) + '...')) + '-' + opt.index }}-->
+                                                    <!--</span>-->
+                                                </span>
+                                                <span v-if="question['type']=='matrix'">
+                                                    <span v-for="sbt in question.sub_questions" :key="sbt.index">
+                                                        <span class="td" :type="question.type" :title="question.title" v-for="opt in question.option" :key="opt.index">
+                                                            {{ (question.ordericon || question.index) + '. ' + sbt.index + (sbt.title.length < 5 ? sbt.title : (sbt.title.slice(0,3) + '..')) + '. ' + opt.index + (opt.value.length < 5 ? opt.value : (opt.value.slice(0,3) + '..')) }}
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                                <span class="td" :type="question.type" :title="question.title" v-if="question['type']=='score'">
+                                                    {{ (question.ordericon || question.index) + '. ' + (question.title.length < 10 ? question.title : (question.title.slice(0,7) + '...')) }}
+                                                </span>
+                                                <span v-if="question['type']=='sort'">
+                                                    <span class="td" :type="question.type" :title="question.title" v-for="opt in question.option" :key="opt.index">
+                                                        {{ (question.ordericon || question.index) + '. ' + opt.index + (opt.value.length < 10 ? opt.value : (opt.value.slice(0,7) + '...')) }}
+                                                    </span>
+                                                </span>
+                                                <span class="td" :type="question.type" :title="question.title" v-if="question['type'].indexOf('[') > -1">
+                                                    {{ (question.ordericon || question.index) + '. ' + (question.title.length < 10 ? question.title : (question.title.slice(0,7) + '...')) }}
+                                                </span>
+                                            </span>
+                                            <!--</tr>-->
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="answers">
+                                    <div id="leftdv">
+                                        <div class="table-mask">
+                                            <div id="lefttable" class="FormTable">
+                                                <!--<tr>-->
+                                                <div class="td" v-for="result in results">
+                                                    <span class="index">{{ result.resultId }}</span>
+                                                    <span class="controls">
+                                                        <span class="invalid btn-danger" v-show="!result.reason">
+                                                            <input class="reason" type="text">
+                                                            <span class="invalid-with-reason" :result_id="result.resultId">D</span>
+                                                        </span>
+                                                        <span class="invalided btn-danger" v-show="result.reason" :title="result.reason">
+                                                            {{ result.reason && (result.reason.length < 7 ? result.reason : result.reason.slice(0,5) + '..') }}
+                                                        </span>
+                                                    </span>
+                                                </div>
+                                                <!--</tr>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="position: relative;z-index:1;">
+                                        <div id="datatable" class="FormTable">
+                                            <div v-for="result in results">
+                                                <span v-for="answer in result.list">
+                                                    <span v-if="answer">
+                                                        <span class="td" :index="answer[0]['index']" :type="answer[0]['type']" v-if="answer[0]['type']=='blank'&&answer[0]['form']=='single'">
+                                                            {{ answer[0].values.toString() }}
+                                                        </span>
+                                                        <span :index="answer[0]['index']" :type="answer[0]['type']" v-if="answer[0]['type']=='blank'&&answer[0]['form']=='multi'">
+                                                            <span class="td" v-for="code in answer[0]['codes']">
+                                                                {{ answer[0]['values'][answer[0]['codes'].indexOf(code)] }}
+                                                            </span>
+                                                        </span>
+                                                        <span :index="answer[0]['index']" :type="answer[0]['type']" class="td" v-if="answer[0]['type']=='choice'">
+                                                            {{ answer[0]['codes'][0] != '99' ? answer[0]['codes'][0] : answer[0]['values'][0] }}
+                                                        </span>
+                                                        <span :index="answer[0]['index']" :type="answer[0]['type']" v-if="answer[0]['type']=='checks'">
+                                                            <span class="td" v-for="code in answer[0]['option']">
+                                                                {{ answer[0]['codes'].indexOf(code) > -1 ? 1 : 0 }}
+                                                            </span>
+                                                        </span>
+                                                        <span :index="answer[0]['index']" :type="answer[0]['type']" v-if="answer[0]['type']=='matrix'">
+                                                            <span v-for="sbt in answer[0]['sub_questions']" :key="sbt.index">
+                                                                <span class="td" v-for="opt in answer[0]['option']" :key="opt.index">
+                                                                    <span v-if="answer[0]['form']=='blank'">
+                                                                        <span v-for="v in answer[0]['values']" v-if="v['coordinate'].indexOf(sbt+'-')>-1&&v['coordinate'].indexOf('-'+opt)>-1">
+                                                                            {{ v.value }}
+                                                                        </span>
+                                                                    </span>
+                                                                    <span v-if="answer[0]['form']=='single'">
+                                                                        <span v-for="v in answer[0]['values']" v-if="v['coordinate'].indexOf(sbt+'-')>-1&&v['coordinate'].indexOf('-'+opt)>-1">
+                                                                            {{ opt.index }}
+                                                                        </span>
+                                                                    </span>
+                                                                    <span v-if="answer[0]['form']=='multi'">
+                                                                        <span v-for="v in answer[0]['values']" v-if="v['coordinate'].indexOf(sbt+'-')>-1&&v['coordinate'].indexOf('-'+opt)>-1">
+                                                                            {{ opt.index }}
+                                                                        </span>
+                                                                    </span>
+                                                                </span>
+                                                            </span>
+                                                        </span>
+                                                        <span :index="answer[0]['index']" :type="answer[0]['type']" class="td" v-if="answer[0]['type']=='score'">
+                                                            {{ answer[0]['codes'][0] != '99' ? answer[0]['codes'][0] : answer[0]['values'][0] }}
+                                                        </span>
+                                                        <span :index="answer[0]['index']" :type="answer[0]['type']" v-if="answer[0]['type']=='sort'">
+                                                            <span class="td" v-for="opt in answer[0]['option']">
+                                                                {{ answer[0]['values'].indexOf(opt)>-1 ? answer[0]['values'].indexOf(opt)+1:'' }}
+                                                            </span>
+                                                        </span>
+                                                    </span>
+                                                    <!--<span class="td" v-if="!answer">-->
+
+                                                    <!--</span>-->
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="download">
+                                    <button id="download_data" class="btn btn-info btn-sm" style="position: fixed;top: 500px; right: 200px;">导出文件</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="analysis">
+                        <!--<div class="title">看这个是标题</div>-->
+                        <!--<div id="tables">-->
+                            <div class="table">
+                                <!--<div class="head">-->
+                                    <!--<span class="pull-right">-->
+                                        <!--<span class="">展示方式: </span>-->
+                                        <!--<select class="options">-->
+                                            <!--<option>表格</option>-->
+                                            <!--<option selected>柱状图</option>-->
+                                            <!--<option>拆线图</option>-->
+                                            <!--<option>饼图</option>-->
+                                        <!--</select>-->
+                                    <!--</span>-->
+                                <!--</div>-->
+                                <!--<div id="an" class="main">-->
+
+                                <!--</div>-->
+                            </div>
+                        <!--</div>-->
+                        <div id="pick_question_to_analyze">
+                            <div class="head">
+                                <span class="title">请选择分析题目和分析方式</span>
+                                <span class="close"></span>
+                            </div>
+                            <div class="main">
+                                <div id="unpicks">
+                                    <div class="unpick" v-for="unpick in unpicks" :key="unpick.index" :index="unpicks.indexOf(unpick)" :item_id="unpick.itemId" @click="pick">{{ unpick.index }}. {{ unpick.title }}</div>
+                                </div>
+                                <div id="pickeds">
+                                    <div class="picked" v-for="picked in pickeds" :key="picked.index" :index="pickeds.indexOf(picked)" :item_id="picked.itemId" @click="unpick">{{ picked.index }}. {{ picked.title }}</div>
+                                </div>
+                                <div id="forms">
+                                    <input type="checkbox" id="an_mode_table" class="form" mode="table" :disabled="pickedTypes.indexOf('blank')> -1">
+                                    <label for="an_mode_table">表格</label>
+                                    <input type="checkbox" id="an_mode_bars" class="form" mode="bars" :disabled="pickedTypes.indexOf('matrix') > -1 || pickedTypes.indexOf('sort') > -1|| pickedTypes.indexOf('blank')> -1">
+                                    <label for="an_mode_bars">柱图</label>
+                                    <input type="checkbox" id="an_mode_pies" class="form" mode="pies" :disabled="pickedTypes.indexOf('matrix') > -1 || pickedTypes.indexOf('sort') > -1|| pickedTypes.indexOf('blank')> -1">
+                                    <label for="an_mode_pies">饼图</label>
+                                </div>
+                            </div>
+                            <div class="foot">
+                                <button class="btn btn-sm btn-success" @click="saveBox">分析</button>
+                                <button class="btn sm btn-info" @click="downloadBox">导出</button>
+                                <button class="btn btn-sm btn-warning" @click="closeBox">取消</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/echarts/echarts.js"></script>
+<script src="../../unpacked_updating/kolpanel/realPath.js"></script>
+<script src="../../unpacked_updating/kolpanel/template.js"></script>
+<script src="../../unpacked_updating/kolpanel/createItem.js"></script>
+<script src="../../unpacked_updating/kolpanel/setui.js"></script>
+<script src="../../js/kolpanel/analyze.js"></script>
+<script src="../../unpacked_updating/kolpanel/design.js"></script>
+<!--<script src="../../js/kolpanel/packedDesign.js"></script>-->
+</body>
+</html>

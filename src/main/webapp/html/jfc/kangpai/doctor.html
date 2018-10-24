@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<ul class="nav nav-pills" role="tablist">
+					<li role="presentation" class="active"><a href="#home"
+						role="tab" data-toggle="tab">模糊查询</a></li>
+					<li role="presentation"><a href="#profile"
+						role="tab" data-toggle="tab">快速查询</a></li>
+					<li role="presentation"><a href="#messages" role="tab"
+						data-toggle="tab">精确查询</a></li>
+					<li role="presentation"><a href="#settings" role="tab"
+						data-toggle="tab">匹配查询</a></li>
+					<li role="presentation"><a href="#column" role="tab"
+						data-toggle="tab">字段设置</a></li>
+					<li role="presentation"><a href="#operation" role="tab"
+						data-toggle="tab">操作设置</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane" id="operation">
+
+						<button class="btn btn-info" id="add">添加</button>
+					<!--  <button class="btn btn-danger" id="delete">删除</button> -->
+					<button class="btn btn-default" data-toggle="modal"
+						data-target="#uploadModal" id="push">批量导入</button>
+					<button class="btn btn-warning" data-toggle="modal"
+						data-target="#emailModal" id="mail">发送邮件</button>
+					</div>
+					<div role="tabpanel" class="tab-pane active" id="home">
+
+						<div class="input-group col-sm-4" style="margin-top:3%">
+							<input type="text" class="form-control" id="keyword"> <span
+								class="input-group-btn">
+								<button class="btn btn-default" type="button" id="fuzzy_go">Go!</button>
+							</span>
+						</div>
+					</div>
+					
+					<div role="tabpanel" class="tab-pane" id="profile"  style="margin-top:3%">
+						<form class="form-inline" role="form">
+							<select id="" class="form-control">
+								<option>省份</option>
+								<option>城市</option>
+								<option>。。。</option>
+							</select> <input type="text" class="form-control" id="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							 <select
+								id="" class="form-control">
+								<option>并且</option>
+								<option>或</option>
+							</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <select id="" class="form-control">
+								<option>省份</option>
+								<option>城市</option>
+								<option>。。。</option>
+							</select> <input type="text" class="form-control" id=""> <br><br>
+							<select
+								id="" class="form-control">
+								<option>并且</option>
+								<option>或</option>
+							</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select id="" class="form-control">
+								<option>省份</option>
+								<option>城市</option>
+								<option>。。。</option>
+							</select> <input type="text" class="form-control" id="">
+							<button  class="btn btn-primary"
+									data-loading-text="Loading..." type="button" id="">搜索</button>
+						</form>
+					</div>
+					<!-- <div role="tabpanel" class="tab-pane" id="profile">.bbb..</div> -->
+					<div role="tabpanel" class="tab-pane" id="messages" style="margin-top:3%">
+						<form class="form-inline" role="form">
+							<div class="form-group">
+								<label class="form-label">省份&nbsp;&nbsp;&nbsp;</label> <select  id="province"
+									class="form-control">
+									<option></option>
+								</select>&nbsp;&nbsp;&nbsp;&nbsp;<label class="form-label">城市&nbsp;&nbsp;&nbsp;</label> <select
+									id="city" class="form-control">
+									<option></option>
+								</select> &nbsp;&nbsp;&nbsp;<label class="form-label">区县&nbsp;&nbsp;&nbsp;</label> <select
+									id="district" class="form-control">
+									<option></option>
+								</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label for="departmentCategory">科室类别</label> <select
+									id="departmentCategory" class="form-control">
+									<option value=""></option>
+								</select>&nbsp;&nbsp;&nbsp;
+								<button data-toggle="collapse" data-parent="#accordion"
+									class="btn btn-info btn-sm" href="#collapseTwo">更多</button>
+								&nbsp;&nbsp;&nbsp;
+								<button  class="btn btn-primary"
+									data-loading-text="Loading..." type="button" id="accurate_go">搜索</button>
+							</div>
+						</form>
+						<br>
+
+						<div id="collapseTwo" class="panel-collapse collapse">
+							<form class="form-inline" role="form">
+								<div class="form-group">
+									<label for="hospital_level">单位级别</label> <select id="hospital_level" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">一级</option>
+										<option value="2">二级</option>
+										<option value="3">三级</option>
+									</select>  &nbsp;&nbsp;&nbsp;
+									<label for="hospital_grade">单位等级</label> <select id="hospital_grade" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">甲等</option>
+										<option value="2">乙等</option>
+										<option value="3">丙等</option>
+										<option value="4">未知</option>
+									</select> &nbsp;&nbsp;&nbsp;
+									<label for="type_id">单位类型</label> <select id="type_id" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">综合</option>
+										<option value="2">专科</option>
+										<option value="3">未知/其他</option>
+									</select>&nbsp;&nbsp;&nbsp;
+									 <label for="profit_id">盈利性质</label> <select id="profit_id" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">盈利</option>
+										<option value="2">非盈利</option>
+										<option value="3">未知/其他</option>
+									</select>
+								</div>
+								<p>
+								<div class="form-group">
+								   <label for="category">职称类别</label> <select id="category" class="form-control">
+										<option value="">请选择</option>
+									</select>
+									<label for="administrative">行政职称</label> <select id="administrative"  class="form-control">
+								      <option value="">请选择</option>
+									</select>
+									
+									<label for="departmentCategory">科室类别</label> <select id="departmentCategory" class="form-control">
+										<option value="">请选择</option>
+									</select>
+									<label for="nature">科室性质</label> <select id="nature" class="form-control">
+										<option value="">请选择</option>
+									</select>
+								</div>
+								<div class="form-group" style="margin-top:1%">
+									<label for="level">职称级别</label>  <input type="text" id="level" class="form-control">
+									<label for="departmentBelonged">所在科室</label> <input type="text" id="departmentBelonged"  class="form-control">
+									<label for="spec">专业领域</label> 
+										<input type="text" id="spec"  class="form-control" class="form-control">
+								</div>
+								<div class="form-group" style="margin-top:1%">
+									<label for="doc_sex">性别</label> <select id="doc_sex" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">男</option>
+										<option value="0">女</option>
+									</select>
+									<label for="doc_old">年龄</label> <input type="date" id="doc_old" class="form-control">
+									<label for="docPostageTime">医龄</label> <input type="date"  class="form-control" id="docPostageTime">
+									<label for="doc_education">学历</label> <input id="doc_education" class="form-control">
+									
+								</div>
+								<div class="form-group" style="margin-top:1%">
+									<label for="docEmploymentTime">岗位年龄</label> 
+									<input type="date"  class="form-control" id="docEmploymentTime">
+									<label for="importance">数据重要度</label> <select id="importance" class="form-control">
+									<option value="">请选择</option>
+									</select> <label for="coor_id">数据配合度</label> <select id="coor_id" class="form-control">
+									<option value="">请选择</option>
+									<option value="1">高</option>
+									<option value="2">普通</option>
+									<option value="3">低</option>
+									</select> <label for="liveness">数据活跃度</label> <select id="liveness" class="form-control">
+									<option value="">请选择</option>
+									</select>
+								</div>
+								<div class="form-group" style="margin-top:1%">
+									<label for="attr_id">单位属性</label><select id="attr_id" class="form-control"></select>
+									 <label for="kol" class="form-control">KOL属性</label> 
+									    <select id="kol" class="form-control">
+											<option value="">请选择</option>
+											<option value="1">KOL</option>
+											<option value="2">普通</option>
+									  </select> 
+									 <label for="payer">Payer属性</label>
+									 <select id="payer" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">PAYER</option>
+										<option value="2">普通</option>
+									</select>
+									<label for="purchase">采购属性</label>
+									<select id="purchase" class="form-control">
+										<option value="">请选择</option>
+										<option value="1">Purchase</option>
+										<option value="2">普通</option>
+									</select>
+									 <label for="honour">荣誉属性</label>
+									  <select id="honour" class="form-control">
+										<option value="">请选择</option>
+									</select> 
+								</div>
+							</form>
+						</div>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="settings">
+							<form method="post" enctype="multipart/form-data" id="matching"
+								 class="form-inline" role="form">
+								<div class="form-group" style="margin-top:1%">
+								<input type="file" name="file"
+											accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/application/vnd.ms-excel"
+											id="upload">
+										
+								</div>
+								<div class="form-group" style="margin-top:1%">
+								   <input type="submit" value="上传" class="btn btn-primary" id="btn_matching">
+								 </div>
+							</form>
+					</div>
+					<div role="tabpanel" class="tab-pane" id="column">完善</div>
+				</div>
+			</div>
+		</div>
+		<p>
+		<div class="row">
+			<div class="col-sm-12">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th style="width: 2%" class="center"><label> <input
+									type="checkbox" id="selectAll" class="ace" /></label></th>
+							<th style="width: 5%">姓名</th>
+							<th style="width: 6%">城市</th>
+							<th style="width: 13%">医院</th>
+							<th style="width: 6%">级别</th>
+							<th style="width: 5%">电话</th>
+							<th style="width: 15%">科室</th>
+							<th style="width: 8%">职称</th>
+							<th style="width: 10%">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+					<tbody id="the_table">
+
+					</tbody>
+
+				</table>
+				<div class="col-sm-8">
+					<nav aria-label="Page navigation" class="page">
+						<ul id="page" style="text-align: center;" class="pagination">
+						</ul>
+					</nav>
+				</div>
+				<div class="col-sm-3">
+					<nav aria-label="Page navigation" class="page">
+						<ul id="totals" style="text-align: left;" class="pagination">
+							<!-- <li><span class="disabled"></span></li> -->
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title" id="uploadModalLabel">导入Excel</h4>
+				</div>
+
+				<form method="post" enctype="multipart/form-data" id="excelImport">
+					<div class="modal-body">
+						<input type="file" name="file"
+							accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/application/vnd.ms-excel"
+							id="upload">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<input type="button" value="保存" class="btn btn-primary"
+							id="excel_save">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="modal fade" id="uploadModals" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<!-- 导入 -->
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<fieldset>
+						<legend>单位信息</legend>
+						<div class="text-warning col-sm-12" id="docId"></div>
+						<div class="text-warning col-sm-12" id="prov"></div>
+						<div class="text-warning col-sm-6" id="nam"></div>
+						<div class="text-warning col-sm-3" id="leel"></div>
+						<div class="text-warning col-sm-3" id="grad"></div>
+
+						<div class="text-warning col-sm-6" id="tell"></div>
+						<div class="text-warning col-sm-3" id="lei"></div>
+						<div class="text-warning col-sm-3" id="shu"></div>
+					</fieldset>
+					<fieldset>
+						<legend>基本信息</legend>
+						<div class="text-warning col-sm-3" id="xing"></div>
+						<div class="text-warning col-sm-3" id="bie"></div>
+						<div class="text-warning col-sm-6" id="dian"></div>
+						<div class="text-warning col-sm-6" id="you"></div>
+						<div class="text-warning col-sm-6" id="qq"></div>
+						<div class="text-warning col-sm-6" id="zuo"></div>
+						<div class="text-warning col-sm-6" id="shengf"></div>
+						<div class="text-warning col-sm-4" id="nian"></div>
+						<div class="text-warning col-sm-4" id="xueli"></div>
+						<div class="text-warning col-sm-4" id="yi"></div>
+					</fieldset>
+					<fieldset>
+						<legend>属性</legend>
+						<div class="text-warning col-sm-4" id="leibie"></div>
+						<div class="text-warning col-sm-4" id="jibi"></div>
+						<div class="text-warning col-sm-4" id="zhicheng"></div>
+
+						<div class="text-warning col-sm-4" id="nut"></div>
+						<div class="text-warning col-sm-4" id="dec"></div>
+						<div class="text-warning col-sm-4" id="deb"></div>
+					</fieldset>
+					<div class="col-xs-12 col-md-offset-6">
+						<button class="btn btn-xs btn-danger delete_btn">
+							<i class="glyphicon glyphicon-trash"></i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../../js/jquery.js"></script>
+	<script src="../../../js/bootstrap.min.js"></script>
+	<script src="../../../js/jfc/kangpai/page.js"></script>
+	<script src="../../../js/jfc/kangpai/lists.js"></script>
+	<script src="../../../js/jfc/kangpai/ChainReact.js"></script>
+	<script src="../../../js/jfc/kangpai/fillOptions.js"></script>
+	<script src="../../../js/jfc/kangpai/jquery.form.js"></script>
+	<script src="../../../js/jfc/kangpai/doctor.js"></script>
+</body>
+</html>

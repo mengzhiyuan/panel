@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>应用中心</title>
+<!-- Bootstrap -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+<link rel="stylesheet" href="../../css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../../css/swing/design.css">
+</head>
+<body>
+	<header id="header" class="header">
+		<div class="col-md-10 column">
+			<a class="home-button" href="./home.html"><i
+				class="glyphicon glyphicon-home"></i></a>
+			<nav>
+				<a>XXXX，欢迎使用SWING首问调查平台!!!</a>
+			</nav>
+		</div>
+		<div class="col-md-2 column" style="background-color: #00b0f0">
+			<div class="dropdown">
+				<a href="./application.html"
+					style="color: #FFF; font-size: 30px; top: 10px; margin-left: 40px"
+					class="glyphicon glyphicon-th"></a> <a id="dLabel" role="button"
+					data-toggle="dropdown" data-target="#" href="javascript:;"
+					style="color: #FFF; line-height: 50px; font-size: 14px; margin-left: 50px">
+					账户 <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu multi-level" role="menu"
+					aria-labelledby="dropdownMenu">
+					<li><a tabindex="-1" href="./personal_information.html">个人信息</a>
+					<li><a tabindex="-1" href="./resources.html">我的资源</a>
+					<li><a tabindex="-1" href="./contact_person.html">联系人</a>
+					<li><a tabindex="-1" href="javascript:;">我的消息</a>
+					<li><a tabindex="-1" href="javascript:;">帮助中心</a>
+					<li><a tabindex="-1" href="./swing.html">退出</a>
+				</ul>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<div class="row clearfix" style="margin-top: 100px">
+			<div class="col-md-3 column text-center"
+				style="color: #FFF; cursor: pointer;height:245px; background-color:#4ECDED;border-radius: 15px;" data-toggle="modal" data-target="#myModal">
+				<h3>抽奖</h3>
+				<p>填写有抽奖用户更疯狂</p>
+				<img alt="" src="../../images/swing/bg_lucky_draw.png">
+			</div>
+			<div class="col-md-3 column text-center"
+				style="height:245px; background-color: #4ECDED; color: #FFF;margin-left:10% ;cursor: pointer;border-radius: 15px;" data-toggle="modal" data-target="#myModal1">
+				<h3>微信红包</h3>
+				<p>填后发红包活动更精彩</p>
+				<img alt="" src="../../images/swing/bg_envelope.png">
+			</div>
+			<div class="col-md-3 column text-center"
+				style="background-color: #4ECDED;  color: #FFF; cursor: pointer;margin-left:10% ;height:245px;border-radius: 15px;">
+				<h3>定制服务</h3>
+				<p>精准控制人群比例</p>
+				<img alt="" src="../../images/swing/bg_ent_cooperation.png">
+				
+		    </div>
+			<div class="col-md-3 column text-center"
+				style="background-color: #4ECDED; margin-top: 3%; color: #FFF;cursor: pointer;height:245px;border-radius: 15px;">
+				<h3>样本服务</h3>
+				<p>精准控制人群比例</p>
+				<img alt="" src="../../images/swing/bg_vote_wall.png">
+			</div>
+			<div class="col-md-3 column text-center"
+				style="background-color: #ADA8A3; height:245px; margin-top: 3%;margin-left:10% ; color: #FFF; cursor: pointer;border-radius: 15px; ">
+				<h3>即将推出新的应用</h3>
+				<p>我们正在开发更多新的应用</p>
+				<img alt="" src="../../images/swing/bg_more.png">
+			</div>
+		</div>
+	</div>
+
+
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="col-md-2 column">
+						<img alt="" src="../../images/swing/choujiang.png">
+					</div>
+					<div class="col-md-3 column">
+						<span style="font-size: 18px">抽奖</span> <span
+							class="label label-warning">高级应用</span>
+					</div>
+				</div>
+				<div class="modal-body" style="height: 450px">
+					<div class="col-md-9 column">
+						<img alt="" src="../../images/swing/lucky_draw.gif">
+					</div>
+					<div class="col-md-3 column">
+						<span style="font-size: 14px">简介</span><br> <span
+							style="font-size: 10px; color: #9D9A94">问卷、表单、测评均可添加抽奖。可自定义奖品、设置中奖概率、支持生成兑奖码、收集寄件地址</span><br>
+						<span style="font-size: 14px; color: #0066dd">[了解如何设置]</span>
+					</div>
+
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+
+	<!-- 模态框（Modal）1 -->
+	<div class="modal fade" id="myModal1" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" style="width: 800px;">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<div class="col-md-2 column">
+						<img alt="" src="../../images/swing/lucky_money.jpg">
+					</div>
+					<div class="col-md-3 column">
+						<span style="font-size: 18px">微信红包</span> <span
+							class="label label-warning">高级应用</span>
+					</div>
+				</div>
+				<div class="modal-body" style="height: 450px">
+					<div class="col-md-9 column">
+						<img alt="" src="../../images/swing/lucky_money.gif">
+					</div>
+					<div class="col-md-3 column">
+						<span style="font-size: 14px">简介</span><br> <span
+							style="font-size: 10px; color: #9D9A94">成功提交答卷即可领取微信红包。支持普通红包和拼手气红包，可设置中奖概率。问卷、表单、测评均可添加。</span><br>
+						<span style="font-size: 14px; color: #0066dd">[了解如何设置]</span>
+					</div>
+
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap-table.min.js"></script>
+	<script src="../../js/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../js/laydate.js"></script>
+</body>
+</html>

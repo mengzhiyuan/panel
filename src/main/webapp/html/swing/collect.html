@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+	<title>首问调研平台</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet/less" href="../../css/swing/collect.less">
+	<script src="../../js/swing/common/less.js"></script>
+</head>
+<body>
+
+<div id="root" v-clock>
+	<header id="header" class="header">
+		<a class="home-button" href="" @click="goHome"><i class="glyphicon glyphicon-home"></i></a>
+		<nav>
+			<a href="" @click="goDesign">设计问卷<i class="glyphicon glyphicon-menu-right"></i></a>
+			<a href="" :class="{ active: active_step === 'collect' }" @click="goCollect">收集问卷<i class="glyphicon glyphicon-menu-right"></i></a>
+			<a href="" @click="goStatistics">数据管理</a>
+		</nav>
+		<span class="survey-name">
+			<b>{{ survey_number }}.</b>
+			<i>
+				<input class="edit" v-if="inputting" type="text" @keyup="presentSurveyName" v-model="survey_name">
+				<span class="present" v-else @click="editSurveyName">{{ survey_name }}</span>
+			</i>
+		</span>
+		<a class="account" href="">
+		<span>
+			<b>USER001</b>
+		</span>
+			<ul>
+				<li></li>
+			</ul>
+		</a>
+	</header>
+	<div id="toolbar" class="toolbar">
+		<span class="trigger">
+			<button class="btn btn-primary" v-if="publish_status" @click="togglePublish">暂停</button>
+			<button class="btn btn-primary" v-else @click="togglePublish">发布</button>
+		</span>
+	</div>
+	<div id="settings">
+		<div id="list" class="list">
+			<ul>
+				<li @click="switchTo('copy-links')" :class="{ 'checked': share_status === 'copy-links' }">复制链接</li>
+				<li @click="switchTo('share-message')" :class="{ 'checked': share_status === 'share-message' }">短信分享</li>
+				<li @click="switchTo('share-email')" :class="{ 'checked': share_status === 'share-email' }">邮件分享</li>
+				<li @click="switchTo('embed-web')" :class="{ 'checked': share_status === 'embed-web' }">网站嵌入</li>
+			</ul>
+		</div>
+		<div id="display" class="display">
+			<div id="ads">
+				<button class="btn btn-large btn-success">收集问卷</button>
+				<button class="btn btn-large btn-primary">购买样本</button>
+			</div>
+			<div id="fixed_link">
+				<div>
+					<span>复制链接：</span>
+					<input type="text" :value="survey_url" disabled>
+					<button class="btn btn-sm btn-primary" @click="copyLink">复制</button>
+					<b>
+						分享链接：
+						<a href=""><img src="../../images/swing/weixin.png" alt="微信分享"></a>
+						<a href=""><img src="../../images/swing/weibo.png" alt="微博分享"></a>
+						<a href=""><img src="../../images/swing/QQ.png" alt="QQ分享"></a>
+					</b>
+				</div>
+				<div>
+					<span>二维码分享：</span>
+					<span id="qr" class="qr"></span>
+				</div>
+			</div>
+			<div id="demo">
+				<div id="link_exclusive" v-show="share_status !== 'embed-web'">
+					<p>唯一链接管理</p>
+					<div class="control">
+						<div class="button-wrap">
+							<button class="btn btn-sm btn-primary" @click="beforeCreateLink">生成链接</button>
+							<div class="number" v-show="creating_link">
+								<div><input type="number" v-model="link_number"></div>
+								<div>
+									<button class="btn btn-sm btn-default" @click="createLink">确认</button>
+								</div>
+							</div>
+						</div>
+						<div class="button-wrap">
+							<button class="btn btn-sm btn-success">链接管理</button>
+						</div>
+					</div>
+					<table>
+						<thead>
+						<tr>
+							<th>链接ID</th>
+							<th>链接地址</th>
+							<th>链接状态</th>
+						</tr>
+						</thead>
+						<tbody>
+						<tr v-for="link in links">
+							<td>{{ link.linId }}</td>
+							<td>{{ link.linUrl }}</td>
+							<td></td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="patch_web" v-show="share_status === 'embed-web'">
+					<p>网页嵌入管理</p>
+				</div>
+			</div>
+		</div>
+		<div id="options" class="options">
+			<div id="configs" class="bar">
+				<div class="brick" id="set_quota">
+					<div class="set_name" @click="switchItemType($event, 1)">配额设置</div>
+					<div class="sets">
+						<div class="content">
+							<div class="config">
+								<span class="text">一共须收集问卷</span>
+								<i class="order">
+									<input type="number" v-model="quotas.total_limit.min_value">
+									到
+									<input type="number" v-model="quotas.total_limit.max_value">
+								</i>
+								<i class="order">份</i>
+							</div>
+						</div>
+						<h5 class="type">复杂配额设置</h5>
+						<div class="content quota" v-for="quota in quotas.quota_restriction">
+							<div class="append-quota">
+								<i class="glyphicon glyphicon-plus" @click="appendQuota"></i>
+							</div>
+							<div class="config">
+								<i class="order">
+									<select v-model="quota.item_id">
+										<option value="">请选择</option>
+										<option v-for="item in questions" v-if="item.type === 'choice' || item.type === 'check' || item.type === 'score' || item.type === 'pictures'" :value="item.sub_id">{{ item.number }}</option>
+									</select>
+								</i>
+								<i class="order">
+									题选择了
+									<select v-model="quota.selected">
+										<option v-for="option in quota.item.options" :value="option.option_id">{{ option.option_content }}</option>
+									</select>
+									的：
+								</i>
+							</div>
+							<div class="config">
+								<i class="order">
+									<input type="number" v-model="quota.min">
+									份到
+								</i>
+								<i class="order">
+									<input type="number" v-model="quota.max">
+									份
+								</i>
+							</div>
+						</div>
+						<div class="content save">
+							<button class="btn btn-sm btn-default" @click="saveQuotas">保存</button>
+						</div>
+					</div>
+				</div>
+				<div class="brick" id="set_collect">
+					<div class="set_name" @click="switchItemType($event, 2)">收集设置</div>
+					<div class="sets">
+						<div class="content">
+							<div class="config">
+								<span class="text">允许断点续答</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.breakpoint_answer" @change="switchBool('breakpoint_answer')">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">答题显示进度条</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.progress_bar" @change="switchBool('progress_bar')">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">允许回退进度</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.rollback_progress" @change="switchBool('rollback_progress')">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">允许受访人查看统计</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.viewing_statistics" @change="switchBool('viewing_statistics')">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">设置最短答卷时间</span>
+								<i class="order">
+									<input type="number" v-model="restrict.answer_time">
+									分
+								</i>
+								<!--<i class="order">-->
+									<!--<input type="number" v-model="restrict.min_time_second">-->
+									<!--秒-->
+								<!--</i>-->
+							</div>
+							<div class="config">
+								<span>设置问卷起始时间</span>
+								<i class="order">
+									<input type="date" v-model="restrict.start_end_time.star_time">
+									至
+									<input type="date" v-model="restrict.start_end_time.star_time">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">禁止重复提交</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.repeated_submission" @change="switchBool('repeated_submission')">
+								</i>
+							</div>
+							<div class="config" v-show="restrict.repeated_submission">
+								<span class="text">IP地址</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.user_resp.ip" @change="switchBool('user_resp','ip')">
+								</i>
+								<span class="text">微信号</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.user_resp.wechat" @change="switchBool('user_resp','wechat')">
+								</i>
+								<span class="text">设备</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.user_resp.equipment" @change="switchBool('user_resp','equipment')">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">显示题号</span>
+								<i class="order">
+									<input type="checkbox" :checked="restrict.display_number" @change="switchBool('display_number')">
+								</i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="brick" id="manage_links">
+					<div class="set_name" @click="switchItemType($event, 3)">链接管理</div>
+					<div class="sets">
+						<div class="content">
+							<div class="config" v-show="share_status === 'share-email'">
+								<i class="order">
+									<label><input type="radio" :checked="email.host === 'common'" @change="switchHost('common')"><i>平台邮箱</i></label>
+								</i>
+								<i class="order">
+									<label><input type="radio" :checked="email.host === 'private'" @change="switchHost('private')"><i>个人邮箱</i></label>
+								</i>
+							</div>
+							<div class="config" v-show="share_status === 'share-email' && email.host === 'private'">
+								<span class="text">发件服务器</span>
+								<i class="order">
+									<input type="text" v-model="email.host_address">
+								</i>
+							</div>
+							<div class="config" v-show="share_status === 'share-email' && email.host === 'private'">
+								<span class="text">发件端口号</span>
+								<i class="order">
+									<input type="text" v-model="email.port">
+								</i>
+							</div>
+							<div class="config" v-show="share_status === 'share-email' && email.host === 'private'">
+								<span class="text">发件邮箱</span>
+								<i class="order">
+									<input type="text" v-model="email.email_account">
+								</i>
+							</div>
+							<div class="config" v-show="share_status === 'share-email' && email.host === 'private'">
+								<span class="text">邮箱密码</span>
+								<i class="order">
+									<input type="text" v-model="email.email_password">
+								</i>
+							</div>
+							<div class="config">
+								<span class="text">发件人</span>
+								<i class="order">
+									<input type="text" v-model="email.signature">
+								</i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="brick" id="reward">
+					<div class="set_name" @click="switchItemType($event, 4)">抽奖&红包</div>
+					<div class="sets">
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../../js/swing/common/jquery.js"></script>
+<script src="../../js/swing/common/bootstrap.min.js"></script>
+<script src="../../js/swing/common/vue.js"></script>
+<script src="../../js/swing/common/wangEditor.js"></script>
+<script src="../../js/swing/common/qrcode.min.js"></script>
+<!--<script src="./js/common/functions.js"></script>-->
+<!--<script src="./js/common/header.js"></script>-->
+<!--<script src="./js/design/design.js"></script>-->
+<script src="../../js/swing/production/collect.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/kangpai/custom.css">
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/page.js"></script>
+<script src="../../js/jfc/staff.js"></script>
+
+</head>
+<body>
+	<div class="row" style="margin-top: 1%">
+		<div class="col-sm-2">
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<select class="form-control" id="keyword">
+						<option value="1">在职</option>
+						<option value="2">实习</option>
+						<option value="3">离职</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class=" col-xs-6 text-left">
+		</div>
+		<div class=" col-xs-4 text-right">
+			<a class="btn btn-default create_button" type="button"
+				data-toggle="modal" data-target="#myModal">+创建员工</a>
+		</div>
+	</div>
+	<p>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>姓名</th>
+						<th>入职时间</th>
+						<th>聘用形式</th>
+						<th>工作城市</th>
+						<th>出生日期</th>
+						<th>毕业院校</th>
+						<th>手机号</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="the_table">
+				</tbody>
+			</table>
+			<div class="col-sm-12">
+				<nav aria-label="Page navigation" class="page">
+					<ul id="page" style="text-align: center;" class="pagination">
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close create_staff" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title">添加员工</h4>
+				</div>
+				<form class="form-horizontal" role="form">
+					<div class="form-group" style="margin-top: 30px">
+						<label class="col-sm-2 control-label">员工姓名</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_name" type="text" placeholder="请输入员工姓名" />
+						</div>
+						<label class="col-sm-2  control-label">入职时间</label>
+						<div class="col-sm-4">
+							<input class="form-control inductionTime" type="date"  />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">聘用形式</label>
+						<div class="col-sm-4">
+							 <select class="form-control" id="sta_employment">
+                             	<option value="2">试用</option>
+                             	<option value="1">转正</option>
+                             	<option value="3">离职</option>
+						    </select>
+						</div>
+						<label class="col-sm-2 control-label">出生日期</label>
+						<div class="col-sm-4">
+								<input class="form-control sta_birth" type="date" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">所属部门</label>
+						<div class="col-sm-4">
+                           <select class="form-control" id="department">
+						    </select>
+						</div>
+						<label class="col-sm-2 control-label">工作城市</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control sta_city" placeholder="请输入工作城市">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">学历</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control sta_Education" placeholder="请输入学历">
+						</div>
+						<label class="col-sm-2 control-label">身份证号</label>
+						<div class="col-sm-4">
+							 <input class="form-control sta_number" type="text" placeholder="请输入身份证号" size="18" maxlength="18"  onkeyup='this.value=this.value.replace(/\D/gi,"")'/>
+                          </div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">银行卡号</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_bank_cark" type="text" placeholder="请输入银行卡号" size="18" maxlength="18"  onkeyup='this.value=this.value.replace(/\D/gi,"")'/>
+						</div>
+						<label class="col-sm-2 control-label">开户行</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_card" type="text" placeholder="请输入开户行" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">毕业院校</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_University" type="text" placeholder="请输入毕业院校" />
+						</div>
+						<label class="col-sm-2 control-label">打卡机号</label>
+						<div class="col-sm-4">
+							<input type="text" class="form-control sta_haidon" placeholder="请输入打卡机号" size="18" maxlength="18"  onkeyup='this.value=this.value.replace(/\D/gi,"")'>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">电话号</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_phone" type="text" placeholder="请输入电话号" />
+						</div>
+						<label class="col-sm-2 control-label">座机</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_tel" type="text" placeholder="请输入座机号" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">邮箱</label>
+						<div class="col-sm-4">
+							<input class="form-control sta_email" type="text" placeholder="请输入邮箱" />
+						</div>
+					</div>
+			</form>
+			<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-info" id="addStaff">添加</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/kol/newProject.css">
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+             <!--    <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div> -->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+<div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            	<li><a href="../../html/kol/page.html">账号设置</a></li>
+		                       <li><a href="#">帮助</a></li>
+		                       <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root" @click="concealOption">
+            <div class="right_col" role="main">
+                <table>
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th colspan="8" style="text-align: center;">添加项目 / 项目信息</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th><label for="project_number">项目编号</label></th>
+                        <td>
+                            <input id="project_number" v-model="display_project" type="text" @keydown="queryProject" @change="queryProject" placeholder="输入后按回车键查询">
+                        </td>
+                        <th><label for="project_title">项目主题</label></th>
+                        <td>
+                            <input id="project_title" v-model="displaying.project_title" type="text" disabled>
+                        </td>
+                        <th><label for="project_manager">项目经理</label></th>
+                        <td>
+                            <input id="project_manager" v-model="displaying.project_manager" type="text" disabled>
+                        </td>
+                        <th><label for="project_members">项目成员</label></th>
+                        <td colspan="2" id="members_wrap">
+                            <span>
+                                <span v-for="m in members" class="member">
+                                    {{ m.staName }}
+                                    <span class="remove glyphicon glyphicon-remove" @click="removeMember(m)"></span>
+                                </span>
+                            </span>
+                            <div id="staff_wrap">
+                                <input id="project_members" @click="beforeInsertMember" type="button" value="+">
+                                <ul id="staff_list" v-show="inserting">
+                                    <li v-for="st in staffs" v-show="members_email.indexOf(st.staEmail) === -1" @click="insertMember(st)">
+                                        {{ st.staName }}
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="execution_domain">执行区域</label></th>
+                        <td>
+                            <input id="execution_domain" v-model="displaying.execution_domain" type="text" disabled>
+                        </td>
+                        <th><label for="respondent">调查对象</label></th>
+                        <td>
+                            <input id="respondent" v-model="displaying.respondent" type="text" disabled>
+                        </td>
+                        <th><label for="sample_quota">样本配额</label></th>
+                        <td>
+                            <input id="sample_quota" v-model="displaying.sample_quota" type="text" disabled>
+                        </td>
+                        <th><label for="project_cycle_start">项目周期</label></th>
+                        <td>
+                            <input id="project_cycle_start" v-model="displaying.project_cycle_start" type="text" disabled>
+                        </td>
+                        <td>
+                            <input id="project_cycle_end" v-model="displaying.project_cycle_end" type="text" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><label for="project_premium">项目激励/元</label></th>
+                        <td>
+                            <input id="project_premium" v-model="displaying.project_premium" type="text">
+                        </td>
+                        <th><label for="bonus_premium">积分激励/分</label></th>
+                        <td>
+                            <input id="bonus_premium" v-model="displaying.bonus_premium" type="text">
+                        </td>
+                        <th><label for="sample_number">样本数量</label></th>
+                        <td>
+                            <input id="sample_number" v-model="displaying.sample_number" type="text">
+                        </td>
+                        <th><label for="executive_cycle_start">执行周期</label></th>
+                        <td>
+                            <input id="executive_cycle_start" v-model="displaying.executive_cycle_start" type="text">
+                        </td>
+                        <td>
+                            <input id="executive_cycle_end" v-model="displaying.executive_cycle_end" type="text">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th rowspan="2" class="large"><label for="remark">备注</label></th>
+                        <td rowspan="2" colspan="8" class="large">
+                            <textarea id="remark" v-model="displaying.remark" type="text"></textarea>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                    </tbody>
+                </table>
+                <div class="row">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-success btn-md dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                            下一步 <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a @click="save('正在进行')">开始抽样</a></li>
+                            <li><a @click="save('项目暂停')">项目暂停</a></li>
+                            <li><a @click="save('项目撤消')">项目撤消</a></li>
+                            <li><a @click="save('项目待定')">项目待定</a></li>
+                            <li v-show="!creating"><a @click="save('已经完成')">完成项目（不保存内容更改）</a></li>
+                            <li v-show="!creating"><a @click="save('项目激励')">项目激励（不保存内容更改）</a></li>
+                            <li v-show="!creating" data-toggle="modal" data-target="#before_close"><a @click="beforeClose">项目关闭（不保存内容更改）</a></li>
+                        </ul>
+                    </div>
+                    <!--<button class="btn btn-md btn-success pull-right" @click="save">保存</button>-->
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="before_close" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title" id="myModalLabel">项目关闭确认</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <span class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">项目完成情况</span>
+                                    <span class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        样本数量{{ displaying.sample_quota }}个，招募数量{{ displaying.sample_number }}个，完成数量{{ displaying.sample_complete }}个，完成比例{{ complete_ratio }}%
+                                    </span>
+                                    <span class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <label for="complete_confirm">
+                                            确认完成
+                                            <input id="complete_confirm" type="checkbox" v-model="complete_confirm">
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">项目激励情况</span>
+                                    <span class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                        招募数量{{ displaying.sample_number }}个，完成数量{{ displaying.sample_complete }}个，激励数量{{ displaying.premium_number }}个，激励比例{{ premium_ratio }}%
+                                    </span>
+                                    <span class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <label for="premium_confirm">
+                                            确认完成
+                                            <input id="premium_confirm" type="checkbox" v-model="premium_confirm">
+                                        </label>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <span class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">允许再次开启项目</span>
+                                    <span class="col col-xs-6 col-sm-6 col-md-6 col-lg-6">是否可以再次开启项目1次</span>
+                                    <span class="col col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <label for="can_resume">
+                                            允许
+                                           <input name="toggle_resume" id="can_resume" type="radio" :checked="once_more" @change="changeToggle(true)">
+                                        </label>
+                                        <label for="can_not_resume">
+                                            不允许
+                                           <input name="toggle_resume" id="can_not_resume" type="radio" :checked="!once_more" @change="changeToggle(false)">
+                                        </label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                <button type="button" class="btn btn-info" data-dismiss="modal" :disabled="!ended" @click="save_close">关闭项目</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<!--<script src="../vendors/fastclick/lib/fastclick.js"></script>-->
+<!-- NProgress -->
+<!--<script src="../vendors/nprogress/nprogress.js"></script>-->
+<!-- Chart.js -->
+<!--<script src="../../js/echarts/echarts.js"></script>-->
+<!-- jQuery Sparklines -->
+<!--<script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>-->
+<!-- Flot -->
+<!--<script src="../vendors/Flot/jquery.flot.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.pie.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.time.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.stack.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.resize.js"></script>-->
+<!-- Flot plugins -->
+<!--<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>-->
+<!--<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>-->
+<!--<script src="../vendors/flot.curvedlines/curvedLines.js"></script>-->
+<!-- DateJS -->
+<!--<script src="../vendors/DateJS/build/date.js"></script>-->
+<!-- bootstrap-daterangepicker -->
+<!--<script src="../vendors/moment/min/moment.min.js"></script>-->
+<!--<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>-->
+
+<!-- Custom Theme Scripts -->
+<!--<script src="../../js/echarts/echarts.js"></script>-->
+<!--<script src="../../js/bootstrap.min.js"></script>-->
+<!--<script src="../../js/bootstrap-table.min.js"></script>-->
+<!--<script src="../../js/bootstrap-table-zh-CN.min.js"></script>-->
+<script src="../../js/laydate.js"></script>
+<!--<script src="../../ueditor/ueditor.config.js"></script>-->
+<!--<script src="../../ueditor/ueditor.all.min.js"></script>-->
+<script src="../../js/kol/menu.js"></script>
+<script src="../../js/kol/custom.min.js"></script>
+<script src="../../js/kol/alerting.js"></script>
+<!--<script src="../../js/xlsx.full.min.js"></script>-->
+<script src="../../js/kol/newProject.js"></script>
+<script src="../../js/lists.js"></script>
+<script src="../../js/ChainReact.js"></script>
+</body>
+</html>

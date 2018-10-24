@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+	<title>首问调研平台</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet/less" href="../../css/swing/common.less">
+	<link rel="stylesheet/less" href="../../css/swing/statistics.less">
+	<script src="../../js/swing/common/less.js"></script>
+</head>
+<body>
+
+<div id="root">
+	<header id="header" class="header">
+		<a class="home-button" href="" @click="goHome"><i class="glyphicon glyphicon-home"></i></a>
+		<nav>
+			<a href="javascript:void(0)" @click="goDesign">设计问卷<i class="glyphicon glyphicon-menu-right"></i></a>
+			<a href="javascript:void(0)" @click="goCollect">收集问卷<i class="glyphicon glyphicon-menu-right"></i></a>
+			<a href="javascript:void(0)" @click="goStatistics">数据管理</a>
+		</nav>
+		<span class="survey-name">
+			<b>{{ survey_number }}.</b>
+			<i>
+				<input class="edit" v-if="inputting" type="text" @keyup="presentSurveyName" v-model="survey_name">
+				<span class="present" v-else @click="editSurveyName">{{ survey_name }}</span>
+			</i>
+		</span>
+		<a class="account" href="">
+		<span>
+			<b>USER001</b>
+		</span>
+			<ul>
+				<li></li>
+			</ul>
+		</a>
+	</header>
+	<div id="nav" class="nav">
+		<nav>
+			<a @click="changeActive('progress')" :class="{ 'active': actived === 'progress' }" href="javascript:void(0);"><span>配额进度</span></a>
+			<a @click="changeActive('quality')" :class="{ 'active': actived === 'quality' }" href="javascript:void(0);"><span>质量控制</span></a>
+			<a @click="changeActive('statistics')" :class="{ 'active': actived === 'statistics' }" href="javascript:void(0);"><span>统计分析</span></a>
+			<a @click="changeActive('source')" :class="{ 'active': actived === 'source' }" href="javascript:void(0);"><span>来源分析</span></a>
+			<a @click="changeActive('prize')" :class="{ 'active': actived === 'prize' }" href="javascript:void(0);"><span>中奖结果</span></a>
+			<a @click="changeActive('original')" :class="{ 'active': actived === 'original' }" href="javascript:void(0);"><span>原始数据</span></a>
+		</nav>
+	</div>
+	<div id="main" class="main">
+		<div class="block progresses" v-show="actived === 'progress'">
+			<nav class="nav">
+				<a href="javascript:void(0);" class="btn btn-sm btn-default" :class="{ 'btn-primary': displaying_frame === 'simple_quota' }" @click="switchDisplayFrame('simple_quota')">
+					<span>简单配额</span>
+				</a>
+				<a href="javascript:void(0);" class="btn btn-sm btn-default" :class="{ 'btn-primary': displaying_frame === 'cross_quota' }" @click="switchDisplayFrame('cross_quota')">
+					<span>交叉配额</span>
+				</a>
+				<a href="javascript:void(0);" class="btn btn-sm btn-default" :class="{ 'btn-primary': displaying_frame === 'progress' }" @click="switchDisplayFrame('progress')">
+					<span>实时进度</span>
+				</a>
+			</nav>
+			<div class="frame" v-if="displaying_frame === 'simple_quota'">
+			
+			</div>
+			<div class="frame" v-if="displaying_frame === 'cross_quota'"></div>
+			<div class="frame" v-if="displaying_frame === 'progress'"></div>
+		</div>
+		<div class="block quality" v-show="actived === 'quality'">
+			<div class="tools">
+				<div class="buttons">
+					<a href="" class="switch">
+						<i class=""></i>
+						<span class="">筛选条件</span>
+						<i class="glyphicon glyphicon-chevron-down"></i>
+					</a>
+					<ul class="band">
+						<li class="">
+							<i class="glyphicon glyphicon-question-sign"></i>
+						</li>
+						<li class="">
+							<a href="" class="btn btn-xs btn-info" @click="downloadData">下载答案数据</a>
+						</li>
+						<li class="">
+							<a href="" class="">
+								<i class="glyphicon glyphicon-cloud-download"></i><span>恢复数据</span>
+							</a>
+						</li>
+						<li class="">
+							<a href="" class="">
+								<i class="glyphicon glyphicon-trash"></i><span>批量标为无效</span>
+							</a>
+						</li>
+						<li class="">
+							<a href="" class="">
+								<i class="glyphicon glyphicon-share-alt"></i><span>分享</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="form">
+					<div class="rows">
+						<p class="the-row" v-for="c in filters.conditions">
+							<span class="brick">
+								<select v-model="c.sub_id">
+									<option value="">问题不限</option>
+									<option v-for="q in questions" v-if="q.subType==='choice'||q.subType==='check'||q.subType==='score'||q.subType==='matrix'" :value="q.subId">{{ q.subNumber + q.subName }}</option>
+								</select>
+							</span>
+							<span class="brick">
+								<select v-model="c.question_id" v-if="c.this_question.subType==='matrix'">
+									<option value="">子问题不限</option>
+									<option v-for="q in the_questions" v-if="q.subType==='choice'||q.subType==='check'||q.subType==='score'" :value="q.subId">{{ q.subNumber + q.subName }}</option>
+								</select>
+							</span>
+							<span class="brick">
+								<select v-model="c.option_id">
+									<option value="">选项不限</option>
+									<option v-for="o in c.the_options" :value="o.option_id">{{ o.option_id + o.option_content }}</option>
+								</select>
+							</span>
+						</p>
+						<p class="the-row">
+							<i class="glyphicon glyphicon-plus" @click="pushCondition"></i>
+						</p>
+					</div>
+					<div class="control">
+						<ul>
+							<li><a href="" class="btn btn-xs btn-info" @click="initialTable">查询</a></li>
+							<li><span>筛选出条/条</span></li>
+							<li><a href="" class="">清空条件</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div id="table" class="table">
+				<div style="position: absolute;z-index: 3;">
+					<div id="toplefttbl" class="FormTable">
+						<!--<tr>-->
+						<div>
+							<span class="td">是否标记</span>
+							<span class="td">编号</span>
+							<span class="td">提交答卷时间</span>
+							<span class="td">所用时间</span>
+							<span class="td">来源</span>
+							<span class="td">来源详情</span>
+							<span class="td">来源IP</span>
+							<span class="td">操作</span>
+						</div>
+						<div>
+						
+						</div>
+						<!--</tr>-->
+					</div>
+				</div>
+				<div id="topdv">
+					<div class="table-mask">
+						<div id="toptable" class="FormTable">
+							<span v-if="questions.length" v-for="question in questions">
+                                <span class="td" :type="question.type" :title="question.subName" v-if="question['subType']=='blank'&&question['the_class']=='single'">
+                                    {{ (question.subNumber || question.subIndex) + '. ' + (question.subName.length < 10 ? question.subName : (question.subName.slice(0,7) + '...')) }}
+                                </span>
+                                <span v-if="question['subType']=='blank'&&question['the_class']=='multi'">
+                                    <span class="td" :type="question.type" :title="sbt.title" v-if="question.sub_questions.length" v-for="sbt in question.sub_questions" :key="sbt.index">
+                                        {{ (question.subNumber || question.subIndex) + '. ' + sbt.question_index + (sbt.question_content.length < 10 ? sbt.question_content : (sbt.question_content.slice(0,7) + '...')) }}
+                                    </span>
+                                </span>
+                                <span v-if="question['subType']=='choice'">
+                                    <span class="td" :type="question.type" :title="question.subName">
+                                        {{ (question.subNumber || question.subIndex) + '. ' + (question.subName.length < 10 ? question.subName : (question.subName.slice(0,7) + '...')) }}
+                                    </span>
+                                </span>
+                                <span v-if="question['subType']=='check'">
+                                    <span class="td" :type="question.type" :title="question.subName" v-if="question['subOption'].length" v-for="opt in question['subOption']" :key="opt.option_index">
+                                        {{ (question.subNumber || question.subIndex) + '. ' + opt.option_index + (opt.option_content.length < 10 ? opt.option_content : (opt.option_content.slice(0,7) + '...')) }}
+                                    </span>
+                                </span>
+                                <span v-if="question['subType']=='matrix'">
+                                    <span v-if="question.questions.length" v-for="sbt in question.questions" :key="sbt.question_index">
+                                        <span class="td" :type="question.type" :title="question.subName" v-if="question['subOption'].length" v-for="opt in question['subOption']" :key="opt.index">
+                                            {{ (question.subNumber || question.subIndex) + '. ' + sbt.question_index + sbt.question_content + '. ' + opt.option_index + (opt.option_content.length < 5 ? opt.option_content : (opt.option_content.slice(0,3) + '..')) }}
+                                        </span>
+                                    </span>
+                                </span>
+                                <span class="td" :type="question.type" :title="question.subName" v-if="question['subType']=='score'">
+                                    {{ (question.subNumber || question.subIndex) + '. ' + (question.subName.length < 10 ? question.subName : (question.subName.slice(0,7) + '...')) }}
+                                </span>
+                                <span v-if="question['subType']=='sort'">
+                                    <span class="td" :type="question.type" :title="question.subName" v-if="question['subOption'].length" v-for="opt in question['subOption']" :key="opt.option_index">
+                                        {{ (question.subNumber || question.subIndex) + '. ' + opt.option_index + (opt.option_content.length < 10 ? opt.option_content : (opt.option_content.slice(0,7) + '...')) }}
+                                    </span>
+                                </span>
+								
+                                <!--<span class="td" :type="question.type" :title="question.subName" v-if="question['subType'].indexOf('[') > -1">-->
+                                    <!--{{ (question.subNumber || question.subIndex) + '. ' + (question.subName.length < 10 ? question.subName : (question.subName.slice(0,7) + '...')) }}-->
+                                <!--</span>-->
+                            </span>
+						</div>
+					</div>
+				</div>
+				<div id="answers">
+					<div id="leftdv">
+						<div class="table-mask">
+							<div id="lefttable" class="FormTable">
+								<div class="tr" v-for="result in results">
+									<div class="td">{{ result.linFlag }}</div>
+									<div class="td">{{ result.linId }}</div>
+									<div class="td">{{ (result.createTime.year + 1990 + '-') + (result.createTime.month + 1 + '-') + (result.createTime.date + ' ') + (result.createTime.hours + ':') + (result.createTime.minutes + ':') + (result.createTime.second) }}</div>
+									<div class="td">{{ result.linAnswerQuestions }}</div>
+									<div class="td">{{ result.linUrl }}</div>
+									<div class="td">{{ result.linEquipment }}</div>
+									<div class="td">{{ result.linIp }}</div>
+									<div class="td">{{ result.linStatus }}</div>
+								</div>
+								<!--<tr>-->
+								<!--<div class="td" v-for="result in results">-->
+									<!--<span class="index">{{ result.resultId }}</span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="index"></span>-->
+									<!--<span class="controls">-->
+                                        <!--<span class="invalid btn-danger" v-show="!result.reason">-->
+                                            <!--<input class="reason" type="text">-->
+                                            <!--<span class="invalid-with-reason" :result_id="result.resultId">D</span>-->
+                                        <!--</span>-->
+                                        <!--<span class="invalided btn-danger" v-show="result.reason" :title="result.reason">-->
+                                            <!--{{ result.reason && (result.reason.length < 7 ? result.reason : result.reason.slice(0,5) + '..') }}-->
+                                        <!--</span>-->
+                                    <!--</span>-->
+								<!--</div>-->
+								<!--</tr>-->
+							</div>
+						</div>
+					</div>
+					<div style="position: relative;z-index:1;">
+						<div id="datatable" class="FormTable">
+							<div v-for="result in results" class="result">
+								<span v-for="q in questions" class="q-block" :data-q-index="q.subIndex">
+									<span v-for="answer in result.answer" :key="answer.subId" v-if="q.subId===answer.subId" class="answer" :data-a-index="answer.ansIndex">
+	                                    <span v-if="answer">
+	                                        <span class="td" :index="answer['ansIndex']" :type="answer['ansType']" v-if="answer['ansType']=='blank'&&answer['ansTheClass']=='single'">
+	                                            {{ answer.ansOptionAnswer }}
+	                                        </span>
+	                                        <span :index="answer['ansIndex']" :type="answer['ansType']" v-if="answer['ansType']=='blank'&&answer['ansTheClass']=='multi'">
+	                                            <span class="td" v-for="an in answer['answer_content']">
+	                                                {{ an.answer }}
+	                                            </span>
+	                                        </span>
+	                                        <span :index="answer['ansIndex']" :type="answer['ansType']" class="td" v-if="answer['ansType']=='choice'">
+	                                            {{ answer['answer_content'][0].option_id }}
+	                                        </span>
+	                                        <span :index="answer['ansIndex']" :type="answer['ansType']" v-if="answer['ansType']=='check'">
+		                                        <span class="td" v-for="op in q.subOption">{{ op.option_id }}</span>
+	                                            <!--<span class="td" v-for="an in answer['answer_content']">-->
+	                                                <!--{{ an.option_id }}-->
+	                                            <!--</span>-->
+	                                        </span>
+	                                        <span :index="answer['ansIndex']" :type="answer['ansType']" v-if="answer['ansType']=='matrix'">
+	                                            <span v-for="sbt in answer['answer_content']" :key="sbt.question_index">
+	                                                <span class="td" v-for="opt in sbt['options']" :key="opt.option_index">
+	                                                    <span v-if="sbt['form']=='matrix_blank'">
+		                                                    <span>
+			                                                    {{ opt.option_answer }}
+		                                                    </span>
+		                                                    <!--<span v-for="v in answer[0]['values']" v-if="v['coordinate'].indexOf(sbt+'-')>-1&&v['coordinate'].indexOf('-'+opt)>-1">-->
+		                                                    <!--{{ v.value }}-->
+		                                                    <!--</span>-->
+	                                                    </span>
+	                                                    <span v-if="sbt['form']=='matrix_choice'">
+		                                                    <span>
+			                                                    {{ opt.option_checked }}
+		                                                    </span>
+		                                                    <!--<span v-for="v in answer[0]['values']" v-if="v['coordinate'].indexOf(sbt+'-')>-1&&v['coordinate'].indexOf('-'+opt)>-1">-->
+		                                                    <!--{{ opt.index }}-->
+		                                                    <!--</span>-->
+	                                                    </span>
+	                                                    <span v-if="sbt['form']=='matrix_check'">
+		                                                    <span>
+			                                                    {{ opt.option_checked }}
+		                                                    </span>
+		                                                    <!--<span v-for="v in answer[0]['values']" v-if="v['coordinate'].indexOf(sbt+'-')>-1&&v['coordinate'].indexOf('-'+opt)>-1">-->
+		                                                    <!--{{ opt.index }}-->
+		                                                    <!--</span>-->
+	                                                    </span>
+	                                                </span>
+	                                            </span>
+	                                        </span>
+	                                        <span :index="answer['ansIndex']" :type="answer['ansType']" class="td" v-if="answer['ansType']=='score'">
+	                                            {{ answer['answer_content'][0].option_id }}
+	                                        </span>
+	                                        <span :index="answer['ansIndex']" :type="answer['ansType']" v-if="answer['ansType']=='sort'">
+	                                            <span class="td" v-for="opt in answer['answer_content']">
+	                                                {{ answer['answer_content'].indexOf(opt)>-1 ? answer['answer_content'].indexOf(opt)+1:'' }}
+	                                            </span>
+	                                        </span>
+	                                    </span>
+											<!--<span class="td" v-if="!answer">-->
+											
+											<!--</span>-->
+                                    </span>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<table>-->
+					<!--<thead>-->
+					<!--<tr>-->
+						<!--<th>是否标记</th>-->
+						<!--<th>编号</th>-->
+						<!--<th>提交答案时间</th>-->
+						<!--<th>所用时间</th>-->
+						<!--<th>来源</th>-->
+						<!--<th>来源详情</th>-->
+						<!--<th>来源IP</th>-->
+						<!--<th>操作</th>-->
+						<!--<th></th>-->
+						<!--<th></th>-->
+						<!--<th></th>-->
+					<!--</tr>-->
+					<!--</thead>-->
+					<!--<tbody>-->
+					<!--<tr>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+						<!--<td></td>-->
+					<!--</tr>-->
+					<!--</tbody>-->
+				<!--</table>-->
+			</div>
+		</div>
+		<div class="block statistics" v-show="actived === 'statistics'"></div>
+		<div class="block source" v-show="actived === 'source'"></div>
+		<div class="block prize" v-show="actived === 'prize'"></div>
+		<div class="block original" v-show="actived === 'original'"></div>
+	</div>
+</div>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/swing/common/wangEditor.js"></script>
+<!--<script src="./js/common/functions.js"></script>-->
+<!--<script src="./js/common/header.js"></script>-->
+<!--<script src="./js/design/design.js"></script>-->
+<script src="../../js/swing/production/statistics.js"></script>
+</body>
+</html>

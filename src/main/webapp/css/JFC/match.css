@@ -1,0 +1,301 @@
+.filtering{
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+}
+.filtering .title{
+    font-size: 1.6rem;
+    text-align: center;
+}
+#existed, #choose_existed, #conditions, #choose_caching, #caching{
+    height: 350px;
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+#choose_existed, #choose_caching{
+    text-align: center;
+    border: none;
+}
+#choose_button, #pick_button{
+    top: 170px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+#choose_button.disabled, #pick_button.disabled{
+    color: #999999;
+    cursor: not-allowed;
+}
+.bootstrap-table *{
+    font-size: 1.4rem;
+}
+.filtering:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.breadcrumb{
+    text-align: center;
+}
+#alters .switch, #alters .switch>a{
+    font-size: 1.6rem;
+}
+#alters-container a, #alters-container input, #caches-container a, #caches-container input{
+    font-size: 1.2rem;
+}
+#caches-container{
+    margin: 58px 0 0 0;
+}
+.check-all, #alter_list, .pick-all, #cache_list{
+    position: relative;
+    padding: 0 0 0 1.5rem;
+}
+#alter_list, #cache_list{
+    height: 200px;
+    overflow-y: scroll;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    /*border-left: 1px solid #000000;*/
+}
+#alter_list li, #cache_list li{
+    position: relative;
+    cursor: pointer;
+}
+.check-all input, #alter_list input, .pick-all input, #cache_list input{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.check-all input, .pick-all input{
+    right: 15px;
+}
+#conditions{
+    padding: 32px 10px 0 10px;
+}
+#conditions table{
+    width: 100%;
+}
+#conditions th, #conditions td{
+    font-size: 1.4rem;
+    text-align: center;
+}
+#conditions .clickible{
+    cursor: pointer;
+}
+.input-wrap{
+    padding: 0 1rem 0 2rem;
+}
+.input-wrap>label, .input-wrap>input{
+    font-size: 1rem;
+}
+.buttons{
+    margin: 1rem 0 0 0;
+    text-align: center;
+}
+.buttons>button{
+    margin: 0 2rem;
+}
+th{
+    text-align: center;
+}
+th.id{
+    min-width: 75px;
+}
+th.iDLogin{
+    min-width: 75px;
+}
+th.th-province{
+    min-width: 60px;
+}
+th.th-city{
+    min-width: 60px;
+}
+th.th-district{
+    min-width: 60px;
+}
+th.name{
+    min-width: 75px;
+}
+th.source{
+    min-width: 60px;
+}
+th.proType{
+    min-width: 60px;
+}
+th.proClass{
+    min-width: 80px;
+}
+th.title{
+    min-width: 80px;
+}
+th.department{
+    min-width: 60px;
+}
+th.depType{
+    min-width: 60px;
+}
+th.depNature{
+    min-width: 60px;
+}
+th.profField{
+    min-width: 75px;
+}
+th.nameComp{
+    min-width: 120px;
+}
+th.level{
+    min-width: 50px;
+}
+th.grade{
+    min-width: 50px;
+}
+th.type{
+    min-width: 60px;
+}
+th.profit{
+    min-width: 60px;
+}
+th.property{
+    min-width: 80px;
+}
+th.mobile{
+    min-width: 110px;
+}
+th.tel1{
+    min-width: 120px;
+}
+th.tel2{
+    min-width: 120px;
+}
+th.email{
+    min-width: 120px;
+}
+th.sex{
+    min-width: 50px;
+}
+th.old{
+    min-width: 100px;
+}
+th.oldWork{
+    min-width: 100px;
+}
+th.oldStation{
+    min-width: 100px;
+}
+th.record{
+    min-width: 50px;
+}
+th.idNumber{
+    min-width: 150px;
+}
+th.proNumber{
+    min-width: 150px;
+}
+th.kol{
+    min-width: 40px;
+}
+th.payer{
+    min-width: 50px;
+}
+th.purchase{
+    min-width: 60px;
+}
+th.member{
+    min-width: 75px;
+}
+th.payType{
+    min-width: 50px;
+}
+th.payAccount{
+    min-width: 100px;
+}
+th.payName{
+    min-width: 75px;
+}
+th.pay1{
+    min-width: 75px;
+}
+th.pay2{
+    min-width: 75px;
+}
+th.pay3{
+    min-width: 75px;
+}
+th.pay4{
+    min-width: 75px;
+}
+th.pay5{
+    min-width: 75px;
+}
+th.check{
+    min-width: 50px;
+}
+th.communication{
+    min-width: 80px;
+}
+th.credit{
+    min-width: 75px;
+}
+th.project{
+    min-width: 75px;
+}
+th.dimportant{
+    min-width: 75px;
+}
+th.cooperate{
+    min-width: 75px;
+}
+th.active{
+    min-width: 75px;
+}
+th.date{
+    min-width: 75px;
+}
+th.update{
+    min-width: 75px;
+}
+th.note{
+    min-width: 75px;
+}
+th.control{
+    min-width: 120px;
+}
+#export_real{
+    display: none!important;
+}
+#export_setting .modal-body{
+    width: 100%;
+}
+#export_setting .modal-body:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+/*#export_setting .common, #export_setting .confidential{*/
+/*padding: 0;*/
+/*}*/
+#export_setting .common ul, #export_setting .confidential ul{
+    width: 80%;
+    height: 30rem;
+    background-color: #ffffff;
+    border: 1px solid #000000;
+    padding-left: 20px;
+    margin: 10px;
+    overflow-y: scroll;
+}
+#export_setting input, #export_setting label, #export_setting div.type{
+    font-size: 1.4rem;
+}
+#export_setting input{
+    position: absolute;
+    top: 0;
+    right: 10px;
+}
+#export_setting label{
+    position: relative;
+    width: 100%;
+}
+#export_setting div.type{
+    padding: 10px 10px 10px 30px;
+    font-weight: bold;
+}

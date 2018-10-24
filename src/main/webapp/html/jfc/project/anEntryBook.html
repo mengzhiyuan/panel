@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .input {
+            border: none #FFFFFF;
+            border-bottom: #777777 solid 1px;
+            background: transparent;
+            width: 80%;
+            height: 100%;
+            min-width:100px
+        }
+
+        .textarea {
+            border: none #FFFFFF;
+            border-bottom: #777777 solid 1px;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            overflow-y: hidden;
+        }
+
+        .span1 {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            margin-left: 10px
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div class="row" style="margin-top: 1%">
+                    <div class="col-sm-10"></div>
+                    <div class="col-sm-2">
+                        <a class="btn btn-default create_button" type="button">+保存结项书</a>
+                    </div>
+                    <div class="col-sm-12" style="margin-top: 1%">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr>
+                                <td>项目经理</td>
+                                <td id="project_manager"></td>
+                                <td>项目金额（元）</td>
+                                <td colspan="2" id="project_amount"></td>
+                            </tr>
+                            <tr>
+                                <td>项目周期</td>
+                                <td id="project_during"></td>
+                                <td>完成金额（元）</td>
+                                <td colspan="2" id="completed_amount"></td>
+                            </tr>
+                            <tr>
+                                <td>项目类型</td>
+                                <td id="project_type"></td>
+                                <td>决算金额（元）</td>
+                                <td colspan="2" id="final_amount"></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">客户公司</td>
+                                <td>单位名称</td>
+                                <td colspan="3" id="client_company"></td>
+                            </tr>
+                            <tr>
+                                <td>客户经理</td>
+                                <td id="client_manager"></td>
+                                <td >客户类型</td>
+                                <td id="client_type"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12">
+                        <table class="table table-bordered table-hover">
+                            <tbody id="allocate">
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-12">
+                        <table class="table table-bordered table-hover">
+                            <tbody>
+                            <tr><td colspan="4">项目结项信息【项目经理填写或选择，相关人员签字确认】</td></tr>
+                            <tr>
+                                <td>项目立项日期</td>
+                                <td colspan="2"><input id="project_set_time" type="text" class="input project"></td>
+                                <td id="project_set_confirm"><button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>项目要求开始-结束日期</td>
+                                <td colspan="2"><input id="project_required_time" type="text" class="input re_star_end"></td>
+                                <td id="project_required_confirm"><button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>项目执行开始-结束日期</td>
+                                <td colspan="2"><input id="project_execute_time" type="text" class="input pr_star_end"></td>
+                                <td id="project_execute_confirm"><button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+
+                            <tr>
+                                <td rowspan="3">项目进度控制&nbsp;&nbsp;&nbsp;</td>
+                                <td colspan="3">
+                                    <div class="radio">
+                                        <label>项目执行周期是否延时:&nbsp;&nbsp;&nbsp;</label>
+                                        <label>
+                                            <input type="radio" id="delay_true" name="execution_cycle" value="是">
+                                            是（延时<input type="text" id="delay_text" class="input execution_cycle_value" style="width:30%" value="">天）
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input type="radio" id="delay_false" name="execution_cycle"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="radio">
+                                        <label>申请预算是否及时:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label>
+                                            <input id="budget_timely_true" type="radio" name="budget"  value="是">
+                                            是
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="budget_timely_false" type="radio" name="budget"  value="否">
+                                            否（延时<input id="budget_timely_text" type="text" class="input budget_day" style="width:30%">天）
+                                        </label>
+                                        <label>【项目开始前或当日】</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="radio">
+                                        <label>提交决算是否及时:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </label>
+                                        <label>
+                                            <input id="final_timely_true" type="radio" name="final_accounts"  value="是">
+                                            是
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="final_timely_false" type="radio" name="final_accounts"  value="否">
+                                            否（延时<input id="final_timely_text" type="text" class="final_day" style="width:30%">天）
+                                        </label>
+                                        <label>【项目结束一周内】</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">项目成本控制</td>
+                                <td colspan="3">
+                                    <div class="radio">
+                                        <label>人工成本是否超支:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label>
+                                            <input id="hours_overspend_true" type="radio" name="labor_cost"  value="是">
+                                            是（超支<input id="hours_overspend_text" type="text" class="input labor_day" style="width:30%">人天）
+                                        </label>
+                                        <label>
+                                            <input id="hours_overspend_false" type="radio" name="labor_cost"  value="否">
+                                            否
+                                        </label>
+                                        <label>【核对决算及长期兼职】</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="radio">
+                                        <label>现金成本是否超支:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                        <label>
+                                            <input id="cash_overspend_true" type="radio" name="cash"  value="是">
+                                            是（超支<input id="cash_overspend_text" type="text" class="input cash_day" style="width:30%">元）
+                                        </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="cash_overspend_false" type="radio" name="cash"  value="否">
+                                            否
+                                        </label>
+                                        <label>【以决算单据为准】</label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="5">项目资源结算</td>
+                                <td>使用兼职</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="part_time_true" type="radio" name="part_time"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="part_time_false" type="radio" name="part_time"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="part_time_confirm">兼职费用汇总接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>使用代理</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="agent_true" type="radio" name="agent"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="agent_false" type="radio" name="agent"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="agent_confirm">兼职费用汇总接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>领用/购买物品归还</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="goods_return_true" type="radio" name="goods"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="goods_return_false" type="radio" name="goods" value="否" >
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="goods_return_confirm">接收确认：<button type="button" class="btn btn-info">签字</button> </td>
+                            </tr>
+                            <tr>
+                                <td>支取费用与报销结算</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="balance_true" type="radio" name="Reimbursement"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="balance_false" type="radio" name="Reimbursement"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="balance_confirm">结算确认：  <button type="button" class="btn btn-info">签字</button>     </td>
+                            </tr>
+                            <tr>
+                                <td>需支付其他费用交接</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="gap_amount_true" type="radio" name="need_to_pay"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="gap_amount_false" type="radio" name="need_to_pay"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="gap_amount_confirm">结算确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="6">项目资料归档</td>
+                                <td>研究资料【问卷/大纲/任务书等】</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="information_filed_true" type="radio" name="research_data"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="information_filed_false" type="radio" name="research_data"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="information_filed_confirm">接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>录音录像笔录资料</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="record_true" type="radio" name="sound_recording"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="record_false" type="radio" name="sound_recording"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="record_confirm">接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>实物调查资料归档</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="material_filed_true" type="radio" name="inventory_property"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="material_filed_false" type="radio" name="inventory_property"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="material_filed_confirm">接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>调查成果数据资料</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="result_true" type="radio" name="servey_results"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="result_false" type="radio" name="servey_results"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="result_confirm">接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>联络信息/被访者信息归档</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="contact_true" type="radio" name="contact_information"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="contact_false" type="radio" name="contact_information"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="contact_confirm">接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>其它资料归档：<input type="text" class="input other_information_value" style="width:30%">   </td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="other_files_true" type="radio" name="other_information"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="other_files_false" type="radio" name="other_information"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="other_files_confirm">接收确认：<button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3">客户服务</td>
+                                <td>客户投诉</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="complaints_true" type="radio" name="customer_complaints"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="complaints_false" type="radio" name="customer_complaints"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="complaints_confirm">主管经理：<button type="button" class="btn btn-info">签字</button> </td>
+                            </tr>
+                            <tr>
+                                <td>项目成果提交客户确认</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="result_submit_true" type="radio" name="project_outcomes"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="result_submit_false" type="radio" name="project_outcomes" value="否" >
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="result_submit_confirm">项目经理：  <button type="button" class="btn btn-info">签字</button></td>
+                            </tr>
+                            <tr>
+                                <td>最终样本/费用等客户确认</td>
+                                <td>
+                                    <div class="radio">
+                                        <label>
+                                            <input id="inspect_true" type="radio" name="final_sample"  value="是">
+                                            是
+                                        </label>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label>
+                                            <input id="inspect_false" type="radio" name="final_sample"  value="否">
+                                            否
+                                        </label>
+                                    </div>
+                                </td>
+                                <td id="inspect_confirm">项目经理：<button type="button" class="btn btn-info">签字</button>   </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">签字信息【项目经理和结项负责人签字确认】</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">结项签字</td>
+                                <td colspan="2" id="signature_manager">
+                                    项目经理： <button type="button" class="btn btn-info">签字</button>
+                                </td>
+                                <td><input id="signature_manager_time"  type="text" class="form-control test_item manage_time"
+                                           placeholder="请输入日期"> </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" id="signature_closing">
+                                    结项签字： <button type="button" class="btn btn-info">签字</button>
+                                </td>
+                                <td><input id="signature_closing_time"  type="text" class="form-control test_item knot_time"
+                                           placeholder="请输入日期"> </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/project/anEntryBook.js"></script>
+</body>
+</html>

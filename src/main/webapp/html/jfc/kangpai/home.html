@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+</head>
+<body>
+<input type="file"onchange="importf(this)" />
+        <div id="demo"></div>
+<a href="./foxmail_configuration.html">aaaaaaa</a>
+    
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- <script src="http://oss.sheetjs.com/js-xlsx/xlsx.full.min.js"></script> -->
+<!-- js导入excel -->
+ <!--    <script>
+            /*
+            FileReader共有4种读取方法：
+            1.readAsArrayBuffer(file)：将文件读取为ArrayBuffer。
+            2.readAsBinaryString(file)：将文件读取为二进制字符串
+            3.readAsDataURL(file)：将文件读取为Data URL
+            4.readAsText(file, [encoding])：将文件读取为文本，encoding缺省值为'UTF-8'
+                         */
+            var wb;//读取完成的数据
+            var rABS = false; //是否将文件读取为二进制字符串
+
+            function importf(obj) {//导入
+                if(!obj.files) {
+                    return;
+                }
+                var f = obj.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    var data = e.target.result;
+                    if(rABS) {
+                        wb = XLSX.read(btoa(fixdata(data)), {//手动转化
+                            type: 'base64'
+                        });
+                    } else {
+                        wb = XLSX.read(data, {
+                            type: 'binary'
+                        });
+                    }
+                    //wb.SheetNames[0]是获取Sheets中第一个Sheet的名字
+                    //wb.Sheets[Sheet名]获取第一个Sheet的数据
+                    document.getElementById("demo").innerHTML= JSON.stringify( XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]) );
+                };
+                if(rABS) {
+                    reader.readAsArrayBuffer(f);
+                } else {
+                    reader.readAsBinaryString(f);
+                }
+            }
+
+            function fixdata(data) { //文件流转BinaryString
+                var o = "",
+                    l = 0,
+                    w = 10240;
+                for(; l < data.byteLength / w; ++l) o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w, l * w + w)));
+                o += String.fromCharCode.apply(null, new Uint8Array(data.slice(l * w)));
+                return o;
+            }
+
+        </script>
+ -->
+<script type="text/javascript">
+var curWwwPath=window.document.location.href;
+var pathName=window.document.location.pathname;
+var pos=curWwwPath.indexOf(pathName);
+var localhostPath=curWwwPath.substring(0,pos);
+var projectName=pathName.substring(0,pathName.substr(1).indexOf('/')+1);
+var realPath=localhostPath+projectName;
+$(function(){
+	
+	 //**通过或拒绝*/
+/* 	 var aa = {};
+	 aa.forId = 4;
+	 aa.forDocId = "null,852147,852148";
+	 aa.forTempId = "8";
+	 aa.status = '通过';
+	 $.ajax({
+	 	url : "" + realPath + "/hospital/passOrRefuse",
+	 	type : "post",
+	 	dataType : "json",
+	 	async : true,
+	 	crossDomain : true,
+	 	data : JSON.stringify(aa),
+	 	contentType : "application/JSON;charset=utf-8",
+	 	success : function(data) {
+	 		alert(data);
+	 	}
+	 });  */
+	/*单位修改数据*/
+/* 	 var hId =[];
+	 hId.push("852147");
+	 hId.push("852148");
+	var cc = {};
+	cc.hosName='孟志远';
+	cc.hosProvince='';
+	cc.hosCity='';
+	cc.hosDistrict='';
+	cc.hoslelId='';
+	cc.hosgraId='';
+	cc.hosTel='';
+	cc.hosWebsite='';
+	cc.hosEstablishmentTime='';
+	cc.hosLegalPerson='';
+	cc.hosRegisteredCapital='';
+	cc.typeId='';
+	cc.profitId='';
+	cc.propertyId='';
+	$.ajax({
+		url : "" + realPath + "/hospital/insertTemp",
+		type : "post",
+		dataType : "json",
+		async : true,
+		crossDomain : true,
+		data : JSON.stringify(cc),
+		contentType : "application/JSON;charset=utf-8",
+		success : function(data) {
+			alert(data);
+		}
+	});   */  
+/**模糊查询医院*/
+/* var keyword ='漳州市'; 
+$.ajax({
+	url : "" + realPath + "/hospital/retrieval",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : keyword,
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});  */
+/*export导出数据*/
+/* var cc ={}; 
+cc.derId = 3;
+$.ajax({
+	url : "" + realPath + "/doctor/derivedExport",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(cc),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});   */
+/*审核人查看*/
+/* 	var cc ={}; 
+	cc.derId = 3;
+	$.ajax({
+		url : "" + realPath + "/doctor/derivedSearch",
+		type : "post",
+		dataType : "json",
+		async : true,
+		crossDomain : true,
+		data : JSON.stringify(cc),
+		contentType : "application/JSON;charset=utf-8",
+		success : function(data) {
+			alert(data);
+		}
+	});  */
+	/*审核人通过和拒绝*/
+/* 	var cc ={}; 
+	cc.derId = 3;
+	cc.derStatus = 1;
+	$.ajax({
+		url : "" + realPath + "/doctor/passAndReject",
+		type : "post",
+		dataType : "json",
+		async : true,
+		crossDomain : true,
+		data : JSON.stringify(cc),
+		contentType : "application/JSON;charset=utf-8",
+		success : function(data) {
+			alert(data);
+		}
+	});   */
+	/*审核人查询创建请求*/
+  /*    var cc ={}; 
+	 cc.email = JSON.parse(sessionStorage.getItem('sysUser')).email;//申请人
+	 $.ajax({
+		url : "" + realPath + "/doctor/reviewerSearch",
+		type : "post",
+		dataType : "json",
+		async : true,
+		crossDomain : true,
+		data : JSON.stringify(cc),
+		contentType : "application/JSON;charset=utf-8",
+		success : function(data) {
+			alert(data);
+		}
+	});   */
+ /*导出发送请求*/	
+ /*var cc ={}; 
+ cc.derApplicant = JSON.parse(sessionStorage.getItem('sysUser')).email;//申请人
+ cc.derField = "docName,docSex,docOld,catName,natName";
+ cc.derDocId = "852147,852379,852156,852158,852159,852160,852160,852161,852162,852163,852164,852165,852166,852167,852168,852169,852170,852171,852172";
+ cc.derReviewer ="571029031@qq.com";	
+ cc.userName = JSON.parse(sessionStorage.getItem('sysUser')).userName;
+ $.ajax({
+	url : "" + realPath + "/doctor/derivedInseart",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(cc),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});  */
+/*删除通过和拒绝*/	
+/*  var cc ={}; cc.forDocId = "null,852147,852148";
+ cc.forId = '5';
+ cc.status = '通过';
+ $.ajax({
+	url : "" + realPath + "/doctor/deletePassOrRefuse",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(cc),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+}); */
+
+/*删除*/
+/* var docId =[];
+docId.push("852147");
+docId.push("852148");
+var cc = {};
+cc.docId=docId; */
+/* $.ajax({
+	url : "" + realPath + "/doctor/deleteDoctor",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(cc),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});
+ *//**通过或拒绝*/
+/* var aa = {};
+aa.forId = 4;
+aa.forDocId = "null,852147,852148";
+aa.forTempId = "8";
+aa.status = '通过'; */
+/* $.ajax({
+	url : "" + realPath + "/doctor/passOrRefuse",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(aa),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});  */
+/*查询*/
+/* $.ajax({
+	url : "" + realPath + "/doctor/modifyDeleteSearch",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+}); */
+});
+/*修改数据*/
+/* var docId =[];
+docId.push("852147");
+docId.push("852148");
+var cc = {};
+cc.docName='孟志远';
+cc.docSex='';
+cc.docOld='';
+cc.docEducation='';
+cc.catId='';
+cc.levId='';
+cc.natId='';
+cc.specId='';
+cc.docEmail='';
+cc.hosId='';
+cc.admiId='';
+cc.categId='';
+cc.belongId='';
+cc.docPronumber='';
+cc.docIdentity='';
+cc.docEmploymentTime='';
+cc.docRemark='';
+cc.docRecommender='';
+cc.docIntegral='';
+cc.docPhone1='';
+cc.docPhone2='';
+cc.docPhone3='';
+cc.attrId='';
+cc.docPostageTime='';
+cc.kolId='';
+cc.payerId='';
+cc.purchId='';
+cc.membId='';
+cc.importId='';
+cc.coorId='';
+cc.liveId='';
+cc.docCreateTime='';
+cc.docUpdateTime='';
+cc.docId=docId;
+$.ajax({
+	url : "" + realPath + "/doctor/insertTemp",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(cc),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});    */
+/*修改数据回显*/
+/* var docId =[];
+docId.push("852147");
+docId.push("852148");
+var cc = {};
+cc.docId=docId;
+$.ajax({
+	url : "" + realPath + "/doctor/updateEcho",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(cc),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});  */
+/*查重Weight*/
+/* var matching ={
+		"limit":5,
+		"offset":0,
+		"list":['catName','hosId','docPhone1']
+};
+
+$.ajax({
+	url : "" + realPath + "/doctor/weight",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(matching),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+}); */
+/*匹配查询*/
+/* var matching ={
+		"姓名":"docName",
+		"电话":"docPhone1"  
+};
+var list = [{"姓名":"赵aaa","电话":"13609259716"},{"姓名":"张力方","电话":"13701682416"},{"姓名":"黄国建","电话":"18917683377"},{"姓名":"姜桦 ","电话":"029-84825849"},{"姓名":"乐家怡 ","电话":"029-84825849"},{"姓名":"王小姐","电话":"13918620488"},{"姓名":"郑先生","电话":"13774486692"},{"姓名":"刘齐","电话":"029-87865546"},{"姓名":"雍民善","电话":"029-82057212"},{"姓名":"章伟卿","电话":"84227466/84225974"},{"姓名":"王耀程","电话":"029-83377663"},{"姓名":"王艳青","电话":"029-83376165"},{"姓名":"张锦荣","电话":"13201403935"},{"姓名":"惠小宏","电话":"029-84619433"},{"姓名":"张明勇","电话":"029-87417038"},{"姓名":"张建","电话":"029-81900849"},{"姓名":"王主任","电话":"029-83202650"},{"姓名":"陈维","电话":"029-81958506"},{"姓名":"张孝国","电话":"13227863989"},{"姓名":"徐磊","电话":"029-88645106"}];
+var filed_list = [{
+	"relation":"none",
+	"field":"docName",
+	"operator":"等于"
+},{
+	"relation":"yu",
+	"field":"docPhone1",
+	"operator":"等于"
+}]
+
+var ss ={}
+ss.list = list;
+ss.filed_list = filed_list;
+ss.matching = matching;
+  $.ajax({
+	url : "" + realPath + "/doctor/matching",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(ss),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});   */
+
+/*更多查询*/
+/* 	var packedConditions={
+        list: [{
+            index: 0,
+            packed: false,
+            conditions: [{
+                relation: 'none',
+                field: 'catName',
+                field_name: '',
+                operator: '等于',
+                value: '医师'
+            },{
+                relation: 'yu',
+                field: 'hosProvince',
+                field_name: '',
+                operator: '等于',
+                value: '北京市'
+            },
+            {
+                relation: 'huo',
+                field: 'hosProvince',
+                field_name: '',
+                operator: '等于',
+                value: '湖南省'
+            }]
+        },
+        
+        {
+            index: 1,
+            packed: false,
+            conditions: [{
+                relation: 'none',
+                field: 'catName',
+                field_name: '',
+                operator: '等于',
+                value: '医师'
+            },{
+                relation: 'yu',
+                field: 'hosProvince',
+                field_name: '',
+                operator: '等于',
+                value: '上海市'
+            },
+            {
+                relation: 'huo',
+                field: 'hosProvince',
+                field_name: '',
+                operator: '等于',
+                value: '江苏省'
+            }]
+        }
+        ]
+    }
+	$.ajax({
+		url : "" + realPath + "/kolHome/moreInformation",
+		type : "post",
+		dataType : "json",
+		async : true,
+		crossDomain : true,
+		data : JSON.stringify(packedConditions),
+		contentType : "application/JSON;charset=utf-8",
+		success : function(data) {
+			alert(data);
+		}
+	}); 
+		
+}) */
+/*首页请求ajax*/
+
+/* var temp = {};
+temp.email = '588545@qq.com';
+$.ajax({
+	url : "" + realPath + "/kolHome/init",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(temp),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+}); */
+/* 更多信息请求方法*/
+/* var relationship = {};
+var ww = [];
+var temp={};
+temp.relation = '';
+temp.field = 'catName';
+temp.operator = '等于';
+temp.value = '医师';
+ww.push(temp);
+
+var temp1={};
+temp1.relation = 'yu';
+temp1.field = 'hosProvince';
+temp1.operator = '开头是';
+temp1.value = '北京';
+ww.push(temp1);
+var temp1={};
+temp1.relation = 'huo';
+temp1.field = 'hosProvince';
+temp1.operator = '开头是';
+temp1.value = '上';
+ww.push(temp1);
+relationship.conditions=ww;
+
+var field=[];
+field.push("catName");
+field.push("hosProvince");
+field.push("natName");
+relationship.field = field;
+$.ajax({
+	url : "" + realPath + "/kolHome/moreInformation",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(relationship),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});  */
+/*模糊查询ajax
+
+基本信息  basic
+职业+career
+单位+unit
+联系+contact
+个人+oneself
+属性+attribu
+支付+payment
+审核+review
+沟通+communicate
+积分+integral
+项目+project
+数据信息+data
+*/
+/* var temp = {};
+temp.classification = 'basic';
+temp.keyword = '北京';
+temp.limit=20;   // 页面大小
+temp.offset=2;  // 页码
+$.ajax({
+	url : "" + realPath + "/doctor/fuzzySearch",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(temp),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});  */
+/*快速查询查询ajax*/
+	/*  var temp = {};
+	temp.hosProvince = '北京';
+	temp.limit=20;   // 页面大小
+	temp.offset=2;  // 页码 
+	$.ajax({
+		url : "" + realPath + "/doctor/accuracySearch",
+		type : "post",
+		dataType : "json",
+		async : true,
+		crossDomain : true,
+		data : JSON.stringify(temp),
+		contentType : "application/JSON;charset=utf-8",
+		success : function(data) {
+			alert(data);
+		}
+	});   */
+/*精准查询ajax*/
+
+/*   var ww = [];
+var temp={};
+temp.relation = '';
+temp.field = 'catName';
+temp.operator = '等于';
+temp.value = '医师';
+ww.push(temp);
+
+var temp1={};
+temp1.relation = 'yu';
+temp1.field = 'docName';
+temp1.operator = '开头是';
+temp1.value = '张';
+ww.push(temp1);
+var temp1={};
+temp1.relation = 'huo';
+temp1.field = 'docName';
+temp1.operator = '开头是';
+temp1.value = '孟';
+ww.push(temp1);
+var relationship={};
+relationship.conditions=ww;
+relationship.medicalNumber = '222222';
+relationship.hosName = '';
+relationship.docName = '';
+relationship.limit=20;   // 页面大小
+relationship.offset=2;  // 页码 
+
+$.ajax({
+	url : "" + realPath + "/doctor/precisionSearch",
+	type : "post",
+	dataType : "json",
+	async : true,
+	crossDomain : true,
+	data : JSON.stringify(relationship),
+	contentType : "application/JSON;charset=utf-8",
+	success : function(data) {
+		alert(data);
+	}
+});    */
+
+</script>
+</body>
+</html>

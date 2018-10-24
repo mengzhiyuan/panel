@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .bs-bars.pull-left{
+            display: inline-block;
+            width: 75%
+        }
+        .search-tools,.add-tools{
+            display:inline-block;
+            width: 12%;
+            border-radius: 4px!important;
+            margin: 0 5px;
+            float: left;
+        }
+        #controls{
+            width: 100%;
+            font-size: 0;
+            margin: 10px 15px;
+        }
+        #controls th, #controls td{
+            border: 1px solid #aaaaaa;
+            font-size: 14px;
+        }
+        #controls th{
+            text-align: center;
+        }
+        #controls td{
+            padding: 0 15px;;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="http://www.kolpanel.net/jfcpanel/html/jfc/main/center.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-OA</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div id="main">
+                    <div id="toolbar" class="btn-group" style="width: 100%;">
+                        <!--<input id="plan_title" type="text" placeholder="计划主题" class="form-control search-tools" aria-label="...">-->
+                        <!--<input id="plan_owner" type="text" placeholder="计划人" class="form-control search-tools" aria-label="...">-->
+                        <!--<input id="plan_start" type="text" placeholder="开始时间" class="form-control search-tools" aria-label="...">-->
+                        <!--<input id="plan_end" type="text" placeholder="开始时间" class="form-control search-tools" aria-label="...">-->
+                        <select id="attendance_year" class="form-control search-tools">
+                        </select>
+                        <select id="attendance_month" class="form-control search-tools">
+                        </select>
+                        <button class="btn btn-success btn-group-sm search-tools" id="attendance_search">搜索</button>
+                        <!--<button class="btn btn-default btn-group-sm add-tools" id="plan_add">新增工作计划</button>-->
+                        <!--</div>-->
+                    </div>
+                    <table id="datas"></table>
+                    <table id="controls">
+                        <thead>
+                        <tr>
+                            <th style="width: 15%;">部门</th>
+                            <th style="width: 65%;">人员</th>
+                            <th style="width: 20%;">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                    <!-- 模态框（Modal） -->
+                    <div class="modal fade" id="import" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close create_staff"
+                                            data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">选择打卡txt文件</h4>
+                                </div>
+                                <form method="post" enctype="multipart/form-data" id="excelImport">
+                                    <div class="modal-body">
+                                        <input type="file" name="file">
+                                    </div>
+                                </form>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="closeImport">关闭</button>
+                                    <button type="button" class="btn btn-info" id="attendance">添加</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+                    <!-- /.modal-content -->
+                    <div class="modal fade" id="holiday" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close create_staff"
+                                            data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">设置假期时间</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="holidays">
+
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="close_holiday">关闭</button>
+                                    <button type="button" class="btn btn-info" id="save_holiday">添加</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+
+                    <div class="modal fade" id="update_mark" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close create_staff"
+                                            data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title">请输入异常详情</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <label for="attendance_mark">请选择异常状态</label>
+                                        <select id="attendance_mark">
+                                            <option value="">请选择</option>
+                                            <option value="正常">正常</option>
+                                            <option value="迟到">迟到</option>
+                                            <option value="早退">早退</option>
+                                            <option value="加班">加班</option>
+                                            <option value="调休">调休</option>
+                                            <option value="病假">病假</option>
+                                            <option value="事假">事假</option>
+                                            <option value="未打卡">未打卡</option>
+                                            <option value="婚假">婚假</option>
+                                            <option value="年假">年假</option>
+                                            <option value="出差">出差</option>
+                                        </select>
+                                    </div>
+                                    <div class="row">
+                                        <label for="attendance_time">请输入异常时长</label>
+                                        <input type="text" id="attendance_time">
+                                    </div>
+                                    <div class="row">
+                                        <label for="attendance_explain">请输入异常说明</label>
+                                        <input type="text" id="attendance_explain">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal" id="close_mark">关闭</button>
+                                    <button type="button" class="btn btn-info" id="save_mark">添加</button>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                        </div>
+                        <!-- /.modal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/administrator/attendance.js"></script>
+</body>
+</html>

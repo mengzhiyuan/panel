@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/kangpai/custom.css">
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="../../css/home/fixed-table.css" />
+<script src="../../js/home/fixed-table.js"></script>
+<script src="../../js/kangpai/jquery.form.js"></script>
+<script src="../../js/jfc/attendance.js"></script>
+<style>
+.fixed-table-box {
+	width: 85%;
+	margin: 50px auto;
+}
+
+.w-150 {
+	width: 150px;
+}
+
+.w-120 {
+	width: 120px;
+}
+
+.w-300 {
+	width: 300px;
+}
+
+.w-100 {
+	width: 100px;
+}
+
+.btns {
+	text-align: center;
+}
+
+.btns button {
+	padding: 10px 20px;
+}
+</style>
+</head>
+<body>
+	<div class="row" style="margin-top: 1%">
+		<div class="col-sm-2">
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active">
+					<select class="form-control" id="year">
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-2">
+			<div role="tabpanel" class="tab-pane active">
+				<select class="form-control" id="month">
+					<option value="01">1月</option>
+					<option value="02">2月</option>
+					<option value="03">3月</option>
+					<option value="04">4月</option>
+					<option value="05">5月</option>
+					<option value="06">6月</option>
+					<option value="07">7月</option>
+					<option value="08">8月</option>
+					<option value="09">9月</option>
+					<option value="10">10月</option>
+					<option value="11">11月</option>
+					<option value="12">12月</option>
+				</select>
+			</div>
+		</div>
+		<div class="col-xs-4"></div>
+		<div class=" col-xs-4 text-right">
+			<a  class="btn btn-default create_button" type="button" id="zhli">+整理数据</a>
+			
+			<a class="btn btn-default create_button" type="button"
+				data-toggle="modal" data-target="#myModal">+导入打卡</a>
+		    
+		</div>
+	</div>
+	<p>
+	<div class="fixed-table-box row-col-fixed">
+		<!-- 表头 start -->
+		<div class="fixed-table_header-wraper">
+			<table class="fixed-table_header" cellspacing="0" cellpadding="0"
+				border="0">
+				<thead>
+					<tr>
+						<th data-fixed="true"><div class="w-150">姓名</div></th>
+						<th class="w-120">
+							<div class="table-cell">
+								<button class="btn btn-xs btn-success">ZC</button>
+								正常打卡
+							</div>
+						</th>
+						<th class="w-120">
+							<div class="table-cell">
+								<button class="btn btn-xs btn-info">JQ</button>
+								假期
+							</div>
+						</th>
+						<th class="w-120">
+							<div class="table-cell">
+								<button class="btn btn-xs btn-danger">C</button>
+								迟到
+							</div>
+						</th>
+						<th class="w-120">
+							<div class="table-cell">
+								<button class="btn btn-xs" style="background-color: #00FF7F">JB</button>
+								加班
+							</div>
+						</th>
+						<th colspan="2">
+							<button class="btn btn-xs btn-warning" style="margin-left: 30px">WO</button>打卡一次
+						</th>
+						<th colspan="2">
+							<button class="btn btn-xs btn-primary" style="margin-left: 30px">WT</button>今天没来
+						</th>
+						<th colspan="12">
+							<button class="btn btn-xs btn-default">LG</button>来过公司
+							<button class="btn btn-xs btn-default">JJB</button>假期加班
+							<button class="btn btn-xs btn-default">WC</button>外出
+							<button class="btn btn-xs btn-default">CC</button>出差
+							<button class="btn btn-xs btn-default">N</button>年假
+							<button class="btn btn-xs btn-default">H</button>婚嫁
+							<button class="btn btn-xs btn-default">S</button>事假
+							<button class="btn btn-xs btn-default">B</button>病假
+							<button class="btn btn-xs btn-default">D</button>调休
+						</th>
+					</tr>
+					<tr>
+						<th data-fixed="true"><div class="w-150">姓名</div></th>
+						<th class="w-120"><div class="table-cell">1</div></th>
+						<th class="w-120"><div class="table-cell">2</div></th>
+						<th class="w-120"><div class="table-cell">3</div></th>
+						<th class="w-120"><div class="table-cell">4</div></th>
+						<th class="w-120"><div class="table-cell">5</div></th>
+						<th class="w-120"><div class="table-cell">6</div></th>
+						<th class="w-120"><div class="table-cell">7</div></th>
+						<th class="w-120"><div class="table-cell">8</div></th>
+						<th class="w-120"><div class="table-cell">9</div></th>
+						<th class="w-120"><div class="table-cell">10</div></th>
+						<th class="w-120"><div class="table-cell">11</div></th>
+						<th class="w-120"><div class="table-cell">12</div></th>
+						<th class="w-120"><div class="table-cell">13</div></th>
+						<th class="w-120"><div class="table-cell">14</div></th>
+						<th class="w-120"><div class="table-cell">15</div></th>
+						<th class="w-120"><div class="table-cell">16</div></th>
+						<th class="w-120"><div class="table-cell">17</div></th>
+						<th class="w-120"><div class="table-cell">18</div></th>
+						<th class="w-120"><div class="table-cell">19</div></th>
+						<th class="w-120"><div class="table-cell">20</div></th>
+						<th class="w-120"><div class="table-cell">21</div></th>
+						<th class="w-120"><div class="table-cell">22</div></th>
+						<th class="w-120"><div class="table-cell">23</div></th>
+						<th class="w-120"><div class="table-cell">24</div></th>
+						<th class="w-120"><div class="table-cell">25</div></th>
+						<th class="w-120"><div class="table-cell">26</div></th>
+						<th class="w-120"><div class="table-cell">27</div></th>
+						<th class="w-120"><div class="table-cell">28</div></th>
+						<th class="w-120"><div class="table-cell">29</div></th>
+						<th class="w-120"><div class="table-cell">30</div></th>
+						<th class="w-120"><div class="table-cell">31</div></th>
+						<th class="w-120"><div class="table-cell">加班/时</div></th>
+						<th class="w-120"><div class="table-cell">调休/时</div></th>
+						<th class="w-120"><div class="table-cell">存假/时</div></th>
+						<th class="w-120"><div class="table-cell">总存假/时</div></th>
+					</tr>
+				</thead>
+			</table>
+		</div>
+		<!-- 表头 end -->
+		<!-- 表格内容 start -->
+		<div class="fixed-table_body-wraper">
+			<table class="fixed-table_body" cellspacing="0" cellpadding="0"
+				border="0" id="the_week">
+				<tbody>
+					<!-- <tr>
+                        <td><div class="w-150"> </div></td>
+                        <td class="w-120"><div class="table-cell">星期一</div></td>
+                        <td class="w-120"><div class="table-cell">2</div></td>
+                        <td class="w-120"><div class="table-cell">3</div></td>
+                        <td class="w-120"><div class="table-cell">4</div></td>
+                        <td class="w-120"><div class="table-cell">5</div></td>
+                        <td class="w-120"><div class="table-cell">5</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">---</div></td>
+                        <td class="w-120"><div class="table-cell">---</div></td>
+                        <td class="w-120"><div class="table-cell">---</div></td>
+                        <td class="w-120"><div class="table-cell">---</div></td>
+                    </tr> -->
+					<!--  <tr>
+                        <td><div class="w-150"> </div></td>
+                        <td class="w-120"><div class="table-cell">1</div></td>
+                        <td class="w-120"><div class="table-cell">2</div></td>
+                        <td class="w-120"><div class="table-cell">3</div></td>
+                        <td class="w-120"><div class="table-cell">4</div></td>
+                        <td class="w-120"><div class="table-cell">5</div></td>
+                        <td class="w-120"><div class="table-cell">5</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7</div></td>
+                        <td class="w-120"><div class="table-cell">7小时</div></td>
+                        <td class="w-120"><div class="table-cell">7小时</div></td>
+                        <td class="w-120"><div class="table-cell">7小时</div></td>
+                        <td class="w-120"><div class="table-cell">7小时</div></td>
+                        
+                    </tr> -->
+
+				</tbody>
+			</table>
+		</div>
+		<!-- 表格内容 end -->
+
+		<!-- 固定列 start -->
+		<div class="fixed-table_fixed fixed-table_fixed-left">
+			<div class="fixed-table_header-wraper">
+				<table class="fixed-table_header" cellspacing="0" cellpadding="0"
+					border="0">
+					<thead>
+						<tr>
+							<th class="w-150"><div class="table-cell"></div></th>
+						</tr>
+						<tr>
+							<th class="w-150"><div class="table-cell">姓名</div></th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+
+			<div class="fixed-table_body-wraper">
+				<table class="fixed-table_body" cellspacing="0" cellpadding="0"
+					border="0">
+					<tbody id="the_row">
+						<!-- <tr>
+                            <td class="w-150"><div class="table-cell"> 星期</div></td>
+                        </tr> -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!-- 固定列 end -->
+	</div>
+
+
+
+
+
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close create_staff"
+						data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">选择打卡txt文件</h4>
+				</div>
+				<form method="post" enctype="multipart/form-data" id="excelImport">
+					<div class="modal-body">
+						<input type="file" name="file">
+					</div>
+				</form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-info" id="attendance">添加</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+</body>
+</html>

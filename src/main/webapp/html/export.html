@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="jack">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,
+        user-scalable=no" />
+    <title>问卷结果导出</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <style type="text/css">
+        p.title {
+            text-align: center;
+            font-size: 30px;
+        }
+        .buttons{
+            padding: 15px;
+            text-align: right;
+        }
+        table {
+            table-layout: fixed;
+        }
+        th,td {
+            width: 100px;
+            word-break: keep-all;
+            white-space:nowrap;
+            overflow:hidden;
+            text-overflow:ellipsis;
+            text-align: center;
+        }
+        #left_div{
+            width:100px;
+            float: left;
+        }
+        #left_div1{
+            width: 100%;
+        }
+        #left_div2{
+            margin-top:-20px;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+        #left_table1 th{
+            background: #E9F8FF;
+            text-align:center;
+        }
+        #left_table2 th{
+            text-align:center;
+        }
+
+        #right_div{
+            float: left;
+        }
+        #right_div1{
+            width: 100%;
+            overflow: hidden;
+        }
+        #right_divx{
+            width: 900px;
+        }
+        #right_div2{
+            margin-top:-20px;
+            width:100%;
+            height:400px;
+            overflow: auto;
+        }
+        #right_table1{
+            width: 880px;
+        }
+        #right_table2{
+            /**width和max-width一起写，手机浏览器打开也能固定长度**/
+            width: 880px;
+            max-width: 880px;
+            white-space:nowrap;
+        }
+        #right_table1 th{
+            background: #E9F8FF;
+            text-align:center;
+            /*width:10%;*/
+        }
+        #right_table2 td{
+            /*width:10%;*/
+            text-align:center;
+        }
+
+    </style>
+</head>
+<body>
+<p class="title">收集结果</p>
+<div id="progress"></div>
+<div class="buttons">
+    <button id="export" class="btn btn-md btn-success">导出</button>
+</div>
+<div id="container" class="container-fluid">
+    <div id="left_div">
+        <div id="left_div1">
+            <table id="left_table1" class="table table-bordered">
+                <tr>
+                    <th>IP地址</th>
+                </tr>
+            </table>
+        </div>
+        <div id="left_div2">
+            <table id="left_table2" class="table table-bordered">
+
+            </table>
+        </div>
+    </div>
+    <div id="right_div">
+        <div id="right_div1">
+            <div id="right_divx">
+                <table id="right_table1" class="table table-bordered">
+                    <tr>
+                        <th>开始时间</th>
+                        <th>结束时间</th>
+                        <th>S1.请问您实际年龄是多少？</th>
+                        <th>S2.请问，下列描述中哪一项更加符合您的职业？</th>
+                        <th>S2-1.</th>
+                        <th>S3.下列描述中，哪一项更符合您的岗位身份？</th>
+                        <th>S3-1.</th>
+                        <th>Q1.请问您经常选择高速公路出行吗？</th>
+                        <th>Q2那么，您每年高速公路通行费支出约_____元。</th>
+                        <th>Q3-1.若您选择高速公路出行，您更关注以下哪个方面？-节省时间</th>
+                        <th>Q3-2.若您选择高速公路出行，您更关注以下哪个方面？-行车安全</th>
+                        <th>Q3-3.若您选择高速公路出行，您更关注以下哪个方面？-收费标准</th>
+                        <th>Q3-4.若您选择高速公路出行，您更关注以下哪个方面？-出行服务（收费站、服务区、出行信息等）</th>
+                        <th>Q3-5.若您选择高速公路出行，您更关注以下哪个方面？-其它</th>
+                        <th>Q3-4-1.</th>
+                        <th>Q4.您是否知道高速公路的建设资金主要是通过举借债务和吸引社会投资，并通过收取通行费偿还债务和回收投资的？</th>
+                        <th>Q5.高速公路是否应该收费，若应该收费，以何种方式筹集资金更加合理？</th>
+                        <th>Q5-1.</th>
+                        <th>Q6.现行法规规定，车辆通行费的收费标准，根据公路技术等级、投资总额、当地物价指数、偿还贷款或者有偿集资款的期限和收回投资的期限以及交通量等因素计算确定。您认为现在高速公路定价考虑的因素合理吗？</th>
+                        <th>Q6-1.</th>
+                        <th>Q7.您认为目前收费水平合理吗？</th>
+                        <th>Q8.请问，您是否赞同：高速公路通过向用路者收费来保证出行效率与品质，普通公路通过公共财政提供普遍通行服务？</th>
+                        <th>Q9-1.您认为收费公路哪方面成本还有压缩空间？-建设成本</th>
+                        <th>Q9-2.您认为收费公路哪方面成本还有压缩空间？-运营管理成本</th>
+                        <th>Q9-3.您认为收费公路哪方面成本还有压缩空间？-养护成本</th>
+                        <th>Q9-4.您认为收费公路哪方面成本还有压缩空间？-融资成本</th>
+                        <th>Q9-5.您认为收费公路哪方面成本还有压缩空间？-没有压缩空间</th>
+                        <th>Q10-1.对于如下收费公路政策，您认为哪些收费政策更加公平合理？-到期后停止收费，提高燃油税税率</th>
+                        <th>Q10-2.对于如下收费公路政策，您认为哪些收费政策更加公平合理？-降低收费标准，延长收费年限</th>
+                        <th>Q10-3.对于如下收费公路政策，您认为哪些收费政策更加公平合理？-以省为单位，对高速公路实行统一收费、统一管理</th>
+                        <th>Q10-4.对于如下收费公路政策，您认为哪些收费政策更加公平合理？-平时保持现行收费标准，拥堵时提高收费标准</th>
+                        <th>Q10-5.对于如下收费公路政策，您认为哪些收费政策更加公平合理？-平时保持现行收费标准，拥堵时降低收费标准</th>
+                        <th>Q11-1.对鲜活农产品运输车辆免收通行费是否合理？-合理</th>
+                        <th>Q11-2.对鲜活农产品运输车辆免收通行费是否合理？-不合理，免费通行需要对货物查验核实，影响通行效率</th>
+                        <th>Q11-3.对鲜活农产品运输车辆免收通行费是否合理？-不合理，对高速公路经营企业不公平，加大了企业负担</th>
+                        <th>Q11-4.对鲜活农产品运输车辆免收通行费是否合理？-不合理，您认为存在的问题</th>
+                        <th>Q11-4-1.</th>
+                        <th>Q12-1.您认为“重大节假日小客车免费通行政策”是否合理？-合理</th>
+                        <th>Q12-2.您认为“重大节假日小客车免费通行政策”是否合理？-不合理，影响了出行体验，节假日公路更堵了</th>
+                        <th>Q12-3.您认为“重大节假日小客车免费通行政策”是否合理？-不合理，对高速公路经营企业不公平，加大了企业负担</th>
+                        <th>Q12-4.您认为“重大节假日小客车免费通行政策”是否合理？-不合理，您认为存在的问题</th>
+                        <th>Q12-4-1.</th>
+                        <th>Q13-1.对于费用支付方式，您更愿意选取哪种收费方式？</th>
+                        <th>Q13-1.</th>
+                        <th>Q14.您认为目前高速公路建设的速度和规模合理吗？</th>
+                        <th>Q15.您认为收费公路领域债务问题严重吗？</th>
+                        <th>Q16.对于现行收费公路政策，您的其他意见建议？请详细说明：</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div id="right_div2">
+            <table id="right_table2" class="table table-bordered">
+
+            </table>
+        </div>
+    </div>
+</div>
+<script src="./js/jquery.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/export.js"></script>
+</body>
+</html>

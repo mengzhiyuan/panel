@@ -1,0 +1,99 @@
+.form-head{
+    border: 1px solid #999999;
+    margin: 1rem 0 0 0;
+}
+.form-head>span{
+    font-size: 1.6rem;
+    text-align: center;
+}
+.form-head>.title{
+    display: inline-block;
+    background-color: #a6e1ec;
+    width: 75%;
+}
+.form-head>.alter{
+    display: inline-block;
+    background-color: #0074d9;
+    width: 25%;
+    cursor: pointer;
+}
+.form-head:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.form-body{
+    margin: 2rem;
+}
+.form-body .row{
+    margin: 0.6rem 0;
+}
+.form-body label, .form-body input, .form-body select{
+    font-size: 1.4rem;
+}
+
+html, body{
+    font-size: 10px;
+}
+table, tbody{
+    width: 100%;
+}
+table>tbody label, table>tbody input, table>tbody select{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    background-color: rgb(255,255,255);
+}
+table>tbody label{
+    text-align: right;
+    padding-right: 5px;
+}
+table>tbody input{
+    border: 1px solid #000000;
+}
+.btn-cope{
+    position: relative;
+}
+.btn-cope .btn{
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    font-size: 1.2rem;
+    /*background-color: #ffffff;*/
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+#email_title{
+    font-size: 1.2rem;
+}
+.layui-laydate span, .layui-laydate th, .layui-laydate td, .layui-laydate li{
+    font-size: 1.2rem;
+}
+td.ul-wrap{
+    position: relative;
+}
+ul.options{
+    position: absolute;
+    top: 32px;
+    right: 0;
+    display: block;
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff;
+}
+ul.options>li{
+    font-size: 1.2rem;
+    list-style: none;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+ul.options>li:hover{
+    border-bottom: 1px solid #999999;
+}
+tr.separator{
+    height: 15px;
+}
+td.highlight>label{
+    color: #ff0000;
+}

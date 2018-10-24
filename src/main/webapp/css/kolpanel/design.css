@@ -1,0 +1,1875 @@
+/*引用web字体-start*/
+@font-face {
+    font-family: typeIcon;
+    src: url('../../font/Mateo.woff')
+}
+/*引用俘字体-end*/
+/*public-start*/
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'PingFang SC', tahoma, arial, 'helvetica neue', 'hiragino sans gb', 'microsoft yahei ui', 'microsoft yahei', simsun, sans-serif;
+    font-weight: 400;
+}
+html,body{
+    width: 100%;
+    height: 100%
+}
+.container-fluid{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    min-width: 1000px;
+}
+a{
+    color: #333333
+}
+a:hover,a:focus{
+    color: #444444;
+    text-decoration: none;
+}
+.nav > li > a:hover, .nav > li > a:focus{
+    background-color: initial
+}
+ul{
+    margin: 0;
+}
+li{
+    list-style-type: none;
+}
+/*公共部分-end*/
+/*bootstrap.更改-start*/
+.btn-info{
+    background-color: #5bc0ff;
+    border-color: #5bc0ff;
+}
+.btn-info:hover,.btn-info:focus{
+    background-color: #5bc0ff;
+    border-color: #5bc0ff;
+    box-shadow: 0 0 10px 0 #5bc0ff;
+}
+/*bootstrap.更改-end*/
+/*头部导航-start*/
+#header{
+    height: 40px;
+}
+.logo{
+    width: 80px;
+    height: 40px;
+    background-image: url("../../images/logos/LOGO.png");
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.navigator{
+    height: 40px;
+}
+.navigator>li{
+    height: 40px;
+    vertical-align: middle;
+    font-size: 1.2rem
+}
+/**账户按钮-start**/
+.signout{
+    display: none;
+    /*display: block;*/
+}
+.signin{
+    /*display: none;*/
+    display: block;
+}
+.account{
+    width: 130px;
+    height: 20px;
+    font-size: 1.3rem;
+    border-radius: 3px;
+    margin: 10px 15px 10px 0;
+    vertical-align: middle;
+    cursor: pointer;
+    box-shadow: 0 0 1px #555555;
+    z-index: 1000;
+}
+.account:hover,.account:focus{
+
+}
+.account:hover #dropdown,.account:focus #dropdown{
+    display: block;
+}
+#header .account .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../images/kolpanel/account.png");
+    background-size: 80%;
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: middle;
+}
+#header .name{
+    display: inline-block;
+    width: 90px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0 0 0 7px;
+    vertical-align: middle;
+}
+#dropdown{
+    position: relative;
+    top: 10px;
+    left: 15px;
+    display: none;
+    width: 100px;
+    background-color: #ffffff;
+    box-shadow: 0 0 1px #555555;
+    z-index: 1000;
+}
+#dropdown>.arrow{
+    position: absolute;
+    top: -10px;
+    left: 40px;
+    display: inline-block;
+    width: 1px;
+    height: 1px;
+    border-top: 0;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #999999;
+    border-left: 10px solid transparent;
+}
+#dropdown>.arrow:after{
+    position: absolute;
+    top: 1px;
+    left: -10px;
+    display: inline-block;
+    width: 1px;
+    height: 1px;
+    border-top: 0;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #ffffff;
+    border-left: 10px solid transparent;
+    content: ''
+}
+#dropdown li{
+    margin: 0 0 0 20px;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+/**账户按钮-end**/
+/*头部导航-end*/
+/*左边工具栏-start*/
+#left{
+    position: relative;
+    display: block;
+    margin: 0 0 0 20px;
+    float: left;
+}
+#main{
+    background-color: #f9f9f9;
+}
+#main> .tags{
+    position: relative;
+    top: 0;
+    background-color: #ffffff;
+    margin: 20px 0 0 0;
+}
+#main> .tags>ul{
+    height: 36px;
+    border-bottom: 1px solid #aaa;
+    padding: 0 60px 0 20px;
+}
+#main>.tags li{
+    display: block;
+    width: 100px;
+    height: 36px;
+    line-height: 36px;
+    float: left;
+    list-style-type: none;
+    text-align: center;
+    background-color: #fff;
+    border-bottom: 1px solid #aaa;
+    cursor: pointer;
+}
+#main>.tags li.active{
+    background-color: #f9f9f9;
+    border: 1px solid #aaa;
+    border-bottom-color: transparent;
+    border-radius: 5px 5px 0 0;
+}
+#submit{
+    position: relative;
+    top: -35px;
+    right: 15px
+}
+#left>.side{
+    position: relative;
+    display: none;
+    margin: 0;
+    width: 300px;
+    height: 575px;
+    font-size: 0;
+    background-color: rgba(200,200,200,0.3);
+    box-shadow: 0 0 1px 1px #e3e3e3;
+}
+#left>.side.analyze{
+    background-color: rgba(255,255,255,0.7);
+    box-shadow: 0 0 1px 1px #e3e3e3;
+}
+.select_survey_by_name{
+    width: 160px;
+    margin: 15px 0;
+}
+#left>.side.set{
+    /*padding: 20px;*/
+    font-size: 1.2rem;
+    overflow: scroll;
+}
+#left>.side.set .setting{
+    height: 30px;
+}
+#left>.side.set input[type = number]{
+    width: 40px;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+}
+#left>.side .tag{
+    position: absolute;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    font-size: 1.3rem;
+    border-bottom: 1px solid #cccccc;
+    background-color: #ffffff;
+    text-align: center;
+    cursor: default;
+}
+#left>.side .tag.first{
+    top: 0;
+    left: 0;
+}
+#menu{
+    position: absolute;
+    top: 6px;
+    right: 15px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("../../images/kolpanel/menu.png");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    z-index: 1000;
+}
+#left .menu-item>span{
+    position: relative;
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    overflow: auto;
+    cursor: text;
+}
+#left .menu-item>span[contenteditable=true]{
+    outline: 1px solid #1b6d85;
+}
+/*#left .menu-item>span:after{*/
+    /*position: absolute;*/
+    /*content: attr(placeholder);*/
+    /*display: inline-block;*/
+    /*color: #d9d9d9;*/
+/*}*/
+#left .menu-item .index{
+    width: 30px;
+}
+#left .menu-item .title{
+    width: 200px;
+}
+#left .menu-item .index:hover,#left .menu-item .title:hover{
+    background-image: url("../../images/kolpanel/edit.png");
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 16px;
+    background-repeat: no-repeat;
+}
+#left .menu-item .skip{
+    position: relative;
+    left: 12px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../images/kolpanel/skip-blue.png");
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+@keyframes skip
+{
+    0%   {outline: 2px solid #f9f9f9;}
+    20%  {outline: 2px solid #ff8000;}
+    40%  {outline: 2px solid #ffe384;}
+    60%  {outline: 2px solid #ff6100;}
+    99%  {outline: 2px solid #f9f9f9;}
+    100% {outline: none;}
+}
+@-moz-keyframes skip /* Firefox */
+{
+    0%   {outline: 2px solid #f9f9f9;}
+    20%  {outline: 2px solid #ff8000;}
+    40%  {outline: 2px solid #ffe384;}
+    60%  {outline: 2px solid #ff6100;}
+    99%  {outline: 2px solid #f9f9f9;}
+    100% {outline: none;}
+}
+
+@-webkit-keyframes skip /* Safari 和 Chrome */
+{
+    0%   {outline: 2px solid #f9f9f9;}
+    20%  {outline: 2px solid #ff8000;}
+    40%  {outline: 2px solid #ffe384;}
+    60%  {outline: 2px solid #ff6100;}
+    99%  {outline: 2px solid #f9f9f9;}
+    100% {outline: none;}
+}
+@-o-keyframes skip /* Opera */
+{
+    0%   {outline: 2px solid #f9f9f9;}
+    20%  {outline: 2px solid #ff8000;}
+    40%  {outline: 2px solid #ffe384;}
+    60%  {outline: 2px solid #ff6100;}
+    99%  {outline: 2px solid #f9f9f9;}
+    100% {outline: none;}
+}
+.skip-target{
+    animation: skip 1.5s;
+    -moz-animation: skip 1.5s;  /* Firefox */
+    -webkit-animation: skip 1.5s;   /* Safari 和 Chrome */
+    -o-animation: skip 1.5s;
+}
+#left>.side .tag.second{
+    bottom: 108px;
+    left: 0;
+}
+#left>.side .tag.third{
+    bottom: 72px;
+    left: 0;
+}
+#left>.side .tag.forth{
+    bottom: 36px;
+    left: 0;
+}
+#left>.side .tag.fifth{
+    bottom: 0;
+    left: 0;
+}
+#left>.side .bar{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: none;
+    width: 100%;
+    height: 394px;
+    background-color: #ffffff;
+}
+#left>.side .bar.active{
+    display: block;
+}
+#left>.side .bar.first{
+    padding: 15px 10px 3px 10px;
+    margin: 36px 0 147px 0;
+}
+/*#left>.side .bar.advanced{*/
+    /*padding: 3px 0 3px 0;*/
+    /*margin: 72px 0 110px 0;*/
+/*}*/
+#left>.side .bar.third{
+    font-size: 1.5rem;
+    padding: 10px 0;
+    margin: 108px 0 74px 0;
+}
+#left>.side .bar.progress-control, #left>.side .bar.quality-control{
+    padding: 15px 15px 15px 30px;
+}
+#left>.side .bar.second{
+    font-size: 1.5rem;
+    padding: 10px 0;
+    margin: 72px 0 74px 0;
+}
+#left>.side .bar.forth{
+    margin: 144px 0 36px 0;
+}
+#left>.side .bar.fifth{
+    margin: 180px 0 0 0;
+}
+#left>.side.active{
+    display: inline-block;
+}
+#left .side.analyze .head{
+    padding: 10px 20px;
+    font-size: 1.5rem;
+}
+#left .basic .qs span.list_item>.square{
+    position: relative;
+    left: 60px;
+    display: inline-flex;
+    height: 64px;
+    width: 180px;
+    justify-content: flex-start;
+    align-items: center;
+}
+#left .basic .qs span.list_item .sub_label{
+    display: none;
+    font-size: 1.3rem;
+}
+#left .basic .qs .sub_label>span.arrow{
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    display: none;
+    height: 1rem;
+    width: 1rem;
+    line-height: 1rem;
+    background-image: url("../../images/kolpanel/toRight_c.png");
+    background-size: 100%;
+    background-position: center;
+}
+#left .basic .qs span.list_item .sub_label:hover, #left .basic .qs span.list_item .sub_label:focus{
+    /*font-size:1.3rem;*/
+    color: #354645;
+    text-shadow: 0 0 0 #354645;
+}
+#left .basic .qs span.list_item .sub_label:hover>span, #left .basic .qs span.list_item .sub_label:focus>span{
+    display: inline-block;
+}
+#left .basic .qs:hover, #left .basic .qs:focus{
+    box-shadow: 0 0 4px 0 #6b8c99;
+    background-color: rgba(107,140,153,0.1);
+}
+#left .basic .qs:hover span.list_item .sub_label, #left .basic .qs:focus span.list_item .sub_label{
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    color: #3c5d7f;
+    margin: 0 5px;
+}
+#left .basic .qs>div{
+    /*float: left;*/
+    width: 298px;
+    height: 64px;
+    padding: 0 10px;
+}
+#left .basic .qs>div>span{
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 64px;
+    padding: 0 10px 0 10px;
+}
+#left .basic .qs span.list_item>a{
+    position: absolute;
+    /*top: 8px;*/
+    left: 10px;
+    display: inline-block;
+    height: 64px;
+    line-height: 64px;
+    margin: 0 10px 0 10px;
+    font-size: 1.7rem;
+    color: #3c5d7f;
+    /*text-decoration: underline;*/
+}
+#left .basic .qs div>span.list_item:before{
+    position: absolute;
+    top: 1px;
+    left: 5px;
+    font-family: typeIcon;
+    font-size: 1.5rem;
+    line-height: 64px;
+    color: #3c6d9f;
+}
+#choice div>span.list_item:before{
+    content: 'l'
+}
+#checks div>span.list_item:before{
+    content: 'A'
+}
+#blank div>span.list_item:before{
+    content: 'p'
+}
+#matrix div>span.list_item:before{
+    content: '\00A2';
+}
+#score div>span.list_item:before{
+    content: 'S'
+}
+#sort div>span.list_item:before{
+    content: '\00B4'
+}
+#left .design .type.message{
+    font-size: 1.5rem;
+    padding: 30px 105px;
+}
+#left li.msg, #left li.advanced{
+    padding: 0;
+    font-size: 13px;
+    font-weight: 300;
+}
+#left li.msg>a:link, #left li.advanced>a:link{
+    display: block;
+    padding: 4px 15px 3px;
+    border-bottom: 1px solid rgba(27,109,133,0.3);
+}
+#left li.msg>a:visited, #left li.advanced>a:visited{
+    padding: 3px 14px;
+    border: 1px dashed #1b6d85;
+}
+#left li.msg>a:hover, #left li.advanced>a:hover{
+    background-color: rgba(27,109,133,0.1);
+    padding: 3px 14px;
+    border: 1px solid #1b6d85;
+}
+#left li.msg>a:active, #left li.advanced>a:active{
+    background-color: rgba(27,109,133,0.3);
+    padding: 3px 14px;
+    border: 1px solid #1b6d85;
+ }
+/*#left .quickly .msg input{*/
+    /*display: none;*/
+/*}*/
+/*#left .quickly .msg span{*/
+    /*display: inline-block;*/
+    /*height: 1.5rem;*/
+    /*vertical-align: middle;*/
+/*}*/
+/*#left .quickly .msg .icon{*/
+    /*display: inline-block;*/
+    /*width: 1.5rem;*/
+    /*height: 1.5rem;*/
+    /*line-height: 1.5rem;*/
+    /*background-color: #ffffff;*/
+    /*padding: 3px;*/
+    /*border: 1px solid #999999;*/
+    /*border-radius: 3px;*/
+/*}*/
+/*#left .quickly .msg .icon.active{*/
+    /*background-color: #6b8c99;*/
+    /*background-clip: content-box;*/
+/*}*/
+/*#insert_button{*/
+    /*font-size: 1.2rem;*/
+    /*color: #ffffff;*/
+    /*background-color: #9cbbcf;*/
+    /*border: 1px solid #6b8c99;*/
+/*}*/
+/***左边工具栏.点击菜单-start***/
+#left .basic .menu_frame{
+    position: absolute;
+    top: 25px;
+    left: 0;
+    display: none;
+    width: 88px;
+    height: 135px;
+    font-size: 12px;
+    padding: 5px 5px;
+    background-color: rgba(255,255,255,0.7);
+    border: 1px solid #cccccc;
+    border-radius: 3px;
+    z-index: 100;
+}
+#left .basic .menu_frame>span.menu{
+    display: inline-block;
+    width: 100%;
+    height: 22px;
+    line-height: 22px;
+    padding: 0 10px;
+}
+#left .basic .menu_frame>span.menu:hover,#left .basic .menu_frame>span.menu:focus{
+    border-bottom: 1px solid #999999;
+}
+/***左边工具栏.点击菜单-end***/
+/***矩阵题可视化-start***/
+#left .basic .menu_frame#matrix_row, #left .basic .menu_frame#matrix_col{
+    top: 17px;
+    left: -15px;
+    width: 163px;
+    height: 172px;
+    padding: 20px 10px 10px 10px;
+}
+#left .basic .menu_frame>.count{
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    display: inline-block;
+    width: 40px;
+    height: 14px;
+}
+#left .basic .menu_frame>.count>.mul{
+    display: inline-block;
+    width: 12px;
+    height: 14px;
+    text-align: center;
+}
+#left .basic .menu_frame>.frame_background{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    padding: -4px;
+    cursor: default;
+}
+#left .basic .menu_frame>.frame_background>.cell{
+    display: inline-block;
+    box-sizing: border-box;
+    width: 20px;
+    height: 20px;
+    outline: 1px solid #c9c9c9;
+    outline-offset: -4px;
+    padding: 4px;
+    background-origin: content-box;
+    background-clip: content-box;
+}
+#left .basic .menu_frame>.frame_background>.cell.top{
+    margin-top: 0;
+}
+#left .basic .menu_frame>.frame_background>.cell.bottom{
+    margin-bottom: 0;
+}
+#left .basic .menu_frame>.frame_background>.cell.left{
+    margin-left: 0;
+}
+#left .basic .menu_frame>.frame_background>.cell.right{
+    margin-right: 0;
+}
+#colors{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 15px 15px;
+    outline:  1px solid #d9d9d9;
+    outline-offset: -15px;
+}
+#colors>.color{
+    float: left;
+    width: 90px;
+    height: 90px;
+    padding: 10px;
+    outline: 1px solid #e9e9e9;
+    outline-offset: -10px;
+}
+#colors>.color>input{
+    display: none
+}
+#colors>.color>label{
+    display: inline-block;
+    width: 100%;
+    height: 100%
+}
+#colors>.color>label.picked{
+    outline: 1px solid #ffffff;
+    box-shadow: 0 0 2px 2px #5bc0ff;
+}
+
+#colors>.color .edge{
+    display: inline-block;
+    width: 70px;
+    height: 1rem;
+}
+#color1 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #ffffff 0, #ffffff 20px);
+}
+#color2 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #5bc0ff 0, #5bc0ff 20px);
+}
+#color3 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #6A5ACD 0, #6A5ACD 20px);
+}
+#color4 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #00C957 0, #00C957 20px);
+}
+#color5 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #ffff00 0, #ffff00 20px);
+}
+#color6 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #ffe384 0, #ffe384 20px);
+}
+#color7 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #FF6100 0, #FF6100 20px);
+}
+#color9 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #000000 0, #000000 20px);
+}
+#color8 .edge{
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #802A2A 0, #802A2A 20px);
+}
+
+/***矩阵题可视化-end***/
+/**左边工具栏.按钮部分-end**/
+/*左边工具栏-end*/
+/*编辑区域-start*/
+#room{
+    position: relative;
+    display: block;
+    min-width: 650px;
+    height: 575px;
+    background-color: #ffffff;
+    box-shadow: 0 0 1px 1px #e3e3e3;
+    margin: 20px 30px 0 350px;
+    overflow: scroll;
+}
+#wrap{
+    position: relative;
+    width: 100%;
+    min-height: 100%
+}
+/*花边-start*/
+#edge{
+    height: 1rem;
+    /*background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #5bc0ff 0, #5bc0ff 20px);*/
+}
+/*花边-end*/
+/**问卷标题部分-start**/
+/*placeholder样式*/
+#wrap [contenteditable=true]:empty:before{
+    content:
+    attr(placeholder);
+    display: inline-block;
+    color: #d9d9d9;
+}
+
+#titles{
+    min-height: 80px;
+    font-size: 3rem;
+    color: #333333;
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+#title{
+    display: inline-block;
+    width: 640px;
+    /*height: 60px;*/
+    line-height: 60px;
+    margin: 10px 0 10px 10px;
+}
+#title>span{
+    position: relative;
+    top: -10px;
+    display: inline-block;
+    width: 500px;
+    min-height: 80px;
+    /*line-height: 80px;*/
+}
+#titles>span{
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: inline-block;
+    width: 76px;
+    height: 76px;
+    background-image: url("../../images/logos/LOGO.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 80%;
+    background-size: 90%;
+    /*border: 1px solid #333333;*/
+}
+#subtitle{
+    text-align: center;
+}
+#subtitle>span{
+    display: inline-block;
+    width: 500px;
+    min-height: 40px;
+    font-size: 2rem;
+    color: #666666;
+    padding: 0;
+    text-align: left;
+}
+/**问卷标题部分-end**/
+/**问卷题目公共部分-start**/
+#survey_container{
+    padding: 0;
+    background-color: #e9e9e9;
+}
+#survey_container>.inners{
+    padding: 10px 0;
+    margin: 1px 0 0 0;
+    background-color: #f9f9f9;
+}
+#survey_container>.inners>.inner{
+    position: relative;
+    min-height: 160px;
+    padding: 10px 0;
+    margin: 1px 0 0 0;
+}
+#survey_container>.inners>.inner.message{
+    padding: 10px 50px;
+    margin: 1px 0 0 0;
+    background-color: #f9f9f9;
+}
+#survey_container>.inners>.inner.message .answers>.input>span{
+    display: inline-block;
+    min-width: 200px;
+    width: auto;
+    outline: none;
+    border-bottom: 1px solid #6b8c99;
+}
+#survey_container>.inners>.inner .control{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 32px;
+    height: 100%;
+    min-height: 160px;
+    vertical-align: middle;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+#survey_container>.inners>.inner:hover .control, #survey_container>.inners>.inner:focus .control{
+    display: -webkit-flex;
+    display: flex;
+}
+#survey_container>.inners>.inner .control .button{
+    width: 32px;
+    height: 32px;
+    font-family: typeIcon;
+    color: #999999;
+    text-align: center;
+    line-height: 32px;
+    cursor: default;
+}
+/***预览模式部分-start***/
+#survey_container>.inners>.inner .display{
+    display: block;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#survey_container>.inners>.inner .display .question_head{
+    padding: 0 0 10px 0;
+}
+/*#survey_container>.inners>.inner .question_head span{*/
+    /*line-height: 28px;*/
+/*}*/
+#survey_container>.inners>.inner .question_head .question_require{
+    color: #ff0000;
+}
+#survey_container>.inners>.inner .display .description{
+    font-size: 12px;
+    font-weight: 300;
+}
+#survey_container>.inners>.inner .control .button:hover,#survey_container>.inners>.inner .control .button:focus{
+    color: #1e90ff;
+}
+#survey_container>.inners>.inner .control .edit:hover,#survey_container>.inners>.inner .control .edit:focus{
+    color: #5cb85c;
+}
+#survey_container>.inners>.inner .control .delete:hover,#survey_container>.inners>.inner .control .delete:focus{
+    color: #cc0000;
+}
+#survey_container>.inners>.inner .control .logic:hover,#survey_container>.inners>.inner .control .logic:focus{
+    color: #ff8c00
+}
+/***预览模式部分-end***/
+/***编辑模式部分-start***/
+#survey_container>.inners>.inner>.edit{
+    display: block;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#survey_container>.inners>.inner .edit .question_head{
+    padding: 0 0 10px 20px;
+}
+#survey_container>.inners>.inner .edit .question_head .question_title{
+    display: inline-block;
+    width: 86.5%;
+    min-height: 32px;
+    font-size: 16px;
+    padding: 4px;
+    margin: 10px 0;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container>.inners>.inner .edit .question_require, #survey_container>.inners>.inner .edit .option_fillable{
+    margin: 0 0 0 10px;
+}
+#survey_container>.inners>.inner .edit .question_require input, #survey_container>.inners>.inner .edit .option_fillable input{
+    display: none;
+}
+#survey_container>.inners>.inner .edit .question_require .icon, #survey_container>.inners>.inner .edit .option_fillable .icon{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+    background-color: #ffffff;
+    background-clip: content-box;
+    border: 1px solid #c9c9c9;
+    border-radius: 3px;
+    vertical-align: middle;
+}
+#survey_container>.inners>.inner .edit .question_require .icon.checked, #survey_container>.inners>.inner .edit .option_fillable .icon.checked{
+
+    background-color: #5cb85c;
+    border: 1px solid #5cb85c;
+}
+#survey_container>.inners>.inner .edit .question_require>label>span, #survey_container>.inners>.inner .edit .option_fillable>label>span{
+    vertical-align: middle;
+}
+#survey_container>.inners>.inner .edit .description_label{
+    font-weight: 300;
+    margin: 0 0 0 20px;
+}
+#survey_container>.inners>.inner .edit .description{
+    display: inline-block;
+    width: 72.5%;
+    margin: 0 0 10px 20px;
+    font-size: 12px;
+    font-weight: 300;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container>.inners>.inner .edit .answers .choice .icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .answers .choice .icon:hover, #survey_container>.inners>.inner .edit .answers .choice .icon:focus{
+    text-shadow: 0 0 2px #ff8c00;
+}
+/*#survey_container>.inners>.inner .edit .answers .choice .option_text{*/
+    /*display: inline-block;*/
+    /*width: 84%;*/
+    /*height: 32px;*/
+    /*font-size: 16px;*/
+    /*padding: 4px;*/
+    /*margin: 2px 0;*/
+    /*border: 1px solid #6b8c99;*/
+    /*border-radius: 2px;*/
+    /*background-color: #ffffff;*/
+/*}*/
+#survey_container>.inners>.inner .edit .control .save:hover,#survey_container>.inners>.inner .edit .control .save:focus{
+    color: #5cb85c;
+}
+#survey_container>.inners>.inner .edit .control .cancel:hover,#survey_container>.inners>.inner .edit .control .cancel:focus{
+    color: #cc0000;
+}
+/***编辑模式部分-end***/
+/**问卷题目公共部分-end**/
+/**问卷单选题部分-start**/
+#survey_container .answers{
+    padding: 20px 0 0 0;
+}
+#survey_container>.inners>.inner .edit .answers .choice .icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .answers .choice .icon:hover, #survey_container>.inners>.inner .edit .answers .choice .icon:focus{
+    text-shadow: 0 0 2px #ff8c00;
+}
+#survey_container>.inners>.inner .edit .answers .choice .option_text{
+    display: inline-block;
+    width: 84%;
+    height: 32px;
+    font-size: 16px;
+    padding: 4px;
+    margin: 2px 0;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container .answers .choice input{
+    display: none;
+}
+#survey_container .answers .choice label .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid #5bc0ff;
+    border-radius: 50%;
+    background-color: #ffffff;
+    vertical-align: middle;
+}
+#survey_container .answers .choice label .icon span{
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #5bc0ff;
+}
+#survey_container .answers .choice label .option_text{
+    vertical-align: middle;
+}
+#survey_container .answers .choice .blank{
+    display: inline-block;
+    width: 200px;
+    height: 21px;
+    border-bottom: 1px solid #999999;
+    outline: none;
+}
+#survey_container>.inners>.inner .edit .answers .choice.insert .icon{
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #5cb85c;
+    padding: 4px 0;
+}
+#survey_container .choice .edit .question_require label:focus>.icon, #survey_container .choice .edit .question_require label:hover>.icon{
+    box-shadow: 0 0 1px 1px #5bc0ff;
+}
+#survey_container .choice .edit .option_fillable label:focus>.icon, #survey_container .choice .edit .option_fillable label:hover>.icon {
+    box-shadow: 0 0 1px 1px #5bc0ff;
+}
+/**问卷单选题部分-end**/
+/**问卷多选题部分-start**/
+#survey_container .answers .checks input{
+    display: none;
+}
+#survey_container>.inners>.inner .edit .answers .checks .icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .answers .checks .icon:hover, #survey_container>.inners>.inner .edit .answers .checks .icon:focus{
+    text-shadow: 0 0 2px #ff8c00;
+}
+#survey_container>.inners>.inner .edit .answers .checks .option_text{
+    display: inline-block;
+    width: 84%;
+    height: 32px;
+    font-size: 16px;
+    padding: 4px;
+    margin: 2px 0;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container .answers .checks label .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid #5bc0ff;
+    border-radius: 15%;
+    background-color: #ffffff;
+    vertical-align: middle;
+}
+#survey_container .answers .checks label .icon span{
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 25%;
+    background-color: #5bc0ff;
+}
+#survey_container .answers .checks label .option_text{
+    vertical-align: middle;
+}
+#survey_container .answers .checks .blank{
+    display: inline-block;
+    width: 200px;
+    height: 21px;
+    border-bottom: 1px solid #999999;
+    outline: none;
+}
+#survey_container>.inners>.inner .edit .answers .checks.insert .icon{
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #5cb85c;
+    padding: 4px 0;
+}
+#survey_container .checks .edit .question_require label:focus>.icon, #survey_container .checks .edit .question_require label:hover>.icon{
+    box-shadow: 0 0 1px 1px #5bc0ff;
+}
+#survey_container .checks .edit .option_fillable label:focus>.icon, #survey_container .checks .edit .option_fillable label:hover>.icon {
+    box-shadow: 0 0 1px 1px #5bc0ff;
+}
+/**问卷多选题部分-end**/
+/**选择题横排和栏数样式-start**/
+#survey_container .form-rows .choice .display .answers>div, #survey_container .form-rows .checks .display .answers>div{
+    display: inline-block;
+}
+#survey_container .rows-2 .choice .display .answers>div, #survey_container .rows-2 .checks .display .answers>div{
+    width: 50%;
+}
+#survey_container .rows-3 .choice .display .answers>div, #survey_container .rows-3 .checks .display .answers>div{
+    width: 33%;
+}
+#survey_container .rows-4 .choice .display .answers>div, #survey_container .rows-4 .checks .display .answers>div{
+    width: 25%;
+}
+/**选择题横排和栏数样式-end**/
+/**问卷填空题部分-start**/
+#survey_container>.inners>.inner .display .answers.blank, #survey_container>.inners>.inner .edit .answers.blank{
+    display: none;
+}
+#survey_container>.inners>.inner .display .answers.blank.active, #survey_container>.inners>.inner .edit .answers.blank.active{
+    display: block;
+}
+#survey_container>.inners>.inner .edit .answers .words_restrict{
+    margin: 0 0 0 20%;
+}
+#survey_container>.inners>.inner .edit .answers .suffix{
+    position: relative;
+    left: 40%;
+    top: -45px;
+    display: inline-block;
+    outline: none;
+}
+#survey_container>.inners>.inner .edit .blank_switch{
+    margin: 0 0 0 20px;
+    font-weight: 400;
+}
+#survey_container>.inners>.inner .edit .blank_switch label{
+    font-weight: 400;
+}
+#survey_container>.inners>.inner .edit .answers .min_words, #survey_container>.inners>.inner .edit .answers .max_words{
+    display: inline-block;
+    width: 20px;
+    outline: none;
+    border-bottom: 1px solid #999999;
+}
+#survey_container>.inners>.inner .edit .answers .require_time, #survey_container>.inners>.inner .edit .answers .require_date{
+    margin: 0 0 0 20%;
+}
+#survey_container>.inners>.inner .edit .answers .require_time>label, #survey_container>.inners>.inner .edit .answers .require_date>label{
+    font-weight: 300;
+}
+#survey_container>.inners>.inner .edit .answers .blank .sub_question{
+    display: inline-block;
+    width: 60%;
+    height: 32px;
+    font-size: 16px;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+    margin: 5px 0 0 0;
+    padding: 4px 0;
+}
+#survey_container>.inners>.inner .edit .answers .blank .icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .answers .blank.insert .icon{
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #5cb85c;
+    padding: 4px 0;
+}
+#survey_container>.inners>.inner .display .answers .questions{
+    width: 50%;
+}
+#survey_container>.inners>.inner .display .answers.float .questions{
+    float: left;
+}
+#survey_container>.inners>.inner .display .answers>.blank .blank{
+    display: inline-block;
+    min-width: 40%;
+    width: auto;
+    outline: none;
+    border: 1px solid #999999;
+    margin: 5px 0 0 0;
+}
+#survey_container>.inners>.inner .display .time.answers>.blank .blank, #survey_container>.inners>.inner .display .date.answers>.blank .blank{
+    width: 24px;
+}
+/**问卷填空题部分-end**/
+/**问卷矩阵题部分-start**/
+#survey_container>.inners>.inner .matrix.answers th, #survey_container>.inners>.inner .matrix.answers td{
+    /*min-width: 100px;*/
+    padding: 5px 10px;
+    text-align: left;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .editable{
+    outline: none;
+    border: 1px solid #6b8c99;
+    /*border-radius: 2px;*/
+    background-color: #ffffff;
+}
+#survey_container>.inners>.inner .matrix.answers td>input[type = text]{
+    width: 80px;
+}
+/*#survey_container>.inners>.inner .matrix.answers thead>th{*/
+    /*background-color: #e9e9e9*/
+/*}*/
+#survey_container>.inners>.inner .matrix.answers tr:nth-child(odd){
+    background-color: #ffffff
+}
+#survey_container>.inners>.inner .matrix.answers tr:nth-child(even){
+    background-color: #e9e9e9
+}
+#survey_container>.inners>.inner .matrix.answers tr.insert, #survey_container>.inners>.inner .matrix.answers tr>td.insert-icon{
+    background-color: #f9f9f9
+}
+
+#survey_container>.inners>.inner .edit .matrix_switch{
+    margin: 0 0 0 20px;
+    font-weight: 400;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .row_titles, #survey_container>.inners>.inner .edit .matrix.answers .col_titles{
+    padding: 5px 10px;
+    margin: 0;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .prefix{
+    height: 4px;
+    border-top: 1px solid #393939;
+    border-bottom: 1px solid transparent;
+    cursor: cell;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .edit-prefix{
+    background-color: #ffffff;
+    background-origin: content-box;
+    background-clip: content-box;
+    outline: 1px solid #6b8c99;
+    padding: 4px;
+    outline-offset: -4px;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .input.matrix>div{
+    display: inline-block;
+    width: 84.5%;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .delete-icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .insert-icon{
+    display: inline-block;
+    font-family: typeIcon;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #5cb85c;
+    padding: 4px 0;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .matrix.answers .inputs{
+    background-color: #ffffff;
+    background-origin: content-box;
+    background-clip: content-box;
+    outline: 1px solid #6b8c99;
+    padding: 4px;
+    outline-offset: -4px;
+}
+/**问卷矩阵题部分-end**/
+/**问卷评分题部分-start**/
+#survey_container>.inners>.inner .edit .score_switch{
+    margin: 0 0 0 20px;
+}
+#survey_container>.inners>.inner .edit .score_switch label, #survey_container>.inners>.inner .edit .score_switch select{
+    font-weight: 400;
+}
+#survey_container>.inners>.inner .display .score.answers>.score{
+    display: inline-block;
+    /*width: 10%;*/
+    text-align: center;
+    padding: 0 5px;
+    margin: 0 5px;
+    border: 1px solid #c9c9c9;
+}
+#survey_container>.inners>.inner .display .score.answers>.score>input{
+    display: none;
+}
+#survey_container>.inners>.inner .display .score.answers>.score>label span>span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #5bc0ff;
+}
+#survey_container>.inners>.inner .edit .score.answers .input.score>div{
+    display: inline-block;
+    width: 30%;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container>.inners>.inner .edit .score.answers .input.score>.score_number{
+    width: 7%;
+    text-align: right;
+}
+#survey_container>.inners>.inner .edit .score.answers .icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .answers .score.insert .icon{
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #5cb85c;
+    padding: 4px 0;
+}
+/**问卷评分题部分-end**/
+/**问卷排序题部分-start**/
+#survey_container>.inners>.inner .display .sort.answers{
+    padding: 0 0 0 100px;
+}
+#survey_container>.inners>.inner .display .sort.answers>.sort>input{
+    display: none;
+}
+#survey_container>.inners>.inner .edit .sort_switch{
+    margin: 0 0 0 20px;
+    font-weight: 400;
+}
+#survey_container>.inners>.inner .display .sort.answers>.sort>label{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 22px;
+    border: 1px solid #cccccc;
+    text-align: center;
+    margin: 0;
+}
+#survey_container>.inners>.inner .display .sort.answers>>.sorted>.sort>, #survey_container>.inners>.inner .display .sort.answers>>.to-sort>.sort>{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    height: 22px;
+    border: 1px solid #cccccc;
+    text-align: center;
+    margin: 0;
+}
+#survey_container>.inners>.inner .display .sort.answers>.sort>label:after{
+    position: absolute;
+    top: -1px;
+    right: -31px;
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    background-color: #ffffff;
+    border-top: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    content: ''
+}
+#survey_container>.inners>.inner .display .sort.answers>.sort>label .index{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.5);
+}
+#survey_container .inner .edit .sort.answers .input.sort>div{
+    display: inline-block;
+    width: 75.5%;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+#survey_container>.inners>.inner .edit .sort.answers .icon{
+    color: #cc0000;
+    font-family: typeIcon;
+    font-size: 16px;
+    font-style: normal;
+    cursor: default;
+}
+#survey_container>.inners>.inner .edit .sort.answers .insert .icon{
+    display: inline-block;
+    height: 32px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #5cb85c;
+    padding: 4px 0;
+}
+/**问卷排序题部分-end**/
+/**逻辑控制区域-start**/
+#survey_container>.inners>.inner>.logic-control{
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+}
+#survey_container>.inners>.inner>.logic-control>.head{
+    height: 30px;
+    padding: 5px;
+    border-bottom: 1px solid #6b8c99;
+}
+#survey_container>.inners>.inner>.logic-control>.head>.title{
+    font-size: 1.5rem;
+}
+#survey_container>.inners>.inner>.logic-control>.head>.close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background-image: url(../../images/kolpanel/close.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+#survey_container>.inners>.inner>.logic-control .words-restrict{
+    height: 30px;
+    padding: 5px;
+}
+#survey_container>.inners>.inner>.logic-control .words-restrict>div{
+    display: inline-block;
+    height: 24px;
+}
+#survey_container>.inners>.inner>.logic-control .words-restrict>div>.min, #survey_container>.inners>.inner>.logic-control .words-restrict>div>.max{
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+/***跳转逻辑弹出框-end***/
+.jump_logics>a{
+    text-decoration: underline;
+}
+.jump_box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 30px 60px 0 60px;
+    background-color: #f9f9f9
+}
+.depend_box{
+    position: absolute;
+    top: 50px;
+    left: 250px;
+    width: 280px;
+    min-height: 120px;
+    padding: 24px 10px 10px 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #c9c9c9;
+    border-radius: 10px;
+    z-index: 100;
+}
+.jump_box .head, .depend_box .head{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 0 0 15px;
+    font-size: 1.4rem;
+    text-align: left;
+    vertical-align: middle;
+}
+.jump_box .close_jump, .depend_box .close_depend{
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: url("../../images/kolpanel/close.png");
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.jump_box .save_jump{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+}
+.jump_box .jump_option{
+    margin: 12px 0;
+}
+.logic-control .depend .depend_option{
+    text-decoration: underline;
+    text-decoration-skip: ink;
+    text-decoration-color: #1b26c8;
+    color: #1b26c8;
+}
+.jump_box .jump_target{
+    background-color: #ffffff;
+}
+.jump_box .option_value{
+    display: inline-block;
+    width: 10rem;
+    height: 1.6rem;
+    margin: 0 12px 0 0;
+}
+/***跳转逻辑弹出框-end***/
+#survey_container>.inners>.inner>.logic-control .evaluate_options .evaluates>.input{
+    background-color: #ffffff;
+    display: inline-block;
+    width: 3rem;
+    height: 1.4rem;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+}
+#survey_container>.inners>.inner>.logic-control .buttons{
+    height: 30px;
+    padding: 5px;
+    /*border-bottom: 1px solid #6b8c99;*/
+    font-size: 0;
+}
+#survey_container>.inners>.inner>.logic-control .buttons>span{
+    display: inline-block;
+    width: 120px;
+    cursor: pointer;
+    border-right: 1px solid #6b8c99;
+    border-left: 1px solid #6b8c99;
+    margin: 0 -1px 0 0;
+    text-align: center;
+    font-size: 1.4rem
+}
+#survey_container>.inners>.inner>.logic-control .details{
+    padding: 10px 20px;
+}
+#survey_container>.inners>.inner>.logic-control .foot{
+    position: absolute;
+    bottom: 0;
+    right: 0
+}
+#survey_container>.inners>.inner>.logic-control .foot>button{
+    margin: 5px
+}
+/**逻辑控制区域-end**/
+/**快速题型区域-end**/
+.inner.message .edit .question_title{
+    display: inline-block;
+    width: 86.5%;
+    height: 32px;
+    font-size: 16px;
+    padding: 4px;
+    margin: 10px 10px 0 0;
+    outline: none;
+    border: 1px solid #6b8c99;
+    border-radius: 2px;
+    background-color: #ffffff;
+}
+/**快速题型区域-end**/
+#analysis,#set_ui{
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    min-height: 100%;
+    background-color: rgba(255,255,250,0.98);
+}
+#set_ui{
+    background-color: rgba(250,255,255,0.98);
+    width: 100%;
+}
+#set_ui .set{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+#set_ui .progress{
+    background-color: rgba(250,255,255,0.98);
+    width: 100%;
+    height: 100%;
+}
+#set_ui .quality{
+    background-color: rgba(250,255,255,0.98);
+    width: 100%;
+    height: 100%;
+}
+#tables{
+    padding: 15px;
+}
+#set_ui .allocate table, #set_ui .progress table{
+    width: 100%;
+    padding: 15px 25px;
+    margin: 15px 0;
+}
+#set_ui table .allocate-question{
+    width: 20%;
+}
+#set_ui table .summary_bottom{
+    width: 15%;
+}
+#set_ui table .summary_top{
+    width: 15%;
+}
+#set_ui table .percent_bottom{
+    width: 18%;
+}
+#set_ui table .percent_top{
+    width: 18%;
+}
+#set_ui table .collected{
+    width: 14%;
+}
+#set_ui table select{
+    width: 200px;
+}
+#set_ui th,#set_ui td,#set_ui input{
+    height: 30px;
+    padding: 5px;
+    outline: 1px solid #c9c9c9;
+    text-align: right;
+}
+#set_ui input{
+    width: 100%;
+}
+#set_ui .insert-allocation>td{
+    text-align: center;
+    cursor: pointer;
+}
+#allocate_cross .conditions{
+    position:relative;
+}
+#allocate_cross .conditions .questions-in-expression,#allocate_cross .conditions .options-in-expression{
+    position: absolute;
+    top: 24px;
+    right: 0;
+    display: none;
+    width: 110px;
+    height: 120px;
+    overflow: scroll;
+    background-color: rgba(255,255,255,1);
+    z-index: 100;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+#allocate_cross .conditions .question-in-expression a,#allocate_cross .conditions .options-in-expression a{
+    display: inline-block;
+    text-decoration: underline;
+}
+#allocate_cross .express{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+#insert_table{
+    width: 100%;
+    /*height: 24px;*/
+    /*line-height: 24px;*/
+    border: 1px solid #c9c9c9;
+    text-align: center;
+}
+.FormTable .tr, .FormTable .td, .FormTable .th
+{
+    border: solid 1px #cccccc;
+    border-collapse: collapse;
+    text-align: center;
+}
+.FormTable
+{
+    border: solid 1px #cccccc;
+    border-collapse: collapse;
+}
+.table-mask
+{
+    position: relative;
+}
+#topdv
+{
+    position:absolute;
+    overflow:hidden;
+    z-index:2;
+}
+#leftdv
+{
+    position: absolute;
+    overflow: hidden;
+    z-index: 2;
+}
+#container{
+    width:90%;
+    height:300px;
+    margin: 24px 16px;
+    overflow:auto;
+    font-size: 0;
+}
+#toptable{
+    /*width:1200px;*/
+}
+#datatable{
+    /*width:1200px;*/
+}
+#toptable .td{
+    display: inline-block;
+    width:200px;
+    background:gray;
+    font-size: 14px;
+}
+#lefttable .td{
+    position: relative;
+    width:200px;
+    height: 24px;
+    background:white;
+    font-size: 14px;
+    padding: 0;
+    /*text-align: right;*/
+}
+#lefttable .td .index{
+    position: absolute;
+    left: 30px;
+}
+#lefttable .td .valid{
+    position: absolute;
+    left: 140px;
+    border-radius: 11px;
+}
+#lefttable .td .invalid,#lefttable .td .invalided{
+    position: absolute;
+    width: 30px;
+    height: 22px;
+    right: 15px;
+    border: 1px solid #d9534f;
+    border-radius: 11px;
+    background-color: #ffffff;
+    color: #d9534f;
+    cursor: pointer;
+}
+#lefttable .td .invalided{
+    position: absolute;
+    /*min-width: 30px;*/
+    /*max-width: 100px;*/
+    width: 88px;
+    height: 22px;
+    right: 15px;
+    border: 1px solid #d9534f;
+    border-radius: 11px;
+    background-color: #fa976f;
+    color: #ffffff;
+    cursor: pointer;
+}
+#lefttable .td .invalid .reason{
+    display: none;
+    width: 0;
+    height: 16px;
+    line-height: 21px;
+    padding: 0;
+    outline: none;
+    text-align: left;
+}
+#lefttable .td .invalid .invalid-with-reason{
+    position: absolute;
+    top: 0;
+    right: 3.5px;
+    width: 15px;
+    height: 20px;
+    border-radius: 0 11px 11px 0;
+    background-color: #ffffff;
+    color: #d9534f;
+    cursor: pointer;
+}
+#toplefttbl .td{
+    width:200px;
+    height: 24px;
+    background:gray;
+    font-size: 14px;
+}
+#datatable .td{
+    display: inline-block;
+    width:200px;
+    height: 24px;
+    vertical-align: middle;
+    font-size: 14px;
+}
+/**数据管理-start**/
+#pick_question_to_analyze{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 20% 30%;
+    background-color: #ffffff;
+    background-clip: content-box;
+
+}
+/*.analyze label, .analyze select{*/
+    /*position: relative;*/
+    /*top: 32px;*/
+    /*left: 16px;*/
+    /*display: block;*/
+    /*font-size: 14px;*/
+    /*font-weight: 400;*/
+/*}*/
+/*.analyze select{*/
+    /*margin: 12px 0 32px 0;*/
+/*}*/
+/*#select_form>option:not(:first-child){*/
+    /*display: none;*/
+/*}*/
+/*#build{*/
+    /*position: relative;*/
+    /*top: 20px;*/
+    /*left: 16px;*/
+    /*color: #ffffff;*/
+    /*padding: 3px 8px;*/
+    /*background-color: #6c6c6c;*/
+    /*border: 1px solid #666666;*/
+/*}*/
+/*#analysis .title,#set_ui .title{*/
+    /*padding: 5px 15px 10px 15px;*/
+    /*font-family: simsun, serif;*/
+    /*font-size: 2rem;*/
+    /*border-bottom: 1px solid rgb(235,235,220);*/
+/*}*/
+/*#analysis .switches{*/
+    /*display: inline-block;*/
+    /*height: 2rem;*/
+    /*line-height: 2rem;*/
+/*}*/
+/*#analysis .switches>.active{*/
+    /*color: blue;*/
+/*}*/
+/*#analysis .table{*/
+    /*padding: 15px 25px;*/
+/*}*/
+/*#analysis .table>.main{*/
+    /*width: 600px;*/
+    /*height: 300px;*/
+    /*margin: 15px;*/
+/*}*/
+/*#an th, #an td{*/
+    /*display: inline-block;*/
+    /*width: 120px;*/
+    /*height: 24px;*/
+    /*border: 1px solid #9c9c9c;*/
+    /*text-align: center*/
+/*}*/
+/**数据管理-end**/
+/*编辑区域-end*/

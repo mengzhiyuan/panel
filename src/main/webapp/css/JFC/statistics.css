@@ -1,0 +1,36 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid #999999;
+}
+#table_container, #graphs{
+    display: inline-block;
+    width: 45%;
+    margin: 0 auto;
+    vertical-align: top;
+}
+#table_container>.wrap{
+    display: block;
+    width: 100%;
+    padding: 2rem 3rem;
+    margin: 0 auto;
+}
+#table_container>.wrap th, #table_container>.wrap td{
+    font-size: 1.4rem;
+    min-height: 3rem;
+    text-align: center;
+    background-color: #eeeeee;
+}
+#table_container>.wrap table{
+    width: 100%;
+    background-color: transparent;
+}
+#table_container>.wrap td{
+    text-align: right;
+}
+#graphs>.graphy{
+    display: inline-block;
+    width: 50rem;
+    height: 45rem;
+}

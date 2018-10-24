@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #root{
+            padding: 5px 10px;
+        }
+        #list{
+            margin: 30px 0 0 0;
+        }
+        #apply_date{
+            width: 140px;
+        }
+        table,thead,tbody{
+            width: 100%;
+        }
+        th,td{
+            height: 35px;
+            border: 1px solid #999999;
+        }
+        th{
+            text-align: center;
+        }
+        #root td>input{
+            width: 100%;
+        }
+        .buttons>span{
+            height: 35px;
+            line-height: 35px;
+        }
+        .form-control{
+            display: inline-block;
+            width: 120px;
+            border-radius: 0;
+            height: 35px;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                <a href="http://www.kolpanel.net/jfcpanel/html/jfc/main/center.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-OA</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div>
+                    <a class="btn btn-md btn-default pull-left" href="personalFinance.html">返回</a>
+                    <button class="btn btn-md btn-successful pull-right" @click="submit">提交</button>
+                </div>
+                <div class="" style="width: 100%;clear: both">
+                    <label for="apply_date">
+                        申请日期
+                    </label>
+                    <input type="text" id="apply_date" class="apply_date form-control search-tools" disabled v-model="apply_date">
+                    <label for="due_date_start">
+                        使用周期
+                    </label>
+                    <input id="due_date_start" class="due_date_start form-control search-tools" v-model="due_date_start">
+                    <input id="due_date_end" class="due_date_end form-control search-tools" v-model="due_date_end">
+                    <input type="number" class="form-control" id="amount_need" placeholder="需要金额" v-model="amount_need">
+                    <input type="text" class="form-control" id="amount_in_account" placeholder="现有金额" v-model="amount_in_account">
+                    <input type="text" class="form-control" id="amount_to_apply" placeholder="申请金额" v-model="amount_to_apply">
+                    <select class="form-control" v-model="staId">
+                        <option v-for="s in staffs" :value="s.staId || ''">{{ s.staName || '请选择提交对象' }}</option>
+                    </select>
+                </div>
+                <table id="list">
+                    <thead>
+                    <tr>
+                        <th style="width: 20%;">费用类型</th>
+                        <th>费用明细</th>
+                        <th>关联事件</th>
+                        <th>共计/元</th>
+                        <th>已付/元</th>
+                        <th>本次申请/元</th>
+                        <th>批复/元</th>
+                        <th>支付/元</th>
+                        <th>备注</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="r in list">
+                        <td>
+                            <select class="form-control col-xs-8 col-sm-8 col-md-8 col-lg-8" v-model="r.type">
+                                <option value="">请选择</option>
+                                <option value="办公用品">办公用品</option>
+                                <option value="房租水电">房租水电</option>
+                                <option value="项目成本">项目成本</option>
+                                <option value="工商税务">工商税务</option>
+                                <option value="工资福利">工资福利</option>
+                                <option value="日常运营">日常运营</option>
+                                <option value="通讯费用">通讯费用</option>
+                                <option value="押金">押金</option>
+                            </select>
+                <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 buttons">
+                    <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(r)"></span>
+                    <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(r)"></span>
+                </span>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.detail">
+                        </td>
+                        <td>
+                            <select class="form-control" type="text" v-model="r.relation">
+                                <option v-for="e in events" :value="e.proId || ''">{{ e.proName || '请选择项目' }}</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.total">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.paid" disabled>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.applyingAmount">
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.amountReplied" disabled>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.paying" disabled>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" v-model="r.remark">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/finance/costApply.js"></script>
+</body>
+</html>

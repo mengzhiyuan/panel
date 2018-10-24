@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOLPanel样本库</title>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <style>
+		#root *{
+			font-size: 14px;
+		}
+	</style>
+</head>
+<body>
+<div id="root">
+    <table>
+        <thead>
+        <tr>
+            <th>申请人及操作</th>
+            <th>审核人</th>
+            <th>修改字段</th>
+            <th>修改条目</th>
+            <th>数量</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="ap in applies">
+            <td>{{ ap.applicant }}</td>
+            <td>{{ ap.reviewer }}</td>
+            <td>
+                <a>姓名、性别、职称...</a>
+            </td>
+            <td>
+                <a>{{ ap.indexes.slice(0,15) + '...' }}</a>
+            </td>
+            <td>
+                <a>{{ ap.number }}</a>
+            </td>
+            <td><a @click="approve(ap)">通过</a><a @click="decline(ap)">拒绝</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/jfc/kangpai/updateExamine.js"></script>
+</body>
+</html>

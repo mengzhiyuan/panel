@@ -1,0 +1,104 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+#root th, #root td{
+    width: 12.5%;
+    text-align: center;
+    padding: 5px 0;
+}
+#root td>input, #root td>select, #root td>label{
+    width: 100%;
+    height: 100%;
+    vertical-align: middle;
+}
+#root td>label{
+    text-align: right;
+    padding-right: 10px;
+    margin: 0;
+}
+div.row:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+div.row>button{
+    margin-right: 15px;
+}
+.input-wrap>label{
+    display: inline-block;
+    width: 35%;
+}
+.input-wrap>div{
+    position: relative;
+    display: inline-block;
+    width: 60%;
+}
+.input-wrap>div>input, .input-wrap>div>select, .input-wrap>div>textarea{
+    width: 100%;
+}
+.input-wrap>div>ul{
+    position: absolute;
+    top: 24px;
+    right: 0;
+    width: 100%;
+    height: 175px;
+    z-index: 1000;
+    background-color: #ffffff;
+    border: 1px solid #999999;
+    overflow: auto;
+}
+.input-wrap>div>ul>li{
+    padding: 0 0.5rem;
+}
+.input-wrap>div>ul>li:hover{
+    text-decoration: underline;
+}
+.input-wrap>input, .input-wrap>select{
+    display: inline-block;
+    width: 60%;
+}
+#export_real{
+    display: none;
+}
+#tags{
+    border: 1px solid #000000;
+    margin: 15px 0;
+    text-align: center;
+    font-size: 0;
+}
+#tags .tag{
+    display: inline-block;
+    width: 50%;
+    height: 24px;
+    background-color: #ffffff;
+    line-height: 24px;
+    font-size: 14px;
+    cursor: pointer;
+}
+#tags .tag:after{
+    display: none;
+}
+#tags .tag.active{
+    background-color: #26B99A;
+}
+#tags .tag>a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+#tags .tag.active>a{
+    color: #ffffff;
+}
+#extension{
+    margin: 5px 0;
+}
+#tools{
+    margin: 0 0 0 10px;
+}
+.bs-checkbox>input{
+    display: inline-block;
+    width: initial!important;
+    height: initial!important;
+}

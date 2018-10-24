@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .head{
+            margin: 15px;
+        }
+        .body{
+            clear: both;
+            padding: 15px;
+        }
+        #plan_detail{
+            width: 100%
+        }
+        #plan_detail{
+            font-size: 0
+        }
+        #plan_detail th, #plan_detail td{
+            min-width: 125px;
+            min-height: 20px;
+            border: 1px solid #aaaaaa;
+            font-size: 1rem;
+        }
+        .labels{
+            padding: 0 0 0 10px;
+            text-align: left;
+            vertical-align: middle;
+        }
+        label{
+            margin: 0;
+        }
+        input.form-control,select.form-control{
+            display: inline-block;
+            border: 0;
+            border-radius: 0;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                	<a href="http://www.kolpanel.net/jfcpanel/html/jfc/main/center.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-OA</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div class="head">
+                    <a href="./workPlanList.html" class="pull-left btn btn-default btn-sm">返回</a>
+                    <button class="btn btn-success btn-sm pull-right" @click="savePlan">保存</button>
+                </div>
+
+                <div class="body">
+                    <table id="plan_detail">
+                        <thead>
+                        <tr>
+                            <th colspan="4" class="labels">
+                                <label for="plan_title">主题</label>
+                            </th>
+                            <th colspan="5">
+                                <input type="text" class="form-control" id="plan_title" v-model="plan_title">
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td colspan="" class="labels">
+                                <label for="plan_type">计划类型</label>
+                            </td>
+                            <td colspan="3">
+                                <select type="text" class="form-control" id="plan_type" v-model="plan_type">
+                                    <option>请选择</option>
+                                    <option>日度</option>
+                                    <option>周度</option>
+                                    <option>月度</option>
+                                    <option>季度</option>
+                                    <option>半年度</option>
+                                    <option>年度</option>
+                                </select>
+                            </td>
+                            <td colspan="1" class="labels">
+                                <label for="plan_date">计划日期</label>
+                            </td>
+                            <td colspan="4">
+                                <input type="text" class="form-control" id="plan_date" v-model="plan_date" disabled>
+                            </td>
+                        </tr>
+                        <tr v-for="plan in plan_list" :key="plan.id">
+                            <td class="labels">
+                                <label for="">计划内容</label>
+                                <span class="glyphicon  glyphicon-plus" @click="addPlan(plan)"></span>
+                                <span class="glyphicon glyphicon-minus" @click="removePlan(plan)"></span>
+                            </td>
+                            <td colspan="3">
+                                <input type="text" class="form-control plan_content" v-model="plan.content">
+                            </td>
+                            <td class="labels">
+                                <label for="">关联事件</label>
+                            </td>
+                            <td>
+                <span>
+                    <a href="javascript: void (0);" v-show="plan.related_event">
+                        {{ plan.related_event }}
+                    </a>
+                    <a href="javascript: void (0);" v-show="!plan.related_event" @click="relateEvent(plan)">
+                        添加事件
+                    </a>
+                </span>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="完成情况" v-model="plan.status">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="原因说明" v-model="plan.reasons">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="心得总结" v-model="plan.review">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labels">
+                                <label for="">计划周期</label>
+                            </td>
+                            <td colspan="2" class="labels">
+                                <label for="plan_start">项目开始时间</label>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" class="form-control" id="plan_start" v-model="plan_start">
+                            </td>
+                            <td colspan="2" class="labels">
+                                <label for="plan_end">项目结束时间</label>
+                            </td>
+                            <td colspan="2">
+                                <input type="text" class="form-control" id="plan_end" v-model="plan_end">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="labels">
+                                <label for="plan_bell">提醒设置</label>
+                            </td>
+                            <td colspan="4">
+                                <select class="form-control" id="plan_bell" v-model="plan_bell">
+                                    <option value="0">不提醒</option>
+                                    <option value="1">每日提醒</option>
+                                    <option value="2">每周提醒</option>
+                                    <option value="3">每月提醒</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="supervise">监督</label>
+                            </td>
+                            <td>
+                                <select id="supervise" class="form-control" v-model="supervise">
+                                    <option value="">请选择</option>
+                                </select>
+                            </td>
+                            <td>
+                                <label for="share">共享</label>
+                            </td>
+                            <td>
+                                <select id="share" class="form-control" v-model="share">
+                                    <option value="">请选择</option>
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/administrator/workPlanEdit.js"></script>
+</body>
+</html>

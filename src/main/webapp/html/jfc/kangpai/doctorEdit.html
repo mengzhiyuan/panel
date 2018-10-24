@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<link href="../../../css/bootstrapDatepickr-1.0.0.css" rel="stylesheet" />
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<form class="form-inline" action="#">
+					<fieldset>
+						<legend>单位信息</legend>
+						<div class="form-group">
+							<label class=" form-label" for="province">省份<span
+								style="color: red;">*</span></label> <select class=" form-control"
+								id="province">
+								<option value="">请选择</option>
+							</select> <label for="city" class=" form-label" style="margin-left: 30px">城市<span
+								style="color: red;">*</span></label> <select id="city"
+								class=" form-control">
+								<option value="">请选择</option>
+							</select> <label for="district" class=" form-label"
+								style="margin-left: 30px">区县<span style="color: red;">*</span></label>
+							<select id="district" class=" form-control">
+								<option value="">请选择</option>
+							</select> <label class=" form-label" style="margin-left: 30px">单位名字<span
+								style="color: red;">*</span></label> <input class="form-control"
+								id="hosName" type="text" /> <br>
+							<label class=" form-label" style="margin-top: 30px">医院级别<span
+								style="color: red;">*</span></label> <select id="hospital_level"
+								class="form-control">
+								<option value="">请选择</option>
+								<option value="1">一级</option>
+								<option value="2">二级</option>
+								<option value="3">三级</option>
+								<option value="4">未知</option>
+							</select> <label class=" form-label" style="margin-left: 30px">医院等级<span
+								style="color: red;">*</span></label> <select id="hosgraId"
+								class="form-control">
+								<option value="">请选择</option>
+								<option value="1">甲等</option>
+								<option value="2">乙等</option>
+								<option value="3">丙等</option>
+								<option value="4">未知</option>
+							</select> <label class=" form-label">医院电话</label> <input
+								class="form-control" id="hosTel" type="text" /> <label
+								class=" form-label">医院类型</label> <select id="type_id"
+								class="form-control">
+								<option value="">请选择</option>
+								<option value="1">综合</option>
+								<option value="2">专科</option>
+								<option value="3">未知/其他</option>
+							</select> <label class=" form-label">医院属性</label> <select id="profit_id"
+								class="form-control">
+								<option value="">请选择</option>
+								<option value="1">公立</option>
+								<option value="2">私立</option>
+								<option value="3">未知/其他</option>
+							</select>
+
+						</div>
+					</fieldset>
+					<fieldset style="margin-top: 30px">
+						<legend>基本信息</legend>
+						<div class="form-group">
+							<label class=" form-label" for="ds_host">姓名<span
+								style="color: red;">*</span></label> <input class="form-control"
+								id="docName" type="text" /> <label class=" form-label"
+								for="ds_name" style="margin-left: 30px">性别<span
+								style="color: red;">*</span></label> <select id="doc_sex"
+								class="form-control">
+								<option value="">请选择</option>
+								<option value="1">男</option>
+								<option value="0">女</option>
+							</select> <label class=" form-label" style="margin-left: 30px">联系电话<span
+								style="color: red;">*</span></label> <input class="form-control"
+								id="phone" type="text" /> <label class=" form-label"
+								style="margin-left: 30px">邮箱</label> <input class="form-control"
+								id="docEmail" type="text" /> <br> <label
+								class=" form-label" for="docPostageTime"
+								style="margin-top: 30px">医龄</label>
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon"> <i
+									class="glyphicon glyphicon-calendar"></i></span> <input type="text"
+									id="docPostageTime" class="form-control hasDatepicker">
+
+							</div>
+							<label class=" form-label">座机</label> <input class="form-control"
+								id="phone2" type="text" /> <label class=" form-label"
+								for="ds_password">身份证号</label> <input class="form-control"
+								id="docIdentity" type="text" /> <label class=" form-label"
+								for="ds_username">年龄</label>
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon"> <i
+									class="glyphicon glyphicon-calendar"></i></span> <input type="text"
+									id="doc_old" class="form-control hasDatepicker">
+
+							</div>
+							<br> <label class=" form-label" for="doc_education"
+								style="margin-top: 30px">学历</label> <input class="form-control"
+								id="doc_education" type="text" /> <label class=" form-label">qq/wechat</label>
+							<input class="form-control" id="phone3" type="text" />
+						</div>
+					</fieldset>
+					<fieldset style="margin-top: 30px">
+						<legend>属性</legend>
+						<div class="form-group">
+							<label class="form-label">职称类别</label> <select id="category"
+								class="form-control">
+								<option value="">请选择</option>
+							</select>
+							<!-- <label class="col-sm-2 form-label">职称级别<span style="color: red;">*</span></label>
+							 <select id="level" class="col-sm-2">
+						        <option value="">请选择</option>
+						    </select> -->
+							<label class=" form-label" for="ds_password" style="margin-left:30px">职称级别</label> <input
+								class="form-control" id="level" type="text" /> <label
+								class=" form-label" style="margin-left:30px">行政职称</label> <select id="administrative"
+								class="form-control">
+								<option value="">请选择</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label class=" form-label" style="margin-top:30px">科室性质</label> <select id="nature"
+								class="form-control">
+								<option value="">请选择</option>
+							</select> <label class=" form-label" style="margin-left:30px">科室类别</label> <select
+								id="departmentCategory" class="form-control">
+								<option value="">请选择</option>
+
+							</select>
+							<!-- <label class="col-sm-2 form-label" >所在科室<span style="color: red;">*</span></label>
+							 <select id="departmentBelonged" class="col-sm-2">
+						        <option value="">请选择</option>
+						    </select> -->
+							<label class=" form-label" for="ds_password" style="margin-left:30px">所在科室</label> <input
+								class="form-control" id="departmentBelonged" type="text" />
+						</div>
+					</fieldset>
+					<fieldset style="margin-top: 30px">
+						<legend>其他</legend>
+						<div class="form-group">
+							<label class=" form-label" for="ds_host">数据属性</label> <select
+								id="attr_id" class="form-control">
+								<option value="">请选择</option>
+							</select> <label class=" form-label" for="ds_name" style="margin-left:30px">KOL属性</label> <select
+								id="kol" class="form-control">
+								<option value="">请选择</option>
+								<option value="1">KOL</option>
+								<option value="2">普通</option>
+							</select> <label class=" form-label" for="ds_username" style="margin-left:30px">PAYER属性</label> <select
+								id="payer" class="form-control">
+								<option value="">请选择</option>
+								<option value="1">PAYER</option>
+								<option value="2">普通</option>
+							</select>
+							<label class=" form-label" for="ds_password" style="margin-left:30px">purchase属性</label> <select
+								id="purchase" class="form-control">
+								<option value="">请选择</option>
+								<option value="1">Purchase</option>
+								<option value="2">普通</option>
+							</select> <label class=" form-label" for="ds_username" style="margin-left:30px">数据配合度</label> <select
+								id="coor_id" class="form-control">
+								<option value="">请选择</option>
+								<option value="1">高</option>
+								<option value="2">普通</option>
+								<option value="3">低</option>
+							</select> <br><label class=" form-label" for="ds_password" style="margin-top:30px">数据活跃度</label> <select
+								id="liveness" class="form-control">
+								<option value="">请选择</option>
+
+							</select>
+							<label class=" form-label" for="ds_username" style="margin-left:30px">推荐人</label> <input
+								class="form-control" id="docRecommender" type="text" /> <label
+								class=" form-label" for="ds_username" style="margin-left:30px">资质号</label> <input
+								class="form-control" id="docPronumber" type="text" /> <label
+								class=" form-label" for="ds_username" style="margin-left:30px">岗位年龄</label>
+							<div class="input-group input-group-sm">
+								<span class="input-group-addon"> <i
+									class="glyphicon glyphicon-calendar"></i></span> <input type="text"
+									id="docEmploymentTime" class="form-control hasDatepicker">
+
+							</div>
+							<div class=" pull-center" style="margin-top:30px">
+								<button class="btn btn-danger" id="giveUp" type="button">放弃</button>
+								<button class="btn btn-info" id="add" type="button">保存</button>
+							</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script src="../../../js/jquery.js"></script>
+	<script src="../../../js/bootstrap.min.js"></script>
+	<script src="../../../js/jfc/kangpai/lists.js"></script>
+	<script src="../../../js/jfc/kangpai/ChainReact.js"></script>
+	<script src="../../../js/jfc/kangpai/fillOptions.js"></script>
+	<script src="../../../js/jfc/kangpai/jquery.form.js"></script>
+
+	<script src="../../../js/bootstrapDatepickr-1.0.0.min.js"></script>
+	<script src="../../../js/jfc/kangpai/doctorEdit.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#doc_old").bootstrapDatepickr({
+				date_format : "Y/m/d"
+			});
+			$("#docPostageTime").bootstrapDatepickr({
+				date_format : "Y/m/d"
+			});
+			$("#docEmploymentTime").bootstrapDatepickr({
+				date_format : "Y/m/d"
+			});
+		});
+	</script>
+</body>
+</html>

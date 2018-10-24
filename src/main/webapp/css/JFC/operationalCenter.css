@@ -1,0 +1,179 @@
+#nav ul{
+    display: inline-block;
+}
+#nav ul:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#nav li{
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    float: left;
+    border: 1px solid #999999;
+    margin-right: -1px;
+    font-size: 14px;
+    text-align: center;
+    list-style: none;
+    cursor: pointer;
+    z-index: 10;
+}
+#nav li a{
+    font-size: 14px;
+}
+#nav li.active{
+    line-height: 78px;
+    border: 2px solid #4cb0f9;
+    z-index: 100;
+}
+#choosing{
+    text-align: center;
+}
+#alters, #choose, #chosen{
+    display: inline-block;
+}
+.check-all{
+    position: relative;
+    margin: 0.5rem 1rem;
+    text-align: left;
+}
+.check-all label, .check-all input{
+    font-size: 1.2rem;
+    /*font-weight: 400;*/
+}
+.check-all label{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+.check-all input{
+    position: absolute;
+    top: 0;
+    right: 32px;
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+#alters{
+    display: inline-block;
+    width: 16rem;
+    height: 24rem;
+    vertical-align: top;
+    border: 1px solid #999999;
+}
+#alters ul, #chosen ul{
+    padding: 0 1rem;
+    /*margin: 1rem 0;*/
+    height: 75%;
+    border-top: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    /*border-left: 1px solid #999999;*/
+    text-align: left;
+    overflow-y: scroll;
+}
+#alters label, #chosen label{
+    display: inline-block;
+    width: 70%;
+}
+#alters a, #chosen a{
+    font-size: 1.2rem;
+}
+#alters li>input, #chosen li>input{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+#alters li, #chosen li{
+    border: 1px solid transparent;
+}
+#alters li.active, #chosen li.active{
+    border: 1px solid #1B9AF7;
+}
+#button_choose{
+    display: inline-block;
+    width: 3rem;
+    height: 24rem;
+    vertical-align: top;
+    border: 1px solid #999999;
+}
+#button_choose .disabled{
+    color: #aaaaaa;
+    cursor: not-allowed;
+}
+#button_choose>span{
+    position: relative;
+    top: 8rem;
+    margin: 1.5rem 0;
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+#chosen{
+    display: inline-block;
+    width: 16rem;
+    height: 24rem;
+    /*padding: 3rem 0 0 0;*/
+    /*overflow-y: scroll;*/
+    border: 1px solid #999999;
+}
+#button_confirm{
+    display: inline-block;
+    width: 8rem;
+    height: 24rem;
+    /*border: 1px solid #999999;*/
+    vertical-align: top;
+}
+#button_confirm>span{
+    position: relative;
+    top: 8rem;
+    margin-bottom: 1.5rem;
+    display: block;
+    text-align: center;
+}
+#button_confirm button{
+    font-size: 1.4rem;
+}
+#result_display *{
+    font-size: 14px;
+}
+#button_table{
+    padding-left: 2rem;
+}
+#update{
+    padding: 0 3.3rem;
+}
+#table_update input, #table_update select, #table_update option{
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0;
+}
+#table_update th, #table_update td{
+    border: 1px solid #999999;
+    font-size: 1.4rem;
+    min-width: 120px;
+}
+#table_update th{
+    text-align: center;
+}
+#submit_update{
+    margin: 2rem;
+}
+#table_update .shuttle{
+    cursor: w-resize;
+}
+#table_update .shuttle.same{
+    border: 1px solid #4cb0f9;
+}
+#table_update .shuttle:hover{
+    border: 1px solid #4cb0f9;
+    background-color: rgba(76,176,249,0.3);
+    /*z-index: 100;*/
+}
+table#table_update tr>td:nth-child(2) {
+    text-align: center;
+}
+.layui-laydate span, .layui-laydate th, .layui-laydate td, .layui-laydate li{
+    font-size: 1.2rem;
+}

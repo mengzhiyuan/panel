@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>我的财务</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <style>
+        .form-control{
+            display: inline-block;
+            width: initial;
+        }
+    </style>
+</head>
+<body>
+<div id="count">
+    <span>申请:</span><span id="applying"></span><span>元</span>
+    <span>批复:</span><span id="replied"></span><span>元</span>
+    <span>已支付:</span><span id="paid"></span><span>元</span>
+    <span>待支付:</span><span id="paying"></span><span>元</span>
+    <span>差额:</span><span id="gap"></span><span>元</span>
+</div>
+<div id="toolbar" class="" style="width: 100%;">
+    <select id="gatherer" class="form-control">
+        <option value="">请选择</option>
+    </select>
+    <button id="gather" class="btn btn-md btn-default">
+        汇总提交
+    </button>
+</div>
+<table id="datas"></table>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="launch_control" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close create_staff" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">选择菜单</h4>
+            </div>
+            <div class="modal-body">
+                <select class="form-control">
+
+                </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-info" data-dismiss="modal" @click="appendChecked">添加</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/jquery.form.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-editable.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/finance/personalFinance.js"></script>
+</body>
+</html>

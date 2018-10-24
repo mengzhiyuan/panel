@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOLPanel样本库</title>
+    <link rel="stylesheet" href="../../../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <link rel="stylesheet" href="../../../css/JFC/match.css">
+</head>
+<body>
+<div id="root" @click="removeOption">
+    <div class="filtering">
+        <div id="existed" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <p class="title">现有字段列表</p>
+            <div id="alters">
+                <ol class="breadcrumb">
+                    <li class="switch active" @click="switchLabel($event, 'member')">
+                        <a>会员信息</a>
+                    </li>
+                    <li class="switch" @click="switchLabel($event, 'organization')">
+                        <a>单位信息</a>
+                    </li>
+                </ol>
+                <div id="alters-container">
+                    <div class="check-all">
+                        <label for="check_all"><a>全选</a></label>
+                        <input type="checkbox" id="check_all" @change="chooseAll">
+                    </div>
+                    <ul id="alter_list">
+                        <li v-for="alt in alters" v-show="status.active_label===alt.type && checked.indexOf(alt) === -1" :class="{ active: status.active === alt }" @click="displayTemp(alt)" @dblclick="checkSingle(alt)">
+                            <a>{{ alt.name.length < 10 ? alt.name : alt.name.slice(0,7) + '...' }}</a>
+                            <input type="checkbox" :checked="status.choosing.indexOf(alt) > -1" @change="changeChoose(alt)">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="choose_existed" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <span class="glyphicon glyphicon-chevron-right chose-button" id="choose_button" @click="checkMulti"></span>
+        </div>
+        <div id="conditions" class="filter col-xs-4 col-sm-4 col-md-4 col-lg-4">
+            <table>
+                <thead>
+                <tr class="breadcrumb" style="height:33px;border-bottom :1px solid #949494">
+                    <th style="width: 20%">逻辑</th>
+                    <th style="width: 15%">字段</th>
+                    <th style="width: 25%">逻辑</th>
+                    <th style="width: 35%">信息类别</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="con in conditions" :id="'row_' + conditions.indexOf(con)">
+                    <td>
+                        <select class="form-control" v-model="con.relation" :disabled="con.relation === 'none'">
+                            <option value="yu">且</option>
+                            <option value="huo">或</option>
+                        </select>
+                    </td>
+                    <td class="clickible" @dblclick="removeChecked(con)">{{ con.field_name }}</td>
+                    <td>
+                        <select class="form-control" v-model="con.operator">
+                            <option value="等于">等于</option>
+                            <option value="不等于">不等于</option>
+                            <option value="开头是">开头是</option>
+                            <option value="结尾是">结尾是</option>
+                            <option value="包含">包含</option>
+                            <option value="不包含">不包含</option>
+                        </select>
+                    </td>
+                    <td class="clickible" @dblclick="removePicked(con)">{{ con.value }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="choose_caching" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <span class="glyphicon glyphicon-chevron-left back-button" id="pick_button" @click="pickMulti"></span>
+        </div>
+        <div id="caching" class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <p class="title">匹配字段列表</p>
+            <div id="caches-container">
+                <div class="check-all">
+                    <label for="pick_all"><a>全选</a></label>
+                    <input type="checkbox" id="pick_all" @change="pickAll">
+                </div>
+                <ul id="cache_list">
+                    <li v-for="cache in caches" :key="cache.count" v-show="picked.indexOf(cache) === -1" class="cache" :data="cache.title" @click="displayTemp(cache)" @dblclick="pickSingle(cache)">
+                        <a>{{ cache.title.length < 10 ? cache.title : cache.title.slice(0,7) + '...' }}</a>
+                        <input type="checkbox" :checked="status.picking.indexOf(cache) > -1" @change="changePick(cache)">
+                    </li>
+                </ul>
+                <div class="input-wrap">
+                    <input id="select_file" type="file">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <button class="btn btn-md btn-success" @click="submit">确认</button>
+        <button class="btn btn-md btn-danger" @click="reset">重置</button>
+        <button class="btn btn-md btn-default" @click="reset">取消</button>
+        <button class="btn btn-md btn-info" @click="toSetExport">导出</button>
+        <button id="export_real" data-toggle="modal" data-target="#export_setting"></button>
+    </div>
+    <table id="result"></table>
+    <!-- Modal -->
+    <div class="modal fade" id="sending_email" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="email_title">
+                        <label for="email_title">邮件标题</label>
+                        <input id="email_title" type="text" v-model="email_title">
+                    </div>
+                    <script id="email_container" name="content" type="text/plain"></script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" @click="sendEmail">发送邮件</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="export_setting" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">详细信息</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="common col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="type">一般字段</div>
+                        <ul>
+                            <li v-for="field in fields" v-if="field.type==='common'">
+                                <label :for="field.id">
+                                    {{ field.name }}
+                                    <input :id="field.id" type="checkbox" :checked="common_checked.indexOf(field.id) > -1" @change="changeCommonField(field.id, $event.target)">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="confidential col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                        <div class="type">须审核字段</div>
+                        <ul>
+                            <li v-for="field in fields" v-if="field.type==='confidential'">
+                                <label :for="field.id">
+                                    {{ field.name }}
+                                    <input :id="field.id" type="checkbox" :checked="confidential_checked.indexOf(field.id) > -1" @change="changeConfidentialField(field.id, $event.target)">
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-info" data-dismiss="modal" @click="exportApply">提交</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/echarts/echarts.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/xlsx.full.min.js"></script>
+<script src="../../../js/jfc/kangpai/match.js"></script>
+</body>
+</html>

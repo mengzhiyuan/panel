@@ -1,0 +1,36 @@
+*{
+    font-size: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    /*border: 1px dashed #666666;*/
+}
+body{
+    background-color: #ffffff;
+    color: #000;
+    font-size: 10px;
+    font-family: "Microsoft YaHei";
+}
+a{
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+a:hover{
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+a:active{
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+a:visited{
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+}
+.form-control, .form-control>option{
+    font-size: 1.2rem;
+}

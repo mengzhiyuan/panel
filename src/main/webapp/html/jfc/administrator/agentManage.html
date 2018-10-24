@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .row{
+            margin: 0;
+            padding: 5px;
+        }
+        .box{
+            display: inline-block;
+            text-align: center;
+        }
+        .box:first-child{
+            padding-left: 0;
+        }
+        .box:last-child{
+            padding-right: 0;
+        }
+        .form-control{
+            display: inline-block;
+            width: 100%;
+        }
+        /*#new_agent .form-control{*/
+        /*width: 30%;*/
+        /*}*/
+        .search-tools{
+            width: 120px;
+        }
+        .row>#remark{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="http://www.kolpanel.net/jfcpanel/html/jfc/main/center.html" class="site_title"><i class="fa fa-paw"></i> <span>SKY-OA</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div id="toolbar" class="" style="width: 100%;">
+                    <!--<input id="plan_title" type="text" placeholder="计划主题" class="form-control search-tools" aria-label="...">-->
+                    <!--<input id="plan_owner" type="text" placeholder="计划人" class="form-control search-tools" aria-label="...">-->
+                    <!--<input id="plan_start" type="text" placeholder="开始时间" class="form-control search-tools" aria-label="...">-->
+                    <!--<input id="plan_end" type="text" placeholder="开始时间" class="form-control search-tools" aria-label="...">-->
+                    <select id="province" class="province form-control search-tools">
+                        <option value="">请选择</option>
+                    </select>
+                    <select id="city" class="city form-control search-tools">
+                        <option value="">请选择</option>
+                    </select>
+                    <input id="key_agent_type" class="form-control search-tools" placeholder="代理类型">
+                    <input id="key_execution_area" class="form-control search-tools" placeholder="执行地点">
+                    <input id="key_main_industry" class="form-control search-tools" placeholder="行业特长">
+                    <button class="btn btn-success btn-md search-tools" id="agent_search">搜索</button>
+                    <button class="btn btn-default btn-md search-tools" id="agent_add" data-toggle="modal" data-target="#new_agent">新增代理</button>
+                    <!--<button class="btn btn-default btn-group-sm add-tools" id="plan_add">新增工作计划</button>-->
+                    <!--</div>-->
+                </div>
+                <table id="datas"></table>
+                <div class="modal fade" id="new_agent" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close create_staff"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">代理信息编辑</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <select id="new_province" class="province form-control" v-model="province">
+                            <option value="">请选择省份</option>
+                        </select>
+                    </span>
+                    <span id="new_city" class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <select class="city form-control" v-model="city">
+                            <option value="">请选择城市</option>
+                        </select>
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="执行地点" v-model="execution_area">
+                    </span>
+                                </div>
+                                <div class="row">
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="代理联系人" v-model="contact_name">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="联系人手机" v-model="contact_cellphone">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="联系人座机" v-model="contact_telephone">
+                    </span>
+                                </div>
+                                <div class="row">
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="联系人地址" v-model="contact_address">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="联系人网址" v-model="contact_website">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="联系人邮箱" v-model="contact_email">
+                    </span>
+                                </div>
+                                <div class="row">
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="代理名称" v-model="agent_name">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <select type="text" class="form-control" v-model="agent_type">
+                            <option value="">请选择</option>
+                            <option value="个人">个人</option>
+                            <option value="公司">公司</option>
+                        </select>
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="代理项目类型" v-model="project_type">
+                    </span>
+                                </div>
+                                <div class="row">
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="特长行业" v-model="main_industry">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="设施" v-model="facility">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="优先等级" v-model="importance">
+                    </span>
+                                </div>
+                                <div class="row">
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="开户行" v-model="account_bank">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="开户名" v-model="account_name">
+                    </span>
+                    <span class="box col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                        <input type="text" class="form-control" placeholder="账号" v-model="account_number">
+                    </span>
+                                </div>
+                                <div class="row">
+                                    <input type="text" class="form-control" placeholder="备注" v-model="remark">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal" @click="close" id="newScore">关闭</button>
+                                <button type="button" class="btn btn-info" @click="save" id="newSave">添加</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/administrator/agentManage.js"></script>
+</body>
+</html>

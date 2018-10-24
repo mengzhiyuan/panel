@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+	<title>首问调研平台</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Cache-Control" content="no-cache">
+	<link rel="stylesheet" href="../../css/bootstrap.min.css">
+	<link rel="stylesheet/less" href="../../css/swing/common.less">
+	<link rel="stylesheet/less" href="../../css/swing/survey.less">
+	<script src="../../js/swing/common/less.js"></script>
+</head>
+<body>
+
+<div id="root">
+	<div class="curtain">
+		<div class="header">
+			<div class="logo"></div>
+			<p id="title" class="title"></p>
+			<p id="remark" class="remark"></p>
+		</div>
+		<div id="questions" class="questions">
+		
+		</div>
+		<div id="control" class="control">
+			<button class="btn btn-md btn-primary" @click="previousPage" v-if="page > 1">上一页</button>
+			<button class="btn btn-md btn-info" @click="previousPage" v-if="page < total_page">上一页</button>
+			<button class="btn btn-md btn-success"@click="submitAll" v-if="page >= total_page">完成</button>
+		</div>
+	</div>
+</div>
+
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/swing/common/wangEditor.js"></script>
+<!--<script src="./js/common/functions.js"></script>-->
+<!--<script src="./js/common/header.js"></script>-->
+<!--<script src="./js/design/design.js"></script>-->
+<script src="../../js/swing/production/preview.js"></script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        .input {
+            border: none #FFFFFF;
+            border-bottom: #777777 solid 1px;
+            background: transparent;
+            width: 80%;
+            height: 100%;
+            min-width:100px
+        }
+
+        .textarea {
+            border: none #FFFFFF;
+            border-bottom: #777777 solid 1px;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            overflow-y: hidden;
+        }
+
+        .span1 {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border: 1px solid #ccc;
+            margin-left: 10px
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div id="main">
+                    <table id="the_table"></table>
+                </div>
+                <!-- 模态框（Modal） -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" style="width: 90%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close"
+                                        data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">添加费用明细</h4>
+                            </div>
+                            <table class="table table-bordered table-hover">
+                                <tr id="create_staff">
+                                    <td rowspan="3">费用信息</td>
+                                    <td>FI：实际完成项目额	</td>
+                                    <td>1.00</td>
+                                    <td>批付：预算可支取现金金额</td>
+                                    <td><input type="text" class="input preBudget"></td>
+                                    <td rowspan="2">差额：项目需要支付成本金额</td>
+                                    <td>差额</td>
+                                    <td>差额备注</td>
+                                </tr>
+                                <tr>
+                                    <td>FC：项目决算成本	</td>
+                                    <td>1.00</td>
+                                    <td>支付：执行实际支付现金金额</td>
+                                    <td><input type="text" class="input preImplement"></td>
+                                    <td rowspan="2"></td>
+                                    <td rowspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td>差额：项目需要支付现金金额</td>
+                                    <td>1.00</td>
+                                    <td>需付：项目需要支付现金金额</td>
+                                    <td><input type="text" class="input preNeed"></td>
+                                    <td>cc</td>
+                                </tr>
+                            </table>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr bgcolor="#A6A6A6" align="center"><th colspan="9" align="center">费用明细——已经支付（决算日及之前）</th></tr>
+                                <tr>
+                                    <th>经手人员</th>
+                                    <th>费用类型</th>
+                                    <th>费用明细</th>
+                                    <th>单价</th>
+                                    <th>数量</th>
+                                    <th>金额</th>
+                                    <th>领款人</th>
+                                    <th>计划日期</th>
+                                    <th>备注</th>
+                                </tr>
+                                </thead>
+                                <tbody id="beforeTable">
+                                <tr>
+                                    <td colspan="9" align="center"><a
+                                            class="btn btn-default addbefore" type="button">+行</a> <a
+                                            class="btn btn-default removebefore" type="button">-行</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr bgcolor="#A6A6A6" align="center"><th colspan="9" align="center">费用明细——需要支付（决算日之后）</th></tr>
+                                <tr>
+                                    <th>经手人员</th>
+                                    <th>费用类型</th>
+                                    <th>费用明细</th>
+                                    <th>单价</th>
+                                    <th>数量</th>
+                                    <th>金额</th>
+                                    <th>领款人</th>
+                                    <th>支付日期</th>
+                                    <th>备注</th>
+                                </tr>
+                                </thead>
+                                <tbody id="afterTable">
+                                <tr>
+                                    <td colspan="9" align="center"><a
+                                            class="btn btn-default addafter" type="button">+行</a> <a
+                                            class="btn btn-default removeafter" type="button">-行</a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-info" id="addDetails">添加</button>
+                            </div>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal -->
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/finance/salary.js"></script>
+</body>
+</html>

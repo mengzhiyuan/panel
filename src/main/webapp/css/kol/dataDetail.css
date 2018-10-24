@@ -1,0 +1,134 @@
+[v-cloak]{
+    display: none;
+}
+#root td{
+    position: relative;
+}
+.form-head{
+    border: 1px solid #999999;
+    margin: 0 0 1rem 0;
+    font-size: 0;
+}
+.form-head>span{
+    font-size: 1.6rem;
+    text-align: center;
+}
+.form-head>.title{
+    display: inline-block;
+    background-color: #a6e1ec;
+    width: 75%;
+    color: #000;
+}
+.form-head>.alter{
+    display: inline-block;
+    background-color: #0074d9;
+    width: 25%;
+    cursor: pointer;
+    color: #fff;
+}
+.form-head:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.form-body{
+    /*margin: 2rem;*/
+}
+.form-body .row{
+    margin: 0.6rem 0;
+}
+.form-body label, .form-body input, .form-body select{
+    font-size: 1.4rem;
+}
+.form-body input:focus, .form-body select:focus{
+    background-color: #F7EED6;
+}
+html, body{
+    font-size: 10px;
+}
+table, tbody{
+    width: 100%;
+}
+table>tbody label, table>tbody input, table>tbody select{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    background-color: rgb(255,255,255);
+}
+table>tbody label{
+    min-width: 90px;
+    text-align: right;
+    padding-right: 5px;
+    background-color: transparent;
+}
+table>tbody input{
+    border: 1px solid #000000;
+}
+.btn-cope{
+    position: relative;
+}
+.btn-cope:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+.btn-cope .tip-single {
+    float: right;
+    margin-right: 15px;
+    line-height: 38px;
+    font-size: 14px;
+    color: #ff0000;
+}
+.btn-cope .btn{
+    /*position: absolute;*/
+    float: right;
+    top: 0;
+    right: 1rem;
+    font-size: 1.2rem;
+    /*background-color: #ffffff;*/
+    border-radius: 0.3rem;
+    cursor: pointer;
+}
+#email_title{
+    font-size: 1.2rem;
+}
+.layui-laydate span, .layui-laydate th, .layui-laydate td, .layui-laydate li{
+    font-size: 1.2rem;
+}
+td.ul-wrap{
+    position: relative;
+}
+ul.options{
+    position: absolute;
+    top: 23px;
+    right: 0;
+    z-index: 10;
+    display: block;
+    width: 100%;
+    height: 200px;
+    border: 1px solid #000000;
+    padding: 5px 0 5px 15px;
+    margin: 0;
+    background-color: #ffffff;
+    overflow: scroll;
+}
+ul.options>li{
+    font-size: 1.2rem;
+    list-style: none;
+    line-height: 20px;
+    cursor: pointer;
+    border-bottom: 1px solid transparent;
+}
+ul.options>li:hover{
+    border-bottom: 1px solid #999999;
+}
+tr.separator{
+    height: 15px;
+}
+td.highlight>label{
+    color: #ff0000;
+}
+.sidebar-footer {
+	display: none;
+}

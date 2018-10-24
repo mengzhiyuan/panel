@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zhCN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <!--<link rel="stylesheet" href="../../css/bootstrap-table.min.css">-->
+    <!--<link href="../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">-->
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        #root label{
+            height: 25px;
+            line-height: 25px;
+            padding: 0;
+            margin: 0;
+        }
+        #root th, #root td{
+            width: 12.5%;
+            text-align: center;
+            padding: 5px 0;
+        }
+        #root td>input, #root td>select, #root td>label{
+            width: 100%;
+            height: 100%;
+            vertical-align: middle;
+        }
+        #root td>label{
+            text-align: right;
+            padding-right: 10px;
+            margin: 0;
+        }
+        div.row:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        div.row>button{
+            margin-right: 15px;
+        }
+        .input-wrap>label{
+            display: inline-block;
+            width: 35%;
+        }
+        .input-wrap>input{
+            display: inline-block;
+            width: 60%;
+        }
+        #export_real{
+            display: none;
+        }
+        .nameComp{
+            min-width: 150px;
+        }
+        .title-wrap{
+            margin: 15px 0;
+        }
+        #link_type,#export{
+            height: 25px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            margin: 0;
+        }
+        .bs-checkbox>input{
+            display: inline-block;
+            width: initial!important;
+            height: initial!important;
+        }
+        #email_title{
+            height: 25px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+            <!--     <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div> -->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            	<li><a href="../../html/kol/page.html">账号设置</a></li>
+		                       <li><a href="#">帮助</a></li>
+		                       <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div class="row" id="result-display">
+                    <div id="tools">
+                        <!--<button class="btn btn-md btn-info" onclick="history.back()">返回</button>-->
+                    </div>
+                    <table id="result"></table>
+                </div>
+                <div class="row title-wrap">
+                    <label for="email_title" class="col-xs-1 col-sm-1 col-md-1 col-lg-1">邀请函名称</label>
+                    <input id="email_title" class="col-xs-8 col-sm-8 col-md-8 col-lg-8" type="text" v-model="status.email_title">
+                    <span class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                        <button id="export" class="btn btn-sm btn-info pull-right" @click="saveInvitation">
+                            保存
+                        </button>
+                    </span>
+                </div>
+                <div class="row">
+                    <script id="email_container" name="content" type="text/plain"></script>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/bootstrap3-editable/js/bootstrap-editable.js"></script>
+<!-- FastClick -->
+<!--<script src="../vendors/fastclick/lib/fastclick.js"></script>-->
+<!-- NProgress -->
+<!--<script src="../vendors/nprogress/nprogress.js"></script>-->
+<!-- Chart.js -->
+<!--<script src="../../../js/echarts/echarts.js"></script>-->
+<!-- jQuery Sparklines -->
+<!--<script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>-->
+<!-- Flot -->
+<!--<script src="../vendors/Flot/jquery.flot.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.pie.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.time.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.stack.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.resize.js"></script>-->
+<!-- Flot plugins -->
+<!--<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>-->
+<!--<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>-->
+<!--<script src="../vendors/flot.curvedlines/curvedLines.js"></script>-->
+<!-- DateJS -->
+<!--<script src="../vendors/DateJS/build/date.js"></script>-->
+<!-- bootstrap-daterangepicker -->
+<!--<script src="../vendors/moment/min/moment.min.js"></script>-->
+<!--<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>-->
+
+<!-- Custom Theme Scripts -->
+<!--<script src="../../../js/echarts/echarts.js"></script>-->
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<!--<script src="../../js/bootstrap-table.min.js"></script>-->
+<!--<script src="../../js/bootstrap-table-zh-CN.min.js"></script>-->
+<!--<script src="../../js/bootstrap-table-editable.js"></script>-->
+<!--<script src="../../js/laydate.js"></script>-->
+<script src="../../ueditor/ueditor.config.js"></script>
+<script src="../../ueditor/ueditor.all.min.js"></script>
+<script src="../../js/kol/menu.js"></script>
+<script src="../../js/jfc/custom.min.js"></script>
+<!--<script src="../../../js/xlsx.full.min.js"></script>-->
+<script src="../../js/kol/alerting.js"></script>
+<script src="../../js/kol/editing-invitation.js"></script>
+<script src="../../js/lists.js"></script>
+<script src="../../js/ChainReact.js"></script>
+</body>
+</html>

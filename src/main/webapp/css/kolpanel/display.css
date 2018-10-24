@@ -1,0 +1,339 @@
+#wrap{
+    position: relative;
+    width: 100%;
+    min-height: 100%
+}
+/*花边-start*/
+#edge{
+    height: 1rem;
+    background: repeating-linear-gradient(60deg,#ffffff, #ffffff 10px, #5bc0ff 0, #5bc0ff 20px);
+}
+/*花边-end*/
+#titles{
+    min-height: 80px;
+    font-size: 3rem;
+    color: #333333;
+    margin: 40px 0 20px 0;
+    text-align: center;
+}
+#title{
+    display: inline-block;
+   /*  width: 640px; */
+    /*height: 60px;*/
+    line-height: 60px;
+    margin: 10px 0 10px 10px;
+}
+#title>span{
+    position: relative;
+    top: -10px;
+    display: inline-block;
+  /*   width: 500px; */
+    min-height: 80px;
+    /*line-height: 80px;*/
+}
+#titles>span{
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    display: inline-block;
+    width: 76px;
+    height: 76px;
+    background-image: url("../img/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 80%;
+    background-size: 90%;
+    /*border: 1px solid #333333;*/
+}
+#subtitle{
+    text-align: center;
+}
+#subtitle>span{
+    display: inline-block;
+    width: 500px;
+    min-height: 40px;
+    font-size: 2rem;
+    color: #666666;
+    padding: 0;
+    text-align: left;
+}
+/**问卷标题部分-end**/
+/**问卷题目公共部分-start**/
+#survey_container{
+    padding: 1px 0;
+    /*background-color: #e9e9e9;*/
+}
+#survey_container>.inners>.inner{
+    position: relative;
+    padding: 10px 0;
+    margin: 1px 0 0 0;
+    background-color: #f9f9f9;
+}
+#survey_container>.inners>.inner.message{
+    padding: 10px 50px;
+    margin: 1px 0 0 0;
+    background-color: #f9f9f9;
+}
+#survey_container>.inners>.inner.message .answers>.input>span{
+    display: block;
+    outline: none;
+    border-bottom: 1px solid #6b8c99;
+}
+#survey_container>.inners>.inner .control{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 32px;
+    height: 100%;
+    min-height: 160px;
+    vertical-align: middle;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+}
+#survey_container>.inners>.inner:hover .control, #survey_container>.inners>.inner:focus .control{
+    display: -webkit-flex;
+    display: flex;
+}
+#survey_container>.inners>.inner .control .button{
+    width: 32px;
+    height: 32px;
+    font-family: typeIcon;
+    color: #999999;
+    text-align: center;
+    line-height: 32px;
+    cursor: default;
+}
+#survey_container .answers .choice input{
+    display: none;
+}
+#survey_container .answers .choice label .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid #5bc0ff;
+    border-radius: 50%;
+    background-color: #ffffff;
+    vertical-align: middle;
+}
+#survey_container .answers .choice label .icon span{
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    /*background-color: #5bc0ff;*/
+}
+#survey_container .answers .choice label .icon.picked span{
+    /*display: block;*/
+    /*width: 12px;*/
+    /*height: 12px;*/
+    /*border-radius: 50%;*/
+    background-color: #5bc0ff;
+}
+#survey_container .answers .choice label .option_text{
+    vertical-align: middle;
+}
+#survey_container .answers .choice .blank{
+    display: inline-block;
+    width: 200px;
+    height: 21px;
+    border-bottom: 1px solid #999999;
+    outline: none;
+}
+#survey_container .answers .checks input{
+    display: none
+}
+#survey_container .answers .checks label .icon{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    padding: 3px;
+    border: 1px solid #5bc0ff;
+    border-radius: 15%;
+    background-color: #ffffff;
+    vertical-align: middle;
+}
+#survey_container .answers .checks label .icon span{
+    display: block;
+    width: 12px;
+    height: 12px;
+    border-radius: 25%;
+    /*background-color: #5bc0ff;*/
+}
+#survey_container .answers .checks label .icon.picked span{
+    /*display: block;*/
+    /*width: 12px;*/
+    /*height: 12px;*/
+    /*border-radius: 25%;*/
+    background-color: #5bc0ff;
+}
+#survey_container .answers .checks label .option_text{
+    vertical-align: middle;
+}
+#survey_container .answers .checks .blank{
+    display: inline-block;
+    width: 200px;
+    height: 21px;
+    border-bottom: 1px solid #999999;
+    outline: none;
+}
+#survey_container .form-rows .choice .answers>div, #survey_container .form-rows .checks .answers>div{
+    display: inline-block;
+}
+#survey_container .rows-2 .choice .answers>div, #survey_container .rows-2 .checks .answers>div{
+    width: 50%;
+}
+#survey_container .rows-3 .choice .answers>div, #survey_container .rows-3 .checks .answers>div{
+    width: 33%;
+}
+#survey_container .rows-4 .choice .answers>div, #survey_container .rows-4 .checks .answers>div{
+    width: 25%;
+}
+#survey_container>.inners>.inner .answers.blank{
+    display: none;
+}
+#survey_container>.inners>.inner .answers.blank.active{
+    display: block;
+}
+#survey_container>.inners>.inner .answers.blank .questions{
+    width: 50%;
+}
+#survey_container>.inners>.inner .answers.blank.float .questions{
+    float: left;
+}
+#survey_container .inners .inner .answers .blank .blank{
+    display: inline-block;
+    min-width: 40%;
+    width: auto;
+    outline: none;
+    border: 1px solid #999999;
+    margin: 5px 0 0 0;
+}
+#survey_container>.inners>.inner .time.answers>.blank .blank, #survey_container>.inners>.inner .date.answers>.blank .blank{
+    width: 24px;
+}
+#survey_container>.inners>.inner .matrix.answers th, #survey_container>.inners>.inner .matrix.answers td{
+    width: 100px;
+    text-align: center;
+}
+#survey_container>.inners>.inner .matrix.answers td>input[type = text]{
+    width: 80px;
+}
+#survey_container>.inners>.inner .score.answers>.score{
+    display: inline-block;
+    width: 10%;
+    text-align: center;
+}
+#survey_container>.inners>.inner .score.answers>.score>input{
+    display: none;
+}
+#survey_container>.inners>.inner .score.answers>.score>label{
+    display: inline-block;
+    width: 98%;
+    background-color: #e9e9e9;
+}
+#survey_container>.inners>.inner .score.answers>.score>label.marked{
+    outline: 2px solid #6b9fff;
+}
+#survey_container>.inners>.inner .score.answers>.score>label span>span{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #5bc0ff;
+}
+#survey_container>.inners>.inner .sort.answers{
+    padding: 0 0 0 100px;
+}
+#survey_container>.inners>.inner .sort.answers>.sort>input{
+    display: none;
+}
+#survey_container>.inners>.inner .sort.answers>.sort>label{
+    position: relative;
+    display: inline-block;
+    width: 120px;
+    border-bottom: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    text-align: center;
+    margin: 0;
+}
+#survey_container>.inners>.inner .sort.answers>.sort>label>i{
+    position:absolute;
+    top: -1px;
+    right: -30px;
+    display: inline-block;
+    width: 30px;
+    height: 22px;
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    text-align: center;
+    margin: 0;
+}
+#survey_container>.inners>.inner .sort.answers>.sort>label.first{
+    border: 1px solid #cccccc;
+}
+#survey_container>.inners>.inner .sort.answers>.sort>label .index{
+    position:  absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #ffffff;
+    background-color: rgba(0,0,0,0.5);
+}
+#survey_container .inners .inner{
+    display: block;
+    max-width: 720px;
+    min-height: 160px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#survey_container>.inners>.inner .question_head{
+    padding: 0 0 10px 0;
+}
+#survey_container>.inners>.inner .question_head span{
+    line-height: 28px;
+}
+#survey_container>.inners>.inner .question_head .question_require{
+    color: #FF0000;
+}
+#survey_container>.inners>.inner .description{
+    font-size: 12px;
+    font-weight: 300;
+}
+#buttons{
+    display: none;
+    text-align: center;
+}
+#buttons>button{
+    margin: 2px 15px;
+}
+#save{
+    display: none;
+}
+#time_long{
+    position:absolute;
+    top: 15px;
+    left: 10px;
+    width: 100px;
+    height: 24px;
+    font-size: 1.8rem;
+    background-color: #ffffff
+}
+#cover{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.8)
+}
+/*#over_time{*/
+    /*display: none;*/
+/*}*/

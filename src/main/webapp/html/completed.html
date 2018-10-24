@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>问卷已完成</title>
+    <script>
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+    </script>
+    <style>
+        p {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-top: 8rem;
+        }
+        div {
+            text-align: center;
+        }
+        div.qd-wrap {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .qd {
+            width: 120px;
+        }
+        .after-qd {
+            font-size: 1rem;
+            margin-top: 1rem;
+        }
+        /*span {*/
+            /*background-color: #66cc96;*/
+            /*border: 1px solid #34ac55;*/
+            /*!*-webkit-border-radius: 3px;*!*/
+            /*!*-moz-border-radius: 3px;*!*/
+            /*!*border-radius: 3px;*!*/
+            /*padding: 5px 10px;*/
+            /*color: #ffffff;*/
+            /*font-size: 14px;*/
+        /*}*/
+        /*button:active {*/
+            /*background-color: #34ac55;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<p>
+    <!--<span>问卷已完成</span><br/>-->
+    <!--<span>谢谢配合</span>-->
+    【我们的调查已经结束，非常感谢您的参与！】
+</p>
+<div class="qd-wrap"><img src="../images/qd.png" class="qd"></div>
+<p class="after-qd">欢迎您关注新交通智库免费获取收费公路调查报告</p>
+</body>
+</html>

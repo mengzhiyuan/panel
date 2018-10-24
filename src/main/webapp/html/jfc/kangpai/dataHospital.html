@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KOLPanel样本库</title>
+<link rel="stylesheet" href="../../../css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="../../../css/bootstrap-table.min.css">-->
+<link rel="stylesheet" href="../../../css/JFC/common.css">
+<link rel="stylesheet" href="../../../css/JFC/dataDetail.css">
+</head>
+<body>
+	<div id="root" @click="shrinkOptions">
+		<div class="form-head">
+			<span class="title">添加信息</span> <span class="alter"
+				data-toggle="modal" data-target="#insert">批量添加</span>
+		</div>
+		<div class="form-body">
+			 <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="province">省份</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control province" id="hosProvince" v-model="data_chunk.hosProvince">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="city">城市</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control city" id="hosCity" v-model="data_chunk.hosCity">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="district">区县</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control district" id="hosDistrict" v-model="data_chunk.hosDistrict">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="city">单位名称</label>
+                     <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="docName" v-model="data_chunk.docName">
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位级别</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosLelId" v-model="data_chunk.hosLelId">
+                        <option value="">请选择</option>
+                        <option value="1">一级</option>
+                        <option value="2">二级</option>
+                        <option value="3">三级</option>
+                        <option value="4">其他</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位等级</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosgraId" v-model="data_chunk.hosgraId">
+                        <option value="">请选择</option>
+                        <option value="1">甲等</option>
+                        <option value="2">乙等</option>
+                        <option value="3">丙等</option>
+                        <option value="4">其他</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位类型</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="typeId" v-model="data_chunk.typeId">
+                        <option value="">请选择</option>
+                        <option value="1">综合</option>
+                        <option value="2">专科</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="city">盈利性质</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="profitId" v-model="data_chunk.profitId">
+                        <option value="">请选择</option>
+                        <option value="1">盈利</option>
+                        <option value="2">非盈利</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位属性</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="propertyId" v-model="data_chunk.propertyId">
+                         <option value="">请选择</option>
+                        <option value="1">公立</option>
+                        <option value="2">私立</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位电话</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosTel" type="text" v-model="data_chunk.hosTel">
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位网址</label>
+                    <input type="text" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosWebsite" v-model="data_chunk.hosWebsite">
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">成立时间</label>
+                     <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="hosEstablishmentTime" v-model="data_chunk.hosEstablishmentTime">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">单位法人</label>
+                    <input type="text" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosLegalPerson" v-model="data_chunk.hosLegalPerson">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4">注册资金</label>
+                    <input type="text" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosRegisteredCapital" v-model="data_chunk.hosRegisteredCapital">
+                </div>
+            </div>
+		</div>
+		<div class="btn-cope">
+			<button class="btn btn-lg btn-success" @click="appendData">保存</button>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="insert" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">批量添加</h4>
+					</div>
+					<div class="modal-body">
+						<div class="email_title">
+							<label for="email_title">请选择Excel文件</label>
+							<form method="post" enctype="multipart/form-data"
+								id="excelImport">
+								<div class="modal-body">
+									<input type="file" name="file"
+										accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/application/vnd.ms-excel"
+										id="email_title">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal"
+							@click="insert">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../../../js/jquery.js"></script>
+	<script src="../../../js/vue.js"></script>
+	<!--<script src="../../../js/echarts/echarts.js"></script>-->
+	<script src="../../../js/bootstrap.min.js"></script>
+	<!--<script src="../../../js/bootstrap-table.min.js"></script>-->
+	<!--<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>-->
+	<script src="../../../js/laydate.js"></script>
+	<script src="../../../js/jfc/kangpai/dataHospital.js"></script>
+	<script src="../../../js/lists.js"></script>
+	<script src="../../../js/ChainReact.js"></script>
+</body>
+</html>

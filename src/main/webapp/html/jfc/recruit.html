@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>JFC后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
+<link rel="stylesheet" href="../../css/kangpai/custom.css">
+<script src="../../js/jquery.js"></script>
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/page.js"></script>
+<script src="../../js/jfc/recruit.js"></script>
+</head>
+<body>
+	<div class="row" style="margin-top:1%">
+		<div class="col-sm-8">
+			<div class="tab-content">
+				<div role="tabpanel" class="tab-pane active" id="home">
+					<div class="input-group col-sm-4">
+						<input type="text" class="form-control"> <span
+							class="input-group-btn keyword">
+							<button class="btn btn-default" type="button">搜索</button>
+						</span>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class=" col-xs-4 text-right">
+			<a class="btn btn-default create_button" type="button" data-toggle="modal"
+				data-target="#myModal">+创建招聘</a>
+		</div>
+	</div>
+	<p>
+	<div class="row">
+		<div class="col-sm-12">
+			<table class="table table-bordered table-hover">
+				<thead>
+					<tr>
+						<th>招聘需求</th>
+						<th>招聘人数</th>
+						<th>结束时间</th>
+						<th>招聘部门</th>
+						<th>职位描述</th>
+						<th>招聘状态</th>
+						<th>操作</th>
+					</tr>
+				</thead>
+				<tbody id="the_table">
+				</tbody>
+			</table>
+			<div class="col-sm-12">
+				<nav aria-label="Page navigation" class="page">
+					<ul id="page" style="text-align: center;" class="pagination">
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">创建招聘</h4>
+				</div>
+				<form class="form-horizontal" role="form">
+                     <div class="form-group" style="margin-top:30px">
+                        <label class="col-sm-2  col-sm-offset-2 control-label">需求部门</label>
+                        <div class="col-sm-5">
+                           <select class="form-control" id="department">
+						    </select>
+                        </div>
+                     </div>
+                      <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">职位名称</label>
+                          <div class="col-sm-5">
+                             <input class="form-control position" type="text" placeholder="请输入职位名称"/>
+                          </div>
+                       </div>
+                         <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">职位描述</label>
+                          <div class="col-sm-5">
+                             <textarea class="form-control describe" rows="3"></textarea>
+                          </div>
+                       </div>
+                         <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">招聘人数</label>
+                          <div class="col-sm-5">
+                             <input class="form-control numbers" type="text" placeholder="请输入招聘人数" size="14" maxlength="14"  onkeyup='this.value=this.value.replace(/\D/gi,"")'/>
+                          </div>
+                       </div>
+                         <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">结束时间</label>
+                          <div class="col-sm-5">
+                             <input type="date"  class="form-control end_time">
+                          </div>
+                       </div>
+                </form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-info" id="release">发布</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="modal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel">添加面试人</h4>
+				</div>
+				<form class="form-horizontal" role="form">
+                     <div class="form-group" style="margin-top:30px">
+                         <label class="col-sm-2  col-sm-offset-2 control-label">面试姓名</label>
+                          <div class="col-sm-5">
+                             <input class="form-control m_name" type="text" placeholder="请输入面试姓名"/>
+                          </div>
+                     </div>
+                         <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">面试情况</label>
+                          <div class="col-sm-5">
+                             <textarea class="form-control m_describe" rows="3"></textarea>
+                          </div>
+                       </div>
+                         <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">邮箱</label>
+                          <div class="col-sm-5">
+                             <input class="form-control m_email" type="text" placeholder="请输入邮箱"/>
+                          </div>
+                       </div>
+                         <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">面试人电话</label>
+                          <div class="col-sm-5">
+                             <input type="text"  class="form-control m_phone" placeholder="面试人电话">
+                          </div>
+                       </div>
+                        <div class="form-group">
+                          <label class="col-sm-2  col-sm-offset-2 control-label">招聘渠道</label>
+                          <div class="col-sm-5">
+                             <select class="form-control" id="m_channel">
+                             	<option value="boss直聘">boss直聘</option>
+                             	<option value="智联">智联</option>
+                             	<option value="58同城">58同城</option>
+                             	<option value="51Job">51Job</option>
+						    </select>
+                          </div>
+                       </div>
+                </form>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-info" id="interview">添加</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+
+</body>
+</html>

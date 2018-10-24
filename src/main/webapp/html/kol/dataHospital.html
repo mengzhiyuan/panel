@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/kol/dataDetail.css">
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                      <a href="../../main_kangpai" class="site_title"> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                         <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+					<div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                           	    <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg" alt="Profile Image" /></span>
+                                        <span>
+                                            <span>John Smith</span>
+                                            <span class="time">3 mins ago</span>
+                                        </span>
+                                        <span class="message">
+                                            Film festivals used to be do-or-die moments for movie makers. They were where...
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green"></span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+     <div id="root" @click="shrinkOptions">
+     <div class="right_col" role="main">
+		<div class="form-head">
+			<span class="title">添加信息</span> <span class="alter"
+				data-toggle="modal" data-target="#insert">批量添加</span>
+		</div>
+		<div class="form-body">
+			 <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosProvince">省份</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control province" id="hosProvince" v-model="data_chunk.hosProvince">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosCity">城市</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control city" id="hosCity" v-model="data_chunk.hosCity">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosDistrict">区县</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control district" id="hosDistrict" v-model="data_chunk.hosDistrict">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosName">单位名称</label>
+                     <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="hosName" v-model="data_chunk.hosName">
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosLelId">单位级别</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosLelId" v-model="data_chunk.hosLelId">
+                        <option value="">请选择</option>
+                        <option>一级</option>
+                        <option>二级</option>
+                        <option>三级</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosgraId">单位等级</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosgraId" v-model="data_chunk.hosgraId">
+                        <option value="">请选择</option>
+                        <option>甲等</option>
+                        <option>乙等</option>
+                        <option>丙等</option>
+                        <option>其他</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="typeId">单位类型</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="typeId" v-model="data_chunk.typeId">
+                        <option value="">请选择</option>
+                        <option value="1">综合</option>
+                        <option value="2">专科</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="profitId">盈利性质</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="profitId" v-model="data_chunk.profitId">
+                        <option value="">请选择</option>
+                        <option value="1">盈利</option>
+                        <option value="2">非盈利</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="propertyId">单位属性</label>
+                    <select class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="propertyId" v-model="data_chunk.propertyId">
+                         <option value="">请选择</option>
+                        <option value="1">公立</option>
+                        <option value="2">私立</option>
+                        <option value="3">未知/其他</option>
+                    </select>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosTel">单位电话</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosTel" type="text" v-model="data_chunk.hosTel">
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosWebsite">单位网址</label>
+                    <input type="text" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosWebsite" v-model="data_chunk.hosWebsite">
+                </div>
+                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosEstablishmentTime">成立时间</label>
+                     <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="hosEstablishmentTime" v-model="data_chunk.hosEstablishmentTime">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3   input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosLegalPerson">单位法人</label>
+                    <input type="text" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosLegalPerson" v-model="data_chunk.hosLegalPerson">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="hosRegisteredCapital">注册资金</label>
+                    <input type="text" class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" id="hosRegisteredCapital" v-model="data_chunk.hosRegisteredCapital">
+                </div>
+            </div>
+		</div>
+		<div class="btn-cope">
+			<button class="btn btn-lg btn-success" @click="appendData">保存</button>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="insert" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">批量添加</h4>
+					</div>
+					<div class="modal-body">
+						<div class="email_title">
+							<label for="email_title">请先下载单位模板</label>&nbsp;&nbsp;&nbsp;&nbsp;<a href="../../download/hospitalTemp.xlsx" >下载</a>
+							<form method="post" enctype="multipart/form-data"
+								id="excelImport">
+								<div class="modal-body">
+									<input type="file" name="file"
+										accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet/application/vnd.ms-excel"
+										id="email_title">
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-info" data-dismiss="modal"
+							@click="insert">添加</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<script src="../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<script src="../../js/laydate.js"></script>
+<script src="../../js/kol/menu.js"></script>
+<script src="../../js/kol/custom.min.js"></script>
+<script src="../../js/kol/dataHospital.js"></script>
+<script src="../../js/lists.js"></script>
+<script src="../../js/ChainReact.js"></script>
+</body>
+</html>

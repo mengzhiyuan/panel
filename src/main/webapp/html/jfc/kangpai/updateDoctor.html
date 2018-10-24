@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>KOLPanel样本库</title>
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link rel="stylesheet" href="../../../css/JFC/common.css">
+    <link rel="stylesheet" href="../../../css/JFC/operationalCenter.css">
+    <link rel="stylesheet" href="../../../css/JFC/membership.css">
+    <style>
+        #precise-search{
+            display: block;
+            border: 1px solid #000000;
+            margin-bottom: 1rem;
+        }
+        .more-conditions:after{
+            content: '';
+            display: block;
+            clear: both;
+        }
+        /*#tools{*/
+            /*margin-top: 1rem;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="root" @click="removeOption">
+    <div id="nav">
+        <ul @click="switchBoard">
+            <li :class="{active: status.active_board==='duplicate_check'}"><a href="./operationalCenter.html">查重</a></li>
+            <li :class="{active: status.active_board==='query'}" target="query">查询</li>
+            <li :class="{active: status.active_board==='update'}" target="update">修改</li>
+            <li :class="{active: status.active_board==='approve'}" target="approve">审核</li>
+        </ul>
+    </div>
+    <div id="query" v-if="status.process === 'query'">
+        <div id="precise-search">
+            <div class="spread-icon" :class="{ spreading: spreading === 'precise' }" :title="spreading === 'precise' ? '折叠' : '展开'" @click="triggerSpreading('precise')"></div>
+            <div class="row">
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="member_index">编号ID</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="member_index" v-model="precise.member_index">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="nickname">单位名称</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="nickname" v-model="precise.nickname">
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 input-wrap">
+                    <label class="col-xs-4 col-sm-4 col-md-4 col-lg-4" for="member_name">姓名</label>
+                    <input class="col-xs-7 col-sm-7 col-md-7 col-lg-7 form-control" type="text" id="member_name" v-model="precise.member_name">
+                </div>
+                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 input-wrap">
+                    <button class="btn btn-md btn-info" @click="preciseQuery">查询</button>
+                </div>
+            </div>
+            <div class="more-conditions" :class="{ spreading: spreading === 'precise' }">
+                <div id="exact">
+                    <div class="chose col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                        <div id="alters">
+                            <div id="alters-container">
+                                <div class="check-all">
+                                    <label for="check_all"><a>全选</a></label>
+                                    <input type="checkbox" id="check_all" @change="checkAll">
+                                </div>
+                                <ul>
+                                    <li v-for="alt in precise.alters" v-show="precise.chosen.indexOf(alt) === -1" :class="{ active: precise.status.active === alt }" @click="activeCheck(alt)" @dblclick="choseSingle(alt)">
+                                        <a>{{ alt.name.length < 10 ? alt.name : alt.name.slice(0,7) + '...' }}</a>
+                                        <input type="checkbox" :checked="precise.status.checked.indexOf(alt) > -1" @change="changeCheck(alt)">
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="chose">
+                            <span class="glyphicon glyphicon-chevron-right chose-button" @click="choseMulti"></span>
+                            <span class="glyphicon glyphicon-chevron-left back-button disabled" @click="backMulti"></span>
+                        </div>
+                        <div id="chosen">
+                            <div class="check-all">
+                                <label for="pick_all"><a>全选</a></label>
+                                <input type="checkbox" id="pick_all" @change="pickAll">
+                            </div>
+                            <ul>
+                                <li v-for="ch in precise.chosen" :class="{ active: precise.status.backing === ch }" @click="activePick(ch)" @dblclick="backSingle(ch)">
+                                    <a>{{ ch.name.length < 10 ? ch.name : ch.name.slice(0,7) + '...' }}</a>
+                                    <input type="checkbox" :checked="precise.status.picked.indexOf(ch) > -1" @change="changePick(ch)">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="conditions" class="filter col-xs-10 col-sm-5 col-md-5 col-lg-5">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th style="width: 30%">逻辑</th>
+                                <th style="width: 20%">字段</th>
+                                <th style="width: 15%">逻辑</th>
+                                <th style="width: 25%">信息类别</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="con in precise.conditions" :id="'row_' + precise.conditions.indexOf(con)">
+                                <!--<td style="width: 10%" class="button-divide" v-if="con.relation === 'none'" :rowspan="conditions.length">-->
+                                <!--<button class="glyphicon glyphicon-saved btn btn-success" :disabled="conditions.packed" @click="divide(conditions)"></button>-->
+                                <!--</td>-->
+                                <td class="buttons" style="width: 10%">
+                                    <button class="glyphicon glyphicon-minus btn btn-warning" :disabled="con.relation === 'none'" @click="minus(con)"></button>
+                                    <button class="glyphicon glyphicon-plus btn btn-info" @click="plus(con)"></button>
+                                </td>
+                                <!--<td style="width: 15%">-->
+                                <!--<select class="form-control" v-model="con.relation" :disabled="con.relation === 'none'">-->
+                                <!--<option value="yu">且</option>-->
+                                <!--<option value="huo">或</option>-->
+                                <!--</select>-->
+                                <!--</td>-->
+                                <td>
+                                    <select class="form-control" :value="con.field" @change="changeFieldName($event,con)">
+                                        <option value="">请选择字段名称</option>
+                                        <option v-for="ch in precise.chosen" :value="ch.id">{{ ch.name }}</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <select class="form-control" v-model="con.operator">
+                                        <option value="等于">等于</option>
+                                        <option value="不等于">不等于</option>
+                                        <option value="开头是">开头是</option>
+                                        <option value="结尾是">结尾是</option>
+                                        <option value="包含">包含</option>
+                                        <option value="不包含">不包含</option>
+                                    </select>
+                                </td>
+                                <td class="value">
+                                    <input class="form-control" type="text" placeholder="信息类别" v-model="con.value" @click="displayOption($event,con)">
+                                    <ul class="options" v-if="precise.options_display === con" :class="{ reverse: reverse('row_' + precise.conditions.indexOf(con)) }">
+                                        <li v-show="opt.indexOf(con.value) > -1" v-for="opt in precise.options" :data="opt" @click="assignment(con,opt)">{{ opt }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="result-display">
+            <div id="tools">
+                <button id="update_multi" class="btn btn-md btn-warning" @click="updateMulti">修改</button>
+                <button id="delete_multi" class="btn btn-md btn-danger" @click="deleteMulti">删除</button>
+                <button id="merge_multi" class="btn btn-md btn-info" @click="mergeMulti">合并</button>
+            </div>
+            <table id="result"></table>
+        </div>
+    </div>
+    <div id="update" v-else>
+        <table id="table_update">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>（不可更改）</th>
+                <th v-for="r in status.checked_row">{{ r.id }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.iDLogin" type="text" placeholder="会员名称">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.iDLogin ===r.iDLogin}" v-for="r in status.checked_row" @click="assign(r, 'iDLogin')">{{ r.iDLogin }}</td>-->
+            <!--</tr>-->
+            <tr>
+                <th>省份</th>
+                <td>
+                    <!--<select class="province" v-model="to_update.province">-->
+                    <!--<option value="">省份</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <!--<td class="shuttle" :class="{same: to_update.province ===r.province}" v-for="r in status.checked_row" @click="assign(r, 'province')">{{ r.province }}</td>-->
+                <td class="shuttle" :class="{same: to_update.province ===r.province}" v-for="r in status.checked_row">{{ r.province }}</td>
+            </tr>
+            <tr>
+                <th>城市</th>
+                <td>
+                    <!--<select class="city" v-model="to_update.city">-->
+                    <!--<option value="">城市</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <!--<td class="shuttle" :class="{same: to_update.city ===r.city}" v-for="r in status.checked_row" @click="assign(r, 'city')">{{ r.city }}</td>-->
+                <td class="shuttle" :class="{same: to_update.city ===r.city}" v-for="r in status.checked_row">{{ r.city }}</td>
+            </tr>
+            <tr>
+                <th>区县</th>
+                <td>
+                    <!--<select class="district" v-model="to_update.district">-->
+                    <!--<option value="">区县</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <!--<td class="shuttle" :class="{same: to_update.district ===r.district}" v-for="r in status.checked_row" @click="assign(r, 'district')">{{ r.district }}</td>-->
+                <td class="shuttle" :class="{same: to_update.district ===r.district}" v-for="r in status.checked_row">{{ r.district }}</td>
+            </tr>
+            <tr>
+                <th>名称</th>
+                <td>
+                    <input v-model="to_update.name" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.name ===r.name}" v-for="r in status.checked_row" @click="assign(r, 'name')">{{ r.name }}</td>
+            </tr>
+            <tr>
+                <th>数据属性</th>
+                <td>
+                    <select v-model="to_update.source">
+                        <option value="">请选择</option>
+                        <option v-for="at in attrId_options" :value="at.attriId">{{ at.attriName }}</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.source ===r.source}" v-for="r in status.checked_row" @click="assign(r, 'source')">{{ r.source }}</td>
+            </tr>
+            <tr>
+                <th>职称类别</th>
+                <td>
+                    <select v-model="to_update.proType">
+                        <option value="">请选择</option>
+                        <option v-for="ca in catId_options" :value="ca.catId">{{ ca.catName }}</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.proType ===r.proType}" v-for="r in status.checked_row" @click="assign(r, 'proType')">{{ r.proType }}</td>
+            </tr>
+            <tr>
+                <th>职称级别</th>
+                <td>
+                    <input v-model="to_update.proClass" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.proClass ===r.proClass}" v-for="r in status.checked_row" @click="assign(r, 'proClass')">{{ r.proClass }}</td>
+            </tr>
+            <tr>
+                <th>行政职称</th>
+                <td>
+                    <select v-model="to_update.title">
+                        <option value="">请选择</option>
+                        <option v-for="ad in admiId_options" :value="ad.admiId">{{ ad.admiName }}</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.title ===r.title}" v-for="r in status.checked_row" @click="assign(r, 'title')">{{ r.title }}</td>
+            </tr>
+            <tr>
+                <th>科室类别</th>
+                <td>
+                    <select v-model="to_update.depType">
+                        <option value="">请选择</option>
+                        <option v-for="cate in categId_options" :value="cate.categId">{{ cate.categName }}</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.depType ===r.depType}" v-for="r in status.checked_row" @click="assign(r, 'depType')">{{ r.depType }}</td>
+            </tr>
+            <tr>
+                <th>所在科室</th>
+                <td>
+                    <input v-model="to_update.department" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.department ===r.department}" v-for="r in status.checked_row" @click="assign(r, 'department')">{{ r.department }}</td>
+            </tr>
+            <tr>
+                <th>科室性质</th>
+                <td>
+                    <select v-model="to_update.depNature">
+                        <option value="">请选择</option>
+                        <option v-for="na in natId_options" :value="na.natId">{{ na.natName }}</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.depNature ===r.depNature}" v-for="r in status.checked_row" @click="assign(r, 'depNature')">{{ r.depNature }}</td>
+            </tr>
+            <tr>
+                <th>专业领域</th>
+                <td>
+                    <input v-model="to_update.profField" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.profField ===r.profField}" v-for="r in status.checked_row" @click="assign(r, 'profField')">{{ r.profField }}</td>
+            </tr>
+            <tr>
+                <th>单位名称</th>
+                <td class="value">
+                    <input v-model="to_update.nameComp" type="text" placeholder="" @input="queryHospital($event.target.value)">
+                    <ul class="col-xs-6 col-sm-6 col-md-6 col-lg-6 options" v-if="precise.options_display === 'hospital'">
+                        <li v-show="opt.nameComp.indexOf(to_update.nameComp) > -1" v-for="opt in hospital_options" :data="opt.id" @click="assignmentQuick(opt.id)">{{ opt.name }}</li>
+                        <li data-toggle="modal" data-target="#insert_hospital" @click="toInsertHospital">新建医院信息</li>
+                    </ul>
+                </td>
+                <td class="shuttle" :class="{same: to_update.nameComp ===r.nameComp}" v-for="r in status.checked_row" @click="assign(r, 'nameComp')">{{ r.nameComp }}</td>
+            </tr>
+            <tr>
+                <th>单位级别</th>
+                <td>
+                    <!--<select v-model="to_update.level">-->
+                    <!--<option value="">单位级别</option>-->
+                    <!--<option value="1">一级</option>-->
+                    <!--<option value="2">二级</option>-->
+                    <!--<option value="3">三级</option>-->
+                    <!--<option value="4">其他</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <td class="shuttle" :class="{same: to_update.level ===r.level}" v-for="r in status.checked_row" @click="assign(r, 'level')">{{ r.level }}</td>
+            </tr>
+            <tr>
+                <th>单位等级</th>
+                <td>
+                    <!--<select v-model="to_update.grade">-->
+                    <!--<option value="">单位等级</option>-->
+                    <!--<option value="1">甲等</option>-->
+                    <!--<option value="2">乙等</option>-->
+                    <!--<option value="3">丙等</option>-->
+                    <!--<option value="4">其他</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <td class="shuttle" :class="{same: to_update.grade ===r.grade}" v-for="r in status.checked_row" @click="assign(r, 'grade')">{{ r.grade }}</td>
+            </tr>
+            <tr>
+                <th>单位类型</th>
+                <td>
+                    <!--<select v-model="to_update.type">-->
+                    <!--<option value="">单位类型</option>-->
+                    <!--<option value="1">综合</option>-->
+                    <!--<option value="2">专科</option>-->
+                    <!--<option value="3">未知/其他</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <td class="shuttle" :class="{same: to_update.type ===r.type}" v-for="r in status.checked_row" @click="assign(r, 'type')">{{ r.type }}</td>
+            </tr>
+            <tr>
+                <th>盈利性质</th>
+                <td>
+                    <!--<select v-model="to_update.profit">-->
+                    <!--<option value="">盈利性质</option>-->
+                    <!--<option value="1">盈利</option>-->
+                    <!--<option value="2">非盈利</option>-->
+                    <!--<option value="3">未知/其他</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <td class="shuttle" :class="{same: to_update.profit ===r.profit}" v-for="r in status.checked_row" @click="assign(r, 'profit')">{{ r.profit }}</td>
+            </tr>
+            <tr>
+                <th>单位属性</th>
+                <td>
+                    <!--<select v-model="to_update.property">-->
+                    <!--<option value="">单位属性</option>-->
+                    <!--<option value="1">公立</option>-->
+                    <!--<option value="2">私立</option>-->
+                    <!--<option value="3">未知/其他</option>-->
+                    <!--</select>-->
+                    （不可更改）
+                </td>
+                <td class="shuttle" :class="{same: to_update.property ===r.property}" v-for="r in status.checked_row" @click="assign(r, 'property')">{{ r.property }}</td>
+            </tr>
+            <tr>
+                <th>手机号码</th>
+                <td>
+                    <input v-model="to_update.mobile" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.mobile ===r.mobile}" v-for="r in status.checked_row" @click="assign(r, 'mobile')">{{ r.mobile }}</td>
+            </tr>
+            <tr>
+                <th>联系电话1</th>
+                <td>
+                    <input v-model="to_update.tel1" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.tel1 ===r.tel1}" v-for="r in status.checked_row" @click="assign(r, 'tel1')">{{ r.tel1 }}</td>
+            </tr>
+            <tr>
+                <th>联系电话2</th>
+                <td>
+                    <input v-model="to_update.tel2" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.tel2 ===r.tel2}" v-for="r in status.checked_row" @click="assign(r, 'tel2')">{{ r.tel2 }}</td>
+            </tr>
+            <tr>
+                <th>联系电话3</th>
+                <td>
+                    <input v-model="to_update.tel3" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.tel3 ===r.tel3}" v-for="r in status.checked_row" @click="assign(r, 'tel3')">{{ r.tel3 }}</td>
+            </tr>
+            <tr>
+                <th>邮箱</th>
+                <td>
+                    <input v-model="to_update.email" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.email ===r.email}" v-for="r in status.checked_row" @click="assign(r, 'email')">{{ r.email }}</td>
+            </tr>
+            <tr>
+                <th>性别</th>
+                <td>
+                    <select v-model="to_update.sex">
+                        <option value="">请选择</option>
+                        <option value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.sex ===r.sex}" v-for="r in status.checked_row" @click="assign(r, 'sex')">{{ r.sex }}</td>
+            </tr>
+            <tr>
+                <th>年龄</th>
+                <td>
+                    <input id="age_to_update" :value="to_update.old" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.old ===r.old}" v-for="r in status.checked_row" @click="assign(r, 'old')">{{ r.old }}</td>
+            </tr>
+            <tr>
+                <th>从业时间</th>
+                <td>
+                    <input id="length_as_medic_to_update" :value="to_update.oldWork" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.oldWork ===r.oldWork}" v-for="r in status.checked_row" @click="assign(r, 'oldWork')">{{ r.oldWork }}</td>
+            </tr>
+            <tr>
+                <th>岗位年龄</th>
+                <td>
+                    <input id="post_age_to_update" :value="to_update.oldStation" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.oldStation ===r.oldStation}" v-for="r in status.checked_row" @click="assign(r, 'oldStation')">{{ r.oldStation }}</td>
+            </tr>
+            <tr>
+                <th>学历</th>
+                <td>
+                    <select v-model="to_update.record">
+                        <option value="">请选择</option>
+                        <option value="博士">博士</option>
+                        <option value="硕士">硕士</option>
+                        <option value="本科">本科</option>
+                        <option value="专科">专科</option>
+                        <option value="职高/高中">职高/高中</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.record ===r.record}" v-for="r in status.checked_row" @click="assign(r, 'record')">{{ r.record }}</td>
+            </tr>
+            <tr>
+                <th>身份证号</th>
+                <td>
+                    <input v-model="to_update.idNumber" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.idNumber ===r.idNumber}" v-for="r in status.checked_row" @click="assign(r, 'idNumber')">{{ r.idNumber }}</td>
+            </tr>
+            <tr>
+                <th>资质证号</th>
+                <td>
+                    <input v-model="to_update.proNumber" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.proNumber ===r.proNumber}" v-for="r in status.checked_row" @click="assign(r, 'proNumber')">{{ r.proNumber }}</td>
+            </tr>
+            <tr>
+                <th>KOL属性</th>
+                <td>
+                    <select v-model="to_update.kol">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.kol ===r.kol}" v-for="r in status.checked_row" @click="assign(r, 'kol')">{{ r.kol }}</td>
+            </tr>
+            <tr>
+                <th>Payer属性</th>
+                <td>
+                    <select v-model="to_update.payer">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.payer ===r.payer}" v-for="r in status.checked_row" @click="assign(r, 'payer')">{{ r.payer }}</td>
+            </tr>
+            <tr>
+                <th>采购属性</th>
+                <td>
+                    <select v-model="to_update.purchase">
+                        <option value="">请选择</option>
+                        <option value="1">是</option>
+                        <option value="0">否</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.purchase ===r.purchase}" v-for="r in status.checked_row" @click="assign(r, 'purchase')">{{ r.purchase }}</td>
+            </tr>
+            <tr>
+                <th>荣誉属性</th>
+                <td>
+                    <input v-model="to_update.member" type="text">
+                </td>
+                <td class="shuttle" :class="{same: to_update.member ===r.member}" v-for="r in status.checked_row" @click="assign(r, 'member')">{{ r.member }}</td>
+            </tr>
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<select v-model="to_update.payType">-->
+            <!--<option value="">支付类型</option>-->
+            <!--</select>-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.payType ===r.payType}" v-for="r in status.checked_row" @click="assign(r, 'payType')">{{ r.payType }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.payAccount" type="text" placeholder="支付账号">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.payAccount ===r.}" v-for="r in status.checked_row" @click="assign(r, 'payAccount')">{{ r.payAccount }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.payName" type="text" placeholder="账号名称">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.payName ===r.payName}" v-for="r in status.checked_row" @click="assign(r, 'payName')">{{ r.payName }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.pay1" type="text" placeholder="支付记录1">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.pay1 ===r.pay1}" v-for="r in status.checked_row" @click="assign(r, 'pay1')">{{ r.pay1 }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.pay2" type="text" placeholder="支付记录2">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.pay2 ===r.pay2}" v-for="r in status.checked_row" @click="assign(r, 'pay2')">{{ r.pay2 }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.pay3" type="text" placeholder="支付记录3">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.pay3 ===r.pay3}" v-for="r in status.checked_row" @click="assign(r, 'pay3')">{{ r.pay3 }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.pay4" type="text" placeholder="支付记录4">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.pay4 ===r.pay4}" v-for="r in status.checked_row" @click="assign(r, 'pay4')">{{ r.pay4 }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--<input v-model="to_update.pay5" type="text" placeholder="支付记录5">-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.pay5 ===r.pay5}" v-for="r in status.checked_row" @click="assign(r, 'pay5')">{{ r.pay5 }}</td>-->
+            <!--</tr>-->
+            <tr>
+                <th>审核信息</th>
+                <td>
+                    <input v-model="to_update.check" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.check ===r.check}" v-for="r in status.checked_row" @click="assign(r, 'check')">{{ r.check }}</td>
+            </tr>
+            <tr>
+                <th>沟通信息</th>
+                <td>
+                    <input v-model="to_update.communication" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.communication ===r.communication}" v-for="r in status.checked_row" @click="assign(r, 'communication')">{{ r.communication }}</td>
+            </tr>
+            <tr>
+                <th>积分信息</th>
+                <td>
+                    <input v-model="to_update.credit" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.credit ===r.credit}" v-for="r in status.checked_row" @click="assign(r, 'credit')">{{ r.credit }}</td>
+            </tr>
+            <tr>
+                <th>项目信息</th>
+                <td>
+                    <input v-model="to_update.project" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.project ===r.project}" v-for="r in status.checked_row" @click="assign(r, 'project')">{{ r.project }}</td>
+            </tr>
+            <tr>
+                <th>数据重要性</th>
+                <td>
+                    <select v-model="to_update.dimportant">
+                        <option value="">请选择</option>
+                        <option value="1">重要</option>
+                        <option value="2">普通</option>
+                        <option value="3">不清楚</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.dimportant ===r.dimportant}" v-for="r in status.checked_row" @click="assign(r, 'dimportant')">{{ r.dimportant }}</td>
+            </tr>
+            <tr>
+                <th>数据配合度</th>
+                <td>
+                    <select v-model="to_update.cooperate">
+                        <option value="">请选择</option>
+                        <option value="1">高</option>
+                        <option value="2">普通</option>
+                        <option value="3">低</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.cooperate ===r.cooperate}" v-for="r in status.checked_row" @click="assign(r, 'cooperate')">{{ r.cooperate }}</td>
+            </tr>
+            <tr>
+                <th>数据活跃度</th>
+                <td>
+                    <select v-model="to_update.active">
+                        <option value="">请选择</option>
+                        <option v-for="li in liveId_options" :value="li.liveId">{{ li.liveName }}</option>
+                    </select>
+                </td>
+                <td class="shuttle" :class="{same: to_update.active ===r.active}" v-for="r in status.checked_row" @click="assign(r, 'active')">{{ r.active }}</td>
+            </tr>
+            <!--<tr>-->
+            <!--<td>-->
+            <!--数据创建时间（不可更改）-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.date ===r.date}" v-for="r in status.checked_row" @click="assign(r, 'date')">{{ r.date }}</td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+            <!--<td>-->
+            <!--数据更新时间（不可更改）-->
+            <!--</td>-->
+            <!--<td class="shuttle" :class="{same: to_update.update ===r.update}" v-for="r in status.checked_row" @click="assign(r, 'update')">{{ r.update }}</td>-->
+            <!--</tr>-->
+            <tr>
+                <th>备注</th>
+                <td>
+                    <input v-model="to_update.note" type="text" placeholder="">
+                </td>
+                <td class="shuttle" :class="{same: to_update.note ===r.note}" v-for="r in status.checked_row" @click="assign(r, 'note')">{{ r.note }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <button id="submit_update" class="btn btn-success btn-sm" @click="submitUpdate">保存</button>
+        </div>
+        <div class="modal fade" id="insert_hospital" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">新建医院信息</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_name">医院名称</label>
+                                <input id="new_hospital_name" type="text" v-model="to_insert.hosName">
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_level">医院级别</label>
+                                <select id="new_hospital_level" type="text" v-model="to_insert.hoslelId">
+                                    <option value="">请选择</option>
+                                    <option value="1">一级</option>
+                                    <option value="2">二级</option>
+                                    <option value="3">三级</option>
+                                    <option value="4">其他</option>
+                                </select>
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_grade">医院等级</label>
+                                <select id="new_hospital_grade" type="text" v-model="to_insert.hosgraId">
+                                    <option value="">请选择</option>
+                                    <option value="1">甲等</option>
+                                    <option value="2">乙等</option>
+                                    <option value="3">丙等</option>
+                                    <option value="4">其他</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_province">省份</label>
+                                <select id="new_hospital_province" v-model="to_insert.hosProvince">
+                                    <option value="">请选择</option>
+                                </select>
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_city">城市</label>
+                                <select id="new_hospital_city" v-model="to_insert.hosCity">
+                                    <option value="">请选择</option>
+                                </select>
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_district">区县</label>
+                                <select id="new_hospital_district" v-model="to_insert.hosDistrict">
+                                    <option value="">请选择</option>
+                                </select>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_found">成立时间</label>
+                                <input id="new_hospital_found" type="text" v-model="to_insert.foundTime">
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_legal_person">法人</label>
+                                <input id="new_hospital_legal_person" type="text" v-model="to_insert.legalPerson">
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_capital">注册资金(万)</label>
+                                <input id="new_hospital_capital" type="number" v-model="to_insert.capital">
+                            </span>
+                        </div>
+                        <div class="row">
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_type">医院类型</label>
+                                <select id="new_hospital_type" type="text" v-model="to_insert.typeId">
+                                    <option value="">请选择</option>
+                                    <option value="1">综合</option>
+                                    <option value="2">专科</option>
+                                    <option value="3">未知/其他</option>
+                                </select>
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_profit">盈利性质</label>
+                                <select id="new_hospital_profit" type="text" v-model="to_insert.profitId">
+                                    <option value="">请选择</option>
+                                    <option value="1">盈利</option>
+                                    <option value="2">非盈利</option>
+                                    <option value="3">未知/其他</option>
+                                </select>
+                            </span>
+                            <span class="col-xs-4 col-sm-4 col-md-4 col-lg-4 input-wrap">
+                                <label for="new_hospital_character">医院属性</label>
+                                <select id="new_hospital_character" type="text" v-model="to_insert.propertyId">
+                                    <option value="">请选择</option>
+                                    <option value="1">公立</option>
+                                    <option value="2">私立</option>
+                                    <option value="3">未知/其他</option>
+                                </select>
+                            </span>
+                        </div>
+                        <!--<div class="email_title">-->
+                            <!--<label for="email_title">邮件标题</label>-->
+                            <!--<input id="email_title" type="text" v-model="email_title">-->
+                        <!--</div>-->
+                        <!--<script id="email_container" name="content" type="text/plain"></script>-->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal" @click="updateHospital">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/vue.js"></script>
+<script src="../../../js/bootstrap.min.js"></script>
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/jfc/kangpai/operationComponent.js"></script>
+<script src="../../../js/jfc/kangpai/updateDoctor.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+</body>
+</html>

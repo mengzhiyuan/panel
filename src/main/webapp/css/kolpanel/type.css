@@ -1,0 +1,172 @@
+#types{
+    position: relative;
+    top: 5%;
+    display: inline-block;
+    width: 1200px;
+    overflow: hidden;
+    height: 480px;
+    font-size: 0;
+
+
+    /*background-color: rgba(200,230,255,0.5);*/
+}
+/*切换按钮样式*/
+#tags{
+    position: absolute;
+    top: 10%;
+    width: 100%;
+    height: 30px;
+}
+#tags>span{
+    display: inline-block;
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 1.5rem;
+    /*cursor: default;*/
+    vertical-align: bottom;
+
+
+    /*background-color: rgba(200,230,255,0.5);*/
+}
+/*按钮部分渐变样式*/
+#blank{
+    box-shadow: 0.5px 0 0 0 #5bc0ff;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    background: linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0.5));
+    cursor: pointer;
+}
+.leftside{
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+    background: -o-linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+    background: linear-gradient(left,rgba(91,192,255,0),rgba(91,192,255,0.1));
+}
+#filled{
+    box-shadow: -0.5px 0 0 0 #5bc0ff;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.3),rgba(91,192,255,0.1));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.3),rgba(91,192,255,0.1));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.3),rgba(91,192,255,0.1));
+    background: linear-gradient(left,rgba(91,192,255,0.3),rgba(91,192,255,0.1));
+    cursor: pointer;
+}
+.rightside{
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 35px;
+    line-height: 35px;
+    background: -webkit-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+    background: -o-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+    background: -moz-linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+    background: linear-gradient(left,rgba(91,192,255,0.1),rgba(91,192,255,0));
+}
+.carve{
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    background: -webkit-linear-gradient(left,#ffffff,#5bc0ff,#ffffff);
+    background: -o-linear-gradient(left,#ffffff,#5bc0ff,#ffffff);
+    background: -moz-linear-gradient(left,#ffffff,#5bc0ff,#ffffff);
+    background: linear-gradient(left,#ffffff,#5bc0ff,#ffffff)
+}
+/*主体部分样式*/
+#types .type-box{
+    position: relative;
+    top: 30%;
+    display: inline-block;
+    vertical-align: bottom;
+}
+#types .type{
+    float: left;
+    width: 240px;
+    height: 240px;
+    margin: 30px;
+    box-shadow: 0 0 1px 1px #5bc0ff;
+
+
+    /*background-color: #ffccaa;*/
+}
+/*按钮切换显示|隐藏样式*/
+#types #wrapper{
+    position: relative;
+    top: 35%;
+    width: 2400px;
+    height: 240px;
+}
+#types #wrapper:before{
+    display: block;
+    clear: both;
+    content: '';
+}
+#types .blanks{
+    /*display: none;*/
+    width: 1200px;
+    text-align: center;
+}
+#types .blanks .type{
+    display: inline-block;
+    float: none;
+}
+#types .filled{
+    /*display: none;*/
+    width: 1200px;
+}
+#types .active{
+    /*display: block;*/
+}
+
+/*悬浮动画样式*/
+#types .type:hover,#types .type:focus{
+    width: 250px;
+    height: 250px;
+    margin: 25px;
+    box-shadow: 0 0 10px 1px #5bc0ff;
+}
+#types .type .icon{
+    position: relative;
+    top: 30px;
+    width: 75px;
+    height: 75px;
+    background-position: center;
+    -webkit-background-size: 80%;
+    background-size: 80%;
+    background-repeat: no-repeat;
+}
+/*四个类型的图像,标题,按钮样式*/
+#types .initial .icon{
+    background-image: url("../../images/kolpanel/blanks-blue.png");
+}
+#types .research .icon{
+    background-image: url("../../images/kolpanel/research-blue.png");
+}
+#types .serve .icon{
+    background-image: url("../../images/kolpanel/serve-blue.png");
+}
+#types .staff .icon{
+    background-image: url("../../images/kolpanel/staff-blue.png");
+}
+#types .form .icon{
+    background-image: url("../../images/kolpanel/form-blue.png");
+}
+#types .type .title{
+    position: relative;
+    top: 60px;
+    font-size: 2rem;
+}
+#types .type .button{
+    position: relative;
+    top: 80px;
+    /*display: none;*/
+}
+#types .type:hover .button,#types .type:focus .button{
+    display: block;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>KOLPanel后台管理系统</title>
+<meta name="keywords" content="JFC样板库" />
+<meta name="description" content="JFC样板库" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<link href="./css/JFC/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="./js/jquery.js"></script>
+<script src="./../jfcpanel/js/jfc/login/JFCLogin.js" type="text/javascript"></script>
+<script src="./../jfcpanel/js/jfc/login/jquery.cookie.js" type="text/javascript"></script>
+<script src="./../jfcpanel/js/jfc/login/tooltips.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.loginbox').css({
+			'position' : 'absolute',
+			'left' : ($(window).width() - 692) / 2
+		});
+		$(window).resize(function() {
+			$('.loginbox').css({
+				'position' : 'absolute',
+				'left' : ($(window).width() - 692) / 2
+			});
+		})
+	});
+</script>
+
+</head>
+
+<body
+	style="background-color: #1c77ac; background-image: url(./images/JFC/login/light.png); background-repeat: no-repeat; background-position: center top; overflow: hidden;">
+
+
+
+	<div id="mainBody">
+		<div id="cloud1" class="cloud"></div>
+		<div id="cloud2" class="cloud"></div>
+	</div>
+
+
+	<div class="logintop">
+		<span></span>
+		<ul>
+			<li><a href="./html/JFCRegistration.html">去注册</a></li>
+			<li><a href="#">帮助</a></li>
+			<li><a href="#">关于</a></li>
+		</ul>
+	</div>
+
+	<div class="loginbody">
+
+		<span class="systemlogo"></span>
+
+		<div class="loginbox">
+
+			<ul>
+				<li><input id="email"  name="username" type="text" class="loginuser" value="请输入邮箱"
+					onclick="JavaScript:this.value=''" /></li>
+				<li><input id="password"  name="password" type="text" class="loginpwd" value="密码"
+					onclick="JavaScript:this.value=''" /></li>
+				<li><input  type="button" class="loginbtn" value="登录" id="submit_btn"/><label><input
+						name="" type="checkbox" value="" checked="checked" />记住密码</label><label><a
+						href="#">忘记密码？</a></label><label><a
+						href="./html/JFCRegistration.html">去注册</a></label></li>
+			</ul>
+		</div>
+	</div>
+	<div class="loginbm">北京捷峰市场联合调查有限公司</div>
+</body>
+</html>

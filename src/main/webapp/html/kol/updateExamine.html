@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <!-- <link href="./font/font-awesome.min.css" rel="stylesheet"> -->
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/kol/statistics.css">
+    <style>
+        #root {
+            width: 100%;
+            text-align: center;
+        }
+        .table {
+            margin-top: 100px;
+            width: 100%;
+        }
+        .table th, .table td {
+            border: 1px solid #666666!important;
+            border-collapse: collapse;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../../main_kangpai" class="site_title"> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                            <!-- <li class="current-page active">
+                                <a href=""><i class="fa fa-home"></i> 首页 </a>
+                            </li>
+                            <li><a><i class="fa fa-edit"></i> 会员管理 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                <li><a href="./membership.html">查询</a></li>
+                                <li><a href="./dataDetail.html">添加</a></li>
+                                <li><a href="./match.html">匹配</a></li>
+                                <li><a href="./operationalCenter.html">管理</a></li>
+                              </ul>
+                            </li>
+                            <li><a><i class="fa fa-desktop"></i> 单位管理 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                <li><a href="./membershipHospital.html">查询</a></li>
+                                <li><a href="./dataHospital.html">添加</a></li>
+                                <li><a href="./match.html">匹配</a></li>
+                                <li><a href="./operationCenterHospital.html">管理</a></li>
+                              </ul>
+                            </li>
+                            <li><a><i class="fa fa-table"></i> 项目管理 <span class="fa fa-chevron-down"></span></a>
+                              <ul class="nav child_menu">
+                                <li><a href="1.html">项目管理</a></li>
+                                <li><a href="2.html">添加项目</a></li>
+                              </ul>
+                            </li>
+                            <li><a><i class="fa fa-bar-chart-o"></i> kol-OA </a>
+                            </li>
+                            <li><a><i class="fa fa-laptop"></i>首问 Swing </a>
+                            </li> -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div>
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt=""><span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/kol/page.html">账号设置</a></li>
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                                <li>
+                                    <div class="text-center">
+                                        <a>
+                                            <strong>See All Alerts</strong>
+                                            <i class="fa fa-angle-right"></i>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>申请人及操作</th>
+                        <th>审核人</th>
+                        <th>修改字段</th>
+                        <th>修改条目</th>
+                        <th>数量</th>
+                        <th>操作</th>
+                        <th>申请时间</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="ap in applies">
+                        <td>{{ ap.applicant }}</td>
+                        <td>{{ ap.reviewer }}</td>
+                        <td>
+                            <a>姓名、性别、职称...</a>
+                        </td>
+                        <td>
+                            <a>{{ ap.indexes.slice(0,15) + '...' }}</a>
+                        </td>
+                        <td>
+                            <a>{{ ap.number }}</a>
+                        </td>
+                        <td><a @click="approve(ap)">通过</a><a @click="decline(ap)">拒绝</a></td>
+                        <td>{{ ap.time }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<!--<script src="../vendors/fastclick/lib/fastclick.js"></script>-->
+<!-- NProgress -->
+<!--<script src="../vendors/nprogress/nprogress.js"></script>-->
+<!-- Chart.js -->
+<script src="../../js/echarts/echarts.js"></script>
+<!-- jQuery Sparklines -->
+<!--<script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>-->
+<!-- Flot -->
+<!--<script src="../vendors/Flot/jquery.flot.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.pie.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.time.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.stack.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.resize.js"></script>-->
+<!-- Flot plugins -->
+<!--<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>-->
+<!--<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>-->
+<!--<script src="../vendors/flot.curvedlines/curvedLines.js"></script>-->
+<!-- DateJS -->
+<!--<script src="../vendors/DateJS/build/date.js"></script>-->
+<!-- bootstrap-daterangepicker -->
+<!--<script src="../vendors/moment/min/moment.min.js"></script>-->
+<!--<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>-->
+
+<!-- Custom Theme Scripts -->
+<script src="../../js/kol/menu.js"></script>
+<script src="../../js/kol/custom.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/kol/updateExamine.js"></script>
+</body>
+</html>

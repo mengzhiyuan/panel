@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- Meta, title, CSS, favicons, etc. -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>个人信息</title>
+<!-- Bootstrap -->
+<link href="../../css/bootstrap.min.css" rel="stylesheet">
+<link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../../css/bootstrap-table.min.css">
+<link rel="stylesheet" href="../../css/bootstrap-select.min.css">
+<link rel="stylesheet" href="../../css/swing/design.css">
+</head>
+<body>
+	<header id="header" class="header">
+		<div class="col-md-10 column">
+			<a class="home-button" href="./home.html"><i
+				class="glyphicon glyphicon-home"></i></a>
+			<nav>
+				<a>XXXX，欢迎使用SWING首问调查平台!!!</a>
+			</nav>
+		</div>
+		<div class="col-md-2 column" style="background-color: #00b0f0">
+			<div class="dropdown">
+				<a href="./application.html"
+					style="color: #FFF; font-size: 30px; top: 10px; margin-left: 40px"
+					class="glyphicon glyphicon-th"></a> <a id="dLabel" role="button"
+					data-toggle="dropdown" data-target="#" href="javascript:;"
+					style="color: #FFF; line-height: 50px; font-size: 14px; margin-left: 50px">
+					账户 <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu multi-level" role="menu"
+					aria-labelledby="dropdownMenu">
+					<li><a tabindex="-1" href="./personal_information.html">个人信息</a>
+					<li><a tabindex="-1" href="./resources.html">我的资源</a>
+					<li><a tabindex="-1" href="./contact_person.html">联系人</a>
+					<li><a tabindex="-1" href="javascript:;">我的消息</a>
+					<li><a tabindex="-1" href="javascript:;">帮助中心</a>
+					<li><a tabindex="-1" href="./swing.html">退出</a>
+				</ul>
+			</div>
+		</div>
+	</header>
+
+	<div class="container" style="margin-top: 10%">
+		<div class="row clearfix">
+			<div class="col-md-12 column" ></div>
+				<div class="col-md-6 column text-center"
+					style="border-bottom: 1px solid #00b0f0; height:165px">
+					<div class="row clearfix">
+						<div class="col-md-2 column text-left">
+							<span style="font-size: 16px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账号:</span>
+						</div>
+						<div class="col-md-6 column">
+							<img class="img-circle" style="width:115px;border:1px solid #00b0f0" id="url">
+						</div>
+					</div>
+				</div>
+	
+				<div class="col-md-6 column text-left" style="border-bottom: 1px solid #00b0f0; height:165px">
+					<div class="row clearfix">
+						<div class="col-md-3 column">
+							<span style="font-size: 16px;">资料完整度：</span>
+						</div>
+						<div class="col-md-6 column">
+							<div   id="main" style=" height:165px;left:13%"></div>
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>
+			<div class="col-md-6 column" style="font-size: 16px">账户类型：</div>
+			<div class="col-md-6 column" style="font-size: 16px">基本信息：</div>
+			<div class="col-md-6 column" style="border-bottom: 1px solid #00b0f0">
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">用户名：</div>
+					<div class="col-md-4 column text-center userName"></div>
+					<div class="col-md-4 column text-center" >
+						<a data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="userName">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">账号邮箱：</div>
+					<div class="col-md-4 column text-center email"></div>
+					<div class="col-md-4 column text-center" >
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="email">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">密码：</div>
+					<div class="col-md-4 column text-center password"></div>
+					<div class="col-md-4 column text-center" style="cursor:pointer">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="password">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">手机号：</div>
+					<div class="col-md-4 column text-center phone"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="phone">修改</a>
+					</div>
+				</div>
+				
+				<br><br><br><br>
+			</div>
+			<div class="col-md-6 column" style="border-bottom: 1px solid #00b0f0">
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">姓名：</div>
+					<div class="col-md-4 column text-center name"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="name">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">城市：</div>
+					<div class="col-md-4 column text-center city"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="city">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">身份：</div>
+					<div class="col-md-4 column text-center identity"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="identity">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">公司：</div>
+					<div class="col-md-4 column text-center company"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="company">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">行业：</div>
+					<div class="col-md-4 column text-center industry"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="industry">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">职业信息：</div>
+					<div class="col-md-4 column text-center occupation"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="occupation">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">部门：</div>
+					<div class="col-md-4 column text-center department"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="department">修改</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">其他需求：</div>
+					<div class="col-md-4 column text-center demand"></div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="demand">修改</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 column" style="font-size: 16px">第三方账号：</div>
+			<div class="col-md-6 column"
+				style="font-size: 16px; border-bottom: 1px solid #00b0f0">
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">微信：</div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="iWechat">立即绑定</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">QQ：</div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="iQq">立即绑定</a>
+					</div>
+				</div>
+				<div class="row clearfix">
+					<div class="col-md-4 column text-center">微博：</div>
+					<div class="col-md-4 column text-center">
+						<a  data-toggle="modal" data-target="#myModal" style="cursor:pointer" id="iWeibo">立即绑定</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	<!-- 模态框（Modal） -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="myModalLabel"></h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+					</button>
+					<button type="button" class="btn btn-primary submit">提交更改</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal -->
+	</div>
+	<script src="../../js/jquery.js"></script>
+	<script src="../../js/vue.js"></script>
+	<script src="../../js/bootstrap.min.js"></script>
+	<script src="../../js/bootstrap-table.min.js"></script>
+	<script src="../../js/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../js/laydate.js"></script>
+	<script type="text/javascript" src="../../js/echarts/echarts.js"></script>
+	<script type="text/javascript" src="../../js/swing/personal_information.js"></script>
+</body>
+</html>

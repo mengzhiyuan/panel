@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOLPanel</title>
+
+    <!-- Bootstrap -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+    <!-- Custom Theme Style -->
+    <link href="../../css/kol/custom.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/kol/index.css">
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                         <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+               <!--  <div class="sidebar-footer hidden-small">
+                    <a data-toggle="tooltip" data-placement="top" title="Settings">
+                        <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                        <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Lock">
+                        <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                    </a>
+                    <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+                        <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                    </a>
+                </div> -->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                            	<li><a href="../../html/kol/page.html">账号设置</a></li>
+		                       <li><a href="#">帮助</a></li>
+		                       <li><a href="../../kolLogin.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+		                     </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                <li id="update_examine" style="display: none;">
+                                    <a href="./updateExamine.html">
+                                        <span class="image"><img src="/jfcpanel/images/avatars/img.jpg"/></span>
+                                        <span>
+                                            <span>刘欢</span>
+                                            <span class="time">-</span>
+                                        </span>
+                                        <span class="message">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;信息修改审核
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root" @click="removeOption">
+            <div class="right_col" role="main">
+                <div class="">
+                    <div class="row top_tiles">
+                        <div v-for="follow in follow_options" v-show="follow.selected" @click="removeFollow(follow)" class="animated flipInY col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                            <a class="tile-stats">
+                                <div class="icon"><i :class="follow.folLogo"></i></div>
+                                <div class="count">.</div>
+                                <h3>{{ follow.folName }}</h3>
+                            </a>
+                        </div>
+                        <!--<div class="animated flipInY col-lg-2 col-md-2 col-sm-3 col-xs-4">-->
+                        <!--<a href="./exportExamine.html" class="tile-stats">-->
+                        <!--<div class="icon"><i class="fa fa-caret-square-o-right"></i></div>-->
+                        <!--<div class="count">1</div>-->
+                        <!--<h3>导出审核</h3>-->
+                        <!--&lt;!&ndash;<p>Lorem ipsum psdea itgum rixt.</p>&ndash;&gt;-->
+                        <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="animated flipInY col-lg-2 col-md-2 col-sm-3 col-xs-4">-->
+                        <!--<a href="./updateExamine.html" class="tile-stats">-->
+                        <!--<div class="icon"><i class="fa fa-comments-o"></i></div>-->
+                        <!--<div class="count">2</div>-->
+                        <!--<h3>修改/删除审核</h3>-->
+                        <!--&lt;!&ndash;<p>Lorem ipsum psdea itgum rixt.</p>&ndash;&gt;-->
+                        <!--</a>-->
+                        <!--</div>-->
+                        <div class="animated flipInY col-lg-2 col-md-2 col-sm-3 col-xs-4">
+                            <a href="" class="tile-stats" data-toggle="modal" data-target="#follow_options">
+                                <div class="icon"><i class="fa fa-plus"></i></div>
+                                <div class="count">+</div>
+                                <h3>添加关注</h3>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="display">
+                            <div id="statistics" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <p class="title">统计信息</p>
+                                <div class="content">
+                                    <div class="statistics-verbal">
+                                        <p>会员数量: <b>{{ statistics.member_number }}</b>个</p>
+                                        <p>单位数量: <b>{{ statistics.organization_number }}</b>个</p>
+                                        <p>项目数量: <b>{{ statistics.project_number }}</b>个</p>
+                                    </div>
+                                    <div class="statistics-graph"></div>
+                                    <div class="more">
+                                        <button id="more" class="btn btn-sm btn-warning" @click="triggerFilter">更多信息</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="announcement" class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                <p class="title">通知公告</p>
+                                <div class="content">
+                                    <table>
+                                        <thead>
+                                        <tr>
+                                            <th style="width: 10%;">ID</th>
+                                            <th style="width: 20%;">时间</th>
+                                            <th style="width: 25%;">主题</th>
+                                            <th style="width: 10%;">来源</th>
+                                            <th style="width: 15%;">备注</th>
+                                            <th style="width: 20%;">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr v-for="ann in announcements.matrix[announcements.page_number - 1].list">
+                                            <td>{{ ann.id }}</td>
+                                            <td>{{ ann.time }}</td>
+                                            <td>{{ ann.title.length <= 10 ? ann.title : ann.title.slice(0,7) + '...' }}</td>
+                                            <td>{{ ann.source }}</td>
+                                            <td>{{ ann.remark.length <= 10 ? ann.remark : ann.remark.slice(0,7) + '...' }}</td>
+                                            <th>
+                                                <a :href="ann.link">查看详情</a>
+                                                <a @click="getAttachment(ann)">附件</a>
+                                            </th>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <nav aria-label="...">
+                                        <ul class="pagination">
+                                            <li :class="{ disabled: announcements.page_number === 1 }" @click="previousPage">
+                                                <a aria-label="Previous"><span aria-hidden="true">上一页</span></a>
+                                            </li>
+                                            <li v-for="p in announcements.matrix" :class="{ active: announcements.page_number === p.index }" @click="indicatePage(p.index)">
+                                                <a>{{ p.index }} <span class="sr-only">(current)</span></a>
+                                            </li>
+                                            <li :class="{ disabled: announcements.page_number === announcements.number_pages }" @click="nextPage">
+                                                <a aria-label="Next"><span aria-hidden="true">下一页</span></a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <div id="display-detail" v-if="status.filtering">
+                                <div id="filter">
+                                    <div class="chose col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                        <div id="alters">
+                                            <ol class="breadcrumb">
+                                                <li class="switch active" @click="switchLabel($event, 'member')">
+                                                    <a>会员信息</a>
+                                                </li>
+                                                <li class="switch" @click="switchLabel($event, 'organization')">
+                                                    <a>单位信息</a>
+                                                </li>
+                                            </ol>
+                                            <div id="alters-container">
+                                                <div class="check-all">
+                                                    <label for="check_all"><a>全选</a></label>
+                                                    <input type="checkbox" id="check_all" @change="checkAll">
+                                                </div>
+                                                <ul>
+                                                    <li v-for="alt in alters" v-show="status.active_label===alt.type && chosen.indexOf(alt) === -1" :class="{ active: status.active === alt }" @click="activeCheck(alt)" @dblclick="choseSingle(alt)">
+                                                        <a>{{ alt.name.length < 10 ? alt.name : alt.name.slice(0,7) + '...' }}</a>
+                                                        <input type="checkbox" :checked="status.checked.indexOf(alt) > -1" @change="changeCheck(alt)">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div id="chose">
+                                            <span class="glyphicon glyphicon-chevron-right chose-button" @click="choseMulti"></span>
+                                            <span class="glyphicon glyphicon-chevron-left back-button disabled" @click="backMulti"></span>
+                                        </div>
+                                        <div id="chosen">
+                                            <div class="check-all">
+                                                <label for="pick_all"><a>全选</a></label>
+                                                <input type="checkbox" id="pick_all" @change="pickAll">
+                                            </div>
+                                            <ul>
+                                                <li v-for="ch in chosen" :class="{ active: status.backing === ch }" @click="activePick(ch)" @dblclick="backSingle(ch)" @mouseenter="displayTemp(ch)">
+                                                    <a>{{ ch.name.length < 10 ? ch.name : ch.name.slice(0,7) + '...' }}</a>
+                                                    <input type="checkbox" :checked="status.picked.indexOf(ch) > -1" @change="changePick(ch)">
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div id="temps">
+                                            <ul>
+                                                <li v-for="tp in temps">{{ tp }}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div id="conditions" class="filter col-xs-10 col-sm-5 col-md-5 col-lg-5">
+                                        <table>
+                                            <thead>
+                                            <tr>
+                                                <th style="width: 25%" colspan="3">逻辑</th>
+                                                <th style="width: 20%">字段</th>
+                                                <th style="width: 20%">逻辑</th>
+                                                <th style="width: 25%">信息类别</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody v-for="conditions in packedConditions.list" :class="{ packed: conditions.packed }">
+                                            <tr v-for="con in conditions.conditions" :id="'row_' + conditions.conditions.indexOf(con)">
+                                                <td style="width: 10%" class="button-divide" v-if="con.relation === 'none'" :rowspan="conditions.conditions.length">
+                                                    <button class="glyphicon glyphicon-saved btn btn-success" :disabled="conditions.packed" @click="divide(conditions)"></button>
+                                                </td>
+                                                <td class="buttons" style="width: 10%">
+                                                    <button class="glyphicon glyphicon-minus btn btn-warning" :disabled="con.relation === 'none'" @click="minus(conditions,con)"></button>
+                                                    <button class="glyphicon glyphicon-plus btn btn-info" @click="plus(conditions,con)"></button>
+                                                </td>
+                                                <td style="width: 15%">
+                                                    <select class="form-control" v-model="con.relation" :disabled="con.relation === 'none'">
+                                                        <option value="yu">且</option>
+                                                        <option value="huo">或</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" :value="con.field" @change="changeFieldName($event,con)">
+                                                        <option value="">请选择</option>
+                                                        <option v-for="ch in chosen" :value="ch.id">{{ ch.name }}</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    <select class="form-control" v-model="con.operator">
+                                                        <option value="等于">等于</option>
+                                                        <option value="不等于">不等于</option>
+                                                        <option value="开头是">开头是</option>
+                                                        <option value="结尾是">结尾是</option>
+                                                        <option value="包含">包含</option>
+                                                        <option value="不包含">不包含</option>
+                                                    </select>
+                                                </td>
+                                                <td class="value">
+                                                    <input class="form-control" type="text" placeholder="信息类别" v-model="con.value" @click="displayOption($event,con)">
+                                                    <ul class="options" v-if="spreading === con" :class="{ reverse: reverse('row_' + conditions.conditions.indexOf(con)) }">
+                                                        <li v-show="opt.indexOf(con.value) > -1" v-for="opt in options" :data="opt" @click="assignment(con,opt)">{{ opt }}</li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="forms col-xs-2 col-sm-1 col-md-1 col-lg-1">
+                                        <span class="title">结果样式</span>
+                                        <span class="form table" title="表格" form="table" @click="selectForm('table')" :class="{ active: form.indexOf('table') > -1 }"></span>
+                                        <span class="form bars" title="条形图" form="bars" @click="selectForm('bars')" :class="{ active: form.indexOf('bars') > -1 }"></span>
+                                        <span class="form charts" title="柱状图" form="charts" @click="selectForm('charts')" :class="{ active: form.indexOf('charts') > -1 }"></span>
+                                        <span class="form pie" title="饼状图" form="pie" @click="selectForm('pie')" :class="{ active: form.indexOf('pie') > -1 }"></span>
+                                        <span class="form doughnut" title="环形图" form="doughnut" @click="selectForm('doughnut')" :class="{ active: form.indexOf('doughnut') > -1 }"></span>
+                                        <span class="form lines" title="折线图" form="lines" @click="selectForm('lines')" :class="{ active: form.indexOf('lines') > -1 }"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="submitting" v-if="status.filtering">
+                                <div class="buttons col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                    <button class="btn btn-md btn-success" @click="submitFilter">确定</button>
+                                    <button class="btn btn-md btn-danger" @click="resetFilter">重置</button>
+                                    <button class="btn btn-md btn-warning" @click="cancelFilter">取消</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+
+                    </div>
+                    <div class="row">
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="follow_options" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">选择关注</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <p>已关注</p>
+                                <div v-for="follow in follow_options" v-show="follow.selected" @click="removeFollow(follow)" class="animated flipInY col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a class="tile-stats">
+                                        <div class="icon"><i :class="follow.folLogo"></i></div>
+                                        <div class="count">.</div>
+                                        <h3>{{ follow.folName }}</h3>
+                                    </a>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class="row">
+                                <p>未关注</p>
+                                <div v-for="follow in follow_options" v-show="!follow.selected" @click="appendFollow(follow)" class="animated flipInY col-lg-3 col-md-3 col-sm-4 col-xs-6">
+                                    <a class="tile-stats">
+                                        <div class="icon"><i :class="follow.folLogo"></i></div>
+                                        <div class="count">.</div>
+                                        <h3>{{ follow.folName }}</h3>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal" @click="save_follows">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../js/jquery.js"></script>
+<!-- Bootstrap -->
+<script src="../../js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<!--<script src="../vendors/fastclick/lib/fastclick.js"></script>-->
+<!-- NProgress -->
+<!--<script src="../vendors/nprogress/nprogress.js"></script>-->
+<!-- Chart.js -->
+<script src="../../js/echarts/echarts.js"></script>
+<!-- jQuery Sparklines -->
+<!--<script src="../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>-->
+<!-- Flot -->
+<!--<script src="../vendors/Flot/jquery.flot.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.pie.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.time.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.stack.js"></script>-->
+<!--<script src="../vendors/Flot/jquery.flot.resize.js"></script>-->
+<!-- Flot plugins -->
+<!--<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>-->
+<!--<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>-->
+<!--<script src="../vendors/flot.curvedlines/curvedLines.js"></script>-->
+<!-- DateJS -->
+<!--<script src="../vendors/DateJS/build/date.js"></script>-->
+<!-- bootstrap-daterangepicker -->
+<!--<script src="../vendors/moment/min/moment.min.js"></script>-->
+<!--<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>-->
+
+<!-- Custom Theme Scripts -->
+<!--<script src="../../js/kol/menu.js"></script>-->
+<script src="../../js/kol/alerting.js"></script>
+<script src="../../js/kol/custom.min.js"></script>
+<script src="../../js/vue.js"></script>
+<script src="../../js/kol/index.js"></script>
+</body>
+</html>

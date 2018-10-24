@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>行政管理</title>
+    <!-- Bootstrap -->
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../../../css/index/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <!--<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">-->
+    <!-- bootstrap-daterangepicker -->
+    <!--<link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">-->
+
+
+    <link rel="stylesheet" href="../../../css/bootstrap-table.min.css">
+    <link href="../../../js/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/home/font-awesome.min.css" />
+    <link rel="stylesheet" href="../../../css/home/jquery-ui-1.10.3.full.min.css" />
+    <!-- Custom Theme Style -->
+    <link href="../../../css/kol/custom.min.css" rel="stylesheet">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        #buttons{
+            height: 40px;
+        }
+        table th, table td{
+            min-width: 80px;
+            height: 30px;
+            border: 1px solid #aaaaaa;
+        }
+        table th{
+            text-align: center;
+        }
+        table .th{
+            font-weight: bold;
+        }
+        .form-control{
+            border-radius: 0;
+            height: initial;
+        }
+        #bonus .form-control{
+            height: 30px;
+        }
+        #bonus .form-control.row-2{
+            height: 59px;
+        }
+        #bonus .form-control.row-8{
+            height: 241px;
+        }
+    </style>
+</head>
+
+<body class="nav-md">
+<!--<div id="root">-->
+<div class="container body">
+    <div class="main_container">
+        <div class="col-md-3 left_col">
+            <div class="left_col scroll-view">
+                <div class="navbar nav_title" style="border: 0;">
+                    <a href="../main_kangpai" class="site_title"><i class="fa fa-paw"></i> <span>KOLPanel</span></a>
+                </div>
+
+                <div class="clearfix"></div>
+
+                <!-- menu profile quick info -->
+                <div class="profile clearfix">
+                    <div class="profile_pic">
+                        <img src="/jfcpanel/images/avatars/img.jpg" alt="..." class="img-circle profile_img">
+                    </div>
+                    <div class="profile_info">
+                        <span class="role"></span>
+                        <h2 class="user-name"></h2>
+                    </div>
+                </div>
+                <!-- /menu profile quick info -->
+
+                <br />
+
+                <!-- sidebar menu -->
+                <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                    <div class="menu_section">
+                        <h3>目录</h3>
+                        <ul class="nav side-menu" id="side_menu">
+                        </ul>
+                    </div>
+                </div>
+                <!-- /sidebar menu -->
+
+                <!-- /menu footer buttons -->
+                <!--<div class="sidebar-footer hidden-small">-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Settings">-->
+                        <!--<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="FullScreen">-->
+                        <!--<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Lock">-->
+                        <!--<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                    <!--<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">-->
+                        <!--<span class="glyphicon glyphicon-off" aria-hidden="true"></span>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!-- /menu footer buttons -->
+            </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+            <div class="nav_menu">
+                <nav>
+                    <div class="nav toggle">
+                        <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                    <div class="back toggle">
+                        <a onclick="history.back()"><i class="fa fa-reply"></i></a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="">
+                            <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <img src="/jfcpanel/images/avatars/img.jpg" alt="">
+                                <span class="user-name"></span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li><a href="../../html/jfc/main/page.html">账号设置</a></li>
+
+                                <li><a href="#">帮助</a></li>
+                                <li><a href="//www.kolpanel.net/login.html"><i class="fa fa-sign-out pull-right"></i> 退出</a></li>
+                            </ul>
+                        </li>
+
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="badge bg-green"></span>
+                            </a>
+                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                        <li role="presentation" class="dropdown">
+                            <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                                <!--<span class="badge bg-green">0</span>-->
+                            </a>
+                            <ul id="menu2" class="dropdown-menu list-unstyled msg_list" role="menu">
+
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        <div id="root">
+            <div class="right_col" role="main">
+                <div id="bonus">
+                    <div id="buttons">
+                        <a href="./finalAccountList.html" class="btn btn-md btn-default pull-left">返回</a>
+                        <button class="btn btn-md btn-success pull-right" @click="submit">提交</button>
+                    </div>
+                    <table>
+                        <thead></thead>
+                        <tbody>
+                        <tr>
+                            <th>项目名称</th>
+                            <th colspan="4">项目结果</th>
+                            <td rowspan="9"></td>
+                            <th colspan="2">项目评价</th>
+                            <th>主管评价</th>
+                            <th colspan="3">原因备注</th>
+                            <th>签名</th>
+                        </tr>
+                        <tr>
+                            <td :rowspan="11">{{ about_project.project_name }}</td>
+                            <td class="th" colspan="2">BI:预算完成项目额</td>
+                            <td colspan="2">{{ about_project.budgeted_performance }}</td>
+                            <th colspan="2" rowspan="2">完成评价</th>
+                            <td rowspan="2">
+                                <select class="form-control row-2" type="text" v-model="project_evaluation.completing_director">
+                                    <option value="">请选择</option>
+                                    <option value="0">0%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.5">50%</option>
+                                    <option value="0.8">80%</option>
+                                    <option value="1">100%</option>
+                                </select>
+                            </td>
+                            <td colspan="3" rowspan="2">
+                                <input class="form-control row-2" type="text" v-model="project_evaluation.completing_remark">
+                            </td>
+                            <td rowspan="8">
+                                <input class="form-control row-8" type="text" v-model="project_evaluation.signature">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">FI:实际完成项目额</td>
+                            <td colspan="2">{{ about_project.final_performance }}</td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">BC:项目预算成本</td>
+                            <td colspan="2">{{ about_project.budgeted_cost }}</td>
+                            <th colspan="2" rowspan="2">成本控制</th>
+                            <td rowspan="2">
+                                <select class="form-control row-2" type="text" v-model="project_evaluation.cost_director">
+                                    <option value="">请选择</option>
+                                    <option value="0">0%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.5">50%</option>
+                                    <option value="0.8">80%</option>
+                                    <option value="1">100%</option>
+                                </select>
+                            </td>
+                            <td colspan="3" rowspan="2">
+                                <input class="form-control row-2" type="text" v-model="project_evaluation.cost_remark">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">FC:项目决算成本</td>
+                            <td colspan="2">{{ about_project.final_cost }}</td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">PI:毛利润收入</td>
+                            <td colspan="2">{{ about_project.gross_profit }}</td>
+                            <th colspan="2" rowspan="2">质量控制</th>
+                            <td rowspan="2">
+                                <select class="form-control row-2" type="text" v-model="project_evaluation.quality_director">
+                                    <option value="">请选择</option>
+                                    <option value="0">0%</option>
+                                    <option value="0.2">20%</option>
+                                    <option value="0.5">50%</option>
+                                    <option value="0.8">80%</option>
+                                    <option value="1">100%</option>
+                                </select>
+                            </td>
+                            <td colspan="3" rowspan="2">
+                                <input class="form-control row-2" type="text" v-model="project_evaluation.quality_remark">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">PB:项目奖金(核算)</td>
+                            <td colspan="2">{{ about_project.bonus_account }}</td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">最终项目奖金</td>
+                            <td colspan="2">
+                                <input type="number" class="form-control" v-model="about_project.project_bonus">
+                            </td>
+                            <th colspan="2">综合评价</th>
+                            <td>
+                                {{ overall_computed }}
+                            </td>
+                            <td colspan="3">
+                                <input class="form-control" type="text" v-model="project_evaluation.overall_remark">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="th" colspan="2">最终销售奖金</td>
+                            <td colspan="2">
+                                <input type="number" class="form-control" v-model="about_project.sell_bonus">
+                            </td>
+                            <th colspan="2">项目奖金发放计划</th>
+                            <td>
+                                <select class="form-control" type="text" v-model="project_evaluation.project_bonus_paying">
+                                    <option value="">请选择</option>
+                                    <option value="1season">一季度</option>
+                                    <option value="2season">二季度</option>
+                                    <option value="3season">三季度</option>
+                                    <option value="4season">四季度</option>
+                                    <option value="xseason">待定</option>
+                                </select>
+                            </td>
+                            <th colspan="2">销售奖金发放计划</th>
+                            <td>
+                                <select class="form-control" type="text" v-model="project_evaluation.sell_bonus_paying">
+                                    <option value="">请选择</option>
+                                    <option value="1season">一季度</option>
+                                    <option value="2season">二季度</option>
+                                    <option value="3season">三季度</option>
+                                    <option value="4season">四季度</option>
+                                    <option value="xseason">待定</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th rowspan="2">姓名</th>
+                            <th rowspan="2">项目岗位</th>
+                            <th rowspan="2">人员类型</th>
+                            <th rowspan="2">预算(人*天)</th>
+                            <th rowspan="2">决算(人*天)</th>
+                            <th colspan="3">项目金额</th>
+                            <th rowspan="2">工作量(合计100%)</th>
+                            <th rowspan="2">工作效率(%)</th>
+                            <th rowspan="2">工作态度(%)</th>
+                            <th rowspan="2">奖金分配比例(%)</th>
+                        </tr>
+                        <tr>
+                            <th>管理</th>
+                            <th>工作</th>
+                            <th>合计</th>
+                        </tr>
+                        <tr>
+                            <td>{{ ratios.manager.name }}</td>
+                            <th>{{ ratios.manager.duty }}</th>
+                            <td>{{ ratios.manager.job }}</td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.budget_cost">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.final_cost">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.manage">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.work">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.summarise">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.work_quantity">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.work_efficiency">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.work_attitude">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="ratios.manager.ratio">
+                            </td>
+                        </tr>
+                        <tr v-for="m in ratios.members">
+                            <th>
+                                <span class="add_row glyphicon  glyphicon-plus" @click="insertAfter(m)"></span>
+                                <span class="add_row glyphicon glyphicon-minus" @click="deleteThis(m)"></span>
+                            </th>
+                            <td>
+                                <select v-if="m.job !== '长期兼职'" class="form-control" v-model="m.id" @change="getNameViaId($event,m)">
+                                    <option v-for="st in staffs" :value="st.staId">{{ st.staName }}</option>
+                                </select>
+                                <input v-if="m.job === '长期兼职'" type="text" class="form-control" v-model="m.name" @change="inputName(m)">
+                            </td>
+                            <th>
+                                <select class="form-control" v-model="m.duty">
+                                    <option value="">请选择</option>
+                                    <option value="研究经理">研究经理</option>
+                                    <option value="研究员">研究员</option>
+                                    <option value="执行督导">执行督导</option>
+                                    <option value="QC督导">QC督导</option>
+                                    <option value="长期兼职">长期兼职</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </th>
+                            <td>
+                                <select class="form-control" v-model="m.job">
+                                    <option value="">请选择</option>
+                                    <option value="正式">正式</option>
+                                    <option value="试用">试用</option>
+                                    <option value="长期兼职">长期兼职</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.budget_cost">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.final_cost">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.manage">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.work">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.summarise">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.work_quantity">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.work_efficiency">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.work_attitude">
+                            </td>
+                            <td>
+                                <input type="number" class="form-control" v-model="m.ratio">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>合计</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <th>-</th>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>{{ ratios.sum.manage }}</td>
+                            <td>{{ ratios.sum.work }}</td>
+                            <td>{{ ratios.sum.summarise }}</td>
+                            <td>{{ ratios.sum.work_quantity / 100 }}</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>{{ ratios.sum.ratio / 100 }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">控制参考</td>
+                            <td>{{ percents_manage_computed }}</td>
+                            <td>{{ percents_work_computed }}</td>
+                            <td>
+                                <input type="text" class="form-control" v-model="ratios.sum.bonus_total">
+                            </td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                        <tr>
+                            <th rowspan="3">备注:</th>
+                            <td colspan="12">
+                                1、试用期员工参与奖金核算,不予以现金体现；项目管理人员可参与管理和工作奖金分配；
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                2、管理奖金以10%~40%不等；工作奖金是扣除管理奖金之后,参与奖金分配比例进行；<span style="color: red;font-weight: bold;">参考!</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="12">
+                                3、项目经理制订项目奖金方案；分配金额参与上述公式计算具体金额可灵活把握
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+            <div class="pull-right">
+                <!--Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>-->
+            </div>
+            <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+    </div>
+</div>
+<!--</div>-->
+
+<!-- jQuery -->
+<script src="../../../js/jquery.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../js/vue.js"></script>
+<!-- Bootstrap -->
+<script src="../../../js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../../../js/echarts/echarts.js"></script>
+<!--<script src="../../../js/bootstrap.min.js"></script>-->
+<script src="../../../js/bootstrap-table.min.js"></script>
+<script src="../../../js/bootstrap-table-zh-CN.min.js"></script>
+<script src="../../../js/bootstrap-select.min.js"></script>
+<script src="../../../js/laydate.js"></script>
+<script src="../../../ueditor/ueditor.config.js"></script>
+<script src="../../../ueditor/ueditor.all.min.js"></script>
+<script src="../../../js/jfc/main/left.js"></script>
+<script src="../../../js/kol/custom.min.js"></script>
+<script src="../../../js/lists.js"></script>
+<script src="../../../js/ChainReact.js"></script>
+<script src="../../../js/jfc/project/projectBonus.js"></script>
+</body>
+</html>

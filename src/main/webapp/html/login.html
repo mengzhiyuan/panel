@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>登录页面</title>
+    <style>
+        /*---common---start---*/
+        * {
+            padding: 0;
+            margin: 0;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            overflow: hidden;
+            outline: none;
+        }
+        body {
+            font-family: Microsoft YaHei, sans-serif;
+            background: url(../images/logos/background.jpg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+        }
+        a:hover, a:focus {
+            text-decoration: underline #ffffff!important;
+        }
+        .active>a:hover, .active>a:focus, a.active:hover, a.active:focus {
+            text-decoration: none!important;
+        }
+        input {
+            background-color: rgba(250,255,189,0.3);
+        }
+        input:focus {
+            background-color: rgba(250,255,189,0.5);
+        }
+        /*---common---end---*/
+        /*---tags---start---*/
+        ul.tags {
+            margin: 5px 10px 0 0;
+            font-size: 0;
+        }
+        ul.tags>li {
+            list-style: none;
+            float: right;
+            padding: 2px 5px;
+            margin: 2px 0;
+            border-right: 1px solid #ffffff;
+            font-size: 0;
+        }
+        ul.tags>li:first-child {
+            border-right: 1px solid transparent;
+        }
+        ul.tags>li.active {
+            background-color: rgba(255,255,255,0.3);
+        }
+        ul.tags>li.active a {
+            color: #ffffff;
+            font-weight: bold;
+        }
+        ul.tags a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 12px;
+        }
+        /*---tags---end---*/
+        /*---title---start---*/
+        #main {
+            position: relative;
+            clear: both;
+            margin: 100px auto 0;
+            width: 30%;
+            min-width: 400px;
+            height: 420px;
+            background-color: rgba(0,0,0,0.5);
+        }
+        #login {
+            display: block;
+        }
+        #registration {
+            display: none;
+        }
+        #forgot {
+            display: none;
+        }
+        #titles, #register_titles, #forgot_titles {
+            margin: 30px 0 0 0;
+        }
+        .title {
+            display: none;
+            color: #ffffff;
+            text-align: center;
+            font-size: 28px;
+        }
+        .title.active, .title.fixed {
+            display: block;
+        }
+        /*---title---end---*/
+        /*---form---start---*/
+        .forms {
+            margin: 15px 0 0 0;
+            padding: 5% 10%;
+            /*text-align: center;*/
+        }
+        .forms input {
+            margin: 10px 0;
+            display: inline-block;
+            width: 100%;
+            min-width: 320px;
+            padding: 6px;
+            line-height: 28px;
+            border: 1px solid #000000;
+            font-size: 18px;
+            color: #ffffff;
+        }
+        .forms .label {
+            margin: 10px 0;
+            display: inline-block;
+            width: 40%;
+            min-width: 128px;
+            padding: 6px 6px 6px 0;
+            line-height: 28px;
+            background-color: rgba(250,255,189,0.3);
+            border: 1px solid #000000;
+            border-left: none;
+            font-size: 18px;
+            color: #ffffff;
+            vertical-align: middle;
+        }
+        #register_email, #forgot_email, #forgot_verification {
+            width: 60%;
+            min-width: 192px;
+            border-right: none;
+            vertical-align: middle;
+            padding-right: 0;
+        }
+        #login .forms .store {
+            line-height: 35px;
+            font-size: 12px;
+            color: #ffffff;
+            vertical-align: middle;
+        }
+        #forgot .forms span.label {
+            background: transparent;
+            border: 1px solid transparent;
+            border-left: 1px solid #000000;
+            text-align: center;
+        }
+        #verification {
+            font-size: 14px;
+            padding: 3px 5px;
+            background-color: transparent;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        ::-webkit-input-placeholder { /* WebKit browsers */
+            color:    #ffffff;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+            color:    #ffffff;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+            color:    #ffffff;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10+ */
+            color:    #ffffff;
+        }
+        #store {
+            width: 14px!important;
+            min-width: 2px;
+            height: 14px;
+            vertical-align: middle;
+        }
+        .separate {
+            display: inline-block;
+            width: 100%;
+        }
+        .switch {
+            float: right;
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 12px;
+            vertical-align: middle;
+        }
+        a.switch {
+            line-height: 35px;
+        }
+        .buttons {
+            clear: both;
+            margin-top: 10px;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        .buttons button {
+            padding: 5px 50px;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #submit_forgot {
+            padding: 5px 45px;
+        }
+        .buttons .left {
+            float: left;
+            background-color: rgba(0,0,0,0.3);
+        }
+        .buttons .switch {
+            float: right;
+            border: 1px solid transparent;
+            background-color: transparent;
+            font-weight: 300;
+        }
+        h5 {
+            margin: 20px 0 0 0;
+            text-align: center;
+            color: #ffffff;
+            font-weight: 300;
+        }
+        /*---form---end---*/
+        /*---footer---start---*/
+        .footer {
+            margin: 15px 0 0 0;
+            text-align: center;
+        }
+        .footer p, .footer a {
+            color: #ffffff;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        /*---footer---end---*/
+    </style>
+</head>
+<body>
+<div class="header">
+    <ul id="gates" class="tags">
+        <li><a href="//mail.jfcmc.com" target="_blank">Email</a></li>
+        <li class="swing"><a href="swing">Swing</a></li>
+        <li class="kolpanel"><a href="kolpanel">KOLPanel</a></li>
+        <li class="sky-oa active"><a href="sky-oa">SKY-OA</a></li>
+    </ul>
+</div>
+<div id="main">
+    <div id="login">
+        <div id="titles">
+            <div class="title sky-oa active">SKY-OA登录</div>
+            <div class="title kolpanel">KOLPanel登录</div>
+            <div class="title swing">Swing登录</div>
+        </div>
+        <div class="forms">
+            <input type="text" name="username" id="username" placeholder="邮箱"><br/>
+            <input type="password" name="password" id="password" placeholder="密码"><br/>
+            <span class="separate">
+                <input type="checkbox" id="store" checked>
+                <label class="store" for="store">记住密码</label>
+                <a href="javascript: void(0);" switch-target="forgot" class="switch">&nbsp;忘记密码？</a>
+            </span>
+            <br/>
+            <span class="buttons">
+                <button id="submit_login" class="left">登录</button>
+                <button id="switch_login" switch-target="registration" class="switch">去注册</button>
+            </span>
+            <h5>-其他登录方式（待开发）-</h5>
+        </div>
+
+    </div>
+    <div id="registration">
+        <div id="register_titles">
+            <div class="title fixed">用户注册</div>
+        </div>
+        <div class="forms">
+            <input type="text" id="register_email" placeholder="邮箱-必填"><label for="register_email" class="label">@jfcmc.com</label><br/>
+            <input type="text" id="register_telephone" placeholder="手机号码-必填"><br/>
+            <input type="text" id="register_username" placeholder="用户名-必填"><br/>
+            <input type="text" id="register_password" placeholder="密码-必填"><br/>
+            <span class="buttons">
+                <button id="submit_register" class="left">注册</button>
+                <button id="switch_register" switch-target="login" class="switch">去登录</button>
+            </span>
+        </div>
+    </div>
+    <div id="forgot">
+        <div id="forgot_titles">
+            <div class="title fixed">重设密码</div>
+        </div>
+        <div class="forms">
+            <input type="text" id="forgot_email" placeholder="邮箱-必填"><label for="forgot_email" class="label">@jfcmc.com</label><br/>
+            <input type="text" id="forgot_verification" placeholder="验证码-必填"><span class="label"><button id="verification">获取验证码</button></span><br/>
+            <input type="text" id="forgot_password" placeholder="新密码-必填"><br/>
+            <input type="text" id="forgot_password_repeat" placeholder="确认新密码-必填"><br/>
+            <span class="buttons">
+                <button id="submit_forgot" class="left">修改密码</button>
+                <button id="switch_forgot" switch-target="login" class="switch">去登录</button>
+            </span>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <p>
+        Copyright ©
+        <a href="http://www.jfcmc.com" target="_blank" title="JFC官网">北京捷峰市场联合调查有限公司</a>
+    </p>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/jfc/login/tooltips.js"></script>
+<script src="../js/jfc/login/jquery.cookie.js"></script>
+<script src="../js/jfc/login/LOGin.js"></script>
+<script>
+
+</script>
+</body>
+</html>

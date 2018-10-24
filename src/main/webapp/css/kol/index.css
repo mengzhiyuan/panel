@@ -1,0 +1,370 @@
+* {
+    font-family: "Microsoft YaHei","宋体","Segoe UI", "Lucida Grande", Helvetica, Arial,sans-serif, FreeSans, Arimo;
+}
+.breadcrumb>.active{
+    background-color: #5bc0de;
+    border-radius: 3px;
+}
+#my-follow{
+    height: 7rem;
+    border: 1px solid #999999;
+}
+#my-follow ul>li{
+    float: left;
+    list-style: none;
+}
+#my-follow ul>li>a{
+    display: inline-block;
+    height: 6.8rem;
+    width: 8rem;
+    line-height: 6.8rem;
+    font-size: 1.4rem;
+    text-align: center;
+    /* border: 1px solid; */
+    background-color: #eeeeee;
+}
+.display{
+    top: 2rem;
+}
+.display p.title{
+    height: 5rem;
+    line-height: 5rem;
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+    text-align: center;
+}
+.statistics-verbal{
+    height: 8rem;
+    line-height: 2rem;
+}
+.statistics-graph{
+    width:100%;
+    height: 32rem;
+}
+#statistics, #announcement, .filter, .chose{
+    padding: 0;
+    border: 1px solid #999999;
+}
+#filter .chose{
+    height: 24.2rem;
+}
+#statistics .more{
+    padding: 0 1rem 0 0;
+    text-align: right;
+    height: 3rem;
+}
+.statistics-verbal p, .statistics-verbal b{
+    font-size: 1.4rem;
+}
+.statistics-verbal p{
+    padding: 0 0 0 3rem;
+}
+.statistics-verbal b{
+    color: #ff1f30;
+}
+#announcement .content{
+    height: 43rem;
+}
+#announcement table{
+    width: 100%;
+}
+/*#announcement th{*/
+    /*text-align: center;*/
+/*}*/
+/*#announcement td{*/
+    /*text-align: right;*/
+/*}*/
+#announcement th, #announcement td, #announcement a{
+    font-size: 1.4rem;
+    text-align: center;
+    border: 1px solid #999999;
+}
+#announcement a{
+    border: none;
+}
+nav{
+    text-align: center;
+}
+.pagination span{
+    font-size: 1.2rem;
+    /*text-align: center;*/
+}
+#display-detail:before{
+    content: '';
+    display: block;
+    clear: both;
+}
+#display-detail:after{
+    content: '';
+    display: block;
+    clear: both;
+}
+#display-detail{
+
+}
+.check-all{
+    position: relative;
+    padding: 0 1rem;
+}
+.check-all label, .check-all input{
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.check-all label{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+}
+.check-all input{
+    position: absolute;
+    top: 0;
+    right: 16%;
+    display: inline-block;
+    width: 1.2rem;
+    height: 1.2rem;
+}
+#alters{
+    position: relative;
+    display: inline-block;
+    width: 16rem;
+    height: 24rem;
+    vertical-align: top;
+    border: 1px solid #999999;
+    z-index: 100;
+}
+.breadcrumb{
+    margin: 0;
+    text-align: center;
+}
+.breadcrumb>li {
+    width: 48%;
+}
+.breadcrumb a{
+    cursor: pointer;
+}
+#alters .switch>a{
+    font-size: 1.2rem;
+    color: #5bc0de;
+}
+#alters .switch.active>a{
+    color: #ffffff;
+    cursor: default;
+}
+#alters .switch>a:hover, #alters .switch>a:focus{
+    text-decoration: none;
+}
+#alters-container{
+    width: 100%;
+    height: 20rem;
+    overflow-y: scroll;
+}
+#alters-container>ul, #chosen>ul, #temps>ul{
+    padding: 0 1rem;
+    margin: 1rem 0;
+}
+#alters-container a, #chosen a, #temps li{
+    display: inline-block;
+    width: 80%;
+    font-size: 1.2rem;
+}
+#alters-container li>input, #chosen li>input{
+    width: 1.2rem;
+    height: 1.2rem;
+}
+#alters-container li, #chosen li{
+    border: 1px solid transparent;
+}
+#alters-container li.active, #chosen li.active{
+    border: 1px solid #1B9AF7;
+}
+#chose{
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 24rem;
+    vertical-align: top;
+    border: 1px solid #999999;
+    z-index: 100;
+}
+#chose .disabled{
+    color: #aaaaaa;
+    cursor: not-allowed;
+}
+#chose>span{
+    position: relative;
+    top: 8rem;
+    margin: 1.5rem 0;
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+}
+#chosen{
+    position: relative;
+    display: inline-block;
+    width: 16rem;
+    height: 24rem;
+    padding: 3rem 0 0 0;
+    overflow-y: scroll;
+    border: 1px solid #999999;
+    z-index: 100;
+}
+#temps{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 24rem;
+    padding: 3rem 0 0 35.5rem;
+    overflow-y: scroll;
+    border: 1px solid #999999;
+    z-index: 1;
+}
+#conditions{
+    height: 24.2rem;
+    overflow-y: scroll;
+    /*border-bottom: 2px solid #999999;*/
+}
+#filter .forms{
+    height: 24.2rem;
+    /*border-bottom: 2px solid #999999;*/
+}
+#conditions>table{
+    width: 100%;
+}
+#conditions th{
+    height: 2.8rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+#conditions .packed{
+    border-bottom: 1px solid #1B9AF7;
+}
+#conditions input, #conditions button{
+    font-size: 1.2rem;
+}
+#conditions .button-divide{
+    min-width: 2rem;
+    text-align: center;
+}
+#conditions .buttons{
+    min-width: 4rem;
+    text-align: center;
+}
+#conditions .buttons>button, #conditions .button-divide>button{
+    padding: 0.1rem 0;
+    margin: 0 0.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+#conditions .value{
+    position: relative;
+}
+#conditions .options{
+    position: absolute;
+    top: 34px;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #666666;
+    overflow-y: scroll;
+    z-index: 100;
+}
+#conditions .options.reverse{
+    top: initial;
+    bottom: 34px;
+}
+#conditions .options>li{
+    height: 34px;
+    line-height: 34px;
+    padding: 0 0 0 0.5rem;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+#submitting{
+    text-align: center;
+}
+.forms{
+    text-align: center;
+    border: 1px solid #999999;
+}
+.forms .title{
+    display: inline-block;
+    width: 100%;
+    height: 2.4rem;
+    line-height: 2.4rem;
+    margin: 0.6rem auto;
+    border-bottom: 1px solid #666666;
+    font-size: 1.4rem;
+    vertical-align:  middle;
+}
+.forms .form{
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    line-height: 3rem;
+    margin: 0.2rem auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    font-size: 1.4rem;
+    vertical-align:  middle;
+    cursor: pointer;
+}
+.forms .form.table{
+    background-image: url('../../images/kangpai/table.png');
+}
+.forms .form.bars{
+    background-image: url('../../images/kangpai/bars.png');
+}
+.forms .form.charts{
+    background-image: url('../../images/kangpai/charts.png');
+}
+.forms .form.pie{
+    background-image: url('../../images/kangpai/pie.png');
+}
+.forms .form.doughnut{
+    background-image: url('../../images/kangpai/doughnut-black.png');
+}
+.forms .form.lines{
+    background-image: url('../../images/kangpai/lines.png');
+}
+.forms .form.active{
+    border: 2px solid #ff1f30;
+    -webkit-border-radius: 0.3rem;
+    -moz-border-radius: 0.3rem;
+    border-radius: 0.3rem;
+}
+#submitting .buttons{
+    height: 6rem;
+    line-height: 6rem;
+}
+#submitting .buttons button{
+    margin: 0 1rem;
+}
+#menu2{
+    width: 160px;
+    text-align: center;
+}
+#menu2 li{
+    width: 92%!important;
+}
+a h3{
+    font-size: 15px;
+}
+#follow_options .tile-stats .icon i{
+    font-size: 30px;
+}
+.sidebar-footer {
+    display: none;
+}
+[v-cloak] {
+    display: none!important;
+}

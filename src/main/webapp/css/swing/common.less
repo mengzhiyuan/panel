@@ -1,0 +1,271 @@
+/*样式库-start*/
+/*position mode-start*/
+.absolute {
+  position: absolute;
+}
+.relative {
+  position: relative;
+}
+.fixed {
+  position: fixed;
+}
+/*color-start*/
+.blue {
+  color: #1b6d85;
+}
+.white {
+  color: #ffffff;
+}
+.black {
+  color: #000000;
+}
+.background-color(@c) {
+  background-color: @c;
+}
+.underline {
+  text-decoration: underline;
+}
+/*display-start*/
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block;
+}
+.hidden {
+  display: none;
+}
+/*align-start*/
+.t-left {
+  text-align: left;
+}
+.t-center {
+  text-align: center;
+}
+.t-right {
+  text-align: right;
+}
+.f-left {
+  float: left;
+}
+.f-right {
+  float: right;
+}
+.f-clear {
+  clear: both;
+}
+.v-top {
+  vertical-align: top;
+}
+.v-middle {
+  vertical-align: middle;
+}
+.v-bottom {
+  vertical-align: bottom;
+}
+/*font-start*/
+.sans-serif {
+  font-family: BlinkMacSystemFont,Helvetica Neue,PingFang SC,Microsoft YaHei,Source Han Sans SC,Noto Sans CJK SC,WenQuanYi Micro Hei,sans-serif;
+}
+.serif {
+  font-family: FangSong,SimSun,serif;
+}
+.no-list {
+  list-style: none;
+}
+/*length-start*/
+.length-p(@l) {/*百度比长度*/
+  @length-p: percentage(@l/100)
+}
+.length(@l) {/*像素长度*/
+  @length: @l * @px;
+}
+.width-p(@w) {/*百度比宽度*/
+  .length-p(@w);
+  width: @length-p;
+}
+.height-p(@h) {/*百度比高度*/
+  .length-p(@h);
+  height: @length-p;
+}
+.width(@w) {/*像素宽度*/
+  .length(@w);
+  width: @length;
+}
+.height(@h) {/*像素高度*/
+  .length(@h);
+  height: @length;
+}
+.min-width(@w) {
+  .length(@w);
+  min-width: @length;
+}
+.max-width(@w) {
+  .length(@w);
+  max-width: @length;
+}
+.min-height(@h) {
+  .length(@h);
+  min-height: @length;
+}
+.max-height(@h) {
+  .length(@h);
+  max-height: @length;
+}
+.font-size(@s) {/*像素字体大小*/
+  .length(@s);
+  font-size: @length;
+}
+.font-weight(@w) {
+  font-weight: @w * 100;
+}
+.line-height(@s) {/*像素行高*/
+  .length(@s);
+  line-height: @length;
+}
+/*position number-start*/
+.top(@p) {
+  .length(@p);
+  top: @length;
+}
+.top-p(@p) {
+  .length-p(@p);
+  top: @length-p;
+}
+.left(@p) {
+  .length(@p);
+  left: @length;
+}
+.left-p(@p) {
+  .length-p(@p);
+  left: @length-p;
+}
+.right(@p) {
+  .length(@p);
+  right: @length;
+}
+.right-p(@p) {
+  .length-p(@p);
+  right-p: @length-p;
+}
+.bottom(@p) {
+  .length(@p);
+  bottom: @length;
+}
+.bottom-p(@p) {
+  .length-p(@p);
+  bottom-p: @length-p;
+}
+.padding-top(@t) {
+  .length(@t);
+  padding-top: @length;
+  @padding-top: @length;
+}
+.padding-right(@r) {
+  .length(@r);
+  padding-right: @length;
+  @padding-right: @length;
+}
+.padding-bottom(@b) {
+  .length(@b);
+  padding-bottom: @length;
+  @padding-bottom: @length;
+}
+.padding-left(@l) {
+  .length(@l);
+  padding-left: @length;
+  @padding-left: @length;
+}
+.padding(@t: 0,@r: 0,@b: 0,@l: 0) {
+  .padding-top(@t);
+  .padding-right(@r);
+  .padding-bottom(@b);
+  .padding-left(@l);
+  padding-top: @padding-top;
+  padding-right: @padding-right;
+  padding-bottom: @padding-bottom;
+  padding-left: @padding-left;
+}
+.margin-top(@t) {
+  .length(@t);
+  margin-top: @length;
+  @margin-top: @length;
+}
+.margin-right(@r) {
+  .length(@r);
+  margin-right: @length;
+  @margin-right: @length;
+}
+.margin-bottom(@b) {
+  .length(@b);
+  margin-bottom: @length;
+  @margin-bottom: @length;
+}
+.margin-left(@l) {
+  .length(@l);
+  margin-left: @length;
+  @margin-left: @length;
+}
+.margin(@t: 0,@r: 0,@b: 0,@l: 0) {
+  .margin-top(@t);
+  .margin-right(@r);
+  .margin-bottom(@b);
+  .margin-left(@l);
+  margin-top: @margin-top;
+  margin-right: @margin-right;
+  margin-bottom: @margin-bottom;
+  margin-left: @margin-left;
+}
+.border-radius(@b) {
+  .length(@b);
+  -webkit-border-radius: @length;
+  -moz-border-radius: @length;
+  border-radius: @length;
+}
+.inset(@i) {
+  .length(@i);
+  @inset: @length;
+}
+.hoff(@h) {
+  .length(@h);
+  @hoff: @length;
+}
+.voff(@v) {
+  .length(@v);
+  @voff: @length;
+}
+.blur(@b) {
+  .length(@b);
+  @blur: @length;
+}
+.box-shadow(@inset,@hoff,@voff,@blur,@color) {
+  .inset(@inset);
+  .hoff(@hoff);
+  .voff(@voff);
+  .blur(@blur);
+  -webkit-box-shadow: @inset @hoff @voff @blur @color;
+  -moz-box-shadow: @inset @hoff @voff @blur @color;
+  box-shadow: @inset @hoff @voff @blur @color;
+}
+/*样式库-end*/
+
+/*公用样式-start*/
+[v-clock] {
+  //display: none;
+}
+@px: 1px;
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.glyphicon {
+  &:before {
+    .relative;
+    .top(0);
+    .left(1);
+  }
+}
+/*公用样式-end*/
